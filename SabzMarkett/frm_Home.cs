@@ -38,7 +38,7 @@ namespace SabzMarkett
         {
             if (e.Error != null)
             {
-                MessageBox.Show("عکس بارگذاری نشد");
+                ShowInfo("عکس بارگذاری نشد");
                 pb_Profile.Image = Properties.Resources.profile;
             }
         }
@@ -55,7 +55,7 @@ namespace SabzMarkett
             }
             else
             {
-                MessageBox.Show(seller.Message);
+                ShowInfo(seller.Message);
             }
         }
 

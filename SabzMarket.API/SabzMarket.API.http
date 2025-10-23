@@ -1,0 +1,6 @@
+@SabzMarket.API_HostAddress = http://localhost:5251
+
+GET {{SabzMarket.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

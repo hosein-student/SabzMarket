@@ -9,9 +9,9 @@ namespace SabzMarketDAL
 {
     public interface ISellerRepositoty
     {
-        Task<OperationResult> InsertSelllerAsync(string userName,SellerDTO user);
+        Task<OperationResult> InsertSelllerAsync(SellerDTO user);
         Task<OperationResult<SellerDTO>> SelectSellerAsync(string userName);
-        Task<OperationResult> UpdateSellerAsync(string userName,SellerDTO sellerDTO);
+        Task<OperationResult> UpdateSellerAsync(SellerDTO sellerDTO);
     }
 }
     

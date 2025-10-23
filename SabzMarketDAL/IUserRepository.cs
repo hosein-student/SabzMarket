@@ -10,9 +10,9 @@ namespace SabzMarketDAL
     public interface IUserRepository
     {
         Task<OperationResult> InsertUserAsync(UserDTO user);
-        Task<OperationResult> CheckUserAsync(UserDTO user);
-        Task<OperationResult> CheckUserToSellerAsync(UserDTO user);
-        Task<OperationResult> CheckPassword(UserDTO user);
+        Task<OperationResult> CheckUserAsync(string username);
+        Task<OperationResult> CheckUserToSellerAsync(string username);
+        Task<OperationResult> CheckPasswordAsync(string username, string password);
 
     }
 }

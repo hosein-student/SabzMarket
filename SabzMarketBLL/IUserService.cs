@@ -10,8 +10,9 @@ namespace SabzMarketBLL
     public interface IUserService
     {
         Task<OperationResult> InsertUserAsync(UserDTO user);
-        Task<OperationResult> CheckUserToSellerAsync(UserDTO user);
-        Task<OperationResult> FoundUserAsync(UserDTO user);
+        Task<OperationResult> CheckUserToSellerAsync(string username);
+        Task<OperationResult> CheckUserAsync(string username);
         Task<OperationResult> CheckPasswordAsync(UserDTO user);
+        Task<OperationResult> Login(UserDTO user);
     }
 }

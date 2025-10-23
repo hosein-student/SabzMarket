@@ -1,14 +1,14 @@
-﻿using System;
+﻿using SabzMarketShare;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarketShare
+namespace SabzMarketBLL
 {
     public class SavePhoto
     {
@@ -20,7 +20,7 @@ namespace SabzMarketShare
         private const string serviceURL = "https://sabzmarket.s3.ir-thr-at1.arvanstorage.ir";
         public async Task<OperationResult> Save(string filePath)
         {
-           
+
             string objectKey = Path.GetFileName(filePath).Replace(" ", "_");
 
             try
@@ -131,7 +131,5 @@ namespace SabzMarketShare
             byte[] kService = HmacSHA256(kRegion, serviceName);
             return HmacSHA256(kService, "aws4_request");
         }
-
     }
-
 }

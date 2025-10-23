@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -14,6 +15,7 @@ namespace SabzMarketDAL
     {
         public SabzMarketDbContext() : base("Data Source=.;Initial Catalog=SabzMarketEfDb;Integrated Security=True;Encrypt=False")
         {
+            var ensureDLLIsCopied = SqlProviderServices.Instance;
             //Environment.GetEnvironmentVariable("SabzCS", EnvironmentVariableTarget.Machine)
         }
         public DbSet<User> Users { get; set; }

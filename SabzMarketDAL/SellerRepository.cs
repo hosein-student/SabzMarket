@@ -18,12 +18,12 @@ namespace SabzMarketDAL
         }
 
 
-        public async Task<OperationResult> InsertSelllerAsync(string userName, SellerDTO sellerDTO)
+        public async Task<OperationResult> InsertSelllerAsync(SellerDTO sellerDTO)
         {
             try
             {
                 var user = await SabzMarketDbContext.Users
-                    .FirstAsync(us => us.UserName == userName);
+                    .FirstAsync(us => us.UserName == sellerDTO.Username);
                 Seller seller = new Seller
                 {
                     UserId = user.Id,
@@ -72,11 +72,11 @@ namespace SabzMarketDAL
             }
         }
 
-        public async Task<OperationResult> UpdateSellerAsync(string userName, SellerDTO sellerDTO)
+        public async Task<OperationResult> UpdateSellerAsync( SellerDTO sellerDTO)
         {
             try
             {
-                var result = await SabzMarketDbContext.Sellers.Where(s => s.User.UserName == userName).SingleAsync();
+                var result = await SabzMarketDbContext.Sellers.Where(s => s.User.UserName == sellerDTO.Username).SingleAsync();
                 result.Address = sellerDTO.Address;
                 result.WorkHistory = sellerDTO.WorkHistory;
                 result.User.UserName = sellerDTO.Username;
@@ -87,7 +87,7 @@ namespace SabzMarketDAL
                 result.User.Phone = sellerDTO.Phone;
                 result.ProfileImage = sellerDTO.ProfileImage;
                 await SabzMarketDbContext.SaveChangesAsync();
-                return OperationResult.Successed(userName);
+                return OperationResult.Successed(sellerDTO.Username);
             }
             catch (Exception ex)
             {

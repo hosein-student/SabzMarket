@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,15 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseValidatoin.cs" />
+    <Compile Include="CustomeAttribute\NumberValidationAtrrribute.cs" />
     <Compile Include="LoginUser.cs" />
     <Compile Include="MessageDTO.cs" />
     <Compile Include="OperationResult1.cs" />
     <Compile Include="OperationResult2.cs" />
-    <Compile Include="PhoneNumberValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SavePhoto.cs" />
     <Compile Include="SellerDTO.cs" />
+    <Compile Include="SellerViewModel.cs" />
     <Compile Include="UserDTO.cs" />
+    <Compile Include="UserViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

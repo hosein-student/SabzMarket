@@ -25,7 +25,7 @@ namespace SabzMarketBLL
                     if (PhoneNumberValidator.IsValidPhoneNumber(user.Phone))
                     {
 
-                        if (!(await repository.CheckUserAsync(user)).Success)
+                        if (!(await repository.CheckUserAsync(user.UserName)).Success)
                         {
                             bool passwordsMatch = user.Password1 == user.Password2;
                             bool passwordNotEmpty = !string.IsNullOrEmpty(user.Password1);
@@ -58,18 +58,18 @@ namespace SabzMarketBLL
                 }
                 else
                 {
-                    return OperationResult.Failed(MessageDTO.lastNameInvalid);
+                    return OperationResult.Failed(MessageDTO.lastNameInvalid1);
                 }
             }
             else
             {
-                return OperationResult.Failed(MessageDTO.firstNameInvalid);
+                return OperationResult.Failed(MessageDTO.firstNameInvalid2);
             }
         }
-        public async Task<OperationResult> CheckUserToSellerAsync(UserDTO user)
+        public async Task<OperationResult> CheckUserToSellerAsync(string username)
         {
                 var result2=await repository
-                .CheckUserToSellerAsync(user);
+                .CheckUserToSellerAsync(username);
                 if (result2.Success)
                 {
                     return OperationResult.Successed();
@@ -80,9 +80,9 @@ namespace SabzMarketBLL
                 }
         }
 
-        public async Task<OperationResult> FoundUserAsync(UserDTO user)
+        public async Task<OperationResult> CheckUserAsync(string username)
         {
-            var result =await repository.CheckUserAsync(user);
+            var result =await repository.CheckUserAsync(username);
             if (result.Success)
             {
                 return OperationResult.Successed();
@@ -95,7 +95,7 @@ namespace SabzMarketBLL
 
         public async Task<OperationResult> CheckPasswordAsync(UserDTO user)
         {
-           var result=await repository.CheckPassword(user);
+           var result=await repository.CheckPasswordAsync(user.UserName, user.Password1);
             if (result.Success)
             {
                 return OperationResult.Successed();
@@ -103,6 +103,43 @@ namespace SabzMarketBLL
             else
             {
                 return OperationResult.Failed(MessageDTO.PasswordInvalid);
+            }
+        }
+
+        public async Task<OperationResult> Login(UserDTO user)
+        {
+             var resilt = await CheckUserAsync(user.UserName);
+            if (resilt.Success)
+            {
+                var result1 = await CheckUserToSellerAsync(user.UserName);
+                if (result1.Success)
+                {
+                    var result2 = await CheckPasswordAsync(user);
+                    if (result2.Success)
+                    {
+                        return OperationResult.Successed("Home");
+                    }
+                    else
+                    {
+                        return OperationResult.Failed(result2.Message);
+                    }
+                }
+                else
+                {
+                    var result2 = await CheckPasswordAsync(user);
+                    if (result2.Success)
+                    {
+                        return OperationResult.Successed("Seller");
+                    }
+                    else
+                    {
+                        return OperationResult.Failed(result2.Message);
+                    }
+                }
+            }
+            else
+            {
+                return OperationResult.Failed(resilt.Message);
             }
         }
     }

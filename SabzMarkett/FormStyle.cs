@@ -16,6 +16,9 @@ namespace SabzMarkett
         public override Font Font 
         { get => base.Font;
             set => base.Font = new Font(this.Font.FontFamily, 12, this.Font.Style); }
-
+        public DialogResult ShowInfo(string massage)
+        {
+            return MessageBox.Show(massage);
+        }
     }
 }

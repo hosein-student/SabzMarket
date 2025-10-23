@@ -63,7 +63,8 @@
             this.txt_FirstName.Location = new System.Drawing.Point(143, 63);
             this.txt_FirstName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_FirstName.Name = "txt_FirstName";
-            this.txt_FirstName.PlaceholderText = "";
+            this.txt_FirstName.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_FirstName.PlaceholderText = "اجباری";
             this.txt_FirstName.SelectedText = "";
             this.txt_FirstName.Size = new System.Drawing.Size(187, 33);
             this.txt_FirstName.TabIndex = 0;
@@ -85,7 +86,8 @@
             this.txt_LastName.Location = new System.Drawing.Point(143, 104);
             this.txt_LastName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_LastName.Name = "txt_LastName";
-            this.txt_LastName.PlaceholderText = "";
+            this.txt_LastName.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_LastName.PlaceholderText = "اجباری";
             this.txt_LastName.SelectedText = "";
             this.txt_LastName.Size = new System.Drawing.Size(187, 33);
             this.txt_LastName.TabIndex = 1;
@@ -107,7 +109,8 @@
             this.txt_Phone.Location = new System.Drawing.Point(143, 145);
             this.txt_Phone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Phone.Name = "txt_Phone";
-            this.txt_Phone.PlaceholderText = "";
+            this.txt_Phone.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_Phone.PlaceholderText = "اجباری";
             this.txt_Phone.SelectedText = "";
             this.txt_Phone.Size = new System.Drawing.Size(187, 33);
             this.txt_Phone.TabIndex = 2;
@@ -129,7 +132,8 @@
             this.txt_Email.Location = new System.Drawing.Point(143, 186);
             this.txt_Email.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Email.Name = "txt_Email";
-            this.txt_Email.PlaceholderText = "";
+            this.txt_Email.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_Email.PlaceholderText = "اختیاری";
             this.txt_Email.SelectedText = "";
             this.txt_Email.Size = new System.Drawing.Size(187, 33);
             this.txt_Email.TabIndex = 3;
@@ -151,7 +155,8 @@
             this.txt_UserName.Location = new System.Drawing.Point(143, 227);
             this.txt_UserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_UserName.Name = "txt_UserName";
-            this.txt_UserName.PlaceholderText = "";
+            this.txt_UserName.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_UserName.PlaceholderText = "اجباری";
             this.txt_UserName.SelectedText = "";
             this.txt_UserName.Size = new System.Drawing.Size(187, 33);
             this.txt_UserName.TabIndex = 4;
@@ -173,7 +178,8 @@
             this.txt_Password1.Location = new System.Drawing.Point(143, 268);
             this.txt_Password1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Password1.Name = "txt_Password1";
-            this.txt_Password1.PlaceholderText = "";
+            this.txt_Password1.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_Password1.PlaceholderText = "اجباری";
             this.txt_Password1.SelectedText = "";
             this.txt_Password1.Size = new System.Drawing.Size(187, 33);
             this.txt_Password1.TabIndex = 5;
@@ -195,7 +201,8 @@
             this.txt_Password2.Location = new System.Drawing.Point(143, 309);
             this.txt_Password2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_Password2.Name = "txt_Password2";
-            this.txt_Password2.PlaceholderText = "";
+            this.txt_Password2.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txt_Password2.PlaceholderText = "اجباری";
             this.txt_Password2.SelectedText = "";
             this.txt_Password2.Size = new System.Drawing.Size(187, 33);
             this.txt_Password2.TabIndex = 12;

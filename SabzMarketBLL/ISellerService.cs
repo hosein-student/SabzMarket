@@ -9,8 +9,8 @@ namespace SabzMarketBLL
 {
     public interface ISellerService
     {
-        Task<OperationResult> InsertSelllerAsync(string userName,SellerDTO seller);
+        Task<OperationResult> InsertSellerAsync(SellerDTO seller);
         Task<OperationResult<SellerDTO>> SelectSellerAsync(string userName);
-        Task<OperationResult> UpdateSellerAsync(string userName, SellerDTO sellerDTO);
+        Task<OperationResult> UpdateSellerAsync(SellerDTO sellerDTO);
     }
 }

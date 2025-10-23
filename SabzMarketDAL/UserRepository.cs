@@ -17,10 +17,10 @@ namespace SabzMarketDAL
             context = new SabzMarketDbContext();
         }
 
-        public async Task<OperationResult> CheckUserToSellerAsync(UserDTO user)
+        public async Task<OperationResult> CheckUserToSellerAsync(string username)
         {
             var result = await context.Sellers
-                .Where(s => s.User.UserName == user.UserName)
+                .Where(s => s.User.UserName == username)
                 .AnyAsync();
             if (result)
             {
@@ -33,10 +33,10 @@ namespace SabzMarketDAL
 
         }
 
-        public async Task<OperationResult> CheckUserAsync(UserDTO user)
+        public async Task<OperationResult> CheckUserAsync(string username)
         {
             var result = await context.Users
-                .Where(us => us.UserName == user.UserName)
+                .Where(us => us.UserName == username)
                 .AnyAsync();
             if (result)
                 return OperationResult.Successed();
@@ -66,10 +66,10 @@ namespace SabzMarketDAL
             }
         }
 
-        public async Task<OperationResult> CheckPassword(UserDTO user)
+        public async Task<OperationResult> CheckPasswordAsync(string username,string password)
         {
            var result= await context.Users
-                .Where(u => u.Password == user.Password1)
+                .Where(u => u.UserName== username & u.Password == password)
                 .AnyAsync();
             if (result)
             {

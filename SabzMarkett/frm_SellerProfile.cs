@@ -62,7 +62,7 @@ namespace SabzMarkett
                             ProfileImage = pathImage,
                             WorkHistory = cob_WorkHistory.Text
                         };
-                        var result = await sellerService.InsertSelllerAsync(LoginUser.UserName, sellerDTO);
+                        //var result = await sellerService.InsertSelllerAsync(LoginUser.UserName, sellerDTO);
                         if (result.Success)
                         {
                             frm_Home frm_Home = new frm_Home();
@@ -71,22 +71,22 @@ namespace SabzMarkett
                         }
                         else
                         {
-                            MessageBox.Show(result.Message);
+                            ShowInfo(result.Message);
                         }
                     }
                     else
                     {
-                        MessageBox.Show(MessageDTO.photoNotSelected);
+                        ShowInfo(MessageDTO.photoNotSelected);
                     }
                 }
                 else
                 {
-                    MessageBox.Show(MessageDTO.enterTheWorkHistory);
+                    ShowInfo(MessageDTO.enterTheWorkHistory);
                 }
             }
             else
             {
-                MessageBox.Show(MessageDTO.enterTheAddress);
+                ShowInfo(MessageDTO.enterTheAddress);
                 txt_Address.Focus();
             }
         }

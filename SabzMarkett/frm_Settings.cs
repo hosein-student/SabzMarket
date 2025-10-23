@@ -43,14 +43,14 @@ namespace SabzMarkett
         {
             if (e.Error != null)
             {
-                MessageBox.Show("عکس بارگذاری نشد");
+                ShowInfo("عکس بارگذاری نشد");
                 pb_Profile.Image = Properties.Resources.profile;
             }
         }
 
         private async void frm_Settings_Load(object sender, EventArgs e)
         {
-            var result=await sellerService.SelectSellerAsync(LoginUser.UserName);
+           // var result=await sellerService.SelectSellerAsync(LoginUser.UserName);
             if(result.Success)
             {
                 pb_Profile.LoadAsync(result.Data.ProfileImage);
@@ -66,42 +66,100 @@ namespace SabzMarkett
             }
             else
             {
-                MessageBox.Show(result.Message);
+                ShowInfo(result.Message);
             }
         }
 
         private async void btn_Update_Click(object sender, EventArgs e)
         {
-            SellerDTO sellerDTO = new SellerDTO
+            if (txt_FirstName.Text.Length >= 3)
             {
-                FirstName = txt_FirstName.Text,
-                LastName = txt_LastName.Text,
-                Password = txt_Password1.Text,
-                Address = txt_Address.Text,
-                Email = txt_Email.Text,
-                Phone = txt_Phone.Text,
-                Username = txt_UserName.Text,
-                WorkHistory = cmb_WorkHistory.Text,
-                ProfileImage = pathImage
-
-            };
-            var result = await sellerService.UpdateSellerAsync(LoginUser.UserName, sellerDTO);
-            if (result.Success)
-            {
-                if(MessageBox.Show(result.Message)==DialogResult.OK)
+                if (!string.IsNullOrEmpty(txt_LastName.Text))
                 {
-                    Application.Exit();
+                    if (PhoneNumberValidator.IsValidPhoneNumber(txt_Phone.Text))
+                    {
+                        
+                        if (!string.IsNullOrEmpty(txt_UserName.Text))
+                        {
+                            if (!string.IsNullOrEmpty(txt_Password1.Text))
+                            {
+                                if (!string.IsNullOrEmpty(txt_Address.Text))
+                                {
+                                    if (!string.IsNullOrEmpty(cmb_WorkHistory.Text))
+                                    {
+
+                                        SellerDTO sellerDTO = new SellerDTO
+                                        {
+                                            FirstName = txt_FirstName.Text,
+                                            LastName = txt_LastName.Text,
+                                            Password = txt_Password1.Text,
+                                            Address = txt_Address.Text,
+                                            Email = txt_Email.Text,
+                                            Phone = txt_Phone.Text,
+                                            Username = txt_UserName.Text,
+                                            WorkHistory = cmb_WorkHistory.Text,
+                                            ProfileImage = pathImage
+
+                                        };
+                                        var result = await sellerService.UpdateSellerAsync(LoginUser.UserName, sellerDTO);
+                                        if (result.Success)
+                                        {
+                                            if (ShowInfo(result.Message) == DialogResult.OK)
+                                            {
+                                                Application.Exit();
+                                            }
+                                            else
+                                            {
+                                                Application.Exit();
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            ShowInfo(result.Message);
+                                        }
+                                    }
+                                    else
+                                    {
+                                       ShowInfo(MessageDTO.enterTheWorkHistory);
+                                    }
+                                }
+                                else
+                                {
+                                    ShowInfo(MessageDTO.enterTheAddress);
+                                }
+                            }
+                            else
+                            {
+                                ShowInfo("رمز عبور را وارد کنید");
+                            }
+                        }
+                        else
+                        {
+                            ShowInfo(MessageDTO.existingUser);
+                        }
+                    }
+                    else
+                    {
+                        ShowInfo(MessageDTO.numberInvalid);
+                    }
                 }
                 else
                 {
-                    Application.Exit();
+                    ShowInfo(MessageDTO.lastNameInvalid1);
                 }
-                
             }
             else
             {
-                MessageBox.Show(result.Message);
+                ShowInfo(MessageDTO.firstNameInvalid2);
             }
+
+
+
+
+
+
+           
         }
     }
 }

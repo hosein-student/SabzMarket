@@ -221,16 +221,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SabzMarketBLL\SabzMarketBLL.csproj">
-      <Project>{3032472b-260c-4f9b-8e9c-fcef04d0f12a}</Project>
-      <Name>SabzMarketBLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SabzMarketShare\SabzMarketShare.csproj">
-      <Project>{06a9ffd8-c2f4-4bca-8098-fa5b53629e93}</Project>
-      <Name>SabzMarketShare</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\profile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
