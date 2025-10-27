@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace SabzMarket.Share
 {
-    internal class OperationResult<t>: OperationResult
+    public class OperationResult<t>: OperationResult
     {
-            public t Data { get; set; }
+            public t? Data { get; set; }
             public static OperationResult<t> Successed(
                  t data, string message = "")
             {
@@ -20,12 +21,13 @@ namespace SabzMarket.Share
                 };
             }
             public static OperationResult<t> Failedd(
-                string message = "")
+                string message = "", Exception? ex=null)
             {
                 return new OperationResult<t>
                 {
                     Success = false,
-                    Message = message
+                    Message = message,
+                    Exception=ex
                 };
             }
     }

@@ -23,6 +23,8 @@ namespace SabzMarket.DAL
         public DbSet<Chat> Chats { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Farmer> Farmers { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Seller>()

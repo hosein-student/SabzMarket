@@ -14,27 +14,27 @@ namespace SabzMarket.DAL.Entities
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
         [Required]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
         [Required]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         [Column(TypeName = "char")]
         [StringLength(11)]
         [Required]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         [Column(TypeName = "varchar")]
         [StringLength(50)]
         [Required]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [Column(TypeName = "varchar")]
         [StringLength(50)]
         [Required]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [Column(TypeName = "varchar")]
         [StringLength(50)]
         [Required]
-        public string Password { get; set; }
+        public string? Password { get; set; }
         public virtual Seller Seller { get; set; }
         public virtual Farmer Farmer { get; set; }
     }

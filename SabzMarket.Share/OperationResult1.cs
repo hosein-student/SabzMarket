@@ -9,26 +9,29 @@ namespace SabzMarket.Share
     public class OperationResult
     {
         public bool Success { get; protected set; }
-        public string Message { get; protected set; }
+        public string? Message { get; protected set; }
+        public Exception? Exception { get; protected set; }
 
-        public static OperationResult Successed(
+        public static OperationResult Successed(bool success= true,
             string message = "")
         {
             return new OperationResult
             {
-                Success = true,
+                Success = success,
                 Message = message
             };
 
         }
         public static OperationResult Failed(
-            string message = "")
+            string message = "", Exception? ex=null)
         {
             return new OperationResult
             {
                 Success = false,
-                Message = message
+                Message = message,
+                Exception=ex
             };
         }
+        
     }
 }

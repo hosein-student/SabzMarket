@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SabzMarket.DAL;
+using SabzMarket.BLL;
+using SabzMarket.Share.Data;
+using SabzMarket.Share.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = Environment.GetEnvironmentVariable("SABZMARKET_DB");
@@ -11,6 +14,9 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<SabzMarketDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IErrorRepository, ErrorRepository>();
 // Add services to the container.
 
 builder.Services.AddControllers();

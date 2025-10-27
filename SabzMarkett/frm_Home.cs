@@ -15,12 +15,10 @@ namespace SabzMarkett
 {
     public partial class frm_Home : FormStyle
     {
-        SellerService sellerService;
         public frm_Home()
         {
             InitializeComponent();
             pb_Profile.LoadCompleted += Pb_Profile_LoadCompleted;
-            sellerService =new SellerService();
             
             this.MouseClick += OpenClosed;
             foreach (Control ctrl in guna2CustomGradientPanel1.Controls)

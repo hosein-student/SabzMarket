@@ -15,12 +15,10 @@ namespace SabzMarkett
 {
     public partial class frm_SellerProfile : FormStyle
     {
-        SellerService sellerService;
         
         public frm_SellerProfile()
         {
             InitializeComponent();
-            sellerService = new SellerService();
             
         }
 
@@ -47,48 +45,8 @@ namespace SabzMarkett
         }
 
 
-        private async void btn_registration_Click(object sender, EventArgs e)
+        private void btn_registration_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txt_Address.Text))
-            {
-                if (!string.IsNullOrWhiteSpace(cob_WorkHistory.Text))
-                {
-                    if (!string.IsNullOrWhiteSpace(pathImage))
-                    {
-
-                        SellerDTO sellerDTO = new SellerDTO
-                        {
-                            Address = txt_Address.Text,
-                            ProfileImage = pathImage,
-                            WorkHistory = cob_WorkHistory.Text
-                        };
-                        //var result = await sellerService.InsertSelllerAsync(LoginUser.UserName, sellerDTO);
-                        if (result.Success)
-                        {
-                            frm_Home frm_Home = new frm_Home();
-                            this.Hide();
-                            frm_Home.ShowDialog();
-                        }
-                        else
-                        {
-                            ShowInfo(result.Message);
-                        }
-                    }
-                    else
-                    {
-                        ShowInfo(MessageDTO.photoNotSelected);
-                    }
-                }
-                else
-                {
-                    ShowInfo(MessageDTO.enterTheWorkHistory);
-                }
-            }
-            else
-            {
-                ShowInfo(MessageDTO.enterTheAddress);
-                txt_Address.Focus();
-            }
         }
     }
 }

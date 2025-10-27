@@ -272,6 +272,8 @@
             // 
             // btn_SignUp
             // 
+            this.btn_SignUp.Animated = true;
+            this.btn_SignUp.BackColor = System.Drawing.Color.Transparent;
             this.btn_SignUp.BorderRadius = 8;
             this.btn_SignUp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btn_SignUp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -281,10 +283,10 @@
             this.btn_SignUp.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btn_SignUp.ForeColor = System.Drawing.Color.White;
             this.btn_SignUp.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_SignUp.Location = new System.Drawing.Point(179, 397);
+            this.btn_SignUp.Location = new System.Drawing.Point(154, 390);
             this.btn_SignUp.Name = "btn_SignUp";
             this.btn_SignUp.PressedColor = System.Drawing.Color.DarkGreen;
-            this.btn_SignUp.Size = new System.Drawing.Size(163, 60);
+            this.btn_SignUp.Size = new System.Drawing.Size(164, 68);
             this.btn_SignUp.TabIndex = 23;
             this.btn_SignUp.Text = "ثبت نام ";
             this.btn_SignUp.Click += new System.EventHandler(this.btn_SignUp_Click);

@@ -17,32 +17,10 @@ namespace SabzMarkett
         public frm_Login()
         {
             InitializeComponent();
-            
         }
 
         private async void btn_Login_Click(object sender, EventArgs e)
         {
-            UserDTO userDTO = new UserDTO
-            {
-                UserName = txt_UserName.Text,
-                Password1 = txt_Password.Text
-            };
-            //api{LoginUser.UserName = txt_UserName.Text;
-        //    frm_SellerProfile frm_SellerProfile = new frm_SellerProfile();
-        //    this.Hide();
-        //    frm_SellerProfile.Show();
-
-        //    LoginUser.UserName = txt_UserName.Text;
-        //    frm_Home frm_Home = new frm_Home();
-        //    this.Hide();
-        //    frm_Home.Show();
-        //}
-
-
-
-
-            
-
         }
 
         
