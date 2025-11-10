@@ -1,4 +1,4 @@
-﻿using SabzMarketShare;
+﻿using SabzMarket.Share;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,6 @@ namespace SabzMarkett
 {
     public partial class frm_Login : FormStyle
     {
-        
         public frm_Login()
         {
             InitializeComponent();
@@ -21,8 +20,42 @@ namespace SabzMarkett
 
         private async void btn_Login_Click(object sender, EventArgs e)
         {
+            UserViewModel user = new UserViewModel
+            {
+                UserName = txt_UserName.Text,
+                Password1 = txt_Password.Text
+            };
+            var client=HttpClientHelper.Instance;
+            var result = await client.PostAsync<OperationResult, UserViewModel>(RouteConstants.Login, user);
+            if (result.Success)
+            {
+                CurrentUser.UserName= txt_UserName.Text;
+                string userName = Uri.EscapeDataString(txt_UserName.Text);
+                var rout = string.Format(RouteConstants.CheckUserInSeller, userName);
+                var result1=await client.GetAsync<OperationResult>(rout);
+                if (result1.Success)
+                {
+                    frm_Home frm_Home = new frm_Home();
+                    this.Hide();
+                    frm_Home.Show();
+                }
+                else
+                {
+                    frm_SellerProfile frm_SellerProfile = new frm_SellerProfile();
+                    this.Hide(); 
+                    frm_SellerProfile.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show(result.Message);
+            }
         }
 
-        
+        private void btn_SignUp_Click(object sender, EventArgs e)
+        {
+            frm_SignUp frm = new frm_SignUp();
+            frm.ShowDialog();
+        }
     }
 }

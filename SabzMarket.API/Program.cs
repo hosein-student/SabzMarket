@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SabzMarket.DAL;
 using SabzMarket.BLL;
+using SabzMarket.DAL;
 using SabzMarket.Share.Data;
 using SabzMarket.Share.Services;
 
@@ -17,7 +18,15 @@ builder.Services.AddDbContext<SabzMarketDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IErrorRepository, ErrorRepository>();
+builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+builder.Services.AddScoped<ISellerService, SellerService>();
+
+//builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 // Add services to the container.
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

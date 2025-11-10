@@ -1,6 +1,7 @@
 ﻿using Amazon.Runtime;
 using Amazon.S3;
 using Amazon.S3.Model;
+using SabzMarket.Share;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace SabzMarket.BLL
     public class SavePhoto: IDisposable
     {
         private const string accessKey = "36be0a0e-838c-4040-827c-ba415160709e";
-        private const string secretKey = "c9348c66b682e2e7178bb766b48e31f03d006826f0089f2f179d82bde6983ef5";
+        private const string secretKey = "cb1cc9b5a26b8ddbd747eb843f3eb7022eae2d86eee4ac496428b2170f9cfa6d";
         private const string bucketName = "sabzmarket";
         private const string serviceURL = "https://s3.ir-thr-at1.arvanstorage.ir";
         private readonly IAmazonS3 _s3Client;
@@ -34,7 +35,7 @@ namespace SabzMarket.BLL
             _s3Client.Dispose();
         }
 
-        public async Task<string> SaveAsync(string filePath)
+        public async Task<OperationResult> SaveAsync(string filePath)
         {
             try
             {
@@ -51,11 +52,11 @@ namespace SabzMarket.BLL
                 await _s3Client.PutObjectAsync(putRequest);
 
                 string fileUrl = $"{serviceURL}/{bucketName}/{objectKey}";
-                return fileUrl;
+                return OperationResult.Successed(true, fileUrl);
             }
             catch (Exception ex)
             {
-                return "ذخیره نشد ";
+                return OperationResult.Failed(GetType().Name,ex);
             }
         }
     }

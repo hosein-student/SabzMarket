@@ -8,7 +8,9 @@ namespace SabzMarket.Share.Services
 {
     public interface IUserService
     {
-        Task<OperationResult> SignUp(UserDTO userDTO);
+        Task<OperationResult> SignUpAsync(UserViewModel userViewModel);
+        Task<OperationResult> LoginAsync(UserViewModel userViewModel);
+        Task<OperationResult> IsUsernameAvailableAsync(string username);
 
 
     }

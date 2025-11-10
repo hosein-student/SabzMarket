@@ -33,10 +33,12 @@
             this.txt_Password = new SabzMarkett.MyTextBox();
             this.lbl_UserName = new System.Windows.Forms.Label();
             this.lbl_password = new System.Windows.Forms.Label();
+            this.btn_SignUp = new SabzMarkett.MyButton();
             this.SuspendLayout();
             // 
             // btn_Login
             // 
+            this.btn_Login.Animated = true;
             this.btn_Login.BorderRadius = 8;
             this.btn_Login.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btn_Login.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -51,7 +53,7 @@
             this.btn_Login.PressedColor = System.Drawing.Color.DarkGreen;
             this.btn_Login.Size = new System.Drawing.Size(150, 58);
             this.btn_Login.TabIndex = 0;
-            this.btn_Login.Text = "ss";
+            this.btn_Login.Text = "ورود";
             this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
             // 
             // txt_UserName
@@ -116,11 +118,32 @@
             this.lbl_password.TabIndex = 3;
             this.lbl_password.Text = "رمز عبور";
             // 
+            // btn_SignUp
+            // 
+            this.btn_SignUp.Animated = true;
+            this.btn_SignUp.BorderRadius = 8;
+            this.btn_SignUp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_SignUp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_SignUp.DisabledState.FillColor = System.Drawing.Color.LightGray;
+            this.btn_SignUp.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
+            this.btn_SignUp.FillColor = System.Drawing.Color.SeaGreen;
+            this.btn_SignUp.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_SignUp.ForeColor = System.Drawing.Color.White;
+            this.btn_SignUp.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
+            this.btn_SignUp.Location = new System.Drawing.Point(4, 4);
+            this.btn_SignUp.Name = "btn_SignUp";
+            this.btn_SignUp.PressedColor = System.Drawing.Color.DarkGreen;
+            this.btn_SignUp.Size = new System.Drawing.Size(88, 39);
+            this.btn_SignUp.TabIndex = 4;
+            this.btn_SignUp.Text = "ثبت نام ";
+            this.btn_SignUp.Click += new System.EventHandler(this.btn_SignUp_Click);
+            // 
             // frm_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 418);
+            this.Controls.Add(this.btn_SignUp);
             this.Controls.Add(this.lbl_password);
             this.Controls.Add(this.lbl_UserName);
             this.Controls.Add(this.txt_Password);
@@ -143,5 +166,6 @@
         private MyTextBox txt_Password;
         private System.Windows.Forms.Label lbl_UserName;
         private System.Windows.Forms.Label lbl_password;
+        private MyButton btn_SignUp;
     }
 }

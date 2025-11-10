@@ -34,7 +34,7 @@
             this.lbl_Email = new System.Windows.Forms.Label();
             this.lbl_UserName = new System.Windows.Forms.Label();
             this.lbl_Password1 = new System.Windows.Forms.Label();
-            this.txt_Password1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_Password = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_UserName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_Email = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_Phone = new Guna.UI2.WinForms.Guna2TextBox();
@@ -109,27 +109,27 @@
             this.lbl_Password1.TabIndex = 29;
             this.lbl_Password1.Text = "رمز عبور ";
             // 
-            // txt_Password1
+            // txt_Password
             // 
-            this.txt_Password1.BackColor = System.Drawing.Color.Black;
-            this.txt_Password1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Password1.DefaultText = "";
-            this.txt_Password1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_Password1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_Password1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Password1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Password1.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_Password1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Password1.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_Password1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_Password1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Password1.Location = new System.Drawing.Point(136, 326);
-            this.txt_Password1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_Password1.Name = "txt_Password1";
-            this.txt_Password1.PlaceholderText = "";
-            this.txt_Password1.SelectedText = "";
-            this.txt_Password1.Size = new System.Drawing.Size(187, 33);
-            this.txt_Password1.TabIndex = 28;
+            this.txt_Password.BackColor = System.Drawing.Color.Black;
+            this.txt_Password.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_Password.DefaultText = "";
+            this.txt_Password.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_Password.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_Password.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_Password.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_Password.FillColor = System.Drawing.Color.PaleGreen;
+            this.txt_Password.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_Password.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txt_Password.ForeColor = System.Drawing.Color.DarkGreen;
+            this.txt_Password.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_Password.Location = new System.Drawing.Point(136, 326);
+            this.txt_Password.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_Password.Name = "txt_Password";
+            this.txt_Password.PlaceholderText = "";
+            this.txt_Password.SelectedText = "";
+            this.txt_Password.Size = new System.Drawing.Size(187, 33);
+            this.txt_Password.TabIndex = 28;
             // 
             // txt_UserName
             // 
@@ -367,7 +367,7 @@
             this.Controls.Add(this.lbl_Email);
             this.Controls.Add(this.lbl_UserName);
             this.Controls.Add(this.lbl_Password1);
-            this.Controls.Add(this.txt_Password1);
+            this.Controls.Add(this.txt_Password);
             this.Controls.Add(this.txt_UserName);
             this.Controls.Add(this.txt_Email);
             this.Controls.Add(this.txt_Phone);
@@ -390,7 +390,7 @@
         private System.Windows.Forms.Label lbl_Email;
         private System.Windows.Forms.Label lbl_UserName;
         private System.Windows.Forms.Label lbl_Password1;
-        private Guna.UI2.WinForms.Guna2TextBox txt_Password1;
+        private Guna.UI2.WinForms.Guna2TextBox txt_Password;
         private Guna.UI2.WinForms.Guna2TextBox txt_UserName;
         private Guna.UI2.WinForms.Guna2TextBox txt_Email;
         private Guna.UI2.WinForms.Guna2TextBox txt_Phone;

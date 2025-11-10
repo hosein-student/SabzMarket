@@ -1,6 +1,5 @@
 ﻿using Guna.UI2.WinForms;
-using SabzMarketBLL;
-using SabzMarketShare;
+using SabzMarket.Share;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,9 +43,38 @@ namespace SabzMarkett
             }
         }
 
-
-        private void btn_registration_Click(object sender, EventArgs e)
+        //https://localhost:7267/Seller/SignUp
+        private async void btn_registration_Click(object sender, EventArgs e)
         {
+            SellerPartialViewModel seller = new SellerPartialViewModel
+            {
+                Username=CurrentUser.UserName,
+                Address = txt_Address.Text,
+                ProfileImage = pathImage,
+                WorkHistory =cmb_WorkHistory.Text
+            };
+            if(seller.IsValid)
+            {
+
+                var httpClientHelper = HttpClientHelper.Instance;
+                var result=await httpClientHelper.PostAsync<OperationResult, SellerPartialViewModel>(RouteConstants.SellerFillProfile, seller);
+                if (result.Success)
+                {
+                    MessageBox.Show(result.Message);
+                    frm_Home frm_Home = new frm_Home();
+                    frm_Home.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(seller.ErrorMessage);
+            }    
         }
     }
 }

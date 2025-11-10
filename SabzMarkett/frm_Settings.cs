@@ -1,5 +1,4 @@
-﻿using SabzMarketBLL;
-using SabzMarketShare;
+﻿using SabzMarket.Share;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +25,7 @@ namespace SabzMarkett
             toolTip.SetToolTip(pb_Profile, "لطفا برای انتخاب عکس کلیک کنید.");
         }
 
-        string pathImage;
+        string pathImage="";
         private void pb_Profile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -46,13 +45,72 @@ namespace SabzMarkett
             }
         }
 
-        private  void frm_Settings_Load(object sender, EventArgs e)
+        private  async void frm_Settings_Load(object sender, EventArgs e)
         {
-          
+            var client = HttpClientHelper.Instance;
+            string username = Uri.UnescapeDataString(CurrentUser.UserName);
+            string route = string.Format(RouteConstants.GetSellerByUsernameAsync, username);
+            var seller = await client
+                .GetAsync<OperationResult<SellerFullViewModel>>(route);
+            if(seller.Success)
+            {
+                pb_Profile.LoadAsync(seller.Data.ProfileImage);
+                pathImage = seller.Data.ProfileImage;
+                txt_FirstName.Text = seller.Data.FirstName;
+                txt_LastName.Text = seller.Data.LastName;
+                txt_Phone.Text = seller.Data.Phone;
+                txt_Email.Text = seller.Data.Email;
+                txt_UserName.Text = seller.Data.Username;
+                txt_Password.Text = seller.Data.Password;
+                txt_Address.Text = seller.Data.Address;
+                cmb_WorkHistory.Text = seller.Data.WorkHistory;
+            }
+            else
+            {
+                MessageBox.Show(seller.Message);
+            }
+
         }
 
-        private  void btn_Update_Click(object sender, EventArgs e)
+        private async void btn_Update_Click(object sender, EventArgs e)
         {
+            var client = HttpClientHelper.Instance;
+            string route = string.Format(RouteConstants.UpdateSeller, CurrentUser.UserName);
+            UserViewModel userViewModel = new UserViewModel
+            {
+                FirstName = txt_FirstName.Text,
+                LastName = txt_LastName.Text,
+                Phone = txt_Phone.Text,
+                Email = txt_Email.Text,
+                UserName = txt_UserName.Text,
+                Password1 = txt_Password.Text,
+                Password2=txt_Password.Text,
+            };
+            SellerPartialViewModel sellerPartial = new SellerPartialViewModel
+            {
+                Address = txt_Address.Text,
+                Username = txt_UserName.Text,
+                ProfileImage = pathImage,
+                WorkHistory = cmb_WorkHistory.Text
+            };
+            RequestPayload payload = new RequestPayload
+            {
+                SellerPartial = sellerPartial,
+                UserViewModel = userViewModel
+            };
+            var result = await client.PostAsync<OperationResult, RequestPayload>(route, payload);
+            if (result.Success)
+            {
+                ShowInfo(result.Message);
+                CurrentUser.UserName= txt_UserName.Text;
+            }
+            else
+            {
+                ShowInfo(result.Message);
+            }
+
+
+
         }
     }
 }

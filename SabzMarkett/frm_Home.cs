@@ -1,6 +1,5 @@
 ﻿using Guna.UI2.WinForms;
-using SabzMarketBLL;
-using SabzMarketShare;
+using SabzMarket.Share;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,15 +18,15 @@ namespace SabzMarkett
         {
             InitializeComponent();
             pb_Profile.LoadCompleted += Pb_Profile_LoadCompleted;
-            
+
             this.MouseClick += OpenClosed;
             foreach (Control ctrl in guna2CustomGradientPanel1.Controls)
             {
-                    ctrl.MouseClick += OpenClosed;
+                ctrl.MouseClick += OpenClosed;
             }
             foreach (Control ctrl in this.Controls)
             {
-                if (ctrl != pln_Menu2&& ctrl != btn_Menu)
+                if (ctrl != pln_Menu2 && ctrl != btn_Menu)
                     ctrl.MouseClick += OpenClosed;
             }
         }
@@ -44,17 +43,20 @@ namespace SabzMarkett
 
         private async void frm_Home_Load(object sender, EventArgs e)
         {
-            var seller= await sellerService.SelectSellerAsync(LoginUser.UserName);
-            if (seller.Success)
+            var client = HttpClientHelper.Instance;
+            string route = string.Format(RouteConstants.GetSellerByUsernameAsync, CurrentUser.UserName);
+            var seller = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
+            if(seller.Success)
             {
-                lbl_Name.Text = $"{seller.Data.FirstName}  {seller.Data.LastName}";
-                lbl_UserName.Text = $"@{LoginUser.UserName}";
+                lbl_Name.Text = $"{seller.Data.FirstName} {seller.Data.LastName}";
+                lbl_UserName.Text = seller.Data.Username;
                 pb_Profile.LoadAsync(seller.Data.ProfileImage);
             }
             else
             {
-                ShowInfo(seller.Message);
+                MessageBox.Show(seller.Message);
             }
+           
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -69,31 +71,31 @@ namespace SabzMarkett
                 pln_Menu2.Visible = false;
             }
         }
-
-        private void guna2ImageButton1_Click(object sender, EventArgs e)
+        private void btn_Setting_Click(object sender, EventArgs e)
         {
             frm_Settings frm_Settings = new frm_Settings();
             frm_Settings.ShowDialog();
         }
-
-        private void guna2ImageButton2_Click(object sender, EventArgs e)
+        private void btn_Orders_Click(object sender, EventArgs e)
         {
-            frm_AddProducts AddProducts=new frm_AddProducts();
+
+            frm_Orders frm_Orders = new frm_Orders();
+            frm_Orders.ShowDialog();
+        }
+        private void btn_Chat_Click(object sender, EventArgs e)
+        {
+            frm_Chat frm_Chat = new frm_Chat();
+            frm_Chat.ShowDialog();
+        }
+        private void btn_AddProduct_Click(object sender, EventArgs e)
+        {
+            frm_AddProducts AddProducts = new frm_AddProducts();
             AddProducts.ShowDialog();
         }
 
-        private void guna2ImageButton4_Click(object sender, EventArgs e)
+        private void frm_Home_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frm_Orders frm_Orders=new frm_Orders();
-            frm_Orders.ShowDialog();    
+            Application.Exit();
         }
-
-        private void guna2ImageButton3_Click(object sender, EventArgs e)
-        {
-            frm_Chat frm_Chat=new frm_Chat();
-            frm_Chat.ShowDialog();
-        }
-
-       
     }
 }

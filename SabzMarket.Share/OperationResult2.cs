@@ -9,7 +9,7 @@ namespace SabzMarket.Share
 {
     public class OperationResult<t>: OperationResult
     {
-            public t? Data { get; set; }
+            public t Data { get; set; }
             public static OperationResult<t> Successed(
                  t data, string message = "")
             {
@@ -20,7 +20,7 @@ namespace SabzMarket.Share
                     Data = data
                 };
             }
-            public static OperationResult<t> Failedd(
+            public static OperationResult<t> Failed(
                 string message = "", Exception? ex=null)
             {
                 return new OperationResult<t>

@@ -8,11 +8,11 @@ namespace SabzMarket.Share.Data
 {
     public interface IUserRepository
     {
-        Task< OperationResult >Insert(UserDTO userDTO);
-        Task< OperationResult >Update(UserDTO userDTO);
-        Task< OperationResult<UserDTO> >Select(string username);
-        Task<OperationResult> CheckUser(string username);
-        Task<OperationResult> ChangePassword(UserDTO userDTO);
+        Task< OperationResult >InsertAsync(UserDTO userDTO);
+        Task< OperationResult >UpdateAsync(UserDTO userDTO);
+        Task< OperationResult<UserDTO> >SelectAsync(string username);
+        Task<OperationResult> CheckUserAsync(string username);
+        Task<OperationResult> ChangePasswordAsync(UserDTO userDTO);
         
     }
 }

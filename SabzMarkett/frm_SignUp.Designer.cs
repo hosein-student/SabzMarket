@@ -321,7 +321,7 @@
             this.MinimumSize = new System.Drawing.Size(531, 564);
             this.Name = "frm_SignUp";
             this.Padding = new System.Windows.Forms.Padding(4, 100, 4, 5);
-            this.Text = "SignUp";
+            this.Text = "س";
             this.Load += new System.EventHandler(this.frm_SignUp_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

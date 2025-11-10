@@ -14,58 +14,81 @@ namespace SabzMarket.DAL
     public class UserRepository : IUserRepository
     {
         private readonly SabzMarketDbContext _context;
-        public UserRepository(SabzMarketDbContext context) 
+        public UserRepository(SabzMarketDbContext context)
         {
-             _context = context;
+            _context = context;
         }
-        public Task<OperationResult> ChangePassword(UserDTO userDTO)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<OperationResult> CheckUser(string username)
+        public async Task<OperationResult> ChangePasswordAsync(UserDTO userDTO)
         {
             try
             {
-                var result = await _context.Users.AnyAsync(u => u.UserName == username);
-                return OperationResult.Successed(result);
+                var result = await _context
+                    .Users
+                    .AsNoTracking()
+                    .AnyAsync(u => u.UserName == userDTO.UserName && u.Password == userDTO.Password);
+                return OperationResult
+                    .Successed(result);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                return OperationResult.Failed(GetType().Name,ex);
+                return OperationResult
+                    .Failed(GetType().Name, ex);
+            }
+
+        }
+
+        public async Task<OperationResult> CheckUserAsync(string username)
+        {
+            try
+            {
+                var result = await _context
+                    .Users
+                    .AsNoTracking()
+                    .AnyAsync(u => u.UserName == username);
+                return OperationResult
+                    .Successed(result);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult
+                    .Failed(GetType().Name, ex);
             }
         }
-         
 
-        public async Task<OperationResult> Insert(UserDTO userDTO)
+
+        public async Task<OperationResult> InsertAsync(UserDTO userDTO)
         {
             User user = new User
             {
-                FirstName=userDTO.FirstName,
-                LastName=userDTO.LastName,
-                Phone=userDTO.Phone,
-                Email=userDTO.Email,
-                UserName=userDTO.UserName,
-                Password=userDTO.Password
+                FirstName = userDTO.FirstName,
+                LastName = userDTO.LastName,
+                Phone = userDTO.Phone,
+                Email = userDTO.Email,
+                UserName = userDTO.UserName,
+                Password = userDTO.Password
             };
             try
             {
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-                return OperationResult.Successed();
+                _context.Users
+                    .Add(user);
+                await _context
+                    .SaveChangesAsync();
+                return OperationResult
+                    .Successed();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                return OperationResult.Failed(GetType().Name, ex);
+                return OperationResult
+                    .Failed(GetType().Name, ex);
             }
         }
 
-        public Task<OperationResult<UserDTO>> Select(string username)
+        public Task<OperationResult<UserDTO>> SelectAsync(string username)
         {
             throw new NotImplementedException();
         }
 
-        public Task<OperationResult> Update(UserDTO userDTO)
+        public Task<OperationResult> UpdateAsync(UserDTO userDTO)
         {
             throw new NotImplementedException();
         }

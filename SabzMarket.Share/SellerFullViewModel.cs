@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SabzMarket.Share
 {
-    public class SellerViewModel
+    public class SellerFullViewModel:BaseValidatoin
     {
         [MaxLength(50, ErrorMessage = Messages.firstNameInvalid2)]
         [MinLength(3, ErrorMessage = Messages.firstNameInvalid1)]
@@ -18,16 +18,16 @@ namespace SabzMarket.Share
         public string? LastName { get; set; }
         public string? Email { get; set; }
         [StringLength(11, MinimumLength = 11, ErrorMessage = Messages.numberInvalid1)]
-        [NumberValidationAtrrribute]
+        [NumberValidationAttribute]
         public string? Phone { get; set; }
-        public string? Username { get; set; }
+        public string Username { get; set; }
         public string? Password { get; set; }
         [StringLength(500, ErrorMessage = Messages.enterTheAddress)]
-        public string? Address { get; set; }
+        public string Address { get; set; }
         [Required(ErrorMessage = Messages.photoNotSelected)]
-        public string? ProfileImage { get; set; }
+        public string ProfileImage { get; set; }
         [MaxLength(3, ErrorMessage = Messages.enterTheWorkHistory)]
         [MinLength(1, ErrorMessage = Messages.enterTheWorkHistory)]
-        public string? WorkHistory { get; set; }
+        public string WorkHistory { get; set; }
     }
 }

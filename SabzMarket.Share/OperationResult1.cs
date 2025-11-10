@@ -8,9 +8,9 @@ namespace SabzMarket.Share
 {
     public class OperationResult
     {
-        public bool Success { get; protected set; }
-        public string? Message { get; protected set; }
-        public Exception? Exception { get; protected set; }
+        public bool Success { get;  set; }
+        public string? Message { get;  set; }
+        public Exception? Exception { get;  set; }
 
         public static OperationResult Successed(bool success= true,
             string message = "")
