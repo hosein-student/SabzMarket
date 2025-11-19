@@ -41,12 +41,12 @@ namespace SabzMarket.DAL
         {
             try
             {
-                var result = await _context
-                    .Users
-                    .AsNoTracking()
-                    .AnyAsync(u => u.UserName == username);
-                return OperationResult
-                    .Successed(result);
+                    var result = await _context
+                        .Users
+                        .AsNoTracking()
+                        .AnyAsync(u => u.UserName == username);
+                    return OperationResult
+                        .Successed(result);
             }
             catch (Exception ex)
             {

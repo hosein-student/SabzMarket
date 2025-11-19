@@ -13,7 +13,7 @@ namespace SabzMarkett
 {
     public partial class frm_Settings : FormStyle
     {
-        
+
         public frm_Settings()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace SabzMarkett
             toolTip.SetToolTip(pb_Profile, "لطفا برای انتخاب عکس کلیک کنید.");
         }
 
-        string pathImage="";
+        string pathImage = "";
         private void pb_Profile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -45,14 +45,14 @@ namespace SabzMarkett
             }
         }
 
-        private  async void frm_Settings_Load(object sender, EventArgs e)
+        private async void frm_Settings_Load(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;
             string username = Uri.UnescapeDataString(CurrentUser.UserName);
             string route = string.Format(RouteConstants.GetSellerByUsernameAsync, username);
             var seller = await client
                 .GetAsync<OperationResult<SellerFullViewModel>>(route);
-            if(seller.Success)
+            if (seller.Success)
             {
                 pb_Profile.LoadAsync(seller.Data.ProfileImage);
                 pathImage = seller.Data.ProfileImage;
@@ -71,6 +71,7 @@ namespace SabzMarkett
             }
 
         }
+        public event EventHandler LoodPanel;
 
         private async void btn_Update_Click(object sender, EventArgs e)
         {
@@ -84,7 +85,7 @@ namespace SabzMarkett
                 Email = txt_Email.Text,
                 UserName = txt_UserName.Text,
                 Password1 = txt_Password.Text,
-                Password2=txt_Password.Text,
+                Password2 = txt_Password.Text,
             };
             SellerPartialViewModel sellerPartial = new SellerPartialViewModel
             {
@@ -101,8 +102,8 @@ namespace SabzMarkett
             var result = await client.PostAsync<OperationResult, RequestPayload>(route, payload);
             if (result.Success)
             {
-                ShowInfo(result.Message);
-                CurrentUser.UserName= txt_UserName.Text;
+                    LoodPanel?.Invoke(this, EventArgs.Empty);
+                CurrentUser.UserName = txt_UserName.Text;
             }
             else
             {

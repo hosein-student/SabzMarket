@@ -20,6 +20,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IErrorRepository, ErrorRepository>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<ISellerService, SellerService>();
+builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();    
+builder.Services.AddScoped<ICategoriService, CategoriService>();
 
 //builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 // Add services to the container.

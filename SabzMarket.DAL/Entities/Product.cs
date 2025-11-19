@@ -29,6 +29,7 @@ namespace SabzMarket.DAL.Entities
         [Required]
         public int Number { get; set; }
         [Column(TypeName = "nvarchar")]
+       
         [Required]
         public string ImageProduct { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

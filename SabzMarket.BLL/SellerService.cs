@@ -95,28 +95,88 @@ namespace SabzMarket.BLL
             }
             else
             {
-               var result1=await _errorRepository.LogErrorAsync(result.Exception,result.Message);
-               return OperationResult<SellerFullViewModel>.Failed(result1.Message.ErrorMessage());
+                var result1 = await _errorRepository.LogErrorAsync(result.Exception, result.Message);
+                return OperationResult<SellerFullViewModel>.Failed(result1.Message.ErrorMessage());
             }
-            
+
         }
 
-        
+
 
         public async Task<OperationResult> UpdateAsync(string username, UserViewModel userViewModel, SellerPartialViewModel sellerPartialViewModel)
         {
-            if(userViewModel.IsValid)
+            if (userViewModel.IsValid)
             {
-                if(sellerPartialViewModel.IsValid)
+                if (sellerPartialViewModel.IsValid)
                 {
-                    if(!sellerPartialViewModel.ProfileImage.Contains("https://"))
+                    if (!sellerPartialViewModel.ProfileImage.Contains("https://"))
                     {
                         using var savePhoto = new SavePhoto();
-                        var result3=await savePhoto.SaveAsync(sellerPartialViewModel.ProfileImage);
-                        if(result3.Success)
+                        var result3 = await savePhoto.SaveAsync(sellerPartialViewModel.ProfileImage);
+                        if (result3.Success)
+                        {
+                            if (username != userViewModel.UserName)
+                            {
+                                var result1 = await _userService
+                                             .IsUsernameAvailableAsync(userViewModel.UserName);
+                                if (result1.Success)
+                                {
+                                    return OperationResult.Failed(Messages.existingUser);
+                                }
+                                else
+                                {
+                                    if (result1.Exception != null)
+                                    {
+                                        var result = await _errorRepository.LogErrorAsync(result1.Exception, result1.Message);
+                                        return OperationResult.Failed(result.Message.ErrorMessage());
+                                    }
+                                    else
+                                    {
+                                        var result = await _sellerRepository
+                                        .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                                        if (result.Success)
+                                        {
+                                            return OperationResult.Successed(true, Messages.update);
+                                        }
+                                        else
+                                        {
+                                            var result2 = await _errorRepository.LogErrorAsync(result.Exception, result1.Message);
+                                            return OperationResult.Failed(result2.Message.ErrorMessage());
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                var result = await _sellerRepository
+                                .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                                if (result.Success)
+                                {
+                                    return OperationResult.Successed(true, Messages.update);
+                                }
+                                else
+                                {
+                                    var result2 = await _errorRepository.LogErrorAsync(result.Exception, result.Message);
+                                    return OperationResult.Failed(result2.Message.ErrorMessage());
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            var result4 = await _errorRepository.LogErrorAsync(result3.Exception, result3.Message);
+                            return OperationResult.Failed(result4.Message.ErrorMessage());
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        if (username != userViewModel.UserName)
                         {
                             var result1 = await _userService
-                           .IsUsernameAvailableAsync(userViewModel.UserName);
+                                         .IsUsernameAvailableAsync(userViewModel.UserName);
                             if (result1.Success)
                             {
                                 return OperationResult.Failed(Messages.existingUser);
@@ -138,7 +198,7 @@ namespace SabzMarket.BLL
                                     }
                                     else
                                     {
-                                        var result2 = await _errorRepository.LogErrorAsync(result.Exception, result1.Message);
+                                        var result2 = await _errorRepository.LogErrorAsync(result.Exception, result.Message);
                                         return OperationResult.Failed(result2.Message.ErrorMessage());
                                     }
                                 }
@@ -146,45 +206,21 @@ namespace SabzMarket.BLL
                         }
                         else
                         {
-                            var result4 = await _errorRepository.LogErrorAsync(result3.Exception, result3.Message);
-                            return OperationResult.Failed(result4.Message.ErrorMessage());
-                        }
-
-
-                            
-                    }
-                    else
-                    {
-                        var result1 = await _userService
-                      .IsUsernameAvailableAsync(userViewModel.UserName);
-                        if (result1.Success)
-                        {
-                            return OperationResult.Failed(Messages.existingUser);
-                        }
-                        else
-                        {
-                            if (result1.Exception != null)
+                            var result = await _sellerRepository
+                                   .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                            if (result.Success)
                             {
-                                var result = await _errorRepository.LogErrorAsync(result1.Exception, result1.Message);
-                                return OperationResult.Failed(result.Message.ErrorMessage());
+                                return OperationResult.Successed(true, Messages.update);
                             }
                             else
                             {
-                                var result = await _sellerRepository
-                                .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
-                                if (result.Success)
-                                {
-                                    return OperationResult.Successed(true, Messages.update);
-                                }
-                                else
-                                {
-                                    var result2 = await _errorRepository.LogErrorAsync(result.Exception, result1.Message);
-                                    return OperationResult.Failed(result2.Message.ErrorMessage());
-                                }
+                                var result2 = await _errorRepository.LogErrorAsync(result.Exception, result.Message);
+                                return OperationResult.Failed(result2.Message.ErrorMessage());
                             }
                         }
+
                     }
-                  
+
                 }
                 else
                 {

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿    using Microsoft.EntityFrameworkCore;
 using SabzMarket.DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,16 @@ namespace SabzMarket.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Categorie>()
+                .HasData(
+                new Categorie { Id = 1, Name = "کود های شیمیایی" },
+                new Categorie { Id = 2, Name = "کود های آلی " },
+                new Categorie { Id = 3, Name = "کودهای بیولوژیک" },
+                new Categorie { Id = 4, Name = "حشره کش ها " },
+                new Categorie { Id = 5, Name = "علف کش ها" },
+                new Categorie { Id = 6, Name = "سموم معدنی " },
+                new Categorie { Id = 7, Name = "سموم آلی " }
+                );
             modelBuilder.Entity<Seller>()
                 .HasOne(s => s.User)
                 .WithOne(u => u.Seller)

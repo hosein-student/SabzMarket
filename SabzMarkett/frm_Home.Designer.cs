@@ -83,7 +83,7 @@
             this.pln_Menu1.FillColor4 = System.Drawing.Color.LightCyan;
             this.pln_Menu1.Location = new System.Drawing.Point(12, 12);
             this.pln_Menu1.Name = "pln_Menu1";
-            this.pln_Menu1.Size = new System.Drawing.Size(263, 610);
+            this.pln_Menu1.Size = new System.Drawing.Size(370, 610);
             this.pln_Menu1.TabIndex = 1;
             // 
             // pb_Profile
@@ -118,10 +118,11 @@
             // 
             // lbl_Name
             // 
+            this.lbl_Name.AutoSize = true;
             this.lbl_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Name.Location = new System.Drawing.Point(106, 19);
             this.lbl_Name.Name = "lbl_Name";
-            this.lbl_Name.Size = new System.Drawing.Size(154, 38);
+            this.lbl_Name.Size = new System.Drawing.Size(53, 20);
             this.lbl_Name.TabIndex = 2;
             this.lbl_Name.Text = "...........";
             // 
@@ -134,7 +135,7 @@
             this.pln_Menu2.Location = new System.Drawing.Point(0, 0);
             this.pln_Menu2.Name = "pln_Menu2";
             this.pln_Menu2.ShadowColor = System.Drawing.Color.Black;
-            this.pln_Menu2.Size = new System.Drawing.Size(286, 634);
+            this.pln_Menu2.Size = new System.Drawing.Size(393, 634);
             this.pln_Menu2.TabIndex = 4;
             this.pln_Menu2.Visible = false;
             // 
@@ -208,9 +209,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flp_ShowProduct.BackColor = System.Drawing.Color.MintCream;
-            this.flp_ShowProduct.Location = new System.Drawing.Point(286, 0);
+            this.flp_ShowProduct.Location = new System.Drawing.Point(388, 0);
             this.flp_ShowProduct.Name = "flp_ShowProduct";
-            this.flp_ShowProduct.Size = new System.Drawing.Size(622, 634);
+            this.flp_ShowProduct.Size = new System.Drawing.Size(520, 634);
             this.flp_ShowProduct.TabIndex = 8;
             // 
             // btn_Menu

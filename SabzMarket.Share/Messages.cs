@@ -22,7 +22,7 @@ namespace SabzMarket.Share
         public const string successSignUp2 = "ثبت نام شما انجام شد";
         public const string failedSignUp2 = "ثبت نام شما انجام نشد";
         public const string notSavePhoto = "مشکلی پیش امده عکس ذخیره نشد";
-        public const string photoNotSelected = "لطفا عکسی برای پروفایل خودانتخاب کنید";
+        public const string photoNotSelected = "لطفا یک عکس اپلود کنید";
         public const string enterTheAddress = "آدرس را وارد کنید";
         public const string enterTheWorkHistory = "سابقه کاری نمی تواند کمتر از 1 رقم و بیشتر از سه رقم باشد.";
         public const string error = "مشکلی پیش امده لطفا با پشتیبانی تماس بگیرید";
@@ -30,5 +30,14 @@ namespace SabzMarket.Share
         public const string update = "ویرایش شد";
         public const string Mandatory = "فیلد های اجباری را وارد کنید";
         public const string userNotLogin = "اطلاعات ورود نامعتبر است اگر ثبت نام نکرده اید ابتدا ثبت نام کنید سپس وارد شوید";
+        //==============================================================================================================================
+        public const string ProductName = "لطفا نام محصول را وارد کنید";
+        public const string ProductPrice = "لطفا قیمت محصول را وارد کنید";
+        public const string ValidProductPrice = "لطفا قیمت محصول را به عدد وارد کنید";
+        public const string ProductNumber = "تعداد محصول را وارد کنید";
+        public const string ProductDescription = "لطفا توضیحات محصول را وارد کنید";
+        public const string ProductDescriptionLength = "توصیحات نمی تواند بیشتر از 500 حرف باشد";
+        public const string ProductCategory = "لطفا دسته بندی محصول را وارد کنید";
+        public const string ProductPhoto = "لطفا عکسی برای محصول آپلود کنید";
     }
 }

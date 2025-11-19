@@ -12,7 +12,7 @@ namespace SabzMarket.API.Controllers
             _sellerService = sellerService;
         }
         [HttpPost]
-        public async Task<OperationResult> SellerFillProfile([FromBody]SellerPartialViewModel sellerViewMode2)
+        public async Task<OperationResult> FillProfile([FromBody]SellerPartialViewModel sellerViewMode2)
         {
             var result=await _sellerService
                 .FillProfileAsync(sellerViewMode2);

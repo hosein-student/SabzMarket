@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SabzMarket.Share;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,28 @@ namespace SabzMarkett
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-          
+            int price,number;
+            bool convertPrice = int.TryParse(txt_Price.Text.Replace(",", ""), out  price);
+            bool convertNumber = int.TryParse(txt_Number.Text.Replace(",", ""), out number);
+            ProductViewModel productViewModel = new ProductViewModel
+            {
+                CategoryId = (long)cmb_Categorie.SelectedValue,
+                Description = txt_Description.Text,
+                Name = txt_Name.Text,
+                Price=price,
+                ProducPthoto= path
+                ,Number = number
+            };
+            if (productViewModel.IsValid)
+            {
+               
+            }
+            else
+            {
+                ShowInfo(productViewModel.ErrorMessage);
+                
+            }
+
         }
 
         private void myTextBox3_TextChanged(object sender, EventArgs e)
@@ -38,7 +60,7 @@ namespace SabzMarkett
             // فرمت هزارگان (اینجا با جداکننده , – می‌تونی Culture رو تغییر بدی)
             if (!long.TryParse(plainText, out long value))
             { }
-              
+
             txt_Price.Text = string.Format("{0:N0}", value);
             // برگرداندن مکان‌نما به جای درست
             txt_Price.SelectionStart = txt_Price.Text.Length;
@@ -46,34 +68,54 @@ namespace SabzMarkett
 
         private void txt_Price_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)&&
-                (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)&&
+            if ((e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9) &&
+                (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9) &&
                 (e.KeyCode != Keys.Back))
             {
                 e.SuppressKeyPress = true;
             }
         }
 
-       
+
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-       
 
+        string path;
         private void pb_Products_Click_1(object sender, EventArgs e)
         {
             openFileDialog1.Title = "انتخاب عکس";
             openFileDialog1.Filter = "Image.JPG|*.jpg|Image.JPEG|*.jpeg|Image.PNG|*.png";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-
+                path = openFileDialog1.FileName;
+                pb_Products.ImageLocation = path;
             }
             else
             {
-                MessageBox.Show("لطفا عکس را درست انتخاب کنید ");
+                ShowInfo(Messages.photoNotSelected);
+            }
+        }
+
+        private async void frm_AddProducts_Load(object sender, EventArgs e)
+        {
+            var client = HttpClientHelper.Instance;
+            var result = await client.GetAsync<OperationResult<List<CategorieDTO>>>(RouteConstants.GetCategori);
+            cmb_Categorie.DataSource = result.Data;
+            cmb_Categorie.DisplayMember = "Name";
+            cmb_Categorie.ValueMember = "Id";
+        }
+
+        private void txt_Number_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9) &&
+                (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9) &&
+                (e.KeyCode != Keys.Back))
+            {
+                e.SuppressKeyPress = true;
             }
         }
     }

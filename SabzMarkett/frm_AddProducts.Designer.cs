@@ -43,6 +43,8 @@
             this.btn_Close = new SabzMarkett.MyButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pb_Products = new System.Windows.Forms.PictureBox();
+            this.lbl_Description = new System.Windows.Forms.Label();
+            this.txt_Description = new SabzMarkett.MyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@
             this.cmb_Categorie.ItemHeight = 30;
             this.cmb_Categorie.Items.AddRange(new object[] {
             ""});
-            this.cmb_Categorie.Location = new System.Drawing.Point(30, 261);
+            this.cmb_Categorie.Location = new System.Drawing.Point(30, 210);
             this.cmb_Categorie.Name = "cmb_Categorie";
             this.cmb_Categorie.Size = new System.Drawing.Size(260, 36);
             this.cmb_Categorie.TabIndex = 1;
@@ -68,7 +70,7 @@
             // 
             this.lbl_Name.AutoSize = true;
             this.lbl_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Name.Location = new System.Drawing.Point(297, 217);
+            this.lbl_Name.Location = new System.Drawing.Point(297, 166);
             this.lbl_Name.Name = "lbl_Name";
             this.lbl_Name.Size = new System.Drawing.Size(93, 25);
             this.lbl_Name.TabIndex = 3;
@@ -106,7 +108,7 @@
             this.txt_Name.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txt_Name.ForeColor = System.Drawing.Color.DarkGreen;
             this.txt_Name.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Name.Location = new System.Drawing.Point(30, 217);
+            this.txt_Name.Location = new System.Drawing.Point(30, 166);
             this.txt_Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.PlaceholderText = "";
@@ -118,7 +120,7 @@
             // 
             this.lbl_Categorie.AutoSize = true;
             this.lbl_Categorie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Categorie.Location = new System.Drawing.Point(297, 261);
+            this.lbl_Categorie.Location = new System.Drawing.Point(297, 210);
             this.lbl_Categorie.Name = "lbl_Categorie";
             this.lbl_Categorie.Size = new System.Drawing.Size(143, 25);
             this.lbl_Categorie.TabIndex = 6;
@@ -128,7 +130,7 @@
             // 
             this.lbl_Number.AutoSize = true;
             this.lbl_Number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Number.Location = new System.Drawing.Point(297, 312);
+            this.lbl_Number.Location = new System.Drawing.Point(297, 261);
             this.lbl_Number.Name = "lbl_Number";
             this.lbl_Number.Size = new System.Drawing.Size(107, 25);
             this.lbl_Number.TabIndex = 6;
@@ -138,7 +140,7 @@
             // 
             this.lbl_Price.AutoSize = true;
             this.lbl_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Price.Location = new System.Drawing.Point(297, 355);
+            this.lbl_Price.Location = new System.Drawing.Point(297, 304);
             this.lbl_Price.Name = "lbl_Price";
             this.lbl_Price.Size = new System.Drawing.Size(108, 25);
             this.lbl_Price.TabIndex = 6;
@@ -167,13 +169,14 @@
             this.txt_Number.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txt_Number.ForeColor = System.Drawing.Color.DarkGreen;
             this.txt_Number.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Number.Location = new System.Drawing.Point(30, 312);
+            this.txt_Number.Location = new System.Drawing.Point(30, 261);
             this.txt_Number.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Number.Name = "txt_Number";
             this.txt_Number.PlaceholderText = "";
             this.txt_Number.SelectedText = "";
             this.txt_Number.Size = new System.Drawing.Size(260, 33);
             this.txt_Number.TabIndex = 2;
+            this.txt_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Number_KeyDown);
             // 
             // txt_Price
             // 
@@ -188,7 +191,7 @@
             this.txt_Price.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txt_Price.ForeColor = System.Drawing.Color.DarkGreen;
             this.txt_Price.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Price.Location = new System.Drawing.Point(70, 355);
+            this.txt_Price.Location = new System.Drawing.Point(70, 304);
             this.txt_Price.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Price.Name = "txt_Price";
             this.txt_Price.PlaceholderText = "";
@@ -202,7 +205,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sitka Subheading Semibold", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 361);
+            this.label1.Location = new System.Drawing.Point(24, 310);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 19);
             this.label1.TabIndex = 6;
@@ -242,11 +245,45 @@
             this.pb_Products.TabStop = false;
             this.pb_Products.Click += new System.EventHandler(this.pb_Products_Click_1);
             // 
+            // lbl_Description
+            // 
+            this.lbl_Description.AutoSize = true;
+            this.lbl_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Description.Location = new System.Drawing.Point(297, 348);
+            this.lbl_Description.Name = "lbl_Description";
+            this.lbl_Description.Size = new System.Drawing.Size(82, 25);
+            this.lbl_Description.TabIndex = 8;
+            this.lbl_Description.Text = "توضیحات ";
+            // 
+            // txt_Description
+            // 
+            this.txt_Description.AutoSize = true;
+            this.txt_Description.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_Description.DefaultText = "";
+            this.txt_Description.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_Description.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_Description.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_Description.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_Description.FillColor = System.Drawing.Color.PaleGreen;
+            this.txt_Description.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_Description.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txt_Description.ForeColor = System.Drawing.Color.DarkGreen;
+            this.txt_Description.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_Description.Location = new System.Drawing.Point(30, 348);
+            this.txt_Description.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_Description.Name = "txt_Description";
+            this.txt_Description.PlaceholderText = "";
+            this.txt_Description.SelectedText = "";
+            this.txt_Description.Size = new System.Drawing.Size(260, 39);
+            this.txt_Description.TabIndex = 9;
+            // 
             // frm_AddProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 568);
+            this.Controls.Add(this.txt_Description);
+            this.Controls.Add(this.lbl_Description);
             this.Controls.Add(this.pb_Products);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_Price);
@@ -265,6 +302,7 @@
             this.MinimumSize = new System.Drawing.Size(461, 47);
             this.Name = "frm_AddProducts";
             this.Text = "frm_AddProducts";
+            this.Load += new System.EventHandler(this.frm_AddProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Products)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -286,5 +324,7 @@
         private MyButton btn_Close;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pb_Products;
+        private System.Windows.Forms.Label lbl_Description;
+        private MyTextBox txt_Description;
     }
 }

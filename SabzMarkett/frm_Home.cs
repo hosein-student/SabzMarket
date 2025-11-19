@@ -43,6 +43,7 @@ namespace SabzMarkett
 
         private async void frm_Home_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             var client = HttpClientHelper.Instance;
             string route = string.Format(RouteConstants.GetSellerByUsernameAsync, CurrentUser.UserName);
             var seller = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
@@ -74,8 +75,12 @@ namespace SabzMarkett
         private void btn_Setting_Click(object sender, EventArgs e)
         {
             frm_Settings frm_Settings = new frm_Settings();
+            frm_Settings.LoodPanel += frm_Home_Load;
             frm_Settings.ShowDialog();
         }
+
+        
+
         private void btn_Orders_Click(object sender, EventArgs e)
         {
 

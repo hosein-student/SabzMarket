@@ -13,7 +13,7 @@ namespace SabzMarket.BLL
     public class SavePhoto: IDisposable
     {
         private const string accessKey = "36be0a0e-838c-4040-827c-ba415160709e";
-        private const string secretKey = "cb1cc9b5a26b8ddbd747eb843f3eb7022eae2d86eee4ac496428b2170f9cfa6d";
+        private const string secretKey = "661552001ca5bafb3eda527b8f20896d5ff06a8fbe30fa13645f134d6487164c";
         private const string bucketName = "sabzmarket";
         private const string serviceURL = "https://s3.ir-thr-at1.arvanstorage.ir";
         private readonly IAmazonS3 _s3Client;
