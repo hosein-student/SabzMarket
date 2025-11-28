@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HttpClientToCurl;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Extensions.Http;
 using Polly.Retry;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using HttpClientToCurl;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace SabzMarket.Share
@@ -22,10 +23,6 @@ namespace SabzMarket.Share
             client = new HttpClient();
             client.BaseAddress = new Uri(RouteConstants.BaseUrl);
             client.Timeout = TimeSpan.FromSeconds(60);
-
-            
-
-
         }
         private static readonly Lazy<HttpClientHelper> _instance =
            new Lazy<HttpClientHelper>(() => new HttpClientHelper());
@@ -33,36 +30,72 @@ namespace SabzMarket.Share
         {
             get
             {
-                return _instance.Value; 
+                return _instance.Value;
             }
         }
         public async Task<T> GetAsync<T>(string route)
         {
+            string curl = "";
             try
             {
                 var req = new HttpRequestMessage(HttpMethod.Get, new Uri(RouteConstants.BaseUrl + route));
 
-               
 
+
+                curl = client.GenerateCurlInString(req);
                 var response = await client.SendAsync(req);
                 if (!response.IsSuccessStatusCode)
                 {
-                    // ذخیره لاگ در دیتابیس
-                    return default(T);
+                    try
+                    {
+                        var error = new ErrorLogDTO
+                        {
+                            Curl = curl,
+                            Layer = GetType().Name,
+                            Message = response.StatusCode.ToString()
+                        };
+
+                        await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
+                        return default(T);
+                    }
+                    catch (Exception ex)
+                    {
+                        return default(T);
+                    }
+
                 }
                 string content = await response.Content.ReadAsStringAsync();
-                var resilt = JsonConvert.DeserializeObject<T>(content);
-                return resilt;
+                var result = JsonConvert.DeserializeObject<T>(content);
+                return result;
             }
             catch (Exception ex)
             {
-                return default(T);
+                try
+                {
+                    var error = new ErrorLogDTO
+                    {
+                        Curl = curl,
+                        Layer = GetType().Name,
+                        Message = ex.Message,
+                        Route = route,
+                        Source = ex.Source,
+                        StackTrace = ex.StackTrace
+                    };
+                    await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
+                    return default(T);
+
+                }
+                catch (Exception ex1)
+                {
+                    return default(T);
+                }
             }
 
-            
+
         }
         public async Task<Tout> PostAsync<Tout, Tin>(string route, Tin data)
         {
+            string curl = "";
             try
             {
                 string json = JsonConvert.SerializeObject(data);
@@ -71,12 +104,26 @@ namespace SabzMarket.Share
                 {
                     Content = stringContent,
                 };
-                
+                curl = client.GenerateCurlInString(req);
                 var response = await client.SendAsync(req);
                 if (!response.IsSuccessStatusCode)
                 {
-                    //addlog
-                    return default(Tout);
+                    try
+                    {
+                        var error = new ErrorLogDTO
+                        {
+                            Curl = curl,
+                            Layer = GetType().Name,
+                            Message = response.StatusCode.ToString()
+                        };
+
+                        await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
+                        return default(Tout);
+                    }
+                    catch (Exception ex)
+                    {
+                        return default(Tout);
+                    }
                 }
                 string content = await response.Content.ReadAsStringAsync();
                 var resilt = JsonConvert.DeserializeObject<Tout>(content);
@@ -84,9 +131,42 @@ namespace SabzMarket.Share
             }
             catch (Exception ex)
             {
-                return default(Tout);
+                try
+                {
+                    var error = new ErrorLogDTO
+                    {
+                        Curl = curl,
+                        Layer = GetType().Name,
+                        Message = ex.Message,
+                        Route = route,
+                        Source = ex.Source,
+                        StackTrace = ex.StackTrace
+                    };
+                    await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
+                    return default(Tout);
+
+                }
+                catch (Exception ex1)
+                {
+                    return default(Tout);
+                }
             }
-            
+
+        }
+        private async Task LogError<Tin>(string route, Tin data)
+        {
+            try
+            {
+                using var tempClient = new HttpClient();
+                string json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                await tempClient.PostAsync(RouteConstants.LogError, content);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
     }
 }

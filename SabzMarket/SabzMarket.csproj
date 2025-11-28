@@ -32,9 +32,7 @@
     <Compile Update="frm_Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frm_Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="frm_Login.cs" />
     <Compile Update="frm_Orders.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SabzMarkett
 {
-    public class FormStyle:Form
+    public class FormStyle:form
     {
         public override Color BackColor 
         { get => base.BackColor;
