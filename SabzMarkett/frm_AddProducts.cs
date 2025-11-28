@@ -25,28 +25,32 @@ namespace SabzMarkett
             toolTip.SetToolTip(pb_Products, "لطفا برای انتخاب عکس کلیک کنید.");
         }
 
-        private void btn_Add_Click(object sender, EventArgs e)
+        private async void btn_Add_Click(object sender, EventArgs e)
         {
-            int price,number;
-            bool convertPrice = int.TryParse(txt_Price.Text.Replace(",", ""), out  price);
+            int price, number;
+            bool convertPrice = int.TryParse(txt_Price.Text.Replace(",", ""), out price);
             bool convertNumber = int.TryParse(txt_Number.Text.Replace(",", ""), out number);
             ProductViewModel productViewModel = new ProductViewModel
             {
                 CategoryId = (long)cmb_Categorie.SelectedValue,
                 Description = txt_Description.Text,
                 Name = txt_Name.Text,
-                Price=price,
-                ProducPthoto= path
-                ,Number = number
+                Price = price,
+                ImageProduct = path
+                ,
+                Number = number
+                ,SellerId=CurrentUser.Id
             };
             if (productViewModel.IsValid)
             {
-               
+                var client = HttpClientHelper.Instance;
+                var result = await client
+                    .PostAsync<OperationResult, ProductViewModel>(RouteConstants.CreateProduct, productViewModel);
+                ShowInfo(result.Message);
             }
             else
             {
                 ShowInfo(productViewModel.ErrorMessage);
-                
             }
 
         }
@@ -96,7 +100,8 @@ namespace SabzMarkett
             }
             else
             {
-                ShowInfo(Messages.photoNotSelected);
+                if (path == null)
+                    ShowInfo(Messages.photoNotSelected);
             }
         }
 

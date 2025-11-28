@@ -328,6 +328,7 @@
             this.pb_Profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Profile.TabIndex = 39;
             this.pb_Profile.TabStop = false;
+            this.pb_Profile.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.pb_Profile_LoadCompleted_1);
             this.pb_Profile.Click += new System.EventHandler(this.pb_Profile_Click);
             this.pb_Profile.MouseHover += new System.EventHandler(this.phb_Profile_MouseHover);
             // 

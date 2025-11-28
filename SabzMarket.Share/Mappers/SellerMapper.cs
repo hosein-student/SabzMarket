@@ -10,6 +10,7 @@ namespace SabzMarket.Share.Mappers
         {
             return new SellerDTO
             {
+                Id=sellerViewModel.Id,
                 FirstName = sellerViewModel.FirstName,
                 LastName = sellerViewModel.LastName,
                 Email = sellerViewModel.Email,
@@ -26,6 +27,7 @@ namespace SabzMarket.Share.Mappers
         {
             return new SellerFullViewModel
             {
+                Id= sellerDTO.Id,
                 FirstName = sellerDTO.FirstName,
                 LastName = sellerDTO.LastName,
                 Email = sellerDTO.Email,
@@ -41,6 +43,7 @@ namespace SabzMarket.Share.Mappers
         {
             return new SellerFullViewModel
             {
+                
                Address = sellerViewModel2.Address,
                 ProfileImage = sellerViewModel2.ProfileImage,
                  WorkHistory = sellerViewModel2.WorkHistory,

@@ -31,7 +31,7 @@ namespace SabzMarket.DAL.Entities
         [StringLength(50)]
         [Required]
         public string CodParvaneBHB { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(max)")]
 
         [Required]
         public string ProfileImage { get; set; }

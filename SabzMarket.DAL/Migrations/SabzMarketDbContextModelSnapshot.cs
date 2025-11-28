@@ -115,11 +115,17 @@ namespace SabzMarket.DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Curl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Layer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Route")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Source")
@@ -166,7 +172,7 @@ namespace SabzMarket.DAL.Migrations
 
                     b.Property<string>("ProfileImage")
                         .IsRequired()
-                        .HasColumnType("nvarchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -254,7 +260,7 @@ namespace SabzMarket.DAL.Migrations
 
                     b.Property<string>("ImageProduct")
                         .IsRequired()
-                        .HasColumnType("nvarchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -294,7 +300,7 @@ namespace SabzMarket.DAL.Migrations
 
                     b.Property<string>("ProfileImage")
                         .IsRequired()
-                        .HasColumnType("nvarchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -321,8 +327,7 @@ namespace SabzMarket.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(30)
                         .HasColumnType("varchar");
 
                     b.Property<string>("FirstName")

@@ -17,7 +17,7 @@ namespace SabzMarket.DAL.Entities
         [StringLength(500)]
         [Required]
         public string Address { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(max)")]
         public string ProfileImage { get; set; }
         [Column(TypeName = "varchar")]
         [StringLength(3)]

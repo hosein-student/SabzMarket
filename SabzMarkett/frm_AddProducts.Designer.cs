@@ -87,7 +87,7 @@
             this.btn_Add.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btn_Add.ForeColor = System.Drawing.Color.White;
             this.btn_Add.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_Add.Location = new System.Drawing.Point(275, 459);
+            this.btn_Add.Location = new System.Drawing.Point(260, 459);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.PressedColor = System.Drawing.Color.DarkGreen;
             this.btn_Add.Size = new System.Drawing.Size(130, 87);
@@ -204,10 +204,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Sitka Subheading Semibold", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(24, 310);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 19);
+            this.label1.Size = new System.Drawing.Size(35, 16);
             this.label1.TabIndex = 6;
             this.label1.Text = "تومان";
             // 

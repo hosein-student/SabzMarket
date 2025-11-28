@@ -14,14 +14,19 @@ if (string.IsNullOrEmpty(connectionString))
 }
 builder.Services.AddDbContext<SabzMarketDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddDbContextFactory<SabzMarketDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IErrorRepository, ErrorRepository>();
+builder.Services.AddScoped<IErrorService, ErrorService>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();    
 builder.Services.AddScoped<ICategoriService, CategoriService>();
+builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 //builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 // Add services to the container.

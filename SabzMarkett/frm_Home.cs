@@ -45,7 +45,7 @@ namespace SabzMarkett
         {
             this.WindowState = FormWindowState.Maximized;
             var client = HttpClientHelper.Instance;
-            string route = string.Format(RouteConstants.GetSellerByUsernameAsync, CurrentUser.UserName);
+            string route = string.Format(RouteConstants.GetSellerByUsername, CurrentUser.UserName);
             var seller = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
             if(seller.Success)
             {

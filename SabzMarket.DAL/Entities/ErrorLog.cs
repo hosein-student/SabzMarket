@@ -14,5 +14,7 @@ namespace SabzMarket.DAL.Entities
         public string? Source { get; set; }
         public string? Layer { get; set; } // مثلا API, Service, Data
         public DateTime CreatedAt { get; set; }
+        public string? Curl { get; set; }
+        public string? Route { get; set; }
     }
 }

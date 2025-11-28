@@ -163,7 +163,7 @@
             this.btn_Orders.ImageRotate = 0F;
             this.btn_Orders.Location = new System.Drawing.Point(14, 88);
             this.btn_Orders.Name = "btn_Orders";
-            this.btn_Orders.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btn_Orders.PressedState.Image = global::SabzMarkett.Properties.Resources.shop;
             this.btn_Orders.PressedState.ImageSize = new System.Drawing.Size(64, 64);
             this.btn_Orders.Size = new System.Drawing.Size(83, 75);
             this.btn_Orders.TabIndex = 10;
@@ -171,15 +171,17 @@
             // 
             // btn_Chat
             // 
+            this.btn_Chat.BackColor = System.Drawing.Color.Transparent;
             this.btn_Chat.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Chat.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btn_Chat.HoverState.Image = global::SabzMarkett.Properties.Resources.Wwalczyszyn_Android_Style_Honeycomb_Messages_48;
             this.btn_Chat.HoverState.ImageSize = new System.Drawing.Size(64, 64);
             this.btn_Chat.Image = ((System.Drawing.Image)(resources.GetObject("btn_Chat.Image")));
             this.btn_Chat.ImageOffset = new System.Drawing.Point(0, 0);
             this.btn_Chat.ImageRotate = 0F;
+            this.btn_Chat.IndicateFocus = true;
             this.btn_Chat.Location = new System.Drawing.Point(14, 12);
             this.btn_Chat.Name = "btn_Chat";
-            this.btn_Chat.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btn_Chat.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
             this.btn_Chat.PressedState.ImageSize = new System.Drawing.Size(64, 64);
             this.btn_Chat.Size = new System.Drawing.Size(83, 70);
             this.btn_Chat.TabIndex = 9;
@@ -190,14 +192,14 @@
             this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_AddProduct.BackColor = System.Drawing.Color.Honeydew;
             this.btn_AddProduct.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_AddProduct.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            this.btn_AddProduct.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
             this.btn_AddProduct.HoverState.ImageSize = new System.Drawing.Size(64, 64);
             this.btn_AddProduct.Image = ((System.Drawing.Image)(resources.GetObject("btn_AddProduct.Image")));
             this.btn_AddProduct.ImageOffset = new System.Drawing.Point(0, 0);
             this.btn_AddProduct.ImageRotate = 0F;
             this.btn_AddProduct.Location = new System.Drawing.Point(14, 543);
             this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            this.btn_AddProduct.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
             this.btn_AddProduct.PressedState.ImageSize = new System.Drawing.Size(64, 64);
             this.btn_AddProduct.Size = new System.Drawing.Size(83, 79);
             this.btn_AddProduct.TabIndex = 8;

@@ -8,6 +8,6 @@ namespace SabzMarket.Share.Data
 {
     public interface IErrorRepository
     {
-        Task<OperationResult> LogErrorAsync(Exception ex, string layer);
+        Task<OperationResult> LogErrorAsync(ErrorLogDTO error);
     }
 }

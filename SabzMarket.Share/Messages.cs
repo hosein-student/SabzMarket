@@ -18,6 +18,7 @@ namespace SabzMarket.Share
         public const string firstNameInvalid1 = "نام نمی تواند کمتر از سه حرف باشد";
         public const string firstNameInvalid2 = "نام طولانی است";
         public const string numberInvalid2 = "شماره تلفن معتبر نمی باشد ";
+        public const string EmailInvalid = "ایمیل معتبر نمی باشد";
         public const string EnterPassword = "پسوردی برای خود انتخاب کنید";
         public const string successSignUp2 = "ثبت نام شما انجام شد";
         public const string failedSignUp2 = "ثبت نام شما انجام نشد";
@@ -39,5 +40,6 @@ namespace SabzMarket.Share
         public const string ProductDescriptionLength = "توصیحات نمی تواند بیشتر از 500 حرف باشد";
         public const string ProductCategory = "لطفا دسته بندی محصول را وارد کنید";
         public const string ProductPhoto = "لطفا عکسی برای محصول آپلود کنید";
+        public const string ProductAdded = "محصول با موفقیت اضافه شد";
     }
 }

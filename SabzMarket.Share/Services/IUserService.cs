@@ -11,6 +11,7 @@ namespace SabzMarket.Share.Services
         Task<OperationResult> SignUpAsync(UserViewModel userViewModel);
         Task<OperationResult> LoginAsync(UserViewModel userViewModel);
         Task<OperationResult> IsUsernameAvailableAsync(string username);
+        Task<OperationResult<UserViewModel>> GetUserAsync(string username);
 
 
     }

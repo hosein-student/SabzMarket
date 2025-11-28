@@ -17,10 +17,11 @@ namespace SabzMarket.Share
         [ProductNumberValidation]
         public int Number {  get; set; }
         [PriceValidation]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         [Required(ErrorMessage = Messages.ProductPhoto)]
-        public string ProducPthoto { get; set; }
+        public string ImageProduct { get; set; }
         [Required(ErrorMessage = Messages.ProductCategory)]
         public long CategoryId { get; set; }
+        public  long SellerId {  get; set; }
     }
 }

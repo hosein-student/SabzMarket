@@ -16,7 +16,7 @@ namespace SabzMarkett
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_AddProducts());
+            Application.Run(new frm_Login());
         }
     }
 }

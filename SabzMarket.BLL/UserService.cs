@@ -15,12 +15,25 @@ namespace SabzMarket.BLL
 {
     public class UserService : IUserService
     {
-        private readonly IErrorRepository _errorRepository;
+        private readonly IErrorService _errorService;
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository,IErrorRepository errorRepository) 
+        public UserService(IUserRepository userRepository, IErrorService errorService) 
         {
             _userRepository = userRepository;
-            _errorRepository = errorRepository;
+            _errorService = errorService;
+        }
+
+        public async Task<OperationResult<UserViewModel>> GetUserAsync(string username)
+        {
+            var result=await _userRepository.SelectAsync(username);
+            if(!result.Success)
+            {
+                var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                var result1 = await _errorService.LogErrorAsync(error);
+                    return OperationResult<UserViewModel>.Failed(result1.Message.ErrorMessage());
+            }
+            var data = result.Data.ToUserViewModel();
+            return OperationResult<UserViewModel>.Successed(data);
         }
 
         public async Task<OperationResult> IsUsernameAvailableAsync(string username)
@@ -34,7 +47,8 @@ namespace SabzMarket.BLL
             {
                 if (result.Exception != null)
                 {
-                    var result1 = await _errorRepository.LogErrorAsync(result.Exception, result.Message);
+                    var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                    var result1 = await _errorService.LogErrorAsync(error);
                     return OperationResult.Failed(result1.Message.ErrorMessage());
                 }
                 return OperationResult.Failed(result.Message);
@@ -44,14 +58,18 @@ namespace SabzMarket.BLL
         public async Task<OperationResult> LoginAsync(UserViewModel userViewModel)
         {
             var result=await _userRepository.ChangePasswordAsync(userViewModel.ToUserDTO());
-            if (result.Success)
+            if (!result.Success)
             {
-                return OperationResult.Successed();
+                if(result.Exception != null)
+                {
+                    var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                    var result1=await _errorService.LogErrorAsync(error);
+                    return OperationResult.Failed(result1.Message.ErrorMessage());
+                }
+                return OperationResult.Failed(Messages.userNotLogin);
             }
-            else
-            {
-               return OperationResult.Failed(Messages.userNotLogin);
-            }
+            return OperationResult.Successed();
+            
         }
 
         public async Task<OperationResult> SignUpAsync(UserViewModel userViewModel)
@@ -63,7 +81,8 @@ namespace SabzMarket.BLL
                 {
                     if (result.Exception != null)
                     {
-                        var result1 = await _errorRepository.LogErrorAsync(result.Exception, result.Message);
+                        var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                        var result1 = await _errorService.LogErrorAsync(error);
                         return OperationResult.Failed(result1.Message.ErrorMessage());
                     }
                     else
@@ -71,7 +90,8 @@ namespace SabzMarket.BLL
                         var result2 = await _userRepository.InsertAsync(userViewModel.ToUserDTO());
                         if (result2.Success == false)
                         {
-                            var result1 = await _errorRepository.LogErrorAsync(result2.Exception, result2.Message);
+                            var error = result2.Exception.ExceptionToErrorDTO(result2.Message);
+                            var result1 = await _errorService.LogErrorAsync(error);
                             return OperationResult.Failed(result1.Message.ErrorMessage());
                         }
                         else

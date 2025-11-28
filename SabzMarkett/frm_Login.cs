@@ -25,24 +25,27 @@ namespace SabzMarkett
                 UserName = txt_UserName.Text,
                 Password1 = txt_Password.Text
             };
-            var client=HttpClientHelper.Instance;
+            var client = HttpClientHelper.Instance;
             var result = await client.PostAsync<OperationResult, UserViewModel>(RouteConstants.Login, user);
             if (result.Success)
             {
-                CurrentUser.UserName= txt_UserName.Text;
+                CurrentUser.UserName = txt_UserName.Text;
                 string userName = Uri.EscapeDataString(txt_UserName.Text);
                 var rout = string.Format(RouteConstants.CheckUserInSeller, userName);
-                var result1=await client.GetAsync<OperationResult>(rout);
+                var result1 = await client.GetAsync<OperationResult>(rout);
                 if (result1.Success)
                 {
                     frm_Home frm_Home = new frm_Home();
                     this.Hide();
                     frm_Home.Show();
+                    string route = string.Format(RouteConstants.GetSellerByUsername, Uri.EscapeUriString(txt_UserName.Text));
+                    var result2 = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
+                    CurrentUser.Id = result2.Data.Id;
                 }
                 else
                 {
                     frm_SellerProfile frm_SellerProfile = new frm_SellerProfile();
-                    this.Hide(); 
+                    this.Hide();
                     frm_SellerProfile.Show();
                 }
             }

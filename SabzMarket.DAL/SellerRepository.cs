@@ -82,6 +82,7 @@ namespace SabzMarket.DAL
                     Password = s.User.Password,
                     Username = s.User.UserName,
                     WorkHistory = s.WorkHistory,
+                    Id=s.Id
                 }).SingleOrDefaultAsync();
                 return OperationResult<SellerDTO>.Successed(seller);
             }
@@ -123,6 +124,5 @@ namespace SabzMarket.DAL
            
 
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using SabzMarket.DAL.Entities;
 using SabzMarket.Share;
 using SabzMarket.Share.Data;
@@ -12,26 +13,31 @@ namespace SabzMarket.DAL
 {
     public class ErrorRepository:IErrorRepository
     {
-        private readonly SabzMarketDbContext _context;
-        public ErrorRepository(SabzMarketDbContext context) 
+        private readonly IDbContextFactory<SabzMarketDbContext> _contextFactory;
+
+        public ErrorRepository(IDbContextFactory<SabzMarketDbContext> contextFactory) 
         {
-            _context = context;
+            _contextFactory = contextFactory;
         }
 
-        public async Task<OperationResult> LogErrorAsync(Exception ex, string layer)
+        public async Task<OperationResult> LogErrorAsync(ErrorLogDTO error)
         {
             ErrorLog errorLog = new ErrorLog
             {
-                CreatedAt = DateTime.Now,
-                Message = ex.Message,
-                Source = ex.Source,
-                StackTrace = ex.StackTrace,
-                Layer=layer
+                CreatedAt = error.CreatedAt,
+                Message = error.Message,
+                Source = error.Source,
+                StackTrace = error.StackTrace,
+                Layer= error.Layer,
+                Curl= error.Curl,
+                Route= error.Route
             };
             try
             {
-                _context.ErrorLogs.Add(errorLog);
-                await _context.SaveChangesAsync();
+                await using var context = await _contextFactory.CreateDbContextAsync();
+
+                context.ErrorLogs.Add(errorLog);
+                await context.SaveChangesAsync();
                
                 return OperationResult.Successed(true, errorLog.Id.ToString());
             }

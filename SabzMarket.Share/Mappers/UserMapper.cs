@@ -12,6 +12,7 @@ namespace SabzMarket.Share.Mappers
         {
             return new UserDTO
             {
+                Id=userViewModel.Id,
                 FirstName = userViewModel.FirstName,
                 LastName = userViewModel.LastName,
                 Phone = userViewModel.Phone,
@@ -24,6 +25,7 @@ namespace SabzMarket.Share.Mappers
         {
             return new UserViewModel
             {
+                Id=userDTO.Id,
                 FirstName = userDTO.FirstName,
                 LastName = userDTO.LastName,
                 Phone = userDTO.Phone,

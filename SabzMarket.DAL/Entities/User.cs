@@ -24,8 +24,7 @@ namespace SabzMarket.DAL.Entities
         [Required]
         public string? Phone { get; set; }
         [Column(TypeName = "varchar")]
-        [StringLength(50)]
-        [Required]
+        [StringLength(30)]
         public string? Email { get; set; }
         [Column(TypeName = "varchar")]
         [StringLength(50)]

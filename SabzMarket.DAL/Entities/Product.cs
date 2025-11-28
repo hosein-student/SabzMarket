@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SabzMarket.DAL.Entities
 {
-    public class Product
+    public class    Product
     {
         public long Id { get; set; }
         public long SellerId { get; set; }
@@ -28,7 +28,7 @@ namespace SabzMarket.DAL.Entities
         public int Price { get; set; }
         [Required]
         public int Number { get; set; }
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "nvarchar(max)")]
        
         [Required]
         public string ImageProduct { get; set; }

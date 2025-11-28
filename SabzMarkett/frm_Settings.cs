@@ -49,7 +49,7 @@ namespace SabzMarkett
         {
             var client = HttpClientHelper.Instance;
             string username = Uri.UnescapeDataString(CurrentUser.UserName);
-            string route = string.Format(RouteConstants.GetSellerByUsernameAsync, username);
+            string route = string.Format(RouteConstants.GetSellerByUsername, username);
             var seller = await client
                 .GetAsync<OperationResult<SellerFullViewModel>>(route);
             if (seller.Success)
@@ -112,6 +112,15 @@ namespace SabzMarkett
 
 
 
+        }
+
+        private void pb_Profile_LoadCompleted_1(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                ShowInfo("عکس بارگذاری نشد");
+                pb_Profile.Image = Properties.Resources.profile;
+            }
         }
     }
 }

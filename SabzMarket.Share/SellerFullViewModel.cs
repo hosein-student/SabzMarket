@@ -10,12 +10,14 @@ namespace SabzMarket.Share
 {
     public class SellerFullViewModel:BaseValidatoin
     {
+        public long Id { get; set; }
         [MaxLength(50, ErrorMessage = Messages.firstNameInvalid2)]
         [MinLength(3, ErrorMessage = Messages.firstNameInvalid1)]
         public string? FirstName { get; set; }
         [MaxLength(50, ErrorMessage = Messages.lastNameInvalid2)]
         [MinLength(2, ErrorMessage = Messages.lastNameInvalid1)]
         public string? LastName { get; set; }
+        [EmailAddress(ErrorMessage = Messages.EmailInvalid)]
         public string? Email { get; set; }
         [StringLength(11, MinimumLength = 11, ErrorMessage = Messages.numberInvalid1)]
         [NumberValidationAttribute]

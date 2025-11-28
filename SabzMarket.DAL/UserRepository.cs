@@ -83,9 +83,32 @@ namespace SabzMarket.DAL
             }
         }
 
-        public Task<OperationResult<UserDTO>> SelectAsync(string username)
+        public async Task<OperationResult<UserDTO>> SelectAsync(string username)
         {
-            throw new NotImplementedException();
+            try
+            {
+              var result=await  _context.Users
+               .AsNoTracking()
+               .Where(u => u.UserName == username)
+               .Select(u => new UserDTO
+               {
+                   UserName = u.UserName,
+                   Email = u.Email,
+                   FirstName = u.FirstName,
+                   LastName = u.LastName,
+                   Phone = u.Phone,
+                   Id = u.Id,
+                   Password = u.Password
+
+               })
+               .SingleOrDefaultAsync();
+                return OperationResult<UserDTO>.Successed(result);
+            }
+            catch(Exception ex) 
+            {
+                return OperationResult<UserDTO>.Failed(GetType().Name, ex);
+            }
+           
         }
 
         public Task<OperationResult> UpdateAsync(UserDTO userDTO)
