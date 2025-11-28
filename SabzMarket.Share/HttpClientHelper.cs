@@ -9,6 +9,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using HttpClientToCurl;
+
 
 namespace SabzMarket.Share
 {
@@ -39,7 +41,9 @@ namespace SabzMarket.Share
             try
             {
                 var req = new HttpRequestMessage(HttpMethod.Get, new Uri(RouteConstants.BaseUrl + route));
-                var curl = await req.ToCurlAsync();
+
+               
+
                 var response = await client.SendAsync(req);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -67,7 +71,7 @@ namespace SabzMarket.Share
                 {
                     Content = stringContent,
                 };
-                var curl = await req.ToCurlAsync();
+                
                 var response = await client.SendAsync(req);
                 if (!response.IsSuccessStatusCode)
                 {

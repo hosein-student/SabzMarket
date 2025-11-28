@@ -92,17 +92,17 @@ namespace SabzMarket.DAL
                .Where(u => u.UserName == username)
                .Select(u => new UserDTO
                {
-                   UserName = u.UserName,
-                   Email = u.Email,
-                   FirstName = u.FirstName,
-                   LastName = u.LastName,
-                   Phone = u.Phone,
+                   UserName = u.UserName!,
+                   Email = u.Email!,
+                   FirstName = u.FirstName!,
+                   LastName = u.LastName!,
+                   Phone = u.Phone!,
                    Id = u.Id,
-                   Password = u.Password
+                   Password = u.Password!
 
                })
                .SingleOrDefaultAsync();
-                return OperationResult<UserDTO>.Successed(result);
+                return OperationResult<UserDTO>.Successed(result!);
             }
             catch(Exception ex) 
             {

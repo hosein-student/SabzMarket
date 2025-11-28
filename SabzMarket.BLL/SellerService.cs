@@ -33,9 +33,9 @@ namespace SabzMarket.BLL
             {
                 if (result.Exception != null)
                 {
-                    var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                    var error = result.Exception.ExceptionToErrorDTO(result.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
-                    return OperationResult.Failed(result1.Message.ErrorMessage());
+                    return OperationResult.Failed(result1.Message!.ErrorMessage());
                 }
                 else
                 {
@@ -54,16 +54,16 @@ namespace SabzMarket.BLL
                 var result2 = await savePhoto.SaveAsync(sellerViewMode2.ProfileImage);
                 if (result2.Success)
                 {
-                    sellerViewMode2.ProfileImage = result2.Message;
+                    sellerViewMode2.ProfileImage = result2.Message!;
                     var sellerViewModel1 = sellerViewMode2.SellerPartialViewModelToSellerFullViewModel();
                     var result = await _sellerRepository.InsertAsync(sellerViewModel1.ToSellerDTO());
                     if (result.Success == false)
                     {
                         if (result.Exception != null)
                         {
-                            var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                            var error = result.Exception.ExceptionToErrorDTO(result.Message!);
                             var result1 = await _errorService.LogErrorAsync(error);
-                            return OperationResult.Failed(result1.Message.ErrorMessage());
+                            return OperationResult.Failed(result1.Message!.ErrorMessage());
                         }
                         else
                         {
@@ -77,9 +77,9 @@ namespace SabzMarket.BLL
                 }
                 else
                 {
-                    var error = result2.Exception.ExceptionToErrorDTO(result2.Message);
+                    var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
-                    return OperationResult.Failed(result1.Message.ErrorMessage());
+                    return OperationResult.Failed(result1.Message!.ErrorMessage());
                 }
             }
             else
@@ -98,9 +98,9 @@ namespace SabzMarket.BLL
             }
             else
             {
-                var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult<SellerFullViewModel>.Failed(result1.Message.ErrorMessage());
+                return OperationResult<SellerFullViewModel>.Failed(result1.Message!.ErrorMessage());
             }
 
         }
@@ -119,7 +119,7 @@ namespace SabzMarket.BLL
                         var result3 = await savePhoto.SaveAsync(sellerPartialViewModel.ProfileImage);
                         if (result3.Success)
                         {
-                            sellerPartialViewModel.ProfileImage = result3.Message;
+                            sellerPartialViewModel.ProfileImage = result3.Message!;
                             if (username != userViewModel.UserName)
                             {
                                 var result1 = await _userService
@@ -132,9 +132,9 @@ namespace SabzMarket.BLL
                                 {
                                     if (result1.Exception != null)
                                     {
-                                        var error = result1.Exception.ExceptionToErrorDTO(result1.Message);
+                                        var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
                                         var result = await _errorService.LogErrorAsync(error);
-                                        return OperationResult.Failed(result.Message.ErrorMessage());
+                                        return OperationResult.Failed(result.Message!.ErrorMessage());
                                     }
                                     else
                                     {
@@ -146,9 +146,9 @@ namespace SabzMarket.BLL
                                         }
                                         else
                                         {
-                                            var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                                            var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                             var result2 = await _errorService.LogErrorAsync(error);
-                                            return OperationResult.Failed(result2.Message.ErrorMessage());
+                                            return OperationResult.Failed(result2.Message!.ErrorMessage());
                                         }
                                     }
                                 }
@@ -163,18 +163,18 @@ namespace SabzMarket.BLL
                                 }
                                 else
                                 {
-                                    var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                                    var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                     var result2 = await _errorService.LogErrorAsync(error);
-                                    return OperationResult.Failed(result2.Message.ErrorMessage());
+                                    return OperationResult.Failed(result2.Message!.ErrorMessage());
                                 }
                             }
 
                         }
                         else
                         {
-                            var error = result3.Exception.ExceptionToErrorDTO(result3.Message);
+                            var error = result3.Exception!.ExceptionToErrorDTO(result3.Message!);
                             var result4 = await _errorService.LogErrorAsync(error);
-                            return OperationResult.Failed(result4.Message.ErrorMessage());
+                            return OperationResult.Failed(result4.Message!.ErrorMessage());
                         }
 
 
@@ -194,9 +194,9 @@ namespace SabzMarket.BLL
                             {
                                 if (result1.Exception != null)
                                 {
-                                    var error = result1.Exception.ExceptionToErrorDTO(result1.Message);
+                                    var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
                                     var result = await _errorService.LogErrorAsync(error);
-                                    return OperationResult.Failed(result.Message.ErrorMessage());
+                                    return OperationResult.Failed(result.Message!.ErrorMessage());
                                 }
                                 else
                                 {
@@ -208,9 +208,9 @@ namespace SabzMarket.BLL
                                     }
                                     else
                                     {
-                                        var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                                        var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                         var result2 = await _errorService.LogErrorAsync(error);
-                                        return OperationResult.Failed(result2.Message.ErrorMessage());
+                                        return OperationResult.Failed(result2.Message!.ErrorMessage());
                                     }
                                 }
                             }
@@ -225,9 +225,9 @@ namespace SabzMarket.BLL
                             }
                             else
                             {
-                                var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                 var result2 = await _errorService.LogErrorAsync(error);
-                                return OperationResult.Failed(result2.Message.ErrorMessage());
+                                return OperationResult.Failed(result2.Message!.ErrorMessage());
                             }
                         }
 

@@ -23,12 +23,12 @@ namespace SabzMarket.DAL
                 Product product1 = new Product
                 {
                     CategorieId = product.CategoryId,
-                    Description = product.Description,
-                    ImageProduct = product.ImageProduct
+                    Description = product.Description!,
+                    ImageProduct = product.ImageProduct!
                ,
                     Price = product.Price,
                     Number = product.Number,
-                    ProductName = product.Name,
+                    ProductName = product.Name!,
                     SellerId = product.SellerId,
                 };
                 _Context.Products.Add(product1);

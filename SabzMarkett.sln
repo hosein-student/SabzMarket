@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11222.15 d18.0
+VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarkett", "SabzMarkett\SabzMarkett.csproj", "{9B33F3ED-A3F2-4F21-A575-655495AC1E08}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.Share", "SabzMarket.Share\SabzMarket.Share.csproj", "{B4196298-B1A6-4C87-840C-2398BAD1D4E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.API", "SabzMarket.API\SabzMarket.API.csproj", "{47A1C8D0-101B-4416-A614-5B2BFADE0B10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket", "SabzMarket\SabzMarket.csproj", "{D15CDF48-7685-43A0-AF34-F4D10FD4C715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{47A1C8D0-101B-4416-A614-5B2BFADE0B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47A1C8D0-101B-4416-A614-5B2BFADE0B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47A1C8D0-101B-4416-A614-5B2BFADE0B10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15CDF48-7685-43A0-AF34-F4D10FD4C715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15CDF48-7685-43A0-AF34-F4D10FD4C715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15CDF48-7685-43A0-AF34-F4D10FD4C715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15CDF48-7685-43A0-AF34-F4D10FD4C715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

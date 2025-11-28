@@ -34,7 +34,7 @@ namespace SabzMarket.DAL.Entities
         [StringLength(50)]
         [Required]
         public string? Password { get; set; }
-        public virtual Seller Seller { get; set; }
-        public virtual Farmer Farmer { get; set; }
+        public virtual Seller? Seller { get; set; }
+        public virtual Farmer? Farmer { get; set; }
     }
 }

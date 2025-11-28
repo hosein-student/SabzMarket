@@ -28,9 +28,9 @@ namespace SabzMarket.BLL
             }
             else
             {
-                var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult<List<CategorieDTO>>.Failed(result.Message.ErrorMessage());
+                return OperationResult<List<CategorieDTO>>.Failed(result.Message!.ErrorMessage());
             }
             
         }

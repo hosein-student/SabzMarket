@@ -6,8 +6,8 @@ namespace SabzMarket.Share
 {
     public class RequestPayload
     {
-        public UserViewModel UserViewModel{get; set;}
-        public SellerPartialViewModel SellerPartial { get; set; }
+        public UserViewModel? UserViewModel {get; set;}
+        public SellerPartialViewModel? SellerPartial { get; set; }
 
     }
 }

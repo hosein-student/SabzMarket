@@ -28,18 +28,18 @@ namespace SabzMarket.BLL
             var result2 = await savePhoto.SaveAsync(product.ImageProduct);
             if (!result2.Success)
             {
-                var error = result2.Exception.ExceptionToErrorDTO(result2.Message);
+                var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult.Failed(result1.Message.ErrorMessage());
+                return OperationResult.Failed(result1.Message!.ErrorMessage());
             }
-            product.ImageProduct = result2.Message;
+            product.ImageProduct = result2.Message!;
             ProductDTO productDTO = product.ToProductDTO();
             var result=await _productRepository.InsertAsync(productDTO);
             if(!result.Success)
             {
-                var error = result.Exception.ExceptionToErrorDTO(result.Message);
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult.Failed(result1.Message.ErrorMessage());
+                return OperationResult.Failed(result1.Message!.ErrorMessage());
             }
                 return OperationResult.Successed(true, Messages.ProductAdded);
             

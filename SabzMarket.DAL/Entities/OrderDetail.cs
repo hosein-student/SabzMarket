@@ -11,9 +11,9 @@ namespace SabzMarket.DAL.Entities
     {
         public long Id { get; set; }
         public long OrderId { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
         public long ProductId { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Product? Product { get; set; }
         [Required]
         public int Number { get; set; }
     }

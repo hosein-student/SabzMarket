@@ -22,14 +22,14 @@ namespace SabzMarket.Share
         [StringLength(11, MinimumLength = 11, ErrorMessage = Messages.numberInvalid1)]
         [NumberValidationAttribute]
         public string? Phone { get; set; }
-        public string Username { get; set; }
+        public string? Username { get; set; }
         public string? Password { get; set; }
         [StringLength(500, ErrorMessage = Messages.enterTheAddress)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
         [Required(ErrorMessage = Messages.photoNotSelected)]
-        public string ProfileImage { get; set; }
+        public string? ProfileImage { get; set; }
         [MaxLength(3, ErrorMessage = Messages.enterTheWorkHistory)]
         [MinLength(1, ErrorMessage = Messages.enterTheWorkHistory)]
-        public string WorkHistory { get; set; }
+        public string? WorkHistory { get; set; }
     }
 }

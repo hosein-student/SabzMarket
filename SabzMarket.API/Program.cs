@@ -12,10 +12,19 @@ if (string.IsNullOrEmpty(connectionString))
 {
     throw new Exception("? Connection string not found. Please set environment variable: SABZMARKET_DB");
 }
-builder.Services.AddDbContext<SabzMarketDbContext>(options =>
-    options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<SabzMarketDbContext>(options =>
+//    options.UseSqlServer(connectionString));
+
+//builder.Services.AddDbContextFactory<SabzMarketDbContext>(options =>
+//    options.UseSqlServer(connectionString));
+
 builder.Services.AddDbContextFactory<SabzMarketDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<SabzMarketDbContext>(sp =>
+    sp.GetRequiredService<IDbContextFactory<SabzMarketDbContext>>().CreateDbContext());
+
+
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();

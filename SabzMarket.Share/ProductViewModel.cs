@@ -10,16 +10,16 @@ namespace SabzMarket.Share
     {
         public long Id { get; set; }
         [Required(ErrorMessage = Messages.ProductName)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required(ErrorMessage = Messages.ProductDescription)]
         [StringLength(500,ErrorMessage = Messages.ProductDescriptionLength)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [ProductNumberValidation]
         public int Number {  get; set; }
         [PriceValidation]
         public int Price { get; set; }
         [Required(ErrorMessage = Messages.ProductPhoto)]
-        public string ImageProduct { get; set; }
+        public string? ImageProduct { get; set; }
         [Required(ErrorMessage = Messages.ProductCategory)]
         public long CategoryId { get; set; }
         public  long SellerId {  get; set; }

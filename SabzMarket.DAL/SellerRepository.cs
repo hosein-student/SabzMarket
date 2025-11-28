@@ -84,6 +84,7 @@ namespace SabzMarket.DAL
                     WorkHistory = s.WorkHistory,
                     Id=s.Id
                 }).SingleOrDefaultAsync();
+               
                 return OperationResult<SellerDTO>.Successed(seller);
             }
             catch(Exception ex)
@@ -109,9 +110,9 @@ namespace SabzMarket.DAL
                 seller.User.LastName = userDto.LastName;
                 seller.User.Email = userDto.Email;
                 seller.User.Phone = userDto.Phone;
-                seller.Address = sellerDto.Address;
-                seller.ProfileImage = sellerDto.ProfileImage;
-                seller.WorkHistory = sellerDto.WorkHistory;
+                seller.Address = sellerDto.Address!;
+                seller.ProfileImage = sellerDto.ProfileImage!;
+                seller.WorkHistory = sellerDto.WorkHistory!;
                 _context.SaveChanges();
                 return OperationResult<SellerDTO>.Successed();
             }

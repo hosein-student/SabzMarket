@@ -14,6 +14,6 @@ namespace SabzMarket.DAL.Entities
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
         [Required]
-        public  string Name { get; set; }
+        public  string? Name { get; set; }
     }
 }
