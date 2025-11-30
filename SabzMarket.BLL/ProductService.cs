@@ -23,7 +23,7 @@ namespace SabzMarket.BLL
         public async Task<OperationResult> CreateProductAsync(ProductViewModel product)
         {
             if (!product.IsValid)
-                return OperationResult.Failed(product.ErrorMessage);
+                return OperationResult.FailedResult(product.ErrorMessage);
             using var savePhoto = new SavePhoto();
             var result2 = await savePhoto.SaveAsync(product.ImageProduct);
             if (!result2.Success)
@@ -41,7 +41,7 @@ namespace SabzMarket.BLL
                 var result1 = await _errorService.LogErrorAsync(error);
                 return OperationResult.Failed(result1.Message!.ErrorMessage());
             }
-                return OperationResult.Successed(true, Messages.ProductAdded);
+                return OperationResult.SuccessedResult(true, Messages.ProductAdded);
             
             
         }

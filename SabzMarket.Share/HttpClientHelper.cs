@@ -1,7 +1,6 @@
 ﻿using HttpClientToCurl;
 using Newtonsoft.Json;
 using Polly;
-using Polly.Extensions.Http;
 using Polly.Retry;
 using System;
 using System.Collections.Generic;
@@ -18,14 +17,39 @@ namespace SabzMarket.Share
     public sealed class HttpClientHelper
     {
         private readonly HttpClient client;
+
+        private static readonly Lazy<HttpClientHelper> _instance =
+          new Lazy<HttpClientHelper>(() => new HttpClientHelper());
+
+        private readonly AsyncRetryPolicy<HttpResponseMessage> _retryPolicy;
+
+        private static readonly HttpClient logClient = new HttpClient()
+        {
+            BaseAddress = new Uri(RouteConstants.BaseUrl),
+            Timeout = TimeSpan.FromSeconds(30)
+        };
+
+
         private HttpClientHelper()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri(RouteConstants.BaseUrl);
-            client.Timeout = TimeSpan.FromSeconds(60);
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(RouteConstants.BaseUrl),
+                Timeout = TimeSpan.FromSeconds(60)
+            };
+
+            
+            _retryPolicy = Policy
+                            .HandleResult<HttpResponseMessage>(r =>
+                          !r.IsSuccessStatusCode)             // اگر وضعیت 4xx یا 5xx بود دوباره تلاش کن
+                            .Or<HttpRequestException>()             // اگر اینترنت قطع شد یا DNS مشکل داشت
+                            .Or<TaskCanceledException>()            // اگر Timeout رخ داد
+                            .WaitAndRetryAsync(
+          retryCount: 3,                      // سه بار تلاش
+          sleepDurationProvider: attempt => TimeSpan.FromSeconds(2) // هر بار ۲ ثانیه فاصله
+    );
         }
-        private static readonly Lazy<HttpClientHelper> _instance =
-           new Lazy<HttpClientHelper>(() => new HttpClientHelper());
+
         public static HttpClientHelper Instance
         {
             get
@@ -41,28 +65,19 @@ namespace SabzMarket.Share
                 var req = new HttpRequestMessage(HttpMethod.Get, new Uri(RouteConstants.BaseUrl + route));
 
 
-
                 curl = client.GenerateCurlInString(req);
-                var response = await client.SendAsync(req);
+                var response = await _retryPolicy.ExecuteAsync(() => client.SendAsync(req));
                 if (!response.IsSuccessStatusCode)
                 {
-                    try
-                    {
-                        var error = new ErrorLogDTO
-                        {
-                            Curl = curl,
-                            Layer = GetType().Name,
-                            Message = response.StatusCode.ToString()
-                        };
 
-                        await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
-                        return default(T);
-                    }
-                    catch (Exception ex)
-                    {
-                        return default(T);
-                    }
 
+                   var result1= await LogError<T,ErrorLogDTO>(new ErrorLogDTO
+                    {
+                        Curl = curl,
+                        Layer = GetType().Name,
+                        Message = string.Format("StatusCode= {0}", response.StatusCode)
+                    });
+                    return result1;
                 }
                 string content = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<T>(content);
@@ -70,25 +85,16 @@ namespace SabzMarket.Share
             }
             catch (Exception ex)
             {
-                try
+               var resulr= await LogError<T,ErrorLogDTO>(new ErrorLogDTO
                 {
-                    var error = new ErrorLogDTO
-                    {
-                        Curl = curl,
-                        Layer = GetType().Name,
-                        Message = ex.Message,
-                        Route = route,
-                        Source = ex.Source,
-                        StackTrace = ex.StackTrace
-                    };
-                    await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
-                    return default(T);
-
-                }
-                catch (Exception ex1)
-                {
-                    return default(T);
-                }
+                    Curl = curl,
+                    Layer = GetType().Name,
+                    Message = ex.Message,
+                    Route = route,
+                    Source = ex.Source,
+                    StackTrace = ex.StackTrace
+                });
+                    return resulr;
             }
 
 
@@ -105,35 +111,24 @@ namespace SabzMarket.Share
                     Content = stringContent,
                 };
                 curl = client.GenerateCurlInString(req);
-                var response = await client.SendAsync(req);
+                var response = await _retryPolicy.ExecuteAsync(() => client.SendAsync(req));
                 if (!response.IsSuccessStatusCode)
                 {
-                    try
-                    {
-                        var error = new ErrorLogDTO
+                        var result1=await LogError<Tout,ErrorLogDTO>( new ErrorLogDTO
                         {
                             Curl = curl,
                             Layer = GetType().Name,
-                            Message = response.StatusCode.ToString()
-                        };
-
-                        await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
-                        return default(Tout);
-                    }
-                    catch (Exception ex)
-                    {
-                        return default(Tout);
-                    }
+                            Message = string.Format("StatusCode= {0}", response.StatusCode)
+                        });
+                        return result1;
                 }
                 string content = await response.Content.ReadAsStringAsync();
-                var resilt = JsonConvert.DeserializeObject<Tout>(content);
-                return resilt;
+                var result = JsonConvert.DeserializeObject<Tout>(content);
+                return result;
             }
             catch (Exception ex)
             {
-                try
-                {
-                    var error = new ErrorLogDTO
+                    var result=await LogError<Tout,ErrorLogDTO>( new ErrorLogDTO
                     {
                         Curl = curl,
                         Layer = GetType().Name,
@@ -141,30 +136,25 @@ namespace SabzMarket.Share
                         Route = route,
                         Source = ex.Source,
                         StackTrace = ex.StackTrace
-                    };
-                    await LogError<ErrorLogDTO>(RouteConstants.LogError, error);
-                    return default(Tout);
-
-                }
-                catch (Exception ex1)
-                {
-                    return default(Tout);
-                }
+                    });
+                    return result;
             }
 
         }
-        private async Task LogError<Tin>(string route, Tin data)
+        private async Task<Tout> LogError<Tout,Tin>( Tin data)
         {
             try
             {
-                using var tempClient = new HttpClient();
                 string json = JsonConvert.SerializeObject(data);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                await tempClient.PostAsync(RouteConstants.LogError, content);
+                var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await logClient.PostAsync(RouteConstants.LogError, stringContent);
+                string content = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<Tout>(content);
+                return result;
             }
             catch (Exception ex)
             {
-
+                return default(Tout);
             }
 
         }

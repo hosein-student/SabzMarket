@@ -33,7 +33,7 @@ namespace SabzMarket.DAL
                 };
                 _Context.Products.Add(product1);
                 await _Context.SaveChangesAsync();
-                return OperationResult.Successed();
+                return OperationResult.SuccessedResult();
             }
             catch (Exception ex)
             {

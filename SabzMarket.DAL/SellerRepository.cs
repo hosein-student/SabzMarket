@@ -26,7 +26,7 @@ namespace SabzMarket.DAL
                     .Sellers
                     .AsNoTracking()
                     .AnyAsync(s => s.User.UserName == username);
-                return OperationResult.Successed(result);
+                return OperationResult.SuccessedResult(result);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace SabzMarket.DAL
                 };
                 _context.Sellers.Add(seller);
                 await _context.SaveChangesAsync();
-                return OperationResult.Successed(true);
+                return OperationResult.SuccessedResult(true);
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace SabzMarket.DAL
                     Id=s.Id
                 }).SingleOrDefaultAsync();
                
-                return OperationResult<SellerDTO>.Successed(seller);
+                return OperationResult<SellerDTO>.SuccessedResult(seller);
             }
             catch(Exception ex)
             {
@@ -114,7 +114,7 @@ namespace SabzMarket.DAL
                 seller.ProfileImage = sellerDto.ProfileImage!;
                 seller.WorkHistory = sellerDto.WorkHistory!;
                 _context.SaveChanges();
-                return OperationResult<SellerDTO>.Successed();
+                return OperationResult<SellerDTO>.SuccessedResult();
             }
             catch (Exception ex)
             {

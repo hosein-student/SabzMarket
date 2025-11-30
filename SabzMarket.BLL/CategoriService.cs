@@ -22,17 +22,13 @@ namespace SabzMarket.BLL
         public async Task<OperationResult<List<CategorieDTO>>> GetAllCategoriesAsync()
         {
             var result = await _categorieRepository.SelectAsync();
-            if (result.Success)
-            {
-                return result;
-            }
-            else
+            if(!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
                 return OperationResult<List<CategorieDTO>>.Failed(result.Message!.ErrorMessage());
             }
-            
+            return result;
         }
     }
 }

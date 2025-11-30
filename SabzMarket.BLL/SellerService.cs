@@ -35,11 +35,11 @@ namespace SabzMarket.BLL
                 {
                     var error = result.Exception.ExceptionToErrorDTO(result.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
-                    return OperationResult.Failed(result1.Message!.ErrorMessage());
+                    return OperationResult.FailedResult(result1.Message!.ErrorMessage());
                 }
                 else
                 {
-                    return OperationResult.Failed();
+                    return OperationResult.FailedResult();
                 }
             }
         }
@@ -63,11 +63,11 @@ namespace SabzMarket.BLL
                         {
                             var error = result.Exception.ExceptionToErrorDTO(result.Message!);
                             var result1 = await _errorService.LogErrorAsync(error);
-                            return OperationResult.Failed(result1.Message!.ErrorMessage());
+                            return OperationResult.FailedResult(result1.Message!.ErrorMessage());
                         }
                         else
                         {
-                            return OperationResult.Failed();
+                            return OperationResult.FailedResult();
                         }
                     }
                     else
@@ -79,12 +79,12 @@ namespace SabzMarket.BLL
                 {
                     var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
-                    return OperationResult.Failed(result1.Message!.ErrorMessage());
+                    return OperationResult.FailedResult(result1.Message!.ErrorMessage());
                 }
             }
             else
             {
-                return OperationResult.Failed(sellerViewMode2.ErrorMessage);
+                return OperationResult.FailedResult(sellerViewMode2.ErrorMessage);
             }
 
         }
@@ -100,7 +100,7 @@ namespace SabzMarket.BLL
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult<SellerFullViewModel>.Failed(result1.Message!.ErrorMessage());
+                return OperationResult<SellerFullViewModel>.FailedResult(result1.Message!.ErrorMessage());
             }
 
         }
@@ -126,7 +126,7 @@ namespace SabzMarket.BLL
                                              .IsUsernameAvailableAsync(userViewModel.UserName);
                                 if (result1.Success)
                                 {
-                                    return OperationResult.Failed(Messages.existingUser);
+                                    return OperationResult.FailedResult(Messages.existingUser);
                                 }
                                 else
                                 {
@@ -134,7 +134,7 @@ namespace SabzMarket.BLL
                                     {
                                         var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
                                         var result = await _errorService.LogErrorAsync(error);
-                                        return OperationResult.Failed(result.Message!.ErrorMessage());
+                                        return OperationResult.FailedResult(result.Message!.ErrorMessage());
                                     }
                                     else
                                     {
@@ -148,7 +148,7 @@ namespace SabzMarket.BLL
                                         {
                                             var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                             var result2 = await _errorService.LogErrorAsync(error);
-                                            return OperationResult.Failed(result2.Message!.ErrorMessage());
+                                            return OperationResult.FailedResult(result2.Message!.ErrorMessage());
                                         }
                                     }
                                 }
@@ -165,7 +165,7 @@ namespace SabzMarket.BLL
                                 {
                                     var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                     var result2 = await _errorService.LogErrorAsync(error);
-                                    return OperationResult.Failed(result2.Message!.ErrorMessage());
+                                    return OperationResult.FailedResult(result2.Message!.ErrorMessage());
                                 }
                             }
 
@@ -174,7 +174,7 @@ namespace SabzMarket.BLL
                         {
                             var error = result3.Exception!.ExceptionToErrorDTO(result3.Message!);
                             var result4 = await _errorService.LogErrorAsync(error);
-                            return OperationResult.Failed(result4.Message!.ErrorMessage());
+                            return OperationResult.FailedResult(result4.Message!.ErrorMessage());
                         }
 
 
@@ -188,7 +188,7 @@ namespace SabzMarket.BLL
                                          .IsUsernameAvailableAsync(userViewModel.UserName);
                             if (result1.Success)
                             {
-                                return OperationResult.Failed(Messages.existingUser);
+                                return OperationResult.FailedResult(Messages.existingUser);
                             }
                             else
                             {
@@ -196,7 +196,7 @@ namespace SabzMarket.BLL
                                 {
                                     var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
                                     var result = await _errorService.LogErrorAsync(error);
-                                    return OperationResult.Failed(result.Message!.ErrorMessage());
+                                    return OperationResult.FailedResult(result.Message!.ErrorMessage());
                                 }
                                 else
                                 {
@@ -210,7 +210,7 @@ namespace SabzMarket.BLL
                                     {
                                         var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                         var result2 = await _errorService.LogErrorAsync(error);
-                                        return OperationResult.Failed(result2.Message!.ErrorMessage());
+                                        return OperationResult.FailedResult(result2.Message!.ErrorMessage());
                                     }
                                 }
                             }
@@ -227,7 +227,7 @@ namespace SabzMarket.BLL
                             {
                                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                                 var result2 = await _errorService.LogErrorAsync(error);
-                                return OperationResult.Failed(result2.Message!.ErrorMessage());
+                                return OperationResult.FailedResult(result2.Message!.ErrorMessage());
                             }
                         }
 
@@ -236,12 +236,12 @@ namespace SabzMarket.BLL
                 }
                 else
                 {
-                    return OperationResult.Failed(sellerPartialViewModel.ErrorMessage);
+                    return OperationResult.FailedResult(sellerPartialViewModel.ErrorMessage);
                 }
             }
             else
             {
-                return OperationResult.Failed(userViewModel.ErrorMessage);
+                return OperationResult.FailedResult(userViewModel.ErrorMessage);
             }
         }
     }

@@ -26,7 +26,7 @@ namespace SabzMarket.DAL
                     Id = x.Id,
                     Name = x.Name,
                 }).ToListAsync();
-                return OperationResult<List<CategorieDTO>>.Successed(result);
+                return OperationResult<List<CategorieDTO>>.SuccessedResult(result);
             }
             catch (Exception ex)
             {

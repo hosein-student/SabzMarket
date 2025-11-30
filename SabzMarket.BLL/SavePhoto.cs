@@ -52,7 +52,7 @@ namespace SabzMarket.BLL
                 await _s3Client.PutObjectAsync(putRequest);
 
                 string fileUrl = $"{serviceURL}/{bucketName}/{objectKey}";
-                return OperationResult.Successed(true, fileUrl);
+                return OperationResult.SuccessedResult(true, fileUrl);
             }
             catch (Exception ex)
             {

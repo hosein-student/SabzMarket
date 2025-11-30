@@ -27,7 +27,7 @@ namespace SabzMarket.DAL
                     .AsNoTracking()
                     .AnyAsync(u => u.UserName == userDTO.UserName && u.Password == userDTO.Password);
                 return OperationResult
-                    .Successed(result);
+                    .SuccessedResult(result);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace SabzMarket.DAL
                         .AsNoTracking()
                         .AnyAsync(u => u.UserName == username);
                     return OperationResult
-                        .Successed(result);
+                        .SuccessedResult(result);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace SabzMarket.DAL
                 await _context
                     .SaveChangesAsync();
                 return OperationResult
-                    .Successed();
+                    .SuccessedResult();
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace SabzMarket.DAL
 
                })
                .SingleOrDefaultAsync();
-                return OperationResult<UserDTO>.Successed(result!);
+                return OperationResult<UserDTO>.SuccessedResult(result!);
             }
             catch(Exception ex) 
             {

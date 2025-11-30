@@ -39,7 +39,7 @@ namespace SabzMarket.DAL
                 context.ErrorLogs.Add(errorLog);
                 await context.SaveChangesAsync();
                
-                return OperationResult.Successed(true, errorLog.Id.ToString());
+                return OperationResult.Failed(errorLog.Id.ToString());
             }
             catch (Exception ex2)
             {
