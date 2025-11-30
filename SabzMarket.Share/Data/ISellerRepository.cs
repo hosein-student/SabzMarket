@@ -9,7 +9,7 @@ namespace SabzMarket.Share.Data
     {
         Task<OperationResult> InsertAsync(SellerDTO sellerDto);
         Task<OperationResult> UserExistsInSellerAsync(string username);
-        Task<OperationResult<SellerDTO>> GetByUsernameAsync(string username);
+        Task<OperationResult<SellerDTO>> SelectByUsernameAsync(string username);
         Task<OperationResult>UpdateAsync(string username,UserDTO userDto,SellerDTO sellerDto);
     }
 }

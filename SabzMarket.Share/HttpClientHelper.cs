@@ -9,7 +9,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace SabzMarket.Share
@@ -41,12 +40,12 @@ namespace SabzMarket.Share
             
             _retryPolicy = Policy
                             .HandleResult<HttpResponseMessage>(r =>
-                          !r.IsSuccessStatusCode)             // اگر وضعیت 4xx یا 5xx بود دوباره تلاش کن
-                            .Or<HttpRequestException>()             // اگر اینترنت قطع شد یا DNS مشکل داشت
-                            .Or<TaskCanceledException>()            // اگر Timeout رخ داد
+                          !r.IsSuccessStatusCode)             
+                            .Or<HttpRequestException>()             
+                            .Or<TaskCanceledException>()            
                             .WaitAndRetryAsync(
-          retryCount: 3,                      // سه بار تلاش
-          sleepDurationProvider: attempt => TimeSpan.FromSeconds(2) // هر بار ۲ ثانیه فاصله
+          retryCount: 3,                    
+          sleepDurationProvider: attempt => TimeSpan.FromSeconds(2) 
     );
         }
 

@@ -25,224 +25,149 @@ namespace SabzMarket.BLL
         public async Task<OperationResult> CheckUserExistsInSellerAsync(string username)
         {
             var result = await _sellerRepository.UserExistsInSellerAsync(username);
-            if (result.Success)
+            if(!result.Success)
             {
-                return OperationResult.Successed();
-            }
-            else
-            {
-                if (result.Exception != null)
+                if(!result.Result)
                 {
                     var error = result.Exception.ExceptionToErrorDTO(result.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
-                    return OperationResult.FailedResult(result1.Message!.ErrorMessage());
+                    return OperationResult.Failed(result1.Message!.ErrorMessage());
                 }
-                else
-                {
-                    return OperationResult.FailedResult();
-                }
+                return OperationResult.FailedResult();
             }
+            return OperationResult.SuccessedResult();
         }
 
         public async Task<OperationResult> FillProfileAsync(SellerPartialViewModel sellerViewMode2)
         {
-
-            if (sellerViewMode2.IsValid)
-            {
-
-                using var savePhoto = new SavePhoto();
-                var result2 = await savePhoto.SaveAsync(sellerViewMode2.ProfileImage);
-                if (result2.Success)
-                {
-                    sellerViewMode2.ProfileImage = result2.Message!;
-                    var sellerViewModel1 = sellerViewMode2.SellerPartialViewModelToSellerFullViewModel();
-                    var result = await _sellerRepository.InsertAsync(sellerViewModel1.ToSellerDTO());
-                    if (result.Success == false)
-                    {
-                        if (result.Exception != null)
-                        {
-                            var error = result.Exception.ExceptionToErrorDTO(result.Message!);
-                            var result1 = await _errorService.LogErrorAsync(error);
-                            return OperationResult.FailedResult(result1.Message!.ErrorMessage());
-                        }
-                        else
-                        {
-                            return OperationResult.FailedResult();
-                        }
-                    }
-                    else
-                    {
-                        return OperationResult.Successed(true, Messages.successSignUp2);
-                    }
-                }
-                else
-                {
-                    var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
-                    var result1 = await _errorService.LogErrorAsync(error);
-                    return OperationResult.FailedResult(result1.Message!.ErrorMessage());
-                }
-            }
-            else
+            if (!sellerViewMode2.IsValid)
             {
                 return OperationResult.FailedResult(sellerViewMode2.ErrorMessage);
             }
-
+            using var savePhoto = new SavePhoto();
+            var result2 = await savePhoto.SaveAsync(sellerViewMode2.ProfileImage);
+            if(!result2.Success)
+            {
+                var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
+                var result1 = await _errorService.LogErrorAsync(error);
+                return OperationResult.Failed(result1.Message!.ErrorMessage());
+            }
+            sellerViewMode2.ProfileImage = result2.Message!;
+            var sellerViewModel1 = sellerViewMode2.SellerPartialViewModelToSellerFullViewModel();
+            var result = await _sellerRepository.InsertAsync(sellerViewModel1.ToSellerDTO());
+            if (!result.Success)
+            {
+                var error = result.Exception.ExceptionToErrorDTO(result.Message!);
+                var result1 = await _errorService.LogErrorAsync(error);
+                return OperationResult.Failed(result1.Message!.ErrorMessage());
+            }
+            return OperationResult.SuccessedResult(true, Messages.successSignUp2);
         }
 
         public async Task<OperationResult<SellerFullViewModel>> GetSellerByUsernameAsync(string username)
         {
-            var result = await _sellerRepository.GetByUsernameAsync(username);
-            if (result.Success)
-            {
-                return OperationResult<SellerFullViewModel>.Successed(result.Data.ToSellerFullViewModel());
-            }
-            else
+            var result = await _sellerRepository.SelectByUsernameAsync(username);
+            if(!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult<SellerFullViewModel>.FailedResult(result1.Message!.ErrorMessage());
+                return OperationResult<SellerFullViewModel>.Failed(result1.Message!.ErrorMessage());
             }
-
+            var seller = result.Data.ToSellerFullViewModel();
+            return OperationResult<SellerFullViewModel>.SuccessedResult(seller);
         }
 
 
 
         public async Task<OperationResult> UpdateAsync(string username, UserViewModel userViewModel, SellerPartialViewModel sellerPartialViewModel)
         {
-            if (userViewModel.IsValid)
-            {
-                if (sellerPartialViewModel.IsValid)
-                {
-                    if (!sellerPartialViewModel.ProfileImage.Contains("https://"))
-                    {
-                        using var savePhoto = new SavePhoto();
-                        var result3 = await savePhoto.SaveAsync(sellerPartialViewModel.ProfileImage);
-                        if (result3.Success)
-                        {
-                            sellerPartialViewModel.ProfileImage = result3.Message!;
-                            if (username != userViewModel.UserName)
-                            {
-                                var result1 = await _userService
-                                             .IsUsernameAvailableAsync(userViewModel.UserName);
-                                if (result1.Success)
-                                {
-                                    return OperationResult.FailedResult(Messages.existingUser);
-                                }
-                                else
-                                {
-                                    if (result1.Exception != null)
-                                    {
-                                        var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
-                                        var result = await _errorService.LogErrorAsync(error);
-                                        return OperationResult.FailedResult(result.Message!.ErrorMessage());
-                                    }
-                                    else
-                                    {
-                                        var result = await _sellerRepository
-                                        .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
-                                        if (result.Success)
-                                        {
-                                            return OperationResult.Successed(true, Messages.update);
-                                        }
-                                        else
-                                        {
-                                            var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
-                                            var result2 = await _errorService.LogErrorAsync(error);
-                                            return OperationResult.FailedResult(result2.Message!.ErrorMessage());
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                var result = await _sellerRepository
-                                .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
-                                if (result.Success)
-                                {
-                                    return OperationResult.Successed(true, Messages.update);
-                                }
-                                else
-                                {
-                                    var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
-                                    var result2 = await _errorService.LogErrorAsync(error);
-                                    return OperationResult.FailedResult(result2.Message!.ErrorMessage());
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            var error = result3.Exception!.ExceptionToErrorDTO(result3.Message!);
-                            var result4 = await _errorService.LogErrorAsync(error);
-                            return OperationResult.FailedResult(result4.Message!.ErrorMessage());
-                        }
-
-
-
-                    }
-                    else
-                    {
-                        if (username != userViewModel.UserName)
-                        {
-                            var result1 = await _userService
-                                         .IsUsernameAvailableAsync(userViewModel.UserName);
-                            if (result1.Success)
-                            {
-                                return OperationResult.FailedResult(Messages.existingUser);
-                            }
-                            else
-                            {
-                                if (result1.Exception != null)
-                                {
-                                    var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
-                                    var result = await _errorService.LogErrorAsync(error);
-                                    return OperationResult.FailedResult(result.Message!.ErrorMessage());
-                                }
-                                else
-                                {
-                                    var result = await _sellerRepository
-                                    .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
-                                    if (result.Success)
-                                    {
-                                        return OperationResult.Successed(true, Messages.update);
-                                    }
-                                    else
-                                    {
-                                        var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
-                                        var result2 = await _errorService.LogErrorAsync(error);
-                                        return OperationResult.FailedResult(result2.Message!.ErrorMessage());
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            var result = await _sellerRepository
-                                   .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
-                            if (result.Success)
-                            {
-                                return OperationResult.Successed(true, Messages.update);
-                            }
-                            else
-                            {
-                                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
-                                var result2 = await _errorService.LogErrorAsync(error);
-                                return OperationResult.FailedResult(result2.Message!.ErrorMessage());
-                            }
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    return OperationResult.FailedResult(sellerPartialViewModel.ErrorMessage);
-                }
-            }
-            else
+            if (!userViewModel.IsValid)
             {
                 return OperationResult.FailedResult(userViewModel.ErrorMessage);
             }
+            if (!sellerPartialViewModel.IsValid)
+            {
+                return OperationResult.FailedResult(sellerPartialViewModel.ErrorMessage);
+            }
+            if (!sellerPartialViewModel.ProfileImage!.Contains("https://"))
+            {
+                using var savePhoto = new SavePhoto();
+                var result3 = await savePhoto.SaveAsync(sellerPartialViewModel.ProfileImage);
+                if (!result3.Success)
+                {
+                    var error = result3.Exception!.ExceptionToErrorDTO(result3.Message!);
+                    var result4 = await _errorService.LogErrorAsync(error);
+                    return OperationResult.Failed(result4.Message!.ErrorMessage());
+                }
+                sellerPartialViewModel.ProfileImage = result3.Message!;
+                if (username != userViewModel.UserName)
+                {
+                    var result1 = await _userService
+                                             .IsUsernameAvailableAsync(userViewModel.UserName!);
+                    if (!result1.Success)
+                    {
+                        if (!result1.Result)
+                        {
+                            var error = result1.Exception!.ExceptionToErrorDTO(result1.Message!);
+                            var resultt = await _errorService.LogErrorAsync(error);
+                            return OperationResult.Failed(resultt.Message!.ErrorMessage());
+                        }
+                        var resultUp1 = await _sellerRepository
+                                        .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                        if (!resultUp1.Success)
+                        {
+                            var error = resultUp1.Exception!.ExceptionToErrorDTO(resultUp1.Message!);
+                            var result2 = await _errorService.LogErrorAsync(error);
+                            return OperationResult.Failed(result2.Message!.ErrorMessage());
+                        }
+                        return OperationResult.SuccessedResult(true, Messages.update);
+
+                    }
+                    return OperationResult.FailedResult(Messages.existingUser);
+                }
+                var resultUp2 = await _sellerRepository
+                                .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                if (!resultUp2.Success)
+                {
+                    var error = resultUp2.Exception!.ExceptionToErrorDTO(resultUp2.Message!);
+                    var result2 = await _errorService.LogErrorAsync(error);
+                    return OperationResult.Failed(result2.Message!.ErrorMessage());
+                }
+                return OperationResult.SuccessedResult(true, Messages.update);
+            }
+            if (username != userViewModel.UserName)
+            {
+                var result1 = await _userService
+                                         .IsUsernameAvailableAsync(userViewModel.UserName);
+                if (!result1.Success)
+                {
+                    if (!result1.Result)
+                    {
+                        var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
+                        var resultt = await _errorService.LogErrorAsync(error);
+                        return OperationResult.Failed(resultt.Message!.ErrorMessage());
+                    }
+                    var resultUp1 = await _sellerRepository
+                                    .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                    if (!resultUp1.Success)
+                    {
+                        var error = resultUp1.Exception!.ExceptionToErrorDTO(resultUp1.Message!);
+                        var result2 = await _errorService.LogErrorAsync(error);
+                        return OperationResult.Failed(result2.Message!.ErrorMessage());
+                    }
+                    return OperationResult.SuccessedResult(true, Messages.update);
+                }
+                return OperationResult.FailedResult(Messages.existingUser);
+            }
+            var result = await _sellerRepository
+                                   .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+            if (!result.Success)
+            {
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
+                var result2 = await _errorService.LogErrorAsync(error);
+                return OperationResult.Failed(result2.Message!.ErrorMessage());
+            }
+            return OperationResult.SuccessedResult(true, Messages.update);
         }
     }
 }

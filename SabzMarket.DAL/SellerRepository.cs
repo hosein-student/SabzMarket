@@ -62,7 +62,7 @@ namespace SabzMarket.DAL
 
         }
 
-        public async Task<OperationResult<SellerDTO>> GetByUsernameAsync(string username)
+        public async Task<OperationResult<SellerDTO>> SelectByUsernameAsync(string username)
         {
             try
             {
