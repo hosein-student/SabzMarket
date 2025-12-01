@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using SabzMarket.DAL.Entities;
 using SabzMarket.Share;
 using SabzMarket.Share.Data;
@@ -14,10 +13,14 @@ namespace SabzMarket.DAL
     public class ErrorRepository:IErrorRepository
     {
         private readonly IDbContextFactory<SabzMarketDbContext> _contextFactory;
+        private readonly ILogServiceRepository _logServiceRepository;
 
-        public ErrorRepository(IDbContextFactory<SabzMarketDbContext> contextFactory) 
+        public ErrorRepository
+            (IDbContextFactory<SabzMarketDbContext> contextFactory,
+            ILogServiceRepository logServiceRepository) 
         {
             _contextFactory = contextFactory;
+            _logServiceRepository = logServiceRepository;
         }
 
         public async Task<OperationResult> LogErrorAsync(ErrorLogDTO error)
@@ -43,8 +46,8 @@ namespace SabzMarket.DAL
             }
             catch (Exception ex2)
             {
-                //file
-                return OperationResult.Failed(errorLog.CreatedAt.ToString());
+               var result= await _logServiceRepository.SaveFailedLogAsync(ex2);
+                return OperationResult.Failed(result.Message!);
             }
 
 

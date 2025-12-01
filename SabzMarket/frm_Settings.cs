@@ -48,28 +48,35 @@ namespace SabzMarket
         private async void frm_Settings_Load(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            string username = Uri.UnescapeDataString(CurrentUser.UserName);
+            string username = Uri.UnescapeDataString(CurrentUser.UserName!);
             string route = string.Format(RouteConstants.GetSellerByUsername, username);
             var seller = await client
                 .GetAsync<OperationResult<SellerFullViewModel>>(route);
-            if (seller.Success)
+            if (seller == null)
             {
-                pb_Profile.LoadAsync(seller.Data.ProfileImage);
-                pathImage = seller.Data.ProfileImage;
-                txt_FirstName.Text = seller.Data.FirstName;
-                txt_LastName.Text = seller.Data.LastName;
-                txt_Phone.Text = seller.Data.Phone;
-                txt_Email.Text = seller.Data.Email;
-                txt_UserName.Text = seller.Data.Username;
-                txt_Password.Text = seller.Data.Password;
-                txt_Address.Text = seller.Data.Address;
-                cmb_WorkHistory.Text = seller.Data.WorkHistory;
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
             }
-            else
+            if (!seller.Success)
             {
-                MessageBox.Show(seller.Message);
+                if (!seller.Result)
+                {
+                    ShowInfoError(seller.Message!);
+                    return;
+                }
+                ShowInfo(seller.Message!);
+                return;
             }
-
+            pb_Profile.LoadAsync(seller.Data.ProfileImage);
+            pathImage = seller.Data.ProfileImage!;
+            txt_FirstName.Text = seller.Data.FirstName;
+            txt_LastName.Text = seller.Data.LastName;
+            txt_Phone.Text = seller.Data.Phone;
+            txt_Email.Text = seller.Data.Email;
+            txt_UserName.Text = seller.Data.Username;
+            txt_Password.Text = seller.Data.Password;
+            txt_Address.Text = seller.Data.Address;
+            cmb_WorkHistory.Text = seller.Data.WorkHistory;
         }
         public event EventHandler LoodPanel;
 
@@ -94,24 +101,38 @@ namespace SabzMarket
                 ProfileImage = pathImage,
                 WorkHistory = cmb_WorkHistory.Text
             };
+            if (!userViewModel.IsValid)
+            {
+                ShowInfo(userViewModel.ErrorMessage);
+                return;
+            }
+            if (!sellerPartial.IsValid)
+            {
+                ShowInfo(sellerPartial.ErrorMessage);
+            }
             RequestPayload payload = new RequestPayload
             {
                 SellerPartial = sellerPartial,
                 UserViewModel = userViewModel
             };
             var result = await client.PostAsync<OperationResult, RequestPayload>(route, payload);
-            if (result.Success)
+            if (result == null)
             {
-                    LoodPanel?.Invoke(this, EventArgs.Empty);
-                CurrentUser.UserName = txt_UserName.Text;
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
             }
-            else
+            if (!result.Success)
             {
-                ShowInfo(result.Message!);
+                if(!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message);
+                return;
             }
-
-
-
+            LoodPanel?.Invoke(this, EventArgs.Empty);
+            CurrentUser.UserName = txt_UserName.Text;
         }
 
         private void pb_Profile_LoadCompleted_1(object sender, AsyncCompletedEventArgs e)

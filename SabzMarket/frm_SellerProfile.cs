@@ -53,28 +53,58 @@ namespace SabzMarket
                 ProfileImage = pathImage,
                 WorkHistory =cmb_WorkHistory.Text
             };
-            if(seller.IsValid)
+            if (!seller.IsValid)
             {
-
-                var httpClientHelper = HttpClientHelper.Instance;
-                var result=await httpClientHelper.PostAsync<OperationResult, SellerPartialViewModel>(RouteConstants.SellerFillProfile, seller);
-                if (result.Success)
-                {
-                    MessageBox.Show(result.Message);
-                    frm_Home frm_Home = new frm_Home();
-                    frm_Home.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show(result.Message);
-                }
-
+                ShowInfo(seller.ErrorMessage);
+                return;
             }
-            else
+            var httpClientHelper = HttpClientHelper.Instance;
+            var result = await httpClientHelper
+                .PostAsync<OperationResult, SellerPartialViewModel>(RouteConstants.SellerFillProfile, seller);
+            if (result == null)
             {
-                MessageBox.Show(seller.ErrorMessage);
-            }    
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
+            }
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message!);
+                return;
+            }
+            MessageBox.Show(result.Message);
+            frm_Home frm_Home = new frm_Home();
+            frm_Home.Show();
+            this.Hide();
+
+
+
+            //if (seller.IsValid)
+            //{
+
+            //    var httpClientHelper = HttpClientHelper.Instance;
+            //    var result=await httpClientHelper.PostAsync<OperationResult, SellerPartialViewModel>(RouteConstants.SellerFillProfile, seller);
+            //    if (result.Success)
+            //    {
+            //        MessageBox.Show(result.Message);
+            //        frm_Home frm_Home = new frm_Home();
+            //        frm_Home.Show();
+            //        this.Hide();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show(result.Message);
+            //    }
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show(seller.ErrorMessage);
+            //}    
         }
     }
 }

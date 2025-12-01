@@ -36,6 +36,7 @@ builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();
 builder.Services.AddScoped<ICategoriService, CategoriService>();
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ILogServiceRepository, LogServiceRepository>();
 
 //builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 // Add services to the container.

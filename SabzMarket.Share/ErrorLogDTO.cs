@@ -11,7 +11,7 @@ namespace SabzMarket.Share
         public string? StackTrace { get; set; }
         public string? Source { get; set; }
         public string? Layer { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string? Curl { get; set; }
         public string? Route { get; set; }
     }

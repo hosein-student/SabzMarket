@@ -140,11 +140,11 @@ namespace SabzMarket.Share
             }
 
         }
-        private async Task<Tout> LogError<Tout,Tin>( Tin data)
+        private async Task<Tout> LogError<Tout,Tin>( Tin error)
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data);
+                string json = JsonConvert.SerializeObject(error);
                 var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await logClient.PostAsync(RouteConstants.LogError, stringContent);
                 string content = await response.Content.ReadAsStringAsync();
@@ -153,6 +153,7 @@ namespace SabzMarket.Share
             }
             catch (Exception ex)
             {
+
                 return default(Tout);
             }
 

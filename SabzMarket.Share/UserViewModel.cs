@@ -19,7 +19,7 @@ namespace SabzMarket.Share
         public string? LastName { get; set; }
         [NumberValidation]
         public string? Phone { get; set; }
-        [EmailAddress(ErrorMessage =Messages.EmailInvalid)]
+        [OptionalEmailAddress]
         public string? Email { get; set; }
         [Required(ErrorMessage = Messages.Mandatory)]
         public string? UserName { get; set; }

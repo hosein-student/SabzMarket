@@ -33,5 +33,9 @@ namespace SabzMarket
         {
             return MessageBox.Show(massage);
         }
+        public DialogResult ShowInfoError(string massage)
+        {
+            return MessageBox.Show(massage,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
     }
 }

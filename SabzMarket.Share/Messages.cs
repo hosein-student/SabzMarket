@@ -8,6 +8,9 @@ namespace SabzMarket.Share
 {
     public class Messages
     {
+        public const string InternetErrorMessage = "اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید. در صورت تکرار مشکل، با پشتیبانی تماس بگیرید.";
+
+        //======================================================================================================
         public const string successSignUp1 = "ثبت نام اولیه شما انجام شد";
         public const string failedSignUp1 = "ثبت نام اولیه شما انجام نشد ";
         public const string passwordNotMatch = "پسورد ها مطابقت ندارد";

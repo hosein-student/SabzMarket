@@ -47,17 +47,24 @@ namespace SabzMarket
             var client = HttpClientHelper.Instance;
             string route = string.Format(RouteConstants.GetSellerByUsername, CurrentUser.UserName);
             var seller = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
-            if(seller.Success)
+            if(seller==null)
             {
-                lbl_Name.Text = $"{seller.Data.FirstName} {seller.Data.LastName}";
-                lbl_UserName.Text = seller.Data.Username;
-                pb_Profile.LoadAsync(seller.Data.ProfileImage);
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
             }
-            else
+            if (!seller!.Success)
             {
-                MessageBox.Show(seller.Message);
+                if(!seller.Result)
+                {
+                    ShowInfoError(seller.Message!);
+                    return;
+                }
+                ShowInfo(seller.Message!);
+                return;
             }
-           
+            lbl_Name.Text = $"{seller.Data.FirstName} {seller.Data.LastName}";
+            lbl_UserName.Text = seller.Data.Username;
+            pb_Profile.LoadAsync(seller.Data.ProfileImage);
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
