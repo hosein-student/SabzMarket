@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SabzMarket.Share.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,15 @@ namespace SabzMarket.Share
         private static readonly string _filePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "failed_logs.txt");
 
-        public static async Task SaveFailedLogAsync( Exception? ex = null)
+        public static async Task SaveFailedLogAsync( Exception? ex ,string Layer)
         {
             try
             {
                 var dir = Path.GetDirectoryName(_filePath)!;
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
-
-                var json = JsonConvert.SerializeObject(ex) + Environment.NewLine;
+                var error = ex.ExceptionToErrorDTO(Layer);
+                var json = JsonConvert.SerializeObject(error) + Environment.NewLine;
 
                 await _lock.WaitAsync();
                 try

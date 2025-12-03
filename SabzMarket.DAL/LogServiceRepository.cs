@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SabzMarket.Share;
 using SabzMarket.Share.Data;
+using SabzMarket.Share.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace SabzMarket.DAL
     {
         private static readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
         private static readonly string _filePath =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "failed_logs.txt");
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logss", "failed_logs.txt");
         public async Task<OperationResult> SaveFailedLogAsync(Exception? ex)
         {
             
@@ -23,14 +24,7 @@ namespace SabzMarket.DAL
                 var dir = Path.GetDirectoryName(_filePath)!;
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
-
-                var error = new ErrorLogDTO
-                {
-                    Layer = GetType().Name,
-                    Message = ex.Message,
-                    Source = ex.Source,
-                    StackTrace = ex.StackTrace
-                };
+                var error = ex.ExceptionToErrorDTO(GetType().Name);
                 var json = JsonConvert.SerializeObject(error) + Environment.NewLine;
 
                 await _lock.WaitAsync();

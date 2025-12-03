@@ -153,7 +153,7 @@ namespace SabzMarket.Share
             }
             catch (Exception ex)
             {
-
+                await FileLogService.SaveFailedLogAsync(ex,GetType().Name);
                 return default(Tout);
             }
 
