@@ -19,5 +19,6 @@ namespace SabzMarket.Share
         public const string CreateProduct = "Product/CreateProduct";
         public const string GetUser = "User/GetUser?username={0}";
         public const string LogError = "Error/LogError";
+        public const string GetOrdersForSeller = "Order/GetOrdersForSeller?id={0}&Pending={1}&search={2}";
     }
 }

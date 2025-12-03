@@ -35,6 +35,9 @@ namespace SabzMarket.DAL.Entities
 
         [Required]
         public string? ProfileImage { get; set; }
+        [Required]
+        [Column(TypeName ="char(10)")]
+        public string? CodePosti {  get; set; }
         public virtual ICollection<Order>? Orders { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace SabzMarket.DAL.Entities
         public virtual Product? Product { get; set; }
         [Required]
         public int Number { get; set; }
+        public string? Status { get; set; }
     }
 }

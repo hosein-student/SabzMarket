@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SabzMarket.DAL;
 
@@ -11,9 +12,11 @@ using SabzMarket.DAL;
 namespace SabzMarket.DAL.Migrations
 {
     [DbContext(typeof(SabzMarketDbContext))]
-    partial class SabzMarketDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251203001417_AddPostalCodeToFarmer")]
+    partial class AddPostalCodeToFarmer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,6 +208,11 @@ namespace SabzMarket.DAL.Migrations
                     b.Property<long>("SellerId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FarmerId");
@@ -230,9 +238,6 @@ namespace SabzMarket.DAL.Migrations
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

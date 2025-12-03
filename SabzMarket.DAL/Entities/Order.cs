@@ -20,7 +20,6 @@ namespace SabzMarket.DAL.Entities
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
         [Required]
-        public string? Status { get; set; }
-        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

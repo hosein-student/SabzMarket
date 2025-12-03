@@ -28,98 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_Status = new System.Windows.Forms.Label();
-            this.lbl_Number = new System.Windows.Forms.Label();
-            this.lbl_Product = new System.Windows.Forms.Label();
-            this.lbl_Name = new System.Windows.Forms.Label();
-            this.btn_Details = new SabzMarket.MyButton();
-            this.pb_Image = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Image)).BeginInit();
-            this.SuspendLayout();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            lbl_Status = new Label();
+            lbl_Number = new Label();
+            lbl_Product = new Label();
+            lbl_Name = new Label();
+            btn_Details = new MyButton();
+            pb_Image = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pb_Image).BeginInit();
+            SuspendLayout();
             // 
             // lbl_Status
             // 
-            this.lbl_Status.AutoSize = true;
-            this.lbl_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Status.ForeColor = System.Drawing.Color.Red;
-            this.lbl_Status.Location = new System.Drawing.Point(381, 166);
-            this.lbl_Status.Name = "lbl_Status";
-            this.lbl_Status.Size = new System.Drawing.Size(91, 25);
-            this.lbl_Status.TabIndex = 1;
-            this.lbl_Status.Text = "ارسال  نشده";
+            lbl_Status.AutoSize = true;
+            lbl_Status.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Status.ForeColor = Color.Red;
+            lbl_Status.Location = new Point(304, 208);
+            lbl_Status.Name = "lbl_Status";
+            lbl_Status.Size = new Size(64, 25);
+            lbl_Status.TabIndex = 1;
+            lbl_Status.Text = "وضعیت";
             // 
             // lbl_Number
             // 
-            this.lbl_Number.AutoSize = true;
-            this.lbl_Number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Number.Location = new System.Drawing.Point(427, 114);
-            this.lbl_Number.Name = "lbl_Number";
-            this.lbl_Number.Size = new System.Drawing.Size(43, 25);
-            this.lbl_Number.TabIndex = 2;
-            this.lbl_Number.Text = "تعداد";
+            lbl_Number.AutoSize = true;
+            lbl_Number.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Number.Location = new Point(325, 142);
+            lbl_Number.Name = "lbl_Number";
+            lbl_Number.Size = new Size(43, 25);
+            lbl_Number.TabIndex = 2;
+            lbl_Number.Text = "تعداد";
             // 
             // lbl_Product
             // 
-            this.lbl_Product.AutoSize = true;
-            this.lbl_Product.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Product.Location = new System.Drawing.Point(379, 62);
-            this.lbl_Product.Name = "lbl_Product";
-            this.lbl_Product.Size = new System.Drawing.Size(93, 25);
-            this.lbl_Product.TabIndex = 3;
-            this.lbl_Product.Text = "اسم محصول";
+            lbl_Product.AutoSize = true;
+            lbl_Product.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Product.Location = new Point(277, 78);
+            lbl_Product.Name = "lbl_Product";
+            lbl_Product.Size = new Size(93, 25);
+            lbl_Product.TabIndex = 3;
+            lbl_Product.Text = "اسم محصول";
             // 
             // lbl_Name
             // 
-            this.lbl_Name.AutoSize = true;
-            this.lbl_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Name.Location = new System.Drawing.Point(441, 18);
-            this.lbl_Name.Name = "lbl_Name";
-            this.lbl_Name.Size = new System.Drawing.Size(29, 25);
-            this.lbl_Name.TabIndex = 4;
-            this.lbl_Name.Text = "نام";
+            lbl_Name.AutoSize = true;
+            lbl_Name.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Name.Location = new Point(339, 22);
+            lbl_Name.Name = "lbl_Name";
+            lbl_Name.Size = new Size(29, 25);
+            lbl_Name.TabIndex = 4;
+            lbl_Name.Text = "نام";
             // 
             // btn_Details
             // 
-            this.btn_Details.BorderRadius = 8;
-            this.btn_Details.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_Details.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_Details.DisabledState.FillColor = System.Drawing.Color.LightGray;
-            this.btn_Details.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.btn_Details.FillColor = System.Drawing.Color.SeaGreen;
-            this.btn_Details.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btn_Details.ForeColor = System.Drawing.Color.White;
-            this.btn_Details.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_Details.Location = new System.Drawing.Point(12, 9);
-            this.btn_Details.Name = "btn_Details";
-            this.btn_Details.PressedColor = System.Drawing.Color.DarkGreen;
-            this.btn_Details.Size = new System.Drawing.Size(161, 42);
-            this.btn_Details.TabIndex = 5;
-            this.btn_Details.Text = "جزئیات خریدار ";
+            btn_Details.BorderRadius = 8;
+            btn_Details.CustomizableEdges = customizableEdges3;
+            btn_Details.DisabledState.BorderColor = Color.DarkGray;
+            btn_Details.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_Details.DisabledState.FillColor = Color.LightGray;
+            btn_Details.DisabledState.ForeColor = Color.DarkGray;
+            btn_Details.FillColor = Color.SeaGreen;
+            btn_Details.Font = new Font("Segoe UI", 11F);
+            btn_Details.ForeColor = Color.White;
+            btn_Details.HoverState.FillColor = Color.MediumSeaGreen;
+            btn_Details.Location = new Point(12, 11);
+            btn_Details.Margin = new Padding(3, 4, 3, 4);
+            btn_Details.Name = "btn_Details";
+            btn_Details.PressedColor = Color.DarkGreen;
+            btn_Details.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btn_Details.Size = new Size(161, 52);
+            btn_Details.TabIndex = 5;
+            btn_Details.Text = "جزئیات خریدار ";
+            btn_Details.Click += btn_Details_Click;
             // 
             // pb_Image
             // 
-            this.pb_Image.Location = new System.Drawing.Point(31, 62);
-            this.pb_Image.Name = "pb_Image";
-            this.pb_Image.Size = new System.Drawing.Size(123, 108);
-            this.pb_Image.TabIndex = 6;
-            this.pb_Image.TabStop = false;
+            pb_Image.Location = new Point(31, 78);
+            pb_Image.Margin = new Padding(3, 4, 3, 4);
+            pb_Image.Name = "pb_Image";
+            pb_Image.Size = new Size(123, 135);
+            pb_Image.TabIndex = 6;
+            pb_Image.TabStop = false;
             // 
             // UC_HistoryOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightCyan;
-            this.Controls.Add(this.pb_Image);
-            this.Controls.Add(this.btn_Details);
-            this.Controls.Add(this.lbl_Status);
-            this.Controls.Add(this.lbl_Number);
-            this.Controls.Add(this.lbl_Product);
-            this.Controls.Add(this.lbl_Name);
-            this.Name = "UC_HistoryOrders";
-            this.Size = new System.Drawing.Size(502, 209);
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Image)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightCyan;
+            Controls.Add(pb_Image);
+            Controls.Add(btn_Details);
+            Controls.Add(lbl_Status);
+            Controls.Add(lbl_Number);
+            Controls.Add(lbl_Product);
+            Controls.Add(lbl_Name);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "UC_HistoryOrders";
+            Size = new Size(502, 261);
+            Load += UC_HistoryOrders_Load;
+            ((System.ComponentModel.ISupportInitialize)pb_Image).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

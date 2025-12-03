@@ -28,118 +28,141 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_Search = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.btn_History = new SabzMarket.MyButton();
-            this.myButton1 = new SabzMarket.MyButton();
-            this.txt_Search = new SabzMarket.MyTextBox();
-            this.btn_Search.SuspendLayout();
-            this.SuspendLayout();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            pl_Search = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            btn_History = new MyButton();
+            btn_Search = new MyButton();
+            txt_Search = new MyTextBox();
+            pl_Search.SuspendLayout();
+            SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(641, 672);
-            this.flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(641, 840);
+            flowLayoutPanel1.TabIndex = 0;
             // 
-            // btn_Search
+            // pl_Search
             // 
-            this.btn_Search.Controls.Add(this.btn_History);
-            this.btn_Search.Controls.Add(this.myButton1);
-            this.btn_Search.Controls.Add(this.txt_Search);
-            this.btn_Search.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_Search.FillColor = System.Drawing.Color.SpringGreen;
-            this.btn_Search.FillColor2 = System.Drawing.Color.LemonChiffon;
-            this.btn_Search.FillColor3 = System.Drawing.Color.LightGreen;
-            this.btn_Search.FillColor4 = System.Drawing.Color.BlanchedAlmond;
-            this.btn_Search.Location = new System.Drawing.Point(0, 629);
-            this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(641, 43);
-            this.btn_Search.TabIndex = 1;
+            pl_Search.Controls.Add(btn_History);
+            pl_Search.Controls.Add(btn_Search);
+            pl_Search.Controls.Add(txt_Search);
+            pl_Search.CustomizableEdges = customizableEdges7;
+            pl_Search.Dock = DockStyle.Bottom;
+            pl_Search.FillColor = Color.SpringGreen;
+            pl_Search.FillColor2 = Color.LemonChiffon;
+            pl_Search.FillColor3 = Color.LightGreen;
+            pl_Search.FillColor4 = Color.BlanchedAlmond;
+            pl_Search.Location = new Point(0, 784);
+            pl_Search.Margin = new Padding(3, 4, 3, 4);
+            pl_Search.Name = "pl_Search";
+            pl_Search.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            pl_Search.Size = new Size(641, 56);
+            pl_Search.TabIndex = 1;
             // 
             // btn_History
             // 
-            this.btn_History.BorderRadius = 8;
-            this.btn_History.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_History.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_History.DisabledState.FillColor = System.Drawing.Color.LightGray;
-            this.btn_History.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.btn_History.FillColor = System.Drawing.Color.SeaGreen;
-            this.btn_History.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btn_History.ForeColor = System.Drawing.Color.White;
-            this.btn_History.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_History.Location = new System.Drawing.Point(5, 4);
-            this.btn_History.Name = "btn_History";
-            this.btn_History.PressedColor = System.Drawing.Color.DarkGreen;
-            this.btn_History.Size = new System.Drawing.Size(100, 35);
-            this.btn_History.TabIndex = 3;
-            this.btn_History.Text = "History";
-            this.btn_History.Click += new System.EventHandler(this.btn_History_Click);
+            btn_History.BorderRadius = 8;
+            btn_History.CustomizableEdges = customizableEdges1;
+            btn_History.DisabledState.BorderColor = Color.DarkGray;
+            btn_History.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_History.DisabledState.FillColor = Color.LightGray;
+            btn_History.DisabledState.ForeColor = Color.DarkGray;
+            btn_History.FillColor = Color.SeaGreen;
+            btn_History.Font = new Font("Segoe UI", 11F);
+            btn_History.ForeColor = Color.White;
+            btn_History.HoverState.FillColor = Color.MediumSeaGreen;
+            btn_History.Location = new Point(5, 5);
+            btn_History.Margin = new Padding(3, 4, 3, 4);
+            btn_History.Name = "btn_History";
+            btn_History.PressedColor = Color.DarkGreen;
+            btn_History.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btn_History.Size = new Size(100, 44);
+            btn_History.TabIndex = 3;
+            btn_History.Text = "History";
+            btn_History.Click += btn_History_Click;
             // 
-            // myButton1
+            // btn_Search
             // 
-            this.myButton1.BorderRadius = 8;
-            this.myButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.myButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.myButton1.DisabledState.FillColor = System.Drawing.Color.LightGray;
-            this.myButton1.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.myButton1.FillColor = System.Drawing.Color.SeaGreen;
-            this.myButton1.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.myButton1.ForeColor = System.Drawing.Color.White;
-            this.myButton1.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
-            this.myButton1.Location = new System.Drawing.Point(118, 5);
-            this.myButton1.Name = "myButton1";
-            this.myButton1.PressedColor = System.Drawing.Color.DarkGreen;
-            this.myButton1.Size = new System.Drawing.Size(110, 34);
-            this.myButton1.TabIndex = 2;
-            this.myButton1.Text = "جستوجو";
+            btn_Search.BorderRadius = 8;
+            btn_Search.CustomizableEdges = customizableEdges3;
+            btn_Search.DisabledState.BorderColor = Color.DarkGray;
+            btn_Search.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_Search.DisabledState.FillColor = Color.LightGray;
+            btn_Search.DisabledState.ForeColor = Color.DarkGray;
+            btn_Search.FillColor = Color.SeaGreen;
+            btn_Search.Font = new Font("Segoe UI", 11F);
+            btn_Search.ForeColor = Color.White;
+            btn_Search.HoverState.FillColor = Color.MediumSeaGreen;
+            btn_Search.Location = new Point(118, 6);
+            btn_Search.Margin = new Padding(3, 4, 3, 4);
+            btn_Search.Name = "btn_Search";
+            btn_Search.PressedColor = Color.DarkGreen;
+            btn_Search.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btn_Search.Size = new Size(110, 42);
+            btn_Search.TabIndex = 2;
+            btn_Search.Text = "جستوجو";
+            btn_Search.Click += btn_Search_Click;
             // 
             // txt_Search
             // 
-            this.txt_Search.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Search.DefaultText = "";
-            this.txt_Search.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_Search.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_Search.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Search.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Search.FillColor = System.Drawing.Color.MintCream;
-            this.txt_Search.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_Search.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_Search.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Search.Location = new System.Drawing.Point(239, 5);
-            this.txt_Search.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_Search.Name = "txt_Search";
-            this.txt_Search.PlaceholderText = "نام خریدار و یا نام محصول را وارد کنید";
-            this.txt_Search.SelectedText = "";
-            this.txt_Search.Size = new System.Drawing.Size(383, 31);
-            this.txt_Search.TabIndex = 1;
+            txt_Search.Cursor = Cursors.IBeam;
+            txt_Search.CustomizableEdges = customizableEdges5;
+            txt_Search.DefaultText = "";
+            txt_Search.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_Search.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_Search.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_Search.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_Search.FillColor = Color.MintCream;
+            txt_Search.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Search.Font = new Font("Segoe UI", 11F);
+            txt_Search.ForeColor = Color.DarkGreen;
+            txt_Search.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Search.Location = new Point(239, 6);
+            txt_Search.Margin = new Padding(4, 6, 4, 6);
+            txt_Search.Name = "txt_Search";
+            txt_Search.PlaceholderText = "نام خریدار و یا نام محصول را وارد کنید";
+            txt_Search.SelectedText = "";
+            txt_Search.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txt_Search.Size = new Size(383, 39);
+            txt_Search.TabIndex = 1;
             // 
             // frm_Orders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 672);
-            this.Controls.Add(this.btn_Search);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(659, 1018);
-            this.MinimumSize = new System.Drawing.Size(659, 719);
-            this.Name = "frm_Orders";
-            this.Text = "frm_Orders";
-            this.btn_Search.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(641, 840);
+            Controls.Add(pl_Search);
+            Controls.Add(flowLayoutPanel1);
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MaximumSize = new Size(659, 1261);
+            MinimumSize = new Size(659, 887);
+            Name = "frm_Orders";
+            Text = "frm_Orders";
+            Load += frm_Orders_Load;
+            pl_Search.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel btn_Search;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel pl_Search;
         private MyTextBox txt_Search;
-        private MyButton myButton1;
+        private MyButton btn_Search;
         private MyButton btn_History;
     }
 }
