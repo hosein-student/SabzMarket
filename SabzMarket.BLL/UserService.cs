@@ -30,9 +30,9 @@ namespace SabzMarket.BLL
             var result=await _userRepository.SelectAsync(username);
             if(!result.Success)
             {
-                var error = result.Exception!.ExceptionToErrorDTO(result.Message);
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
-                return OperationResult<UserViewModel>.Failed(result1.Message.ErrorMessage());
+                return OperationResult<UserViewModel>.Failed(result1.Message!.ErrorMessage());
             }
             var data = result.Data.ToUserViewModel();
             return OperationResult<UserViewModel>.SuccessedResult(data);
@@ -45,7 +45,7 @@ namespace SabzMarket.BLL
             {
                 if(!result.Result)
                 {
-                    var error = result.Exception.ExceptionToErrorDTO(result.Message!);
+                    var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
                     return OperationResult.Failed(result1.Message!.ErrorMessage());
                 }
@@ -63,7 +63,7 @@ namespace SabzMarket.BLL
             {
                 if(!result.Result)
                 {
-                    var error = result.Exception.ExceptionToErrorDTO(result.Message!);
+                    var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                     var result1=await _errorService.LogErrorAsync(error);
                     return OperationResult.Failed(result1.Message!.ErrorMessage());
                 }

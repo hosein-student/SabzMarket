@@ -25,7 +25,7 @@ namespace SabzMarket
             lbl_Name.Text = $"{order.farmer!.FirstName} {order.farmer.LastName}";
             lbl_Number.Text = order.product.Number.ToString();
             lbl_Product.Text = order.product.Name;
-            lbl_Status.Text = order.Status;
+            lbl_Status.Text = order.Status==OrderStatus.Sent.ToString()?"ارسال شده":"رد شده";
         }
 
         private void btn_Details_Click(object sender, EventArgs e)
@@ -33,6 +33,14 @@ namespace SabzMarket
             BuyerDetailsEventArgs buyerDetails = new BuyerDetailsEventArgs();
             buyerDetails.FarmerViewModel = order.farmer;
             ShowBuyerDetails?.Invoke(this, buyerDetails);
+        }
+
+        private void pb_Image_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                pb_Image.Image = Properties.Resources.DefultProduct;
+            }
         }
     }
 }

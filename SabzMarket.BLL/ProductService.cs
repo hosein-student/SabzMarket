@@ -25,7 +25,7 @@ namespace SabzMarket.BLL
             if (!product.IsValid)
                 return OperationResult.FailedResult(product.ErrorMessage);
             using var savePhoto = new SavePhoto();
-            var result2 = await savePhoto.SaveAsync(product.ImageProduct);
+            var result2 = await savePhoto.SaveAsync(product.ImageProduct!);
             if (!result2.Success)
             {
                 var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);

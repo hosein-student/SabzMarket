@@ -16,7 +16,7 @@ namespace SabzMarket.DAL
         {
             _context = context;
         }
-        public async Task<OperationResult<List<OrderDTO>>> SelectOrdersForSellerAsync(long id, bool Pending, string search)
+        public async Task<OperationResult<List<OrderDTO>>> SelectPendingOrdersForSellerAsync(long id, string search)
         {
             try
             {
@@ -29,10 +29,8 @@ namespace SabzMarket.DAL
 
                 var queryDetails = query
                     .SelectMany(o => o.OrderDetails, (order, detail) => new { order, detail })
-                    .Where(x => Pending
-                    ? x.detail.Status == OrderStatus.Pending.ToString()
-                     : x.detail.Status != OrderStatus.Pending.ToString());
-
+                    .Where(x => x.detail.Status == OrderStatus.Pending.ToString());
+                    
                 if (!string.IsNullOrEmpty(search))
                 {
                     queryDetails = queryDetails.Where(o => o.order.Farmer!.User!.FirstName!.Contains(search)
@@ -78,5 +76,68 @@ namespace SabzMarket.DAL
             }
 
         }
+
+        public async Task<OperationResult<List<OrderDTO>>> SelectNonPendingOrdersForSellerAsync(long id, string search)
+        {
+
+            try
+            {
+                var query = _context.Orders
+                  .AsNoTracking()
+                  .Include(x => x.OrderDetails)
+                  .ThenInclude(x => x.Product)
+                  .Include(x => x.Farmer)
+                  .Where(u => u.SellerId == id);
+
+                var queryDetails = query
+                    .SelectMany(o => o.OrderDetails, (order, detail) => new { order, detail })
+                    .Where(x => x.detail.Status != OrderStatus.Pending.ToString());
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    queryDetails = queryDetails.Where(o => o.order.Farmer!.User!.FirstName!.Contains(search)
+                                          || o.order.Farmer!.User!.LastName!.Contains(search)
+                                            || o.detail.Product!.ProductName!.Contains(search));
+                }
+
+
+                var result = await queryDetails.Select(o => new OrderDTO
+
+                {
+                    OrderId = o.order.Id,
+                    OrderDetailId = o.detail.Id,
+                    Status = o.detail.Status,
+                    product = new ProductViewModel
+                    {
+                        Id = o.detail.Product!.Id,
+                        Number = o.detail.Number,
+                        ImageProduct = o.detail.Product.ImageProduct,
+                        Name = o.detail.Product.ProductName,
+                    }
+                           ,
+                    farmer = new FarmerDTOForSeller
+                    {
+                        Id = o.order.Farmer!.Id,
+                        Address = o.order.Farmer.Address,
+                        ProfileImage = o.order.Farmer.ProfileImage,
+                        Phone = o.order.Farmer.User!.Phone,
+                        FirstName = o.order.Farmer.User!.FirstName,
+                        CodePosti = o.order.Farmer.CodePosti,
+                        LastName = o.order.Farmer.User!.LastName
+                    }
+                }
+                    ).ToListAsync();
+                return OperationResult<List<OrderDTO>>.SuccessedResult(result);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<List<OrderDTO>>.Failed(GetType().FullName!, ex);
+            }
+        }
+
+
     }
 }

@@ -17,9 +17,6 @@ namespace SabzMarket.DAL.Entities
         public virtual Farmer? Farmer { get; set; }
         [Required]
         public DateTime OrderDate { get; set; }
-        [Column(TypeName = "nvarchar")]
-        [StringLength(50)]
-        [Required]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

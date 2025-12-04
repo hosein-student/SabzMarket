@@ -12,9 +12,15 @@ namespace SabzMarket.API.Controllers
             _orderService=orderService;
         }
         [HttpGet]
-        public async Task<OperationResult<List<OrderDTO>>> GetOrdersForSellerAsync(long id, bool Pending, string search)
+        public async Task<OperationResult<List<OrderDTO>>> GetPendingOrdersForSellerAsync(long id, string search)
         {
-          var result=await  _orderService.GetOrdersForSellerAsync(id,Pending,search);
+          var result=await  _orderService.GetPendingOrdersForSellerAsync(id,search);
+            return result;
+        }
+        [HttpGet]
+        public async Task<OperationResult<List<OrderDTO>>> GetNonPendingOrdersForSellerAsync(long id, string search)
+        {
+            var result = await _orderService.GetNonPendingOrdersForSellerAsync(id, search);
             return result;
         }
     }

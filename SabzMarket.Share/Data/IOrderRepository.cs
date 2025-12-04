@@ -8,6 +8,7 @@ namespace SabzMarket.Share.Data
 {
     public interface IOrderRepository
     {
-        public Task<OperationResult<List<OrderDTO>>> SelectOrdersForSellerAsync(long id, bool Pending, string search);
+        public Task<OperationResult<List<OrderDTO>>> SelectPendingOrdersForSellerAsync(long id, string search);
+        public Task<OperationResult<List<OrderDTO>>> SelectNonPendingOrdersForSellerAsync(long id, string search);
     }
 }

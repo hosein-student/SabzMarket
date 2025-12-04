@@ -38,12 +38,12 @@ namespace SabzMarket
         }
 
         List<OrderDTO> FullOrsers;
-        public async Task GetOrder(bool Pending)
+        public async Task GetOrder(string search = "")
         {
             var client = HttpClientHelper.Instance;
             string rout = string
                 .Format(RouteConstants
-                .GetOrdersForSeller, CurrentUser.Id, Pending, Uri.EscapeDataString(""));
+                .GetNonPendingOrdersForSeller, CurrentUser.Id, Uri.EscapeDataString(search));
             var result = await client.GetAsync<OperationResult<List<OrderDTO>>>(rout);
             if (result == null)
             {
@@ -60,16 +60,11 @@ namespace SabzMarket
                 ShowInfo(result.Message!);
                 return;
             }
-            if (result.Data != null)
-            {
                 FullOrsers = result.Data;
-                return;
-            }
-            ShowInfo("اطلاعاتی دریافت نشد");
         }
         private async void frm_History_Load(object sender, EventArgs e)
         {
-            await GetOrder(false);
+            await GetOrder();
             if (FullOrsers != null)
                 RenderOrders(FullOrsers);
         }
@@ -78,7 +73,7 @@ namespace SabzMarket
         {
             if (txt_Search.Text == "")
             {
-                await GetOrder(false);
+                await GetOrder();
                 if (FullOrsers != null)
                     RenderOrders(FullOrsers);
             }

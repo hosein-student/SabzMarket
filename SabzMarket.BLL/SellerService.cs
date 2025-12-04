@@ -29,7 +29,7 @@ namespace SabzMarket.BLL
             {
                 if(!result.Result)
                 {
-                    var error = result.Exception.ExceptionToErrorDTO(result.Message!);
+                    var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                     var result1 = await _errorService.LogErrorAsync(error);
                     return OperationResult.Failed(result1.Message!.ErrorMessage());
                 }
@@ -45,7 +45,7 @@ namespace SabzMarket.BLL
                 return OperationResult.FailedResult(sellerViewMode2.ErrorMessage);
             }
             using var savePhoto = new SavePhoto();
-            var result2 = await savePhoto.SaveAsync(sellerViewMode2.ProfileImage);
+            var result2 = await savePhoto.SaveAsync(sellerViewMode2.ProfileImage!);
             if(!result2.Success)
             {
                 var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
@@ -57,7 +57,7 @@ namespace SabzMarket.BLL
             var result = await _sellerRepository.InsertAsync(sellerViewModel1.ToSellerDTO());
             if (!result.Success)
             {
-                var error = result.Exception.ExceptionToErrorDTO(result.Message!);
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var result1 = await _errorService.LogErrorAsync(error);
                 return OperationResult.Failed(result1.Message!.ErrorMessage());
             }
@@ -138,12 +138,12 @@ namespace SabzMarket.BLL
             if (username != userViewModel.UserName)
             {
                 var result1 = await _userService
-                                         .IsUsernameAvailableAsync(userViewModel.UserName);
+                                         .IsUsernameAvailableAsync(userViewModel.UserName!);
                 if (!result1.Success)
                 {
                     if (!result1.Result)
                     {
-                        var error = result1.Exception.ExceptionToErrorDTO(result1.Message!);
+                        var error = result1.Exception!.ExceptionToErrorDTO(result1.Message!);
                         var resultt = await _errorService.LogErrorAsync(error);
                         return OperationResult.Failed(resultt.Message!.ErrorMessage());
                     }

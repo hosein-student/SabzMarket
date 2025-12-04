@@ -44,5 +44,9 @@ namespace SabzMarket.Share
         public const string ProductCategory = "لطفا دسته بندی محصول را وارد کنید";
         public const string ProductPhoto = "لطفا عکسی برای محصول آپلود کنید";
         public const string ProductAdded = "محصول با موفقیت اضافه شد";
+        //=================================================================================================================
+        public const string NullOrder = "سفارش پیدا نشد";
+        public const string RejectedOrder = "سفارش رد شد";
+        public const string SentOrder = "سفارش ارسال شد";
     }
 }

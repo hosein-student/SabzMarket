@@ -23,14 +23,16 @@ namespace SabzMarket
         {
             if (e.Error != null)
             {
-                //ShowInfo("عکس بارگذاری نشد");
-                //pb_Profile.Image = Properties.Resources.profile;
+                pb_Image.Image = Properties.Resources.DefultProduct;
             }
         }
 
         private void UC_Orders_Load(object sender, EventArgs e)
         {
-            //
+            lbl_Name.Text = $"{OrderDTO.farmer!.FirstName} {OrderDTO.farmer!.LastName}";
+            lbl_Number.Text = OrderDTO.product!.Number.ToString();
+            lbl_ProductName.Text = OrderDTO.product.Name;
+            pb_Image.Load(OrderDTO.product.ImageProduct);
         }
 
         private void btn_Details_Click(object sender, EventArgs e)
@@ -38,6 +40,33 @@ namespace SabzMarket
             BuyerDetailsEventArgs buyerDetails = new BuyerDetailsEventArgs();
             buyerDetails.FarmerViewModel = OrderDTO.farmer;
             ShowBuyerDetails?.Invoke(this, buyerDetails);
+        }
+        public event EventHandler<OrderDetailEventArgs> RejectOrder;
+        public event EventHandler<OrderDetailEventArgs> SentOrder;
+        private void btn_Reject_Click(object sender, EventArgs e)
+        {
+            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO.OrderDetailId,this);
+            RejectOrder?.Invoke(this, orderDetail);
+        }
+        public void UpdateStatusUI(string status)
+        {
+            lbl_Status.Text = status;
+
+            if (status == OrderStatus.Sent.ToString())
+            {
+                lbl_Status.Text = "ارسال شده";
+                lbl_Status.ForeColor = Color.Green;
+            }
+            else
+            {
+                lbl_Status.ForeColor = Color.Red;
+                lbl_Status.Text = "رد شده";
+            }
+        }
+        private void btn_Sent_Click(object sender, EventArgs e)
+        {
+            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO.OrderDetailId,this);
+            SentOrder?.Invoke(this, orderDetail);
         }
     }
 }

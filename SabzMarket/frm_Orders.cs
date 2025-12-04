@@ -28,12 +28,12 @@ namespace SabzMarket
             frm_History.ShowDialog();
         }
         List<OrderDTO> FullOrsers;
-        public async Task GetOrder(bool Pending, string search = "")
+        public async Task GetOrder( string search = "")
         {
             var client = HttpClientHelper.Instance;
             string rout = string
                 .Format(RouteConstants
-                .GetOrdersForSeller, CurrentUser.Id, Pending, Uri.EscapeDataString(search));
+                .GetPendingOrdersForSeller, CurrentUser.Id, Uri.EscapeDataString(search));
             var result = await client.GetAsync<OperationResult<List<OrderDTO>>>(rout);
             if (result == null)
             {
@@ -50,18 +50,13 @@ namespace SabzMarket
                 ShowInfo(result.Message!);
                 return;
             }
-            if (result.Data != null)
-            {
                 FullOrsers = result.Data;
-                return;
-            }
-            ShowInfo("اطلاعاتی دریافت نشد");
         }
 
 
         private async void frm_Orders_Load(object sender, EventArgs e)
         {
-            await GetOrder(true);
+            await GetOrder();
             if (FullOrsers != null)
                 RenderOrders(FullOrsers);
         }
@@ -81,16 +76,57 @@ namespace SabzMarket
             {
                 UC_Orders uC_Orders = new UC_Orders();
                 uC_Orders.ShowBuyerDetails += Orders_ShowBuyerDetails1;
+                uC_Orders.SentOrder += UC_Orders_SentOrder;
+                uC_Orders.RejectOrder += UC_Orders_RejectOrder;
                 uC_Orders.OrderDTO = order;
                 flowLayoutPanel1.Controls.Add(uC_Orders);
             }
+        }
+
+        private async void UC_Orders_RejectOrder(object? sender, OrderDetailEventArgs e)
+        {
+            var client = HttpClientHelper.Instance;
+            string rout = string.Format(RouteConstants.OrderDetailRejected, e.Id);
+            var result = await client.GetAsync<OperationResult>(rout);
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message!);
+                return;
+            }
+            ShowInfo(result.Message!);
+            e.C_Orders.UpdateStatusUI(OrderStatus.Rejected.ToString());
+
+        }
+
+        private async void UC_Orders_SentOrder(object? sender, OrderDetailEventArgs e)
+        {
+            var client = HttpClientHelper.Instance;
+            string rout = string.Format(RouteConstants.OrderDetailSent, e.Id);
+            var result = await client.GetAsync<OperationResult>(rout);
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message!);
+                return;
+            }
+            ShowInfo(result.Message!);
+            e.C_Orders.UpdateStatusUI(OrderStatus.Sent.ToString());
         }
 
         private async void btn_Search_Click(object sender, EventArgs e)
         {
             if (txt_Search.Text == "")
             {
-                await GetOrder(true);
+                await GetOrder();
                 if (FullOrsers != null)
                     RenderOrders(FullOrsers);
             }

@@ -8,6 +8,8 @@ namespace SabzMarket.Share.Services
 {
     public interface IOrderService
     {
-        public Task<OperationResult<List<OrderDTO>>>GetOrdersForSellerAsync(long id, bool Pending, string search);
+        public Task<OperationResult<List<OrderDTO>>> GetPendingOrdersForSellerAsync(long id, string search);
+        public Task<OperationResult<List<OrderDTO>>> GetNonPendingOrdersForSellerAsync(long id, string search);
     }
 }
+
