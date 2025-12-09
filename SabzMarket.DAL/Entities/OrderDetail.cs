@@ -1,4 +1,4 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Share.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

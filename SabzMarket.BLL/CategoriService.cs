@@ -1,13 +1,13 @@
-﻿using SabzMarket.Share;
-using SabzMarket.Share.Data;
-using SabzMarket.Share.Services;
-using SabzMarket.Share.Mappers;
+﻿using SabzMarket.Share.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SabzMarket.Share.Models;
+using SabzMarket.Share.ErrorHandling;
+using Application.Interfaces.Services;
+using Application.Interfaces.Repositories;
 namespace SabzMarket.BLL
 {
     public class CategoriService : ICategoriService

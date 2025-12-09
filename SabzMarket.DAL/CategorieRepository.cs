@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SabzMarket.DAL.Entities;
-using SabzMarket.Share;
-using SabzMarket.Share.Data;
+using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Interfaces.Repositories;
 
 namespace SabzMarket.DAL
 {
@@ -21,7 +21,10 @@ namespace SabzMarket.DAL
         {
             try
             {
-                var result = await _context.Categories.Select(x => new CategorieDTO
+                var result = await _context
+                    .Categories
+                    .AsNoTracking()
+                    .Select(x => new CategorieDTO
                 {
                     Id = x.Id,
                     Name = x.Name,

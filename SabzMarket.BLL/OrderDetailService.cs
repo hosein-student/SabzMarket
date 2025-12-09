@@ -1,7 +1,9 @@
-﻿using SabzMarket.Share;
-using SabzMarket.Share.Data;
+﻿using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
+using SabzMarket.Share;
+using SabzMarket.Share.ErrorHandling;
 using SabzMarket.Share.Mappers;
-using SabzMarket.Share.Services;
+using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +16,26 @@ namespace SabzMarket.BLL
     {
         private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly IErrorService _errorService;
-        public OrderDetailService(IOrderDetailRepository orderDetailRepository, IErrorService errorService)
+        private readonly IProductOrderDetailHelperService _productOrderDetailHelperService;
+        public OrderDetailService(IOrderDetailRepository orderDetailRepository, IErrorService errorService, IProductOrderDetailHelperService productOrderDetailHelperService)
         {
             _orderDetailRepository = orderDetailRepository;
             _errorService = errorService;
+            _productOrderDetailHelperService = productOrderDetailHelperService;
         }
-        public async Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId)
-        {
+        public async Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId, int number, int productId)
+        {//نیاز به ترنس اکشن
             var result = await _orderDetailRepository.SetOrderDetailStatusToRejectedAsync(orderDetaileId);
             if (!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var errorResult = await _errorService.LogErrorAsync(error);
                 return OperationResult.Failed(errorResult.Message!.ErrorMessage());
+            }
+            var result1 = await _productOrderDetailHelperService.IncreaseNumber(productId, number);
+            if (!result1.Success)
+            {
+                return result1;
             }
             return OperationResult.SuccessedResult(true, Messages.RejectedOrder);
 

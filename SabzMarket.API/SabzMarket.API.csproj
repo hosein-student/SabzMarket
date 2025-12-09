@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\SabzMarket.BLL\SabzMarket.BLL.csproj" />
     <ProjectReference Include="..\SabzMarket.DAL\SabzMarket.DAL.csproj" />
     <ProjectReference Include="..\SabzMarket.Share\SabzMarket.Share.csproj" />

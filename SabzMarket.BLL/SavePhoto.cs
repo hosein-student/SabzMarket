@@ -1,7 +1,7 @@
 ﻿using Amazon.Runtime;
 using Amazon.S3;
 using Amazon.S3.Model;
-using SabzMarket.Share;
+using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,10 @@
-﻿using Polly.Fallback;
+﻿using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using SabzMarket.Share;
-using SabzMarket.Share.Data;
+using SabzMarket.Share.ErrorHandling;
 using SabzMarket.Share.Mappers;
-using SabzMarket.Share.Services;
+using SabzMarket.Share.Models;
+using SabzMarket.Share.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,12 +1,15 @@
 ﻿using SabzMarket.Share;
 using SabzMarket.Share.Mappers;
-using SabzMarket.Share.Data;
-using SabzMarket.Share.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SabzMarket.Share.ViewModels;
+using SabzMarket.Share.ErrorHandling;
+using SabzMarket.Share.Models;
+using Application.Interfaces.Services;
+using Application.Interfaces.Repositories;
 
 namespace SabzMarket.BLL
 {
@@ -89,7 +92,7 @@ namespace SabzMarket.BLL
             {
                 return OperationResult.FailedResult(sellerPartialViewModel.ErrorMessage);
             }
-            if (!sellerPartialViewModel.ProfileImage!.Contains("https://"))
+            if (!sellerPartialViewModel.ProfileImage!.Contains(Messages.Url))
             {
                 using var savePhoto = new SavePhoto();
                 var result3 = await savePhoto.SaveAsync(sellerPartialViewModel.ProfileImage);

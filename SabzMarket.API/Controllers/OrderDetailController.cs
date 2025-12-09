@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SabzMarket.Share;
-using SabzMarket.Share.Services;
+﻿using Application.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
+using SabzMarket.Share.Models;
 
 namespace SabzMarket.API.Controllers
 {
@@ -12,9 +12,9 @@ namespace SabzMarket.API.Controllers
             _orderDetailService = orderDetailService;
         }
         [HttpGet]
-        public async Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId)
+        public async Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId, int number, int productId)
         {
-          var result=await _orderDetailService.MarkOrderDetailAsRejectedAsync(orderDetaileId);
+          var result=await _orderDetailService.MarkOrderDetailAsRejectedAsync(orderDetaileId,number,productId);
             return result;
         }
         [HttpGet]

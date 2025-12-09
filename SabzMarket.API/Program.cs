@@ -1,9 +1,10 @@
+using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SabzMarket.BLL;
 using SabzMarket.DAL;
-using SabzMarket.Share.Data;
-using SabzMarket.Share.Services;
+using SabzMarket.DAL.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = Environment.GetEnvironmentVariable("SABZMARKET_DB");
@@ -41,6 +42,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IProductOrderDetailHelperService, ProductOrderDetailHelperService>();
 
 
 

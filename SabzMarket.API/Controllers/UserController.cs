@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SabzMarket.Share;
-using SabzMarket.Share.Services;
+﻿using Application.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
+using SabzMarket.Share.Models;
+using SabzMarket.Share.ViewModels;
 
 namespace SabzMarket.API.Controllers
 {
