@@ -1,4 +1,5 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Share.Enums;
+using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,7 +46,7 @@ namespace SabzMarket
         public event EventHandler<OrderDetailEventArgs> SentOrder;
         private void btn_Reject_Click(object sender, EventArgs e)
         {
-            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO.OrderDetailId,this);
+            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO,this);
             RejectOrder?.Invoke(this, orderDetail);
         }
         public void UpdateStatusUI(string status)
@@ -56,16 +57,20 @@ namespace SabzMarket
             {
                 lbl_Status.Text = "ارسال شده";
                 lbl_Status.ForeColor = Color.Green;
+                btn_Sent.Visible = false;
+                btn_Reject.Visible = false;
             }
             else
             {
                 lbl_Status.ForeColor = Color.Red;
                 lbl_Status.Text = "رد شده";
+                btn_Sent.Visible = false;
+                btn_Reject.Visible = false;
             }
         }
         private void btn_Sent_Click(object sender, EventArgs e)
         {
-            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO.OrderDetailId,this);
+            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO,this);
             SentOrder?.Invoke(this, orderDetail);
         }
     }

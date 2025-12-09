@@ -35,7 +35,11 @@ namespace SabzMarket
         }
         public DialogResult ShowInfoError(string massage)
         {
-            return MessageBox.Show(massage,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            return MessageBox.Show(massage,"خطا",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+        }
+        public DialogResult ShowInfoWarning(string massage)
+        {
+            return MessageBox.Show(massage, "هشدار",MessageBoxButtons.YesNo);
         }
     }
 }

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lbl_Name = new Label();
             lbl_ProductName = new Label();
             lbl_Number = new Label();
@@ -89,7 +89,7 @@
             // btn_Sent
             // 
             btn_Sent.BorderRadius = 8;
-            btn_Sent.CustomizableEdges = customizableEdges7;
+            btn_Sent.CustomizableEdges = customizableEdges1;
             btn_Sent.DisabledState.BorderColor = Color.DarkGray;
             btn_Sent.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Sent.DisabledState.FillColor = Color.LightGray;
@@ -102,7 +102,7 @@
             btn_Sent.Margin = new Padding(3, 4, 3, 4);
             btn_Sent.Name = "btn_Sent";
             btn_Sent.PressedColor = Color.DarkGreen;
-            btn_Sent.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btn_Sent.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btn_Sent.Size = new Size(161, 51);
             btn_Sent.TabIndex = 1;
             btn_Sent.Text = "ارسال شده";
@@ -114,6 +114,7 @@
             pb_Image.Margin = new Padding(3, 4, 3, 4);
             pb_Image.Name = "pb_Image";
             pb_Image.Size = new Size(123, 135);
+            pb_Image.SizeMode = PictureBoxSizeMode.Zoom;
             pb_Image.TabIndex = 2;
             pb_Image.TabStop = false;
             pb_Image.LoadCompleted += pb_Image_LoadCompleted;
@@ -121,7 +122,7 @@
             // btn_Details
             // 
             btn_Details.BorderRadius = 8;
-            btn_Details.CustomizableEdges = customizableEdges9;
+            btn_Details.CustomizableEdges = customizableEdges3;
             btn_Details.DisabledState.BorderColor = Color.DarkGray;
             btn_Details.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Details.DisabledState.FillColor = Color.LightGray;
@@ -134,7 +135,7 @@
             btn_Details.Margin = new Padding(3, 4, 3, 4);
             btn_Details.Name = "btn_Details";
             btn_Details.PressedColor = Color.DarkGreen;
-            btn_Details.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btn_Details.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btn_Details.Size = new Size(161, 52);
             btn_Details.TabIndex = 3;
             btn_Details.Text = "جزئیات خریدار ";
@@ -143,7 +144,7 @@
             // btn_Reject
             // 
             btn_Reject.BorderRadius = 8;
-            btn_Reject.CustomizableEdges = customizableEdges11;
+            btn_Reject.CustomizableEdges = customizableEdges5;
             btn_Reject.DisabledState.BorderColor = Color.DarkGray;
             btn_Reject.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Reject.DisabledState.FillColor = Color.LightGray;
@@ -156,7 +157,7 @@
             btn_Reject.Margin = new Padding(3, 4, 3, 4);
             btn_Reject.Name = "btn_Reject";
             btn_Reject.PressedColor = Color.DarkGreen;
-            btn_Reject.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btn_Reject.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btn_Reject.Size = new Size(161, 51);
             btn_Reject.TabIndex = 4;
             btn_Reject.Text = "رد کردن";

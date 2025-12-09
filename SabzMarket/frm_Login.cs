@@ -1,4 +1,6 @@
 ﻿using SabzMarket.Share;
+using SabzMarket.Share.Models;
+using SabzMarket.Share.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,57 +67,9 @@ namespace SabzMarket
                     ShowInfoError(result1.Message!);
                 return;
             }
-            string route = string.Format(RouteConstants.GetSellerByUsername, Uri.EscapeDataString(txt_UserName.Text));
-            var result2 = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
-            if(result2==null)
-            {
-                ShowInfoError(Messages.InternetErrorMessage);
-                return;
-            }
-            if (!result2!.Success)
-            {
-                if (!result2.Result)
-                {
-                    ShowInfoError(result2.Message!);
-                    return;
-                }
-                ShowInfo(result2.Message!);
-                return;
-            }
-                CurrentUser.Id = result2.Data.Id;
                 frm_Home frm_Home = new frm_Home();
                 this.Hide();
                 frm_Home.Show();
-                
-
-
-
-            //if (result.Success)
-            //{
-            //    CurrentUser.UserName = txt_UserName.Text;
-            //    string userName = Uri.EscapeDataString(txt_UserName.Text);
-            //    var rout = string.Format(RouteConstants.CheckUserInSeller, userName);
-            //    var result1 = await client.GetAsync<OperationResult>(rout);
-            //    if (result1.Success)
-            //    {
-            //        frm_Home frm_Home = new frm_Home();
-            //        this.Hide();
-            //        frm_Home.Show();
-            //        string route = string.Format(RouteConstants.GetSellerByUsername, Uri.EscapeDataString(txt_UserName.Text));
-            //        var result2 = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
-            //        CurrentUser.Id = result2.Data.Id;
-            //    }
-            //    else
-            //    {
-            //        frm_SellerProfile frm_SellerProfile = new frm_SellerProfile();
-            //        this.Hide();
-            //        frm_SellerProfile.Show();
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show(result.Message);
-            //}
         }
 
         private void btn_SignUp_Click(object sender, EventArgs e)

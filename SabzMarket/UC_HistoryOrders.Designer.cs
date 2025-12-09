@@ -44,7 +44,7 @@
             lbl_Status.AutoSize = true;
             lbl_Status.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_Status.ForeColor = Color.Red;
-            lbl_Status.Location = new Point(304, 208);
+            lbl_Status.Location = new Point(325, 210);
             lbl_Status.Name = "lbl_Status";
             lbl_Status.Size = new Size(64, 25);
             lbl_Status.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             lbl_Product.AutoSize = true;
             lbl_Product.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Product.Location = new Point(277, 78);
+            lbl_Product.Location = new Point(325, 78);
             lbl_Product.Name = "lbl_Product";
             lbl_Product.Size = new Size(93, 25);
             lbl_Product.TabIndex = 3;
@@ -74,7 +74,7 @@
             // 
             lbl_Name.AutoSize = true;
             lbl_Name.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Name.Location = new Point(339, 22);
+            lbl_Name.Location = new Point(325, 21);
             lbl_Name.Name = "lbl_Name";
             lbl_Name.Size = new Size(29, 25);
             lbl_Name.TabIndex = 4;
@@ -108,6 +108,7 @@
             pb_Image.Margin = new Padding(3, 4, 3, 4);
             pb_Image.Name = "pb_Image";
             pb_Image.Size = new Size(123, 135);
+            pb_Image.SizeMode = PictureBoxSizeMode.Zoom;
             pb_Image.TabIndex = 6;
             pb_Image.TabStop = false;
             pb_Image.LoadCompleted += pb_Image_LoadCompleted;

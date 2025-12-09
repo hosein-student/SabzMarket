@@ -29,230 +29,259 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Home));
-            this.btn_Setting = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.pln_Menu1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.pb_Profile = new System.Windows.Forms.PictureBox();
-            this.lbl_UserName = new System.Windows.Forms.Label();
-            this.lbl_Settings = new System.Windows.Forms.Label();
-            this.lbl_Name = new System.Windows.Forms.Label();
-            this.pln_Menu2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.btn_Orders = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btn_Chat = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btn_AddProduct = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.flp_ShowProduct = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_Menu = new Guna.UI2.WinForms.Guna2Button();
-            this.pln_Menu1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Profile)).BeginInit();
-            this.pln_Menu2.SuspendLayout();
-            this.guna2CustomGradientPanel1.SuspendLayout();
-            this.SuspendLayout();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            btn_Setting = new Guna.UI2.WinForms.Guna2ImageButton();
+            pln_Menu1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            pb_Profile = new PictureBox();
+            lbl_UserName = new Label();
+            lbl_Settings = new Label();
+            lbl_Name = new Label();
+            pln_Menu2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            btn_Orders = new Guna.UI2.WinForms.Guna2ImageButton();
+            btn_Chat = new Guna.UI2.WinForms.Guna2ImageButton();
+            btn_AddProduct = new Guna.UI2.WinForms.Guna2ImageButton();
+            flp_ShowProduct = new FlowLayoutPanel();
+            btn_Menu = new Guna.UI2.WinForms.Guna2Button();
+            pln_Menu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pb_Profile).BeginInit();
+            pln_Menu2.SuspendLayout();
+            guna2CustomGradientPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // btn_Setting
             // 
-            this.btn_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Setting.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Setting.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Setting.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btn_Setting.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Setting.Image = ((System.Drawing.Image)(resources.GetObject("btn_Setting.Image")));
-            this.btn_Setting.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btn_Setting.ImageRotate = 0F;
-            this.btn_Setting.Location = new System.Drawing.Point(2, 520);
-            this.btn_Setting.Name = "btn_Setting";
-            this.btn_Setting.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            this.btn_Setting.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Setting.Size = new System.Drawing.Size(77, 76);
-            this.btn_Setting.TabIndex = 0;
-            this.btn_Setting.UseTransparentBackground = true;
-            this.btn_Setting.Click += new System.EventHandler(this.btn_Setting_Click);
+            btn_Setting.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btn_Setting.BackColor = Color.Transparent;
+            btn_Setting.CheckedState.ImageSize = new Size(64, 64);
+            btn_Setting.HoverState.Image = (Image)resources.GetObject("resource.Image");
+            btn_Setting.HoverState.ImageSize = new Size(64, 64);
+            btn_Setting.Image = (Image)resources.GetObject("btn_Setting.Image");
+            btn_Setting.ImageOffset = new Point(0, 0);
+            btn_Setting.ImageRotate = 0F;
+            btn_Setting.Location = new Point(2, 654);
+            btn_Setting.Margin = new Padding(3, 4, 3, 4);
+            btn_Setting.Name = "btn_Setting";
+            btn_Setting.PressedState.Image = (Image)resources.GetObject("resource.Image1");
+            btn_Setting.PressedState.ImageSize = new Size(64, 64);
+            btn_Setting.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btn_Setting.Size = new Size(77, 95);
+            btn_Setting.TabIndex = 0;
+            btn_Setting.UseTransparentBackground = true;
+            btn_Setting.Click += btn_Setting_Click;
             // 
             // pln_Menu1
             // 
-            this.pln_Menu1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pln_Menu1.Controls.Add(this.pb_Profile);
-            this.pln_Menu1.Controls.Add(this.lbl_UserName);
-            this.pln_Menu1.Controls.Add(this.lbl_Settings);
-            this.pln_Menu1.Controls.Add(this.lbl_Name);
-            this.pln_Menu1.Controls.Add(this.btn_Setting);
-            this.pln_Menu1.FillColor = System.Drawing.Color.MintCream;
-            this.pln_Menu1.FillColor2 = System.Drawing.Color.MediumSeaGreen;
-            this.pln_Menu1.FillColor3 = System.Drawing.Color.PaleTurquoise;
-            this.pln_Menu1.FillColor4 = System.Drawing.Color.LightCyan;
-            this.pln_Menu1.Location = new System.Drawing.Point(12, 12);
-            this.pln_Menu1.Name = "pln_Menu1";
-            this.pln_Menu1.Size = new System.Drawing.Size(370, 610);
-            this.pln_Menu1.TabIndex = 1;
+            pln_Menu1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pln_Menu1.Controls.Add(pb_Profile);
+            pln_Menu1.Controls.Add(lbl_UserName);
+            pln_Menu1.Controls.Add(lbl_Settings);
+            pln_Menu1.Controls.Add(lbl_Name);
+            pln_Menu1.Controls.Add(btn_Setting);
+            pln_Menu1.CustomizableEdges = customizableEdges2;
+            pln_Menu1.FillColor = Color.MintCream;
+            pln_Menu1.FillColor2 = Color.MediumSeaGreen;
+            pln_Menu1.FillColor3 = Color.PaleTurquoise;
+            pln_Menu1.FillColor4 = Color.LightCyan;
+            pln_Menu1.Location = new Point(12, 13);
+            pln_Menu1.Margin = new Padding(3, 4, 3, 4);
+            pln_Menu1.Name = "pln_Menu1";
+            pln_Menu1.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            pln_Menu1.Size = new Size(370, 766);
+            pln_Menu1.TabIndex = 1;
             // 
             // pb_Profile
             // 
-            this.pb_Profile.Image = global::SabzMarket.Properties.Resources.profile;
-            this.pb_Profile.Location = new System.Drawing.Point(8, 13);
-            this.pb_Profile.Name = "pb_Profile";
-            this.pb_Profile.Size = new System.Drawing.Size(84, 75);
-            this.pb_Profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_Profile.TabIndex = 5;
-            this.pb_Profile.TabStop = false;
+            pb_Profile.Image = Properties.Resources.profile;
+            pb_Profile.Location = new Point(8, 16);
+            pb_Profile.Margin = new Padding(3, 4, 3, 4);
+            pb_Profile.Name = "pb_Profile";
+            pb_Profile.Size = new Size(84, 94);
+            pb_Profile.SizeMode = PictureBoxSizeMode.Zoom;
+            pb_Profile.TabIndex = 5;
+            pb_Profile.TabStop = false;
             // 
             // lbl_UserName
             // 
-            this.lbl_UserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_UserName.Location = new System.Drawing.Point(105, 76);
-            this.lbl_UserName.Name = "lbl_UserName";
-            this.lbl_UserName.Size = new System.Drawing.Size(154, 38);
-            this.lbl_UserName.TabIndex = 4;
-            this.lbl_UserName.Text = "...........";
+            lbl_UserName.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_UserName.Location = new Point(105, 95);
+            lbl_UserName.Name = "lbl_UserName";
+            lbl_UserName.Size = new Size(154, 48);
+            lbl_UserName.TabIndex = 4;
+            lbl_UserName.Text = "...........";
             // 
             // lbl_Settings
             // 
-            this.lbl_Settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbl_Settings.AutoSize = true;
-            this.lbl_Settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Settings.Location = new System.Drawing.Point(105, 541);
-            this.lbl_Settings.Name = "lbl_Settings";
-            this.lbl_Settings.Size = new System.Drawing.Size(100, 29);
-            this.lbl_Settings.TabIndex = 3;
-            this.lbl_Settings.Text = "Settings";
+            lbl_Settings.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lbl_Settings.AutoSize = true;
+            lbl_Settings.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Settings.Location = new Point(105, 688);
+            lbl_Settings.Name = "lbl_Settings";
+            lbl_Settings.Size = new Size(100, 29);
+            lbl_Settings.TabIndex = 3;
+            lbl_Settings.Text = "Settings";
             // 
             // lbl_Name
             // 
-            this.lbl_Name.AutoSize = true;
-            this.lbl_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Name.Location = new System.Drawing.Point(106, 19);
-            this.lbl_Name.Name = "lbl_Name";
-            this.lbl_Name.Size = new System.Drawing.Size(53, 20);
-            this.lbl_Name.TabIndex = 2;
-            this.lbl_Name.Text = "...........";
+            lbl_Name.AutoSize = true;
+            lbl_Name.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Name.Location = new Point(106, 24);
+            lbl_Name.Name = "lbl_Name";
+            lbl_Name.Size = new Size(53, 20);
+            lbl_Name.TabIndex = 2;
+            lbl_Name.Text = "...........";
             // 
             // pln_Menu2
             // 
-            this.pln_Menu2.BackColor = System.Drawing.Color.Transparent;
-            this.pln_Menu2.Controls.Add(this.pln_Menu1);
-            this.pln_Menu2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pln_Menu2.FillColor = System.Drawing.Color.White;
-            this.pln_Menu2.Location = new System.Drawing.Point(0, 0);
-            this.pln_Menu2.Name = "pln_Menu2";
-            this.pln_Menu2.ShadowColor = System.Drawing.Color.Black;
-            this.pln_Menu2.Size = new System.Drawing.Size(393, 634);
-            this.pln_Menu2.TabIndex = 4;
-            this.pln_Menu2.Visible = false;
+            pln_Menu2.BackColor = Color.Transparent;
+            pln_Menu2.Controls.Add(pln_Menu1);
+            pln_Menu2.Dock = DockStyle.Left;
+            pln_Menu2.FillColor = Color.White;
+            pln_Menu2.Location = new Point(0, 0);
+            pln_Menu2.Margin = new Padding(3, 4, 3, 4);
+            pln_Menu2.Name = "pln_Menu2";
+            pln_Menu2.ShadowColor = Color.Black;
+            pln_Menu2.Size = new Size(393, 792);
+            pln_Menu2.TabIndex = 4;
+            pln_Menu2.Visible = false;
             // 
             // guna2CustomGradientPanel1
             // 
-            this.guna2CustomGradientPanel1.Controls.Add(this.btn_Orders);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btn_Chat);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btn_AddProduct);
-            this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.guna2CustomGradientPanel1.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.Honeydew;
-            this.guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.Beige;
-            this.guna2CustomGradientPanel1.FillColor4 = System.Drawing.Color.LightGreen;
-            this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(908, 0);
-            this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(109, 634);
-            this.guna2CustomGradientPanel1.TabIndex = 7;
+            guna2CustomGradientPanel1.Controls.Add(btn_Orders);
+            guna2CustomGradientPanel1.Controls.Add(btn_Chat);
+            guna2CustomGradientPanel1.Controls.Add(btn_AddProduct);
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges7;
+            guna2CustomGradientPanel1.Dock = DockStyle.Right;
+            guna2CustomGradientPanel1.FillColor = Color.WhiteSmoke;
+            guna2CustomGradientPanel1.FillColor2 = Color.Honeydew;
+            guna2CustomGradientPanel1.FillColor3 = Color.Beige;
+            guna2CustomGradientPanel1.FillColor4 = Color.LightGreen;
+            guna2CustomGradientPanel1.Location = new Point(988, 0);
+            guna2CustomGradientPanel1.Margin = new Padding(3, 4, 3, 4);
+            guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2CustomGradientPanel1.Size = new Size(109, 792);
+            guna2CustomGradientPanel1.TabIndex = 7;
             // 
             // btn_Orders
             // 
-            this.btn_Orders.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Orders.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Orders.Image = ((System.Drawing.Image)(resources.GetObject("btn_Orders.Image")));
-            this.btn_Orders.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btn_Orders.ImageRotate = 0F;
-            this.btn_Orders.Location = new System.Drawing.Point(14, 88);
-            this.btn_Orders.Name = "btn_Orders";
-            this.btn_Orders.PressedState.Image = global::SabzMarket.Properties.Resources.shop;
-            this.btn_Orders.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Orders.Size = new System.Drawing.Size(83, 75);
-            this.btn_Orders.TabIndex = 10;
-            this.btn_Orders.Click += new System.EventHandler(this.btn_Orders_Click);
+            btn_Orders.CheckedState.ImageSize = new Size(64, 64);
+            btn_Orders.HoverState.ImageSize = new Size(64, 64);
+            btn_Orders.Image = (Image)resources.GetObject("btn_Orders.Image");
+            btn_Orders.ImageOffset = new Point(0, 0);
+            btn_Orders.ImageRotate = 0F;
+            btn_Orders.Location = new Point(14, 110);
+            btn_Orders.Margin = new Padding(3, 4, 3, 4);
+            btn_Orders.Name = "btn_Orders";
+            btn_Orders.PressedState.Image = Properties.Resources.shop;
+            btn_Orders.PressedState.ImageSize = new Size(64, 64);
+            btn_Orders.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btn_Orders.Size = new Size(83, 94);
+            btn_Orders.TabIndex = 10;
+            btn_Orders.Click += btn_Orders_Click;
             // 
             // btn_Chat
             // 
-            this.btn_Chat.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Chat.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Chat.HoverState.Image = global::SabzMarket.Properties.Resources.Wwalczyszyn_Android_Style_Honeycomb_Messages_48;
-            this.btn_Chat.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Chat.Image = ((System.Drawing.Image)(resources.GetObject("btn_Chat.Image")));
-            this.btn_Chat.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btn_Chat.ImageRotate = 0F;
-            this.btn_Chat.IndicateFocus = true;
-            this.btn_Chat.Location = new System.Drawing.Point(14, 12);
-            this.btn_Chat.Name = "btn_Chat";
-            this.btn_Chat.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            this.btn_Chat.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_Chat.Size = new System.Drawing.Size(83, 70);
-            this.btn_Chat.TabIndex = 9;
-            this.btn_Chat.Click += new System.EventHandler(this.btn_Chat_Click);
+            btn_Chat.BackColor = Color.Transparent;
+            btn_Chat.CheckedState.ImageSize = new Size(64, 64);
+            btn_Chat.HoverState.Image = Properties.Resources.Wwalczyszyn_Android_Style_Honeycomb_Messages_48;
+            btn_Chat.HoverState.ImageSize = new Size(64, 64);
+            btn_Chat.Image = (Image)resources.GetObject("btn_Chat.Image");
+            btn_Chat.ImageOffset = new Point(0, 0);
+            btn_Chat.ImageRotate = 0F;
+            btn_Chat.IndicateFocus = true;
+            btn_Chat.Location = new Point(14, 15);
+            btn_Chat.Margin = new Padding(3, 4, 3, 4);
+            btn_Chat.Name = "btn_Chat";
+            btn_Chat.PressedState.Image = (Image)resources.GetObject("resource.Image2");
+            btn_Chat.PressedState.ImageSize = new Size(64, 64);
+            btn_Chat.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            btn_Chat.Size = new Size(83, 88);
+            btn_Chat.TabIndex = 9;
+            btn_Chat.Click += btn_Chat_Click;
             // 
             // btn_AddProduct
             // 
-            this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_AddProduct.BackColor = System.Drawing.Color.Honeydew;
-            this.btn_AddProduct.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_AddProduct.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            this.btn_AddProduct.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_AddProduct.Image = ((System.Drawing.Image)(resources.GetObject("btn_AddProduct.Image")));
-            this.btn_AddProduct.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btn_AddProduct.ImageRotate = 0F;
-            this.btn_AddProduct.Location = new System.Drawing.Point(14, 543);
-            this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.PressedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
-            this.btn_AddProduct.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btn_AddProduct.Size = new System.Drawing.Size(83, 79);
-            this.btn_AddProduct.TabIndex = 8;
-            this.btn_AddProduct.Click += new System.EventHandler(this.btn_AddProduct_Click);
+            btn_AddProduct.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btn_AddProduct.BackColor = Color.Honeydew;
+            btn_AddProduct.CheckedState.ImageSize = new Size(64, 64);
+            btn_AddProduct.HoverState.Image = (Image)resources.GetObject("resource.Image3");
+            btn_AddProduct.HoverState.ImageSize = new Size(64, 64);
+            btn_AddProduct.Image = (Image)resources.GetObject("btn_AddProduct.Image");
+            btn_AddProduct.ImageOffset = new Point(0, 0);
+            btn_AddProduct.ImageRotate = 0F;
+            btn_AddProduct.Location = new Point(14, 679);
+            btn_AddProduct.Margin = new Padding(3, 4, 3, 4);
+            btn_AddProduct.Name = "btn_AddProduct";
+            btn_AddProduct.PressedState.Image = (Image)resources.GetObject("resource.Image4");
+            btn_AddProduct.PressedState.ImageSize = new Size(64, 64);
+            btn_AddProduct.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btn_AddProduct.Size = new Size(83, 99);
+            btn_AddProduct.TabIndex = 8;
+            btn_AddProduct.Click += btn_AddProduct_Click;
             // 
             // flp_ShowProduct
             // 
-            this.flp_ShowProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flp_ShowProduct.BackColor = System.Drawing.Color.MintCream;
-            this.flp_ShowProduct.Location = new System.Drawing.Point(388, 0);
-            this.flp_ShowProduct.Name = "flp_ShowProduct";
-            this.flp_ShowProduct.Size = new System.Drawing.Size(520, 634);
-            this.flp_ShowProduct.TabIndex = 8;
+            flp_ShowProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            flp_ShowProduct.AutoScroll = true;
+            flp_ShowProduct.BackColor = Color.MintCream;
+            flp_ShowProduct.FlowDirection = FlowDirection.RightToLeft;
+            flp_ShowProduct.Location = new Point(3, 0);
+            flp_ShowProduct.Margin = new Padding(3, 4, 3, 4);
+            flp_ShowProduct.Name = "flp_ShowProduct";
+            flp_ShowProduct.Size = new Size(985, 792);
+            flp_ShowProduct.TabIndex = 8;
             // 
             // btn_Menu
             // 
-            this.btn_Menu.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_Menu.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_Menu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btn_Menu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btn_Menu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_Menu.ForeColor = System.Drawing.Color.White;
-            this.btn_Menu.Location = new System.Drawing.Point(-2, 0);
-            this.btn_Menu.Name = "btn_Menu";
-            this.btn_Menu.Size = new System.Drawing.Size(41, 29);
-            this.btn_Menu.TabIndex = 5;
-            this.btn_Menu.Text = "☰";
-            this.btn_Menu.Click += new System.EventHandler(this.guna2Button1_Click);
+            btn_Menu.CustomizableEdges = customizableEdges9;
+            btn_Menu.DisabledState.BorderColor = Color.DarkGray;
+            btn_Menu.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_Menu.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_Menu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_Menu.Font = new Font("Segoe UI", 9F);
+            btn_Menu.ForeColor = Color.White;
+            btn_Menu.Location = new Point(-2, 0);
+            btn_Menu.Margin = new Padding(3, 4, 3, 4);
+            btn_Menu.Name = "btn_Menu";
+            btn_Menu.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btn_Menu.Size = new Size(41, 36);
+            btn_Menu.TabIndex = 5;
+            btn_Menu.Text = "☰";
+            btn_Menu.Click += guna2Button1_Click;
             // 
             // frm_Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Honeydew;
-            this.ClientSize = new System.Drawing.Size(1017, 634);
-            this.Controls.Add(this.flp_ShowProduct);
-            this.Controls.Add(this.guna2CustomGradientPanel1);
-            this.Controls.Add(this.pln_Menu2);
-            this.Controls.Add(this.btn_Menu);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1035, 681);
-            this.Name = "frm_Home";
-            this.Text = "frm_Home";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_Home_FormClosed);
-            this.Load += new System.EventHandler(this.frm_Home_Load);
-            this.pln_Menu1.ResumeLayout(false);
-            this.pln_Menu1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Profile)).EndInit();
-            this.pln_Menu2.ResumeLayout(false);
-            this.guna2CustomGradientPanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Honeydew;
+            ClientSize = new Size(1097, 792);
+            Controls.Add(pln_Menu2);
+            Controls.Add(guna2CustomGradientPanel1);
+            Controls.Add(btn_Menu);
+            Controls.Add(flp_ShowProduct);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(1115, 839);
+            Name = "frm_Home";
+            Text = "SabzMarket";
+            FormClosed += frm_Home_FormClosed;
+            Load += frm_Home_Load;
+            pln_Menu1.ResumeLayout(false);
+            pln_Menu1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pb_Profile).EndInit();
+            pln_Menu2.ResumeLayout(false);
+            guna2CustomGradientPanel1.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

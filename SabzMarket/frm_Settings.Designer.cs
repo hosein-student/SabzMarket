@@ -28,358 +28,380 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_FirstName = new System.Windows.Forms.Label();
-            this.lbl_LastName = new System.Windows.Forms.Label();
-            this.lbl_Phone = new System.Windows.Forms.Label();
-            this.lbl_Email = new System.Windows.Forms.Label();
-            this.lbl_UserName = new System.Windows.Forms.Label();
-            this.lbl_Password1 = new System.Windows.Forms.Label();
-            this.txt_Password = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_UserName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_Email = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_Phone = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_LastName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_FirstName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lbl_WorkHistory = new System.Windows.Forms.Label();
-            this.lbl_Address = new System.Windows.Forms.Label();
-            this.cmb_WorkHistory = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txt_Address = new SabzMarket.MyTextBox();
-            this.pb_Profile = new System.Windows.Forms.PictureBox();
-            this.btn_Update = new SabzMarket.MyButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Profile)).BeginInit();
-            this.SuspendLayout();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Settings));
+            lbl_FirstName = new Label();
+            lbl_LastName = new Label();
+            lbl_Phone = new Label();
+            lbl_Email = new Label();
+            lbl_UserName = new Label();
+            lbl_Password1 = new Label();
+            txt_Password = new Guna.UI2.WinForms.Guna2TextBox();
+            txt_UserName = new Guna.UI2.WinForms.Guna2TextBox();
+            txt_Email = new Guna.UI2.WinForms.Guna2TextBox();
+            txt_Phone = new Guna.UI2.WinForms.Guna2TextBox();
+            txt_LastName = new Guna.UI2.WinForms.Guna2TextBox();
+            txt_FirstName = new Guna.UI2.WinForms.Guna2TextBox();
+            lbl_WorkHistory = new Label();
+            lbl_Address = new Label();
+            cmb_WorkHistory = new Guna.UI2.WinForms.Guna2ComboBox();
+            txt_Address = new MyTextBox();
+            pb_Profile = new PictureBox();
+            btn_Update = new MyButton();
+            ((System.ComponentModel.ISupportInitialize)pb_Profile).BeginInit();
+            SuspendLayout();
             // 
             // lbl_FirstName
             // 
-            this.lbl_FirstName.AutoSize = true;
-            this.lbl_FirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_FirstName.Location = new System.Drawing.Point(329, 121);
-            this.lbl_FirstName.Name = "lbl_FirstName";
-            this.lbl_FirstName.Size = new System.Drawing.Size(34, 25);
-            this.lbl_FirstName.TabIndex = 34;
-            this.lbl_FirstName.Text = "نام ";
+            lbl_FirstName.AutoSize = true;
+            lbl_FirstName.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_FirstName.Location = new Point(329, 151);
+            lbl_FirstName.Name = "lbl_FirstName";
+            lbl_FirstName.Size = new Size(34, 25);
+            lbl_FirstName.TabIndex = 34;
+            lbl_FirstName.Text = "نام ";
             // 
             // lbl_LastName
             // 
-            this.lbl_LastName.AutoSize = true;
-            this.lbl_LastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_LastName.Location = new System.Drawing.Point(329, 162);
-            this.lbl_LastName.Name = "lbl_LastName";
-            this.lbl_LastName.Size = new System.Drawing.Size(87, 25);
-            this.lbl_LastName.TabIndex = 33;
-            this.lbl_LastName.Text = "نام خانواگی";
+            lbl_LastName.AutoSize = true;
+            lbl_LastName.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_LastName.Location = new Point(329, 202);
+            lbl_LastName.Name = "lbl_LastName";
+            lbl_LastName.Size = new Size(87, 25);
+            lbl_LastName.TabIndex = 33;
+            lbl_LastName.Text = "نام خانواگی";
             // 
             // lbl_Phone
             // 
-            this.lbl_Phone.AutoSize = true;
-            this.lbl_Phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Phone.Location = new System.Drawing.Point(329, 203);
-            this.lbl_Phone.Name = "lbl_Phone";
-            this.lbl_Phone.Size = new System.Drawing.Size(82, 25);
-            this.lbl_Phone.TabIndex = 32;
-            this.lbl_Phone.Text = "شماره تلفن";
+            lbl_Phone.AutoSize = true;
+            lbl_Phone.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Phone.Location = new Point(329, 254);
+            lbl_Phone.Name = "lbl_Phone";
+            lbl_Phone.Size = new Size(82, 25);
+            lbl_Phone.TabIndex = 32;
+            lbl_Phone.Text = "شماره تلفن";
             // 
             // lbl_Email
             // 
-            this.lbl_Email.AutoSize = true;
-            this.lbl_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Email.Location = new System.Drawing.Point(329, 244);
-            this.lbl_Email.Name = "lbl_Email";
-            this.lbl_Email.Size = new System.Drawing.Size(44, 25);
-            this.lbl_Email.TabIndex = 31;
-            this.lbl_Email.Text = "ایمیل";
+            lbl_Email.AutoSize = true;
+            lbl_Email.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Email.Location = new Point(329, 305);
+            lbl_Email.Name = "lbl_Email";
+            lbl_Email.Size = new Size(44, 25);
+            lbl_Email.TabIndex = 31;
+            lbl_Email.Text = "ایمیل";
             // 
             // lbl_UserName
             // 
-            this.lbl_UserName.AutoSize = true;
-            this.lbl_UserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_UserName.Location = new System.Drawing.Point(329, 285);
-            this.lbl_UserName.Name = "lbl_UserName";
-            this.lbl_UserName.Size = new System.Drawing.Size(90, 25);
-            this.lbl_UserName.TabIndex = 30;
-            this.lbl_UserName.Text = "نام کاربری ";
+            lbl_UserName.AutoSize = true;
+            lbl_UserName.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_UserName.Location = new Point(329, 356);
+            lbl_UserName.Name = "lbl_UserName";
+            lbl_UserName.Size = new Size(90, 25);
+            lbl_UserName.TabIndex = 30;
+            lbl_UserName.Text = "نام کاربری ";
             // 
             // lbl_Password1
             // 
-            this.lbl_Password1.AutoSize = true;
-            this.lbl_Password1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Password1.Location = new System.Drawing.Point(329, 326);
-            this.lbl_Password1.Name = "lbl_Password1";
-            this.lbl_Password1.Size = new System.Drawing.Size(84, 25);
-            this.lbl_Password1.TabIndex = 29;
-            this.lbl_Password1.Text = "رمز عبور ";
+            lbl_Password1.AutoSize = true;
+            lbl_Password1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Password1.Location = new Point(329, 408);
+            lbl_Password1.Name = "lbl_Password1";
+            lbl_Password1.Size = new Size(84, 25);
+            lbl_Password1.TabIndex = 29;
+            lbl_Password1.Text = "رمز عبور ";
             // 
             // txt_Password
             // 
-            this.txt_Password.BackColor = System.Drawing.Color.Black;
-            this.txt_Password.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Password.DefaultText = "";
-            this.txt_Password.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_Password.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_Password.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Password.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Password.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_Password.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Password.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_Password.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_Password.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Password.Location = new System.Drawing.Point(136, 326);
-            this.txt_Password.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_Password.Name = "txt_Password";
-            this.txt_Password.PlaceholderText = "";
-            this.txt_Password.SelectedText = "";
-            this.txt_Password.Size = new System.Drawing.Size(187, 33);
-            this.txt_Password.TabIndex = 28;
+            txt_Password.BackColor = Color.Black;
+            txt_Password.Cursor = Cursors.IBeam;
+            txt_Password.CustomizableEdges = customizableEdges1;
+            txt_Password.DefaultText = "";
+            txt_Password.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_Password.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_Password.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_Password.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_Password.FillColor = Color.PaleGreen;
+            txt_Password.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Password.Font = new Font("Segoe UI", 11F);
+            txt_Password.ForeColor = Color.DarkGreen;
+            txt_Password.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Password.Location = new Point(136, 408);
+            txt_Password.Margin = new Padding(3, 5, 3, 5);
+            txt_Password.Name = "txt_Password";
+            txt_Password.PlaceholderText = "";
+            txt_Password.SelectedText = "";
+            txt_Password.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txt_Password.Size = new Size(187, 41);
+            txt_Password.TabIndex = 28;
             // 
             // txt_UserName
             // 
-            this.txt_UserName.BackColor = System.Drawing.Color.Black;
-            this.txt_UserName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_UserName.DefaultText = "";
-            this.txt_UserName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_UserName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_UserName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_UserName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_UserName.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_UserName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_UserName.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_UserName.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_UserName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_UserName.Location = new System.Drawing.Point(136, 285);
-            this.txt_UserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_UserName.Name = "txt_UserName";
-            this.txt_UserName.PlaceholderText = "";
-            this.txt_UserName.SelectedText = "";
-            this.txt_UserName.Size = new System.Drawing.Size(187, 33);
-            this.txt_UserName.TabIndex = 27;
+            txt_UserName.BackColor = Color.Black;
+            txt_UserName.Cursor = Cursors.IBeam;
+            txt_UserName.CustomizableEdges = customizableEdges3;
+            txt_UserName.DefaultText = "";
+            txt_UserName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_UserName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_UserName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_UserName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_UserName.FillColor = Color.PaleGreen;
+            txt_UserName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_UserName.Font = new Font("Segoe UI", 11F);
+            txt_UserName.ForeColor = Color.DarkGreen;
+            txt_UserName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_UserName.Location = new Point(136, 356);
+            txt_UserName.Margin = new Padding(3, 5, 3, 5);
+            txt_UserName.Name = "txt_UserName";
+            txt_UserName.PlaceholderText = "";
+            txt_UserName.SelectedText = "";
+            txt_UserName.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txt_UserName.Size = new Size(187, 41);
+            txt_UserName.TabIndex = 27;
             // 
             // txt_Email
             // 
-            this.txt_Email.BackColor = System.Drawing.Color.Black;
-            this.txt_Email.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Email.DefaultText = "";
-            this.txt_Email.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_Email.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_Email.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Email.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Email.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_Email.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Email.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_Email.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_Email.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Email.Location = new System.Drawing.Point(136, 244);
-            this.txt_Email.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_Email.Name = "txt_Email";
-            this.txt_Email.PlaceholderText = "";
-            this.txt_Email.SelectedText = "";
-            this.txt_Email.Size = new System.Drawing.Size(187, 33);
-            this.txt_Email.TabIndex = 26;
+            txt_Email.BackColor = Color.Black;
+            txt_Email.Cursor = Cursors.IBeam;
+            txt_Email.CustomizableEdges = customizableEdges5;
+            txt_Email.DefaultText = "";
+            txt_Email.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_Email.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_Email.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_Email.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_Email.FillColor = Color.PaleGreen;
+            txt_Email.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Email.Font = new Font("Segoe UI", 11F);
+            txt_Email.ForeColor = Color.DarkGreen;
+            txt_Email.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Email.Location = new Point(136, 305);
+            txt_Email.Margin = new Padding(3, 5, 3, 5);
+            txt_Email.Name = "txt_Email";
+            txt_Email.PlaceholderText = "";
+            txt_Email.SelectedText = "";
+            txt_Email.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txt_Email.Size = new Size(187, 41);
+            txt_Email.TabIndex = 26;
             // 
             // txt_Phone
             // 
-            this.txt_Phone.BackColor = System.Drawing.Color.Black;
-            this.txt_Phone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Phone.DefaultText = "";
-            this.txt_Phone.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_Phone.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_Phone.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Phone.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Phone.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_Phone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Phone.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_Phone.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_Phone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Phone.Location = new System.Drawing.Point(136, 203);
-            this.txt_Phone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_Phone.Name = "txt_Phone";
-            this.txt_Phone.PlaceholderText = "";
-            this.txt_Phone.SelectedText = "";
-            this.txt_Phone.Size = new System.Drawing.Size(187, 33);
-            this.txt_Phone.TabIndex = 25;
+            txt_Phone.BackColor = Color.Black;
+            txt_Phone.Cursor = Cursors.IBeam;
+            txt_Phone.CustomizableEdges = customizableEdges7;
+            txt_Phone.DefaultText = "";
+            txt_Phone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_Phone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_Phone.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_Phone.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_Phone.FillColor = Color.PaleGreen;
+            txt_Phone.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Phone.Font = new Font("Segoe UI", 11F);
+            txt_Phone.ForeColor = Color.DarkGreen;
+            txt_Phone.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Phone.Location = new Point(136, 254);
+            txt_Phone.Margin = new Padding(3, 5, 3, 5);
+            txt_Phone.Name = "txt_Phone";
+            txt_Phone.PlaceholderText = "";
+            txt_Phone.SelectedText = "";
+            txt_Phone.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txt_Phone.Size = new Size(187, 41);
+            txt_Phone.TabIndex = 25;
             // 
             // txt_LastName
             // 
-            this.txt_LastName.BackColor = System.Drawing.Color.Black;
-            this.txt_LastName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_LastName.DefaultText = "";
-            this.txt_LastName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_LastName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_LastName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_LastName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_LastName.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_LastName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_LastName.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_LastName.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_LastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_LastName.Location = new System.Drawing.Point(136, 162);
-            this.txt_LastName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_LastName.Name = "txt_LastName";
-            this.txt_LastName.PlaceholderText = "";
-            this.txt_LastName.SelectedText = "";
-            this.txt_LastName.Size = new System.Drawing.Size(187, 33);
-            this.txt_LastName.TabIndex = 24;
+            txt_LastName.BackColor = Color.Black;
+            txt_LastName.Cursor = Cursors.IBeam;
+            txt_LastName.CustomizableEdges = customizableEdges9;
+            txt_LastName.DefaultText = "";
+            txt_LastName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_LastName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_LastName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_LastName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_LastName.FillColor = Color.PaleGreen;
+            txt_LastName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_LastName.Font = new Font("Segoe UI", 11F);
+            txt_LastName.ForeColor = Color.DarkGreen;
+            txt_LastName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_LastName.Location = new Point(136, 202);
+            txt_LastName.Margin = new Padding(3, 5, 3, 5);
+            txt_LastName.Name = "txt_LastName";
+            txt_LastName.PlaceholderText = "";
+            txt_LastName.SelectedText = "";
+            txt_LastName.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txt_LastName.Size = new Size(187, 41);
+            txt_LastName.TabIndex = 24;
             // 
             // txt_FirstName
             // 
-            this.txt_FirstName.BackColor = System.Drawing.Color.LightGreen;
-            this.txt_FirstName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_FirstName.DefaultText = "";
-            this.txt_FirstName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_FirstName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_FirstName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_FirstName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_FirstName.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_FirstName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_FirstName.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_FirstName.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_FirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_FirstName.Location = new System.Drawing.Point(136, 121);
-            this.txt_FirstName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txt_FirstName.Name = "txt_FirstName";
-            this.txt_FirstName.PlaceholderText = "";
-            this.txt_FirstName.SelectedText = "";
-            this.txt_FirstName.Size = new System.Drawing.Size(187, 33);
-            this.txt_FirstName.TabIndex = 23;
+            txt_FirstName.BackColor = Color.LightGreen;
+            txt_FirstName.Cursor = Cursors.IBeam;
+            txt_FirstName.CustomizableEdges = customizableEdges11;
+            txt_FirstName.DefaultText = "";
+            txt_FirstName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_FirstName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_FirstName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_FirstName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_FirstName.FillColor = Color.PaleGreen;
+            txt_FirstName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_FirstName.Font = new Font("Segoe UI", 11F);
+            txt_FirstName.ForeColor = Color.DarkGreen;
+            txt_FirstName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_FirstName.Location = new Point(136, 151);
+            txt_FirstName.Margin = new Padding(3, 5, 3, 5);
+            txt_FirstName.Name = "txt_FirstName";
+            txt_FirstName.PlaceholderText = "";
+            txt_FirstName.SelectedText = "";
+            txt_FirstName.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txt_FirstName.Size = new Size(187, 41);
+            txt_FirstName.TabIndex = 23;
             // 
             // lbl_WorkHistory
             // 
-            this.lbl_WorkHistory.AutoSize = true;
-            this.lbl_WorkHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_WorkHistory.Location = new System.Drawing.Point(329, 408);
-            this.lbl_WorkHistory.Name = "lbl_WorkHistory";
-            this.lbl_WorkHistory.Size = new System.Drawing.Size(87, 25);
-            this.lbl_WorkHistory.TabIndex = 38;
-            this.lbl_WorkHistory.Text = "سابقه کاری";
+            lbl_WorkHistory.AutoSize = true;
+            lbl_WorkHistory.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_WorkHistory.Location = new Point(329, 510);
+            lbl_WorkHistory.Name = "lbl_WorkHistory";
+            lbl_WorkHistory.Size = new Size(87, 25);
+            lbl_WorkHistory.TabIndex = 38;
+            lbl_WorkHistory.Text = "سابقه کاری";
             // 
             // lbl_Address
             // 
-            this.lbl_Address.AutoSize = true;
-            this.lbl_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Address.Location = new System.Drawing.Point(330, 368);
-            this.lbl_Address.Name = "lbl_Address";
-            this.lbl_Address.Size = new System.Drawing.Size(50, 25);
-            this.lbl_Address.TabIndex = 37;
-            this.lbl_Address.Text = "آدرس";
+            lbl_Address.AutoSize = true;
+            lbl_Address.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Address.Location = new Point(330, 460);
+            lbl_Address.Name = "lbl_Address";
+            lbl_Address.Size = new Size(50, 25);
+            lbl_Address.TabIndex = 37;
+            lbl_Address.Text = "آدرس";
             // 
             // cmb_WorkHistory
             // 
-            this.cmb_WorkHistory.BackColor = System.Drawing.Color.Transparent;
-            this.cmb_WorkHistory.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmb_WorkHistory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_WorkHistory.FillColor = System.Drawing.Color.PaleGreen;
-            this.cmb_WorkHistory.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmb_WorkHistory.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmb_WorkHistory.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmb_WorkHistory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cmb_WorkHistory.ItemHeight = 30;
-            this.cmb_WorkHistory.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20"});
-            this.cmb_WorkHistory.Location = new System.Drawing.Point(136, 408);
-            this.cmb_WorkHistory.Name = "cmb_WorkHistory";
-            this.cmb_WorkHistory.Size = new System.Drawing.Size(187, 36);
-            this.cmb_WorkHistory.TabIndex = 36;
+            cmb_WorkHistory.BackColor = Color.Transparent;
+            cmb_WorkHistory.CustomizableEdges = customizableEdges13;
+            cmb_WorkHistory.DrawMode = DrawMode.OwnerDrawFixed;
+            cmb_WorkHistory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_WorkHistory.FillColor = Color.PaleGreen;
+            cmb_WorkHistory.FocusedColor = Color.FromArgb(94, 148, 255);
+            cmb_WorkHistory.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cmb_WorkHistory.Font = new Font("Segoe UI", 10F);
+            cmb_WorkHistory.ForeColor = Color.FromArgb(68, 88, 112);
+            cmb_WorkHistory.ItemHeight = 30;
+            cmb_WorkHistory.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" });
+            cmb_WorkHistory.Location = new Point(136, 510);
+            cmb_WorkHistory.Margin = new Padding(3, 4, 3, 4);
+            cmb_WorkHistory.Name = "cmb_WorkHistory";
+            cmb_WorkHistory.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            cmb_WorkHistory.Size = new Size(187, 36);
+            cmb_WorkHistory.TabIndex = 36;
             // 
             // txt_Address
             // 
-            this.txt_Address.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Address.DefaultText = "";
-            this.txt_Address.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_Address.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_Address.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Address.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_Address.FillColor = System.Drawing.Color.PaleGreen;
-            this.txt_Address.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Address.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txt_Address.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txt_Address.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Address.Location = new System.Drawing.Point(136, 368);
-            this.txt_Address.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_Address.Name = "txt_Address";
-            this.txt_Address.PlaceholderText = "";
-            this.txt_Address.SelectedText = "";
-            this.txt_Address.Size = new System.Drawing.Size(187, 32);
-            this.txt_Address.TabIndex = 35;
+            txt_Address.Cursor = Cursors.IBeam;
+            txt_Address.CustomizableEdges = customizableEdges15;
+            txt_Address.DefaultText = "";
+            txt_Address.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_Address.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_Address.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_Address.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_Address.FillColor = Color.PaleGreen;
+            txt_Address.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Address.Font = new Font("Segoe UI", 11F);
+            txt_Address.ForeColor = Color.DarkGreen;
+            txt_Address.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_Address.Location = new Point(136, 460);
+            txt_Address.Margin = new Padding(4, 6, 4, 6);
+            txt_Address.Name = "txt_Address";
+            txt_Address.PlaceholderText = "";
+            txt_Address.SelectedText = "";
+            txt_Address.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txt_Address.Size = new Size(187, 40);
+            txt_Address.TabIndex = 35;
             // 
             // pb_Profile
             // 
-            this.pb_Profile.Image = global::SabzMarket.Properties.Resources.profile;
-            this.pb_Profile.Location = new System.Drawing.Point(183, 24);
-            this.pb_Profile.Name = "pb_Profile";
-            this.pb_Profile.Size = new System.Drawing.Size(95, 90);
-            this.pb_Profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_Profile.TabIndex = 39;
-            this.pb_Profile.TabStop = false;
-            this.pb_Profile.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.pb_Profile_LoadCompleted_1);
-            this.pb_Profile.Click += new System.EventHandler(this.pb_Profile_Click);
-            this.pb_Profile.MouseHover += new System.EventHandler(this.phb_Profile_MouseHover);
+            pb_Profile.Image = Properties.Resources.profile;
+            pb_Profile.Location = new Point(183, 30);
+            pb_Profile.Margin = new Padding(3, 4, 3, 4);
+            pb_Profile.Name = "pb_Profile";
+            pb_Profile.Size = new Size(95, 112);
+            pb_Profile.SizeMode = PictureBoxSizeMode.Zoom;
+            pb_Profile.TabIndex = 39;
+            pb_Profile.TabStop = false;
+            pb_Profile.LoadCompleted += pb_Profile_LoadCompleted_1;
+            pb_Profile.Click += pb_Profile_Click;
+            pb_Profile.MouseHover += phb_Profile_MouseHover;
             // 
             // btn_Update
             // 
-            this.btn_Update.BorderRadius = 8;
-            this.btn_Update.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_Update.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_Update.DisabledState.FillColor = System.Drawing.Color.LightGray;
-            this.btn_Update.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.btn_Update.FillColor = System.Drawing.Color.SeaGreen;
-            this.btn_Update.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.btn_Update.ForeColor = System.Drawing.Color.White;
-            this.btn_Update.HoverState.FillColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_Update.Location = new System.Drawing.Point(150, 479);
-            this.btn_Update.Name = "btn_Update";
-            this.btn_Update.PressedColor = System.Drawing.Color.DarkGreen;
-            this.btn_Update.Size = new System.Drawing.Size(173, 45);
-            this.btn_Update.TabIndex = 40;
-            this.btn_Update.Text = "ویرایش";
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
+            btn_Update.BorderRadius = 8;
+            btn_Update.CustomizableEdges = customizableEdges17;
+            btn_Update.DisabledState.BorderColor = Color.DarkGray;
+            btn_Update.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_Update.DisabledState.FillColor = Color.LightGray;
+            btn_Update.DisabledState.ForeColor = Color.DarkGray;
+            btn_Update.FillColor = Color.SeaGreen;
+            btn_Update.Font = new Font("Segoe UI", 11F);
+            btn_Update.ForeColor = Color.White;
+            btn_Update.HoverState.FillColor = Color.MediumSeaGreen;
+            btn_Update.Location = new Point(150, 599);
+            btn_Update.Margin = new Padding(3, 4, 3, 4);
+            btn_Update.Name = "btn_Update";
+            btn_Update.PressedColor = Color.DarkGreen;
+            btn_Update.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btn_Update.Size = new Size(173, 56);
+            btn_Update.TabIndex = 40;
+            btn_Update.Text = "ویرایش";
+            btn_Update.Click += btn_Update_Click;
             // 
             // frm_Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 566);
-            this.Controls.Add(this.btn_Update);
-            this.Controls.Add(this.pb_Profile);
-            this.Controls.Add(this.lbl_WorkHistory);
-            this.Controls.Add(this.lbl_Address);
-            this.Controls.Add(this.cmb_WorkHistory);
-            this.Controls.Add(this.txt_Address);
-            this.Controls.Add(this.lbl_FirstName);
-            this.Controls.Add(this.lbl_LastName);
-            this.Controls.Add(this.lbl_Phone);
-            this.Controls.Add(this.lbl_Email);
-            this.Controls.Add(this.lbl_UserName);
-            this.Controls.Add(this.lbl_Password1);
-            this.Controls.Add(this.txt_Password);
-            this.Controls.Add(this.txt_UserName);
-            this.Controls.Add(this.txt_Email);
-            this.Controls.Add(this.txt_Phone);
-            this.Controls.Add(this.txt_LastName);
-            this.Controls.Add(this.txt_FirstName);
-            this.Name = "frm_Settings";
-            this.Text = "frm_Settings";
-            this.Load += new System.EventHandler(this.frm_Settings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Profile)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(515, 708);
+            Controls.Add(btn_Update);
+            Controls.Add(pb_Profile);
+            Controls.Add(lbl_WorkHistory);
+            Controls.Add(lbl_Address);
+            Controls.Add(cmb_WorkHistory);
+            Controls.Add(txt_Address);
+            Controls.Add(lbl_FirstName);
+            Controls.Add(lbl_LastName);
+            Controls.Add(lbl_Phone);
+            Controls.Add(lbl_Email);
+            Controls.Add(lbl_UserName);
+            Controls.Add(lbl_Password1);
+            Controls.Add(txt_Password);
+            Controls.Add(txt_UserName);
+            Controls.Add(txt_Email);
+            Controls.Add(txt_Phone);
+            Controls.Add(txt_LastName);
+            Controls.Add(txt_FirstName);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "frm_Settings";
+            Text = "تنظیمات";
+            Load += frm_Settings_Load;
+            ((System.ComponentModel.ISupportInitialize)pb_Profile).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

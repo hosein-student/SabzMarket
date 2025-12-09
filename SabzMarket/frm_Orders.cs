@@ -1,4 +1,6 @@
 ﻿using SabzMarket.Share;
+using SabzMarket.Share.Enums;
+using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +24,7 @@ namespace SabzMarket
             InitializeComponent();
         }
 
+       
         private void btn_History_Click(object sender, EventArgs e)
         {
             frm_History frm_History = new frm_History();
@@ -86,7 +89,13 @@ namespace SabzMarket
         private async void UC_Orders_RejectOrder(object? sender, OrderDetailEventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            string rout = string.Format(RouteConstants.OrderDetailRejected, e.Id);
+            string rout = string
+                .Format(
+                RouteConstants.OrderDetailRejected,
+                e.orderDTO.OrderDetailId,
+                e.orderDTO.product!.Number,
+                e.orderDTO.product.Id
+                );
             var result = await client.GetAsync<OperationResult>(rout);
             if (!result.Success)
             {
@@ -106,7 +115,7 @@ namespace SabzMarket
         private async void UC_Orders_SentOrder(object? sender, OrderDetailEventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            string rout = string.Format(RouteConstants.OrderDetailSent, e.Id);
+            string rout = string.Format(RouteConstants.OrderDetailSent, e.orderDTO.OrderDetailId);
             var result = await client.GetAsync<OperationResult>(rout);
             if (!result.Success)
             {

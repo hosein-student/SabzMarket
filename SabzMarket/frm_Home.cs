@@ -1,5 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using SabzMarket.Share;
+using SabzMarket.Share.Models;
+using SabzMarket.Share.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,31 +42,40 @@ namespace SabzMarket
             }
         }
 
-
-        private async void frm_Home_Load(object sender, EventArgs e)
+        public async Task SetUserHeaderInfo()
         {
-            this.WindowState = FormWindowState.Maximized;
             var client = HttpClientHelper.Instance;
             string route = string.Format(RouteConstants.GetSellerByUsername, CurrentUser.UserName);
             var seller = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
-            if(seller==null)
+            if (seller == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
+                Application.Exit();
                 return;
             }
             if (!seller!.Success)
             {
-                if(!seller.Result)
+                if (!seller.Result)
                 {
                     ShowInfoError(seller.Message!);
+                    Application.Exit();
                     return;
                 }
                 ShowInfo(seller.Message!);
+                Application.Exit();
                 return;
             }
+            CurrentUser.Id = seller.Data.Id;
             lbl_Name.Text = $"{seller.Data.FirstName} {seller.Data.LastName}";
             lbl_UserName.Text = seller.Data.Username;
             pb_Profile.LoadAsync(seller.Data.ProfileImage);
+        }
+        private async void frm_Home_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+           await SetUserHeaderInfo();
+           RefreshProduct(this,EventArgs.Empty);
+
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -82,15 +93,16 @@ namespace SabzMarket
         private void btn_Setting_Click(object sender, EventArgs e)
         {
             frm_Settings frm_Settings = new frm_Settings();
-            frm_Settings.LoodPanel += frm_Home_Load;
+            frm_Settings.LoodPanel += Frm_Settings_LoodPanel; ; ;
             frm_Settings.ShowDialog();
         }
 
-        
-
+        private async void Frm_Settings_LoodPanel(object? sender, EventArgs e)
+        {
+          await  SetUserHeaderInfo();
+        }
         private void btn_Orders_Click(object sender, EventArgs e)
         {
-
             frm_Orders frm_Orders = new frm_Orders();
             frm_Orders.ShowDialog();
         }
@@ -101,13 +113,90 @@ namespace SabzMarket
         }
         private void btn_AddProduct_Click(object sender, EventArgs e)
         {
-            frm_AddProducts AddProducts = new frm_AddProducts();
+            frm_ProductUpsert AddProducts = new frm_ProductUpsert();
+            AddProducts.RefreshProduct += RefreshProduct;
             AddProducts.ShowDialog();
+        }
+
+        private async void RefreshProduct(object? sender, EventArgs e)
+        {
+            await GetProduct(CurrentUser.Id);
+            if (ProductDTOs != null)
+                RenderOrders(ProductDTOs);
         }
 
         private void frm_Home_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+        private void RenderOrders(List<ProductDTO> products)
+        {
+            flp_ShowProduct.Controls.Clear();
+            foreach (var product in products)
+            {
+                UC_Products uC_Products = new UC_Products();
+                uC_Products.ProductDTO = product;
+                uC_Products.Delete += UC_Products_Delete;
+                uC_Products.Edit += UC_Products_Edit;
+                flp_ShowProduct.Controls.Add(uC_Products);
+            }
+        }
+
+        private void UC_Products_Edit(object? sender, ProductEventArgs e)
+        {
+            frm_ProductUpsert AddProducts = new frm_ProductUpsert();
+            AddProducts.Product = e.Product;
+            AddProducts.IsEdit= true;   
+            AddProducts.RefreshProduct += RefreshProduct;
+            AddProducts.ShowDialog();
+        }
+
+        private async void UC_Products_Delete(object? sender, ProductEventArgs e)
+        {
+           
+            if (ShowInfoWarning(Messages.ConfirmDeleteProduct) !=DialogResult.Yes)
+                { return; }
+            var client = HttpClientHelper.Instance;
+            var rout = string.Format(RouteConstants.DeleteProduct, e.Product.Id);
+           var result=await client.GetAsync<OperationResult>(rout);
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message!);
+                return;
+            }
+            ShowInfo(result.Message!);
+            RefreshProduct(this, EventArgs.Empty);
+        }
+
+        List<ProductDTO> ProductDTOs;
+        public async Task GetProduct(long sellerId)
+        {
+            var client = HttpClientHelper.Instance;
+            string rout = string
+                .Format(RouteConstants
+                .GetProductBySellerId, sellerId);
+            var result = await client.GetAsync<OperationResult<List<ProductDTO>>>(rout);
+            if (result == null)
+            {
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
+            }
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message!);
+                return;
+            }
+            ProductDTOs = result.Data;
         }
     }
 }

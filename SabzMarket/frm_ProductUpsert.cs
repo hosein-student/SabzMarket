@@ -1,4 +1,6 @@
 ﻿using SabzMarket.Share;
+using SabzMarket.Share.Models;
+using SabzMarket.Share.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +14,9 @@ using System.Windows.Forms;
 
 namespace SabzMarket
 {
-    public partial class frm_AddProducts : FormStyle
+    public partial class frm_ProductUpsert : FormStyle
     {
-        public frm_AddProducts()
+        public frm_ProductUpsert()
         {
             InitializeComponent();
         }
@@ -24,7 +26,7 @@ namespace SabzMarket
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(pb_Products, "لطفا برای انتخاب عکس کلیک کنید.");
         }
-
+        public event EventHandler RefreshProduct;
         private async void btn_Add_Click(object sender, EventArgs e)
         {
             int price, number;
@@ -32,41 +34,83 @@ namespace SabzMarket
             bool convertNumber = int.TryParse(txt_Number.Text.Replace(",", ""), out number);
             ProductViewModel productViewModel = new ProductViewModel
             {
-                CategoryId = (long)cmb_Categorie.SelectedValue,
+                CategoryId = (long)cmb_Categorie.SelectedValue!,
                 Description = txt_Description.Text,
                 Name = txt_Name.Text,
                 Price = price,
                 ImageProduct = path
                 ,
                 Number = number
-                ,SellerId=CurrentUser.Id
+                ,
+                SellerId = CurrentUser.Id
             };
+
+            if (btn_Add.Text == "ویرایش")
+            {
+                productViewModel.Id = Product.Id;
+                if (productViewModel.IsValid)
+                {
+                    var client = HttpClientHelper.Instance;
+                    var result = await client
+                        .PostAsync<OperationResult, ProductViewModel>(RouteConstants.UpdateProduct, productViewModel);
+                    if (!result.Success)
+                    {
+                            ShowInfoError(result.Message!);
+                        return;
+                    }
+                    ShowInfo(result.Message!);
+                    RefreshProduct?.Invoke(this, EventArgs.Empty);
+                    return;
+                }
+                ShowInfo(productViewModel.ErrorMessage);
+                return;
+            }
+            
             if (productViewModel.IsValid)
             {
                 var client = HttpClientHelper.Instance;
                 var result = await client
                     .PostAsync<OperationResult, ProductViewModel>(RouteConstants.CreateProduct, productViewModel);
+                if (!result.Success)
+                {
+                    if (!result.Result)
+                    {
+                        ShowInfoError(result.Message!);
+                        return;
+                    }
+                    ShowInfo(result.Message!);
+                    return;
+                }
+                Clear();
                 ShowInfo(result.Message!);
-            }
+                RefreshProduct?.Invoke(this, EventArgs.Empty);
+    }
             else
             {
                 ShowInfo(productViewModel.ErrorMessage);
             }
 
         }
-
+        void Clear()
+        {
+            txt_Description.Clear(); 
+            txt_Name.Clear();
+            txt_Price.Clear();
+            txt_Number.Clear();
+            pb_Products.Image = Properties.Resources.product;
+        }
         private void myTextBox3_TextChanged(object sender, EventArgs e)
         {
-            // موقعیت فعلی مکان‌نما
+
             int selectionStart = txt_Price.SelectionStart;
-            // حذف جداکننده‌های قبلی
+
             string plainText = txt_Price.Text.Replace(",", "").Replace(".", "");
-            // فرمت هزارگان (اینجا با جداکننده , – می‌تونی Culture رو تغییر بدی)
+
             if (!long.TryParse(plainText, out long value))
             { }
 
             txt_Price.Text = string.Format("{0:N0}", value);
-            // برگرداندن مکان‌نما به جای درست
+
             txt_Price.SelectionStart = txt_Price.Text.Length;
         }
 
@@ -104,7 +148,8 @@ namespace SabzMarket
                     ShowInfo(Messages.photoNotSelected);
             }
         }
-
+        public bool IsEdit { get; set; } = false;
+        public ProductDTO Product { get; set; }
         private async void frm_AddProducts_Load(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;
@@ -112,6 +157,17 @@ namespace SabzMarket
             cmb_Categorie.DataSource = result.Data;
             cmb_Categorie.DisplayMember = "Name";
             cmb_Categorie.ValueMember = "Id";
+            if (IsEdit)
+            {
+                path = Product.ImageProduct!;
+                txt_Name.Text=Product.Name;
+                txt_Description.Text=Product.Description;
+                txt_Number.Text = Product.Number.ToString();
+                cmb_Categorie.SelectedValue = Product.CategoryId;
+                txt_Price.Text = Product.Price.ToString("N0");
+                pb_Products.LoadAsync(Product.ImageProduct);
+                btn_Add.Text = "ویرایش";
+            }
         }
 
         private void txt_Number_KeyDown(object sender, KeyEventArgs e)

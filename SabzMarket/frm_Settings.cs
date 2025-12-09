@@ -1,4 +1,7 @@
 ﻿using SabzMarket.Share;
+using SabzMarket.Share.Models;
+using SabzMarket.Share.Requests;
+using SabzMarket.Share.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,6 +134,7 @@ namespace SabzMarket
                 ShowInfo(result.Message);
                 return;
             }
+            ShowInfo(result.Message!);
             LoodPanel?.Invoke(this, EventArgs.Empty);
             CurrentUser.UserName = txt_UserName.Text;
         }
