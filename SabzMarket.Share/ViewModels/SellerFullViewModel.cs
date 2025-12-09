@@ -1,4 +1,5 @@
 ﻿using SabzMarket.Share.CustomeAttribute;
+using SabzMarket.Share.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.Share
+namespace SabzMarket.Share.ViewModels
 {
     public class SellerFullViewModel:BaseValidatoin
     {

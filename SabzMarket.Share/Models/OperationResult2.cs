@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace SabzMarket.Share
+namespace SabzMarket.Share.Models
 {
     public class OperationResult<t>: OperationResult
     {

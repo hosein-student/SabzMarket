@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.Share
+namespace SabzMarket.Share.ViewModels.Base
 {
     public abstract class BaseValidatoin
     {

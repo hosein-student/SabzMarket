@@ -9,7 +9,7 @@ namespace SabzMarket.Share
     public class Messages
     {
         public const string InternetErrorMessage = "اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید. در صورت تکرار مشکل، با پشتیبانی تماس بگیرید.";
-
+        public const string Url = "https://";
         //======================================================================================================
         public const string successSignUp1 = "ثبت نام اولیه شما انجام شد";
         public const string failedSignUp1 = "ثبت نام اولیه شما انجام نشد ";
@@ -44,6 +44,9 @@ namespace SabzMarket.Share
         public const string ProductCategory = "لطفا دسته بندی محصول را وارد کنید";
         public const string ProductPhoto = "لطفا عکسی برای محصول آپلود کنید";
         public const string ProductAdded = "محصول با موفقیت اضافه شد";
+        public const string ConfirmDeleteProduct = "آیا از حذف محصول مطمئن هستید؟";
+        public const string DeleteProduct = "محصول حذف شد";
+        public const string ProductHasUnsentOrders = "این محصول دارای سفارش ارسال‌نشده است. لطفاً ابتدا سفارش‌های مربوطه را ارسال کنید و سپس دوباره برای حذف محصول اقدام نمایید.";
         //=================================================================================================================
         public const string NullOrder = "سفارش پیدا نشد";
         public const string RejectedOrder = "سفارش رد شد";

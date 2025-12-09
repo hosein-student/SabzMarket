@@ -1,9 +1,10 @@
-﻿using System;
+﻿using SabzMarket.Share.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SabzMarket.Share
+namespace SabzMarket.Share.ViewModels
 {
     public class SellerPartialViewModel:BaseValidatoin
     {

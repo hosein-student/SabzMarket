@@ -4,19 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.Share
+namespace SabzMarket.Share.Models
 {
-    public class SellerDTO
+    public class FarmerDTOForSeller
     {
         public long Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? Email { get; set; }
-        public string? Phone { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
         public string? Address { get; set; }
         public string? ProfileImage { get; set; }
-        public string? WorkHistory { get; set; }//3char
+        public string? Phone { get; set; }
+        public string? CodePosti { get; set; }
     }
 }

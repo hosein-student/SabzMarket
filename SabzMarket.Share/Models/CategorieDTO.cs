@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SabzMarket.Share
+namespace SabzMarket.Share.Models
 {
     public class CategorieDTO
     {

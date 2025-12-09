@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SabzMarket.Share.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace SabzMarket.Share.Mappers
             return new ErrorLogDTO
             {
                 Layer = layer,
-                Message = ex.Message,
+                Message = ex.InnerException?.Message ?? ex.Message,
                 Source = ex.Source,
                 StackTrace = ex.StackTrace
             };
