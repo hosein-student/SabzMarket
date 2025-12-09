@@ -21,7 +21,10 @@ namespace SabzMarket.Share
         public const string LogError = "Error/LogError";
         public const string GetPendingOrdersForSeller = "Order/GetPendingOrdersForSeller?id={0}&search={1}";
         public const string GetNonPendingOrdersForSeller = "Order/GetNonPendingOrdersForSeller?id={0}&search={1}";
-        public const string OrderDetailRejected = "OrderDetail/MarkOrderDetailAsRejected?orderDetaileId={0}";
+        public const string OrderDetailRejected = "OrderDetail/MarkOrderDetailAsRejected?orderDetaileId={0}&number={1}&productId={2}";
         public const string OrderDetailSent = "OrderDetail/MarkOrderDetailAsSent?orderDetaileId={0}";
+        public const string GetProductBySellerId = "Product/GetProductsBySeller?sellerId={0}";
+        public const string DeleteProduct = "Product/Delete?id={0}";
+        public const string UpdateProduct = "Product/Update";
     }
 }
