@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using SabzMarket.Share;
-using SabzMarket.Share.Data;
+﻿using Application.Interfaces.Repositories;
+using Newtonsoft.Json;
 using SabzMarket.Share.Mappers;
+using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace SabzMarket.DAL
+namespace SabzMarket.DAL.Logging
 {
     public class LogServiceRepository : ILogServiceRepository
     {
