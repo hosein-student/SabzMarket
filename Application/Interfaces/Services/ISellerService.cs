@@ -9,7 +9,7 @@ namespace Application.Interfaces.Services
 {
     public interface ISellerService
     {
-        Task<OperationResult> FillProfileAsync(SellerPartialViewModel sellerViewModel2);
+        Task<OperationResult> CreateSelllerAsync(SellerPartialViewModel sellerViewModel2);
         Task<OperationResult> CheckUserExistsInSellerAsync(string username);
         Task<OperationResult<SellerFullViewModel>> GetSellerByUsernameAsync(string username);
         Task<OperationResult> UpdateAsync(string username, UserViewModel userViewModel, SellerPartialViewModel sellerPartialViewModel);

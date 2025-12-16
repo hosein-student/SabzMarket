@@ -11,6 +11,6 @@ namespace Application.Interfaces.Repositories
         Task<OperationResult> InsertAsync(SellerDTO sellerDto);
         Task<OperationResult> UserExistsInSellerAsync(string username);
         Task<OperationResult<SellerDTO>> SelectByUsernameAsync(string username);
-        Task<OperationResult>UpdateAsync(string username,UserDTO userDto,SellerDTO sellerDto);
+        Task<OperationResult>UpdateAsync(UserDTO userDto,SellerDTO sellerDto);
     }
 }
