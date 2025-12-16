@@ -43,6 +43,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IProductOrderDetailHelperService, ProductOrderDetailHelperService>();
+builder.Services.AddScoped<IFarmerRepository,FarmerRepository>();
+builder.Services.AddScoped<IFarmerService, FarmerService>();
 
 
 
