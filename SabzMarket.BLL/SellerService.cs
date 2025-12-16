@@ -41,7 +41,7 @@ namespace SabzMarket.BLL
             return OperationResult.SuccessedResult();
         }
 
-        public async Task<OperationResult> FillProfileAsync(SellerPartialViewModel sellerViewMode2)
+        public async Task<OperationResult> CreateSelllerAsync(SellerPartialViewModel sellerViewMode2)
         {
             if (!sellerViewMode2.IsValid)
             {
@@ -116,7 +116,7 @@ namespace SabzMarket.BLL
                             return OperationResult.Failed(resultt.Message!.ErrorMessage());
                         }
                         var resultUp1 = await _sellerRepository
-                                        .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                                        .UpdateAsync(userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
                         if (!resultUp1.Success)
                         {
                             var error = resultUp1.Exception!.ExceptionToErrorDTO(resultUp1.Message!);
@@ -129,7 +129,7 @@ namespace SabzMarket.BLL
                     return OperationResult.FailedResult(Messages.existingUser);
                 }
                 var resultUp2 = await _sellerRepository
-                                .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                                .UpdateAsync(userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
                 if (!resultUp2.Success)
                 {
                     var error = resultUp2.Exception!.ExceptionToErrorDTO(resultUp2.Message!);
@@ -151,7 +151,7 @@ namespace SabzMarket.BLL
                         return OperationResult.Failed(resultt.Message!.ErrorMessage());
                     }
                     var resultUp1 = await _sellerRepository
-                                    .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                                    .UpdateAsync( userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
                     if (!resultUp1.Success)
                     {
                         var error = resultUp1.Exception!.ExceptionToErrorDTO(resultUp1.Message!);
@@ -163,7 +163,7 @@ namespace SabzMarket.BLL
                 return OperationResult.FailedResult(Messages.existingUser);
             }
             var result = await _sellerRepository
-                                   .UpdateAsync(username, userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
+                                   .UpdateAsync(userViewModel.ToUserDTO(), sellerPartialViewModel.SellerPartialViewModelToSellerFullViewModel().ToSellerDTO());
             if (!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);

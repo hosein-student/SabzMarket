@@ -8,6 +8,7 @@ namespace SabzMarket.Share.ViewModels
 {
     public class SellerPartialViewModel:BaseValidatoin
     {
+        public long Id { get; set; }
         public string? Username { get; set; }
         [StringLength(500, ErrorMessage = Messages.enterTheAddress)]
         public string? Address { get; set; }

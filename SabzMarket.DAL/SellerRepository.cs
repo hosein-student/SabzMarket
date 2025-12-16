@@ -69,60 +69,75 @@ namespace SabzMarket.DAL
                 var seller = await _context
                     .Sellers
                     .AsNoTracking()
-                    .Include(us=>us.User)
+                    .Include(us => us.User)
                     .Where(s => s.User.UserName == username)
                     .Select(s => new SellerDTO
-                {
-                    FirstName = s.User.FirstName,
-                    LastName = s.User.LastName,
-                    Phone = s.User.Phone,
-                    Address = s.Address,
-                    ProfileImage = s.ProfileImage,
-                    Email = s.User.Email,
-                    Password = s.User.Password,
-                    Username = s.User.UserName,
-                    WorkHistory = s.WorkHistory,
-                    Id=s.Id
-                }).SingleOrDefaultAsync();
-               
+                    {
+                        UserId = s.UserId,
+                        FirstName = s.User.FirstName,
+                        LastName = s.User.LastName,
+                        Phone = s.User.Phone,
+                        Address = s.Address,
+                        ProfileImage = s.ProfileImage,
+                        Email = s.User.Email,
+                        Password = s.User.Password,
+                        Username = s.User.UserName,
+                        WorkHistory = s.WorkHistory,
+                        Id = s.Id
+                    }).SingleOrDefaultAsync();
+
                 return OperationResult<SellerDTO>.SuccessedResult(seller);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return OperationResult<SellerDTO>.Failed(GetType().Name, ex);
             }
-            
-           
+
+
         }
 
-        public async Task<OperationResult> UpdateAsync(string username, UserDTO userDto, SellerDTO sellerDto)
+        public async Task<OperationResult> UpdateAsync( UserDTO userDto, SellerDTO sellerDto)
         {
             try
             {
-                var seller = await _context
-                    .Sellers
-                    .Include(us => us.User)
-                    .Where(us => us.User.UserName == username)
-                    .SingleOrDefaultAsync();
-                seller.User.UserName = userDto.UserName;
-                seller.User.Password = userDto.Password;
-                seller.User.FirstName = userDto.FirstName;
-                seller.User.LastName = userDto.LastName;
-                seller.User.Email = userDto.Email;
-                seller.User.Phone = userDto.Phone;
+                var seller = new Seller { Id = sellerDto.Id };
+                _context.Attach(seller);
                 seller.Address = sellerDto.Address!;
                 seller.ProfileImage = sellerDto.ProfileImage!;
                 seller.WorkHistory = sellerDto.WorkHistory!;
-                _context.SaveChanges();
+
+                var entrySeller = _context.Entry(seller);
+                entrySeller.Property(x => x.Address).IsModified = true;
+                entrySeller.Property(x => x.ProfileImage).IsModified = true;
+                entrySeller.Property(x => x.WorkHistory).IsModified = true;
+
+                var user = new User { Id = userDto.Id };
+                _context.Attach(user);
+                user.UserName = userDto.UserName;
+                user.Password = userDto.Password;
+                user.FirstName = userDto.FirstName;
+                user.LastName = userDto.LastName;
+                user.Email = userDto.Email;
+                user.Phone = userDto.Phone;
+
+                var entryUser = _context.Entry(user);
+                entryUser.Property(x => x.UserName).IsModified = true;
+                entryUser.Property(x => x.Password).IsModified = true;
+                entryUser.Property(x => x.FirstName).IsModified = true;
+                entryUser.Property(x => x.LastName).IsModified = true;
+                entryUser.Property(x => x.Email).IsModified = true;
+                entryUser.Property(x => x.Phone).IsModified = true;
+
+                await _context.SaveChangesAsync();
                 return OperationResult<SellerDTO>.SuccessedResult();
             }
             catch (Exception ex)
             {
-                return OperationResult.Failed(GetType().Name, ex);  
+                return OperationResult.Failed(GetType().Name, ex);
             }
 
 
-           
+
 
         }
     }

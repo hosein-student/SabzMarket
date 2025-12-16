@@ -12,6 +12,7 @@ namespace SabzMarket.Share.ViewModels
     public class SellerFullViewModel:BaseValidatoin
     {
         public long Id { get; set; }
+        public long UserId {  get; set; }
         [MaxLength(50, ErrorMessage = Messages.firstNameInvalid2)]
         [MinLength(3, ErrorMessage = Messages.firstNameInvalid1)]
         public string? FirstName { get; set; }
@@ -21,7 +22,7 @@ namespace SabzMarket.Share.ViewModels
         [OptionalEmailAddress]
         public string? Email { get; set; }
         [StringLength(11, MinimumLength = 11, ErrorMessage = Messages.numberInvalid1)]
-        [NumberValidationAttribute]
+        [NumberValidation]
         public string? Phone { get; set; }
         public string? Username { get; set; }
         public string? Password { get; set; }
