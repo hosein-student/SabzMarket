@@ -26,7 +26,7 @@ namespace SabzMarket.Share
         public const string successSignUp2 = "ثبت نام شما انجام شد";
         public const string failedSignUp2 = "ثبت نام شما انجام نشد";
         public const string notSavePhoto = "مشکلی پیش امده عکس ذخیره نشد";
-        public const string photoNotSelected = "لطفا یک عکس اپلود کنید";
+        public const string photoNotSelected = "لطفا یک عکس برای پروفایل خود انتخاب کنید";
         public const string enterTheAddress = "آدرس را وارد کنید";
         public const string enterTheWorkHistory = "سابقه کاری نمی تواند کمتر از 1 رقم و بیشتر از سه رقم باشد.";
         public const string error = "مشکلی پیش امده لطفا با پشتیبانی تماس بگیرید";
@@ -51,5 +51,11 @@ namespace SabzMarket.Share
         public const string NullOrder = "سفارش پیدا نشد";
         public const string RejectedOrder = "سفارش رد شد";
         public const string SentOrder = "سفارش ارسال شد";
+        //====================================================================================================================
+        public const string EnterDataBuilt = "تاریخ احداث را با فرمت 1380/12/24 وارد کنید ";
+        public const string EnterLandArea = "مساحت زمین قابل کشت را به عدد وارد کنید";
+        public const string EnterCodParvaneBHB = "شماره پروانه بهره برداری را درست وارد کنید";
+        public const string EnterCodePosti = "کد پستی را درست وارد کنید";
+        public const string NotValidNationalCode = "کد ملی معتبر نیست";
     }
 }
