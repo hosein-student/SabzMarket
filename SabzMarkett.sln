@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket", "SabzMarket\Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{C6BCEE63-8E50-42CB-911A-FC2C1B3134A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarketBuyer.UI", "SabzMarketBuyer.UI\SabzMarketBuyer.UI.csproj", "{45DF0E4B-9A1E-4E65-B406-07352F69FC7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{C6BCEE63-8E50-42CB-911A-FC2C1B3134A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6BCEE63-8E50-42CB-911A-FC2C1B3134A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6BCEE63-8E50-42CB-911A-FC2C1B3134A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45DF0E4B-9A1E-4E65-B406-07352F69FC7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45DF0E4B-9A1E-4E65-B406-07352F69FC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45DF0E4B-9A1E-4E65-B406-07352F69FC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45DF0E4B-9A1E-4E65-B406-07352F69FC7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
