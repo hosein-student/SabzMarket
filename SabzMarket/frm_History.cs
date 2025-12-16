@@ -1,4 +1,5 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Http;
+using SabzMarket.Share;
 using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
@@ -43,8 +44,8 @@ namespace SabzMarket
         {
             var client = HttpClientHelper.Instance;
             string rout = string
-                .Format(RouteConstants
-                .GetNonPendingOrdersForSeller, CurrentUser.Id, Uri.EscapeDataString(search));
+                .Format(ApiRoutes
+                .GetNonPendingOrdersForSeller, CurrentUser.SellerId, Uri.EscapeDataString(search));
             var result = await client.GetAsync<OperationResult<List<OrderDTO>>>(rout);
             if (result == null)
             {

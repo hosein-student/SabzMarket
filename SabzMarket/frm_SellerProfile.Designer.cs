@@ -58,13 +58,13 @@
             txt_Address.Font = new Font("Segoe UI", 11F);
             txt_Address.ForeColor = Color.DarkGreen;
             txt_Address.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt_Address.Location = new Point(98, 195);
+            txt_Address.Location = new Point(13, 195);
             txt_Address.Margin = new Padding(4, 6, 4, 6);
             txt_Address.Name = "txt_Address";
             txt_Address.PlaceholderText = "";
             txt_Address.SelectedText = "";
             txt_Address.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txt_Address.Size = new Size(157, 40);
+            txt_Address.Size = new Size(276, 40);
             txt_Address.TabIndex = 0;
             // 
             // cmb_WorkHistory
@@ -80,11 +80,11 @@
             cmb_WorkHistory.ForeColor = Color.FromArgb(68, 88, 112);
             cmb_WorkHistory.ItemHeight = 30;
             cmb_WorkHistory.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" });
-            cmb_WorkHistory.Location = new Point(98, 278);
+            cmb_WorkHistory.Location = new Point(13, 278);
             cmb_WorkHistory.Margin = new Padding(3, 4, 3, 4);
             cmb_WorkHistory.Name = "cmb_WorkHistory";
             cmb_WorkHistory.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            cmb_WorkHistory.Size = new Size(157, 36);
+            cmb_WorkHistory.Size = new Size(276, 36);
             cmb_WorkHistory.TabIndex = 1;
             // 
             // btn_Save
@@ -113,7 +113,7 @@
             // 
             lbl_Address.AutoSize = true;
             lbl_Address.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Address.Location = new Point(262, 195);
+            lbl_Address.Location = new Point(296, 195);
             lbl_Address.Name = "lbl_Address";
             lbl_Address.Size = new Size(50, 25);
             lbl_Address.TabIndex = 4;
@@ -123,7 +123,7 @@
             // 
             lbl_WorkHistory.AutoSize = true;
             lbl_WorkHistory.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_WorkHistory.Location = new Point(261, 278);
+            lbl_WorkHistory.Location = new Point(295, 278);
             lbl_WorkHistory.Name = "lbl_WorkHistory";
             lbl_WorkHistory.Size = new Size(87, 25);
             lbl_WorkHistory.TabIndex = 5;

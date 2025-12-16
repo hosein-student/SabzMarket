@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
-using SabzMarket.Share.ErrorHandling;
+using SabzMarket.Share;
 using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SabzMarket.Share
+namespace SabzMarket.Http
 {
     public sealed class HttpClientHelper
     {
@@ -148,7 +148,7 @@ namespace SabzMarket.Share
             {
                 string json = JsonConvert.SerializeObject(error);
                 var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await logClient.PostAsync(RouteConstants.LogError, stringContent);
+                var response = await logClient.PostAsync(ApiRoutes.LogError, stringContent);
                 string content = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<Tout>(content);
                 return result;

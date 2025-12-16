@@ -1,4 +1,5 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Http;
+using SabzMarket.Share;
 using SabzMarket.Share.Enums;
 using SabzMarket.Share.Models;
 using System;
@@ -35,8 +36,8 @@ namespace SabzMarket
         {
             var client = HttpClientHelper.Instance;
             string rout = string
-                .Format(RouteConstants
-                .GetPendingOrdersForSeller, CurrentUser.Id, Uri.EscapeDataString(search));
+                .Format(ApiRoutes
+                .GetPendingOrdersForSeller, CurrentUser.SellerId, Uri.EscapeDataString(search));
             var result = await client.GetAsync<OperationResult<List<OrderDTO>>>(rout);
             if (result == null)
             {
@@ -91,7 +92,7 @@ namespace SabzMarket
             var client = HttpClientHelper.Instance;
             string rout = string
                 .Format(
-                RouteConstants.OrderDetailRejected,
+                ApiRoutes.OrderDetailRejected,
                 e.orderDTO.OrderDetailId,
                 e.orderDTO.product!.Number,
                 e.orderDTO.product.Id
@@ -115,7 +116,7 @@ namespace SabzMarket
         private async void UC_Orders_SentOrder(object? sender, OrderDetailEventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            string rout = string.Format(RouteConstants.OrderDetailSent, e.orderDTO.OrderDetailId);
+            string rout = string.Format(ApiRoutes.OrderDetailSent, e.orderDTO.OrderDetailId);
             var result = await client.GetAsync<OperationResult>(rout);
             if (!result.Success)
             {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.Share.ErrorHandling
+namespace SabzMarket.Http
 {
     public class FileLogService
     {

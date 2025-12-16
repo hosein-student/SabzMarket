@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using SabzMarket.Share;
 using SabzMarket.Share.ViewModels;
 using SabzMarket.Share.Models;
+using SabzMarket.Http;
 
 
 
@@ -51,7 +52,7 @@ namespace SabzMarket
                 return;
             }
             var client = HttpClientHelper.Instance;
-            var result = await client.PostAsync<OperationResult, UserViewModel>(RouteConstants.SignUp, userviewmodel);
+            var result = await client.PostAsync<OperationResult, UserViewModel>(ApiRoutes.SignUp, userviewmodel);
             if (result == null)
             {
                     ShowInfoError(Messages.InternetErrorMessage);
@@ -69,33 +70,6 @@ namespace SabzMarket
             }
             ShowInfo(result.Message!);
             this.Close();
-
-
-
-
-
-
-            //{
-            //    var client = HttpClientHelper.Instance;
-            //    var result = await client.PostAsync<OperationResult, UserViewModel>(RouteConstants.SignUp, userviewmodel);
-            //    if (result.Success)
-            //    {
-            //        MessageBox.Show(result.Message);
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(result.Message);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show(userviewmodel.ErrorMessage);
-            //}
-            
-            
-
-
         }
     }
 }

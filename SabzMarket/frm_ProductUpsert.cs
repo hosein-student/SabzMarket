@@ -1,4 +1,5 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Http;
+using SabzMarket.Share;
 using SabzMarket.Share.Models;
 using SabzMarket.Share.ViewModels;
 using System;
@@ -42,7 +43,7 @@ namespace SabzMarket
                 ,
                 Number = number
                 ,
-                SellerId = CurrentUser.Id
+                SellerId = CurrentUser.SellerId
             };
 
             if (btn_Add.Text == "ویرایش")
@@ -52,7 +53,7 @@ namespace SabzMarket
                 {
                     var client = HttpClientHelper.Instance;
                     var result = await client
-                        .PostAsync<OperationResult, ProductViewModel>(RouteConstants.UpdateProduct, productViewModel);
+                        .PostAsync<OperationResult, ProductViewModel>(ApiRoutes.UpdateProduct, productViewModel);
                     if (!result.Success)
                     {
                             ShowInfoError(result.Message!);
@@ -70,7 +71,7 @@ namespace SabzMarket
             {
                 var client = HttpClientHelper.Instance;
                 var result = await client
-                    .PostAsync<OperationResult, ProductViewModel>(RouteConstants.CreateProduct, productViewModel);
+                    .PostAsync<OperationResult, ProductViewModel>(ApiRoutes.CreateProduct, productViewModel);
                 if (!result.Success)
                 {
                     if (!result.Result)
@@ -153,7 +154,7 @@ namespace SabzMarket
         private async void frm_AddProducts_Load(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            var result = await client.GetAsync<OperationResult<List<CategorieDTO>>>(RouteConstants.GetCategori);
+            var result = await client.GetAsync<OperationResult<List<CategorieDTO>>>(ApiRoutes.GetCategori);
             cmb_Categorie.DataSource = result.Data;
             cmb_Categorie.DisplayMember = "Name";
             cmb_Categorie.ValueMember = "Id";

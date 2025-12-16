@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using SabzMarket.Http;
 using SabzMarket.Share;
 using SabzMarket.Share.Models;
 using SabzMarket.Share.ViewModels;
@@ -45,7 +46,7 @@ namespace SabzMarket
         public async Task SetUserHeaderInfo()
         {
             var client = HttpClientHelper.Instance;
-            string route = string.Format(RouteConstants.GetSellerByUsername, CurrentUser.UserName);
+            string route = string.Format(ApiRoutes.GetSellerByUsername, CurrentUser.UserName);
             var seller = await client.GetAsync<OperationResult<SellerFullViewModel>>(route);
             if (seller == null)
             {
@@ -65,7 +66,8 @@ namespace SabzMarket
                 Application.Exit();
                 return;
             }
-            CurrentUser.Id = seller.Data.Id;
+            CurrentUser.SellerId = seller.Data.Id;
+            CurrentUser.UserId=seller.Data.UserId;
             lbl_Name.Text = $"{seller.Data.FirstName} {seller.Data.LastName}";
             lbl_UserName.Text = seller.Data.Username;
             pb_Profile.LoadAsync(seller.Data.ProfileImage);
@@ -120,7 +122,7 @@ namespace SabzMarket
 
         private async void RefreshProduct(object? sender, EventArgs e)
         {
-            await GetProduct(CurrentUser.Id);
+            await GetProduct(CurrentUser.SellerId);
             if (ProductDTOs != null)
                 RenderOrders(ProductDTOs);
         }
@@ -157,7 +159,7 @@ namespace SabzMarket
             if (ShowInfoWarning(Messages.ConfirmDeleteProduct) !=DialogResult.Yes)
                 { return; }
             var client = HttpClientHelper.Instance;
-            var rout = string.Format(RouteConstants.DeleteProduct, e.Product.Id);
+            var rout = string.Format(ApiRoutes.DeleteProduct, e.Product.Id);
            var result=await client.GetAsync<OperationResult>(rout);
             if (!result.Success)
             {
@@ -178,7 +180,7 @@ namespace SabzMarket
         {
             var client = HttpClientHelper.Instance;
             string rout = string
-                .Format(RouteConstants
+                .Format(ApiRoutes
                 .GetProductBySellerId, sellerId);
             var result = await client.GetAsync<OperationResult<List<ProductDTO>>>(rout);
             if (result == null)

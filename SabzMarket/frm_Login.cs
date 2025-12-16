@@ -1,4 +1,5 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Http;
+using SabzMarket.Share;
 using SabzMarket.Share.Models;
 using SabzMarket.Share.ViewModels;
 using System;
@@ -28,7 +29,7 @@ namespace SabzMarket
                 Password1 = txt_Password.Text
             };
             var client = HttpClientHelper.Instance;
-            var result = await client.PostAsync<OperationResult, UserViewModel>(RouteConstants.Login, user);
+            var result = await client.PostAsync<OperationResult, UserViewModel>(ApiRoutes.Login, user);
             
             if (result == null)
             {
@@ -48,7 +49,7 @@ namespace SabzMarket
             }
             CurrentUser.UserName = txt_UserName.Text;
             string userName = Uri.EscapeDataString(txt_UserName.Text);
-            var rout = string.Format(RouteConstants.CheckUserInSeller, userName);
+            var rout = string.Format(ApiRoutes.CheckUserInSeller, userName);
             var result1 = await client.GetAsync<OperationResult>(rout);
             if (result1 == null)
             {

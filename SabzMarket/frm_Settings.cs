@@ -1,4 +1,5 @@
-﻿using SabzMarket.Share;
+﻿using SabzMarket.Http;
+using SabzMarket.Share;
 using SabzMarket.Share.Models;
 using SabzMarket.Share.Requests;
 using SabzMarket.Share.ViewModels;
@@ -52,14 +53,16 @@ namespace SabzMarket
         {
             var client = HttpClientHelper.Instance;
             string username = Uri.UnescapeDataString(CurrentUser.UserName!);
-            string route = string.Format(RouteConstants.GetSellerByUsername, username);
+            string route = string.Format(ApiRoutes.GetSellerByUsername, username);
             var seller = await client
                 .GetAsync<OperationResult<SellerFullViewModel>>(route);
+
             if (seller == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
+
             if (!seller.Success)
             {
                 if (!seller.Result)
@@ -70,6 +73,7 @@ namespace SabzMarket
                 ShowInfo(seller.Message!);
                 return;
             }
+
             pb_Profile.LoadAsync(seller.Data.ProfileImage);
             pathImage = seller.Data.ProfileImage!;
             txt_FirstName.Text = seller.Data.FirstName;
@@ -86,9 +90,10 @@ namespace SabzMarket
         private async void btn_Update_Click(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            string route = string.Format(RouteConstants.UpdateSeller, CurrentUser.UserName);
+            string route = string.Format(ApiRoutes.UpdateSeller, CurrentUser.UserName);
             UserViewModel userViewModel = new UserViewModel
             {
+                Id = CurrentUser.UserId,
                 FirstName = txt_FirstName.Text,
                 LastName = txt_LastName.Text,
                 Phone = txt_Phone.Text,
@@ -99,6 +104,7 @@ namespace SabzMarket
             };
             SellerPartialViewModel sellerPartial = new SellerPartialViewModel
             {
+                Id= CurrentUser.SellerId,
                 Address = txt_Address.Text,
                 Username = txt_UserName.Text,
                 ProfileImage = pathImage,

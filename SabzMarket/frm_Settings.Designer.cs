@@ -396,6 +396,9 @@
             Controls.Add(txt_FirstName);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MaximumSize = new Size(533, 755);
+            MinimumSize = new Size(533, 0);
             Name = "frm_Settings";
             Text = "تنظیمات";
             Load += frm_Settings_Load;
