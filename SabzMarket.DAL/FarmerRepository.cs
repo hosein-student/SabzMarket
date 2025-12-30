@@ -54,6 +54,7 @@ namespace SabzMarket.DAL
             {
                 var result = await _dbContext
                     .Farmers
+                    .AsNoTracking()
                     .Include(x => x.User)
                     .Where(f => f.User!.UserName == username)
                     .Select(f => new FarmerDTO()
@@ -125,7 +126,11 @@ namespace SabzMarket.DAL
         {
             try
             {
-                var result = await _dbContext.Farmers.AsNoTracking().Where(f => f.User!.UserName == username).AnyAsync();
+                var result = await _dbContext
+                    .Farmers
+                    .AsNoTracking()
+                    .Where(f => f.User!.UserName == username)
+                    .AnyAsync();
                 return OperationResult.SuccessedResult(result);
             }
             catch (Exception ex)

@@ -79,7 +79,7 @@ namespace SabzMarket.BLL
             return OperationResult<FarmerDTO>.SuccessedResult(result.Data);
         }
 
-        public async Task<OperationResult> UpdateAsync(FarmerFullViweModel farmerViewModel,string username)
+        public async Task<OperationResult> UpdateAsync(FarmerSummaryViewModel farmerViewModel,string username)
         {
             if (!farmerViewModel.IsValid)
             {
