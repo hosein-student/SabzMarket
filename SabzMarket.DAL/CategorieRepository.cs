@@ -12,7 +12,7 @@ namespace SabzMarket.DAL
 {
     public class CategorieRepository : ICategorieRepository
     {
-        public readonly SabzMarketDbContext _context;
+        private readonly SabzMarketDbContext _context;
         public CategorieRepository(SabzMarketDbContext context) 
         {
             _context = context;
