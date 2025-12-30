@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SabzMarket.DAL;
 
@@ -11,9 +12,11 @@ using SabzMarket.DAL;
 namespace SabzMarket.DAL.Migrations
 {
     [DbContext(typeof(SabzMarketDbContext))]
-    partial class SabzMarketDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251227153227_CreateCartItem")]
+    partial class CreateCartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +36,10 @@ namespace SabzMarket.DAL.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("FarmerId")
+                    b.Property<int>("FarmerId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("FarmerId1")
                         .HasColumnType("bigint");
 
                     b.Property<long>("ProductId")
@@ -44,7 +50,7 @@ namespace SabzMarket.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FarmerId");
+                    b.HasIndex("FarmerId1");
 
                     b.HasIndex("ProductId");
 
@@ -429,7 +435,7 @@ namespace SabzMarket.DAL.Migrations
                 {
                     b.HasOne("SabzMarket.DAL.Entities.Farmer", "Farmer")
                         .WithMany()
-                        .HasForeignKey("FarmerId")
+                        .HasForeignKey("FarmerId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
