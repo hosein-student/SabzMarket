@@ -45,7 +45,10 @@ builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IProductOrderDetailHelperService, ProductOrderDetailHelperService>();
 builder.Services.AddScoped<IFarmerRepository,FarmerRepository>();
 builder.Services.AddScoped<IFarmerService, FarmerService>();
-
+builder.Services.AddScoped<IFeaturedSellerSevice, FeaturedSellerSevice>();
+builder.Services.AddScoped<IFeaturedSellerRepository, FeaturedSellerRepository>();
+builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+builder.Services.AddScoped<ICartItemService, CartItemService>();
 
 
 //builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
