@@ -13,5 +13,7 @@ namespace Application.Interfaces.Services
         Task<OperationResult> CheckUserExistsInSellerAsync(string username);
         Task<OperationResult<SellerFullViewModel>> GetSellerByUsernameAsync(string username);
         Task<OperationResult> UpdateAsync(string username, UserViewModel userViewModel, SellerPartialViewModel sellerPartialViewModel);
+        Task<OperationResult<List<SellerFullViewModel>>> GetByPhoneNumberAsync(string phone);
+        Task<OperationResult<SellerFullViewModel>> GetByIdAsync(long Id);
     }
 }

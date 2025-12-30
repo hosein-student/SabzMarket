@@ -12,5 +12,7 @@ namespace Application.Interfaces.Repositories
         Task<OperationResult> UserExistsInSellerAsync(string username);
         Task<OperationResult<SellerDTO>> SelectByUsernameAsync(string username);
         Task<OperationResult>UpdateAsync(UserDTO userDto,SellerDTO sellerDto);
+        Task<OperationResult<List<SellerDTO>>> SelectByPhoneNumberAsync(string phone);
+        Task<OperationResult<SellerDTO>> SelectByIdAsync(long id);
     }
 }
