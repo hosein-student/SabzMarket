@@ -39,7 +39,7 @@ namespace SabzMarket.BLL
             return OperationResult.SuccessedResult();
         }
 
-        public async Task<OperationResult> IncreaseNumber(long id, int number)
+        public async Task<OperationResult> IncreaseNumberAsync(long id, int number)
         {
             var result = await _productRepository.IncreaseNumberAsync(id, number);
 
