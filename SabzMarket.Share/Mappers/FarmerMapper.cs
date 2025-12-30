@@ -84,6 +84,39 @@ namespace SabzMarket.Share.Mappers
                 LastName = farmerDTO.LastName,
             };
         }
-
+        public static FarmerSummaryViewModel ToFarmerSummaryViewModel(this FarmerDTO farmerDTO)
+        {
+            return new FarmerSummaryViewModel()
+            {
+                Address = farmerDTO.Address!,
+                CodePosti = farmerDTO.CodePosti,
+                Id = farmerDTO.Id,
+                ProfileImage = farmerDTO.ProfileImage,
+                UserId = farmerDTO.UserId,
+                Email = farmerDTO.Email,
+                UserName = farmerDTO.UserName,
+                Phone = farmerDTO.Phone,
+                FirstName = farmerDTO.FirstName,
+                LastName = farmerDTO.LastName,
+                Password= farmerDTO.Password
+            };
+        }
+        public static FarmerDTO ToFarmerDTO(this FarmerSummaryViewModel FarmerViewModel)
+        {
+            return new FarmerDTO()
+            {
+                Address = FarmerViewModel.Address!,
+                CodePosti = FarmerViewModel.CodePosti,
+                Id = FarmerViewModel.Id,
+                ProfileImage = FarmerViewModel.ProfileImage,
+                UserId = FarmerViewModel.UserId,
+                Email = FarmerViewModel.Email,
+                UserName = FarmerViewModel.UserName,
+                Phone = FarmerViewModel.Phone,
+                FirstName = FarmerViewModel.FirstName,
+                LastName = FarmerViewModel.LastName,
+                Password = FarmerViewModel.Password,
+            };
+        }
     }
 }
