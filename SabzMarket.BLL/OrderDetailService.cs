@@ -32,7 +32,7 @@ namespace SabzMarket.BLL
                 var errorResult = await _errorService.LogErrorAsync(error);
                 return OperationResult.Failed(errorResult.Message!.ErrorMessage());
             }
-            var result1 = await _productOrderDetailHelperService.IncreaseNumber(productId, number);
+            var result1 = await _productOrderDetailHelperService.IncreaseNumberAsync(productId, number);
             if (!result1.Success)
             {
                 return result1;
