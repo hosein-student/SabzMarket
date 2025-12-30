@@ -31,9 +31,9 @@ namespace SabzMarket.API.Controllers
             return result;
         }
         [HttpPost]
-        public async Task<OperationResult> UpdateAsync([FromBody]FarmerFullViweModel farmerViewModel,string username)
+        public async Task<OperationResult> UpdateAsync([FromBody] FarmerSummaryViewModel farmerViewModel, string username)
         {
-            var result=await _farmerService.UpdateAsync(farmerViewModel,username);
+            var result=await _farmerService.UpdateAsync(farmerViewModel, username);
             return result;
         }
 
