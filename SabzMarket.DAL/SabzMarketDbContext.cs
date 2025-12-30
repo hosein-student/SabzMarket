@@ -24,6 +24,8 @@ namespace SabzMarket.DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Farmer> Farmers { get; set; }
         public DbSet<ErrorLog> ErrorLogs { get; set; }
+        public DbSet<FeaturedSeller> FeaturedSellers {  get; set; }
+        public DbSet<CartItem> CartItems { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -63,8 +65,10 @@ namespace SabzMarket.DAL
                 .WithMany()
                 .HasForeignKey(c => c.ToUserId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+            
+            modelBuilder.Entity<FeaturedSeller>()
+                .HasIndex(x => x.SellerId)
+                .IsUnique();
         }
-
     }
 }
