@@ -36,7 +36,12 @@ namespace SabzMarket.API.Controllers
             var result = await _productService.UpdateAsync(product);
             return result;
         }
-
+        [HttpGet]
+        public async Task<OperationResult<List<ProductDTO>>> GetByNameAsync(string search)
+        {
+            var result=await _productService.GetByNameAsync(search);
+            return result;  
+        }
     }
 }
 
