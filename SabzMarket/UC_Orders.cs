@@ -18,7 +18,7 @@ namespace SabzMarket
         {
             InitializeComponent();
         }
-        public OrderDTO OrderDTO { get; set; }
+        public OrderDTO Order { get; set; }
         public event EventHandler<BuyerDetailsEventArgs> ShowBuyerDetails;
         private void pb_Image_LoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
@@ -30,23 +30,23 @@ namespace SabzMarket
 
         private void UC_Orders_Load(object sender, EventArgs e)
         {
-            lbl_Name.Text = $"{OrderDTO.farmer!.FirstName} {OrderDTO.farmer!.LastName}";
-            lbl_Number.Text = OrderDTO.product!.Number.ToString();
-            lbl_ProductName.Text = OrderDTO.product.Name;
-            pb_Image.Load(OrderDTO.product.ImageProduct);
+            lbl_Name.Text = $"{Order.farmer!.FirstName} {Order.farmer!.LastName}";
+            lbl_Number.Text = Order.product!.Number.ToString();
+            lbl_ProductName.Text = Order.product.Name;
+            pb_Image.Load(Order.product.ImageProduct);
         }
 
         private void btn_Details_Click(object sender, EventArgs e)
         {
             BuyerDetailsEventArgs buyerDetails = new BuyerDetailsEventArgs();
-            buyerDetails.FarmerViewModel = OrderDTO.farmer;
+            buyerDetails.FarmerViewModel = Order.farmer;
             ShowBuyerDetails?.Invoke(this, buyerDetails);
         }
         public event EventHandler<OrderDetailEventArgs> RejectOrder;
         public event EventHandler<OrderDetailEventArgs> SentOrder;
         private void btn_Reject_Click(object sender, EventArgs e)
         {
-            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO,this);
+            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(Order,this);
             RejectOrder?.Invoke(this, orderDetail);
         }
         public void UpdateStatusUI(string status)
@@ -70,7 +70,7 @@ namespace SabzMarket
         }
         private void btn_Sent_Click(object sender, EventArgs e)
         {
-            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(OrderDTO,this);
+            OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(Order,this);
             SentOrder?.Invoke(this, orderDetail);
         }
     }
