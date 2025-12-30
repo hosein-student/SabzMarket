@@ -13,6 +13,6 @@ namespace Application.Interfaces.Services
         public Task<OperationResult> CheckUserExistsInFarmerAsync(string username);
         public Task<OperationResult> CreateFarmerAsync(string username, FarmerPartiaViewModel farmer);
         Task<OperationResult<FarmerDTO>> GetByUsernameAsync(string username);
-        public Task<OperationResult> UpdateAsync(FarmerFullViweModel farmerViewModel,string username);
+        public Task<OperationResult> UpdateAsync(FarmerSummaryViewModel farmerViewModel, string username);
     }
 }
