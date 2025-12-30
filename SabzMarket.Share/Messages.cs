@@ -10,6 +10,9 @@ namespace SabzMarket.Share
     {
         public const string InternetErrorMessage = "اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید. در صورت تکرار مشکل، با پشتیبانی تماس بگیرید.";
         public const string Url = "https://";
+        public const string pleaseWaitText = "صبر کنید";
+        public const string LoginText = "ورود";
+        public const string SingUpText = "ثبت نام";
         //======================================================================================================
         public const string successSignUp1 = "ثبت نام اولیه شما انجام شد";
         public const string failedSignUp1 = "ثبت نام اولیه شما انجام نشد ";
@@ -57,5 +60,8 @@ namespace SabzMarket.Share
         public const string EnterCodParvaneBHB = "شماره پروانه بهره برداری را درست وارد کنید";
         public const string EnterCodePosti = "کد پستی را درست وارد کنید";
         public const string NotValidNationalCode = "کد ملی معتبر نیست";
+        //====================================================================================================================
+        public const string successAddToCart = "با موفقیت به سبد خرید اضافه شد";
+        public const string RemoveAddToCart = "با موفقیت از سبد خرید حذف شد";
     }
 }
