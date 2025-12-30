@@ -19,23 +19,25 @@ using SabzMarket.Http;
 
 namespace SabzMarket
 {
-    public partial class frm_SignUp :FormStyle
+    public partial class frm_SignUp : FormStyle
     {
-        
+
         public frm_SignUp()
         {
             InitializeComponent();
         }
-        
+
 
         private void frm_SignUp_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 
-        private  async void btn_SignUp_Click(object sender, EventArgs e)
+        private async void btn_SignUp_Click(object sender, EventArgs e)
         {
+            btn_SignUp.Enabled = false;
+            btn_SignUp.Text = Messages.pleaseWaitText;
             var userviewmodel = new UserViewModel()
             {
                 FirstName = txt_FirstName.Text,
@@ -49,23 +51,31 @@ namespace SabzMarket
             if (!userviewmodel.IsValid)
             {
                 ShowInfo(userviewmodel.ErrorMessage);
+                btn_SignUp.Enabled = true;
+                btn_SignUp.Text = Messages.SingUpText;
                 return;
             }
             var client = HttpClientHelper.Instance;
             var result = await client.PostAsync<OperationResult, UserViewModel>(ApiRoutes.SignUp, userviewmodel);
             if (result == null)
             {
-                    ShowInfoError(Messages.InternetErrorMessage);
+                ShowInfoError(Messages.InternetErrorMessage);
+                btn_SignUp.Enabled = true;
+                btn_SignUp.Text = Messages.SingUpText;
                 return;
             }
-            if(!result!.Success)
+            if (!result!.Success)
             {
                 if (!result.Result)
                 {
                     ShowInfoError(result.Message!);
+                    btn_SignUp.Enabled = true;
+                    btn_SignUp.Text = Messages.SingUpText;
                     return;
                 }
                 ShowInfo(result.Message!);
+                btn_SignUp.Enabled = true;
+                btn_SignUp.Text = Messages.SingUpText;
                 return;
             }
             ShowInfo(result.Message!);

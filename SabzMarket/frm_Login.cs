@@ -23,6 +23,8 @@ namespace SabzMarket
 
         private async void btn_Login_Click(object sender, EventArgs e)
         {
+            btn_Login.Enabled = false;
+            btn_Login.Text = Messages.pleaseWaitText;
             UserViewModel user = new UserViewModel
             {
                 UserName = txt_UserName.Text,
@@ -34,6 +36,8 @@ namespace SabzMarket
             if (result == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
+                btn_Login.Enabled = true;
+                btn_Login.Text = Messages.LoginText;
                 return;
             }
 
@@ -42,9 +46,13 @@ namespace SabzMarket
                 if (result.Result)
                 {
                     ShowInfo(result.Message!);
+                    btn_Login.Enabled = true;
+                    btn_Login.Text = Messages.LoginText;
                     return;
                 }
                     ShowInfoError(result.Message!);
+                btn_Login.Enabled = true;
+                btn_Login.Text = Messages.LoginText;
                 return;
             }
             CurrentUser.UserName = txt_UserName.Text;
@@ -54,6 +62,8 @@ namespace SabzMarket
             if (result1 == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
+                btn_Login.Enabled = true;
+                btn_Login.Text = Messages.LoginText;
                 return;
             }
             if (!result1!.Success)
@@ -66,6 +76,8 @@ namespace SabzMarket
                     return;
                 }
                     ShowInfoError(result1.Message!);
+                btn_Login.Enabled = true;
+                btn_Login.Text = Messages.LoginText;
                 return;
             }
                 frm_Home frm_Home = new frm_Home();
