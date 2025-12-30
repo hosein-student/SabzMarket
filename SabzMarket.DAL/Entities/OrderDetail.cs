@@ -17,6 +17,8 @@ namespace SabzMarket.DAL.Entities
         public long ProductId { get; set; }
         public virtual Product? Product { get; set; }
         [Required]
+        public int Price { get; set; }
+        [Required]
         public int Number { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
