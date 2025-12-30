@@ -11,8 +11,10 @@ namespace SabzMarket.Share
         public const string SignUp = "User/SignUp";
         public const string Login = "User/Login";
         public const string SellerFillProfile = "Seller/CreateSelller";
+        public const string GetSellerByPhoneNumber = "Seller/GetByPhoneNumber?phone={0}";
         public const string CheckUserInSeller = "Seller/CheckUserInSeller?username={0}";
         public const string GetSellerByUsername = "Seller/GetSellerByUsername?username={0}";
+        public const string GetSellerById = "Seller/GetById?id={0}";
         public const string UpdateSeller = "Seller/Update?username={0}";
         public const string GetCategori = "Categori/GetAllCategories";
         public const string CreateProduct = "Product/CreateProduct";
@@ -25,10 +27,18 @@ namespace SabzMarket.Share
         public const string GetProductBySellerId = "Product/GetProductsBySeller?sellerId={0}";
         public const string DeleteProduct = "Product/Delete?id={0}";
         public const string UpdateProduct = "Product/Update";
+        public const string GetProductByName = "Product/GetByName?search={0}";
         //================================================================
         public const string CheckUserInFarmer = "Farmer/CheckUserExistsInFarmer?username={0}";
         public const string CreateFarmer = "Farmer/CreateFarmer?username={0}";
         public const string GetFarmerFullByUsername = "Farmer/GetByUsername?username={0}";
         public const string UpdateFarmer = "Farmer/Update?username={0}";
+        //================================================================================================
+        public const string GetFeaturedSeller = "FeaturedSeller/GetAllSeller";
+        //================================================================================================
+        public const string RemoveCartItem = "CartItem/Delete?cartId={0}&productId={1}&productNumber={2}";
+        public const string AddToCart = "CartItem/AddToCart";
+        public const string DecreaseQuantity = "CartItem/DecreaseQuantity?productId={0}&farmerId={1}";
+        public const string SelectCartByFarmerId = "CartItem/GetByFarmerId?farmerId={0}";
     }
 }
