@@ -26,7 +26,7 @@ namespace SabzMarket
             foreach (var order in orders)
             {
                 UC_HistoryOrders uC_History = new UC_HistoryOrders();
-                uC_History.order = order;
+                uC_History.Order = order;
                 uC_History.ShowBuyerDetails += UC_History_ShowBuyerDetails;
                 flowLayoutPanel1.Controls.Add(uC_History);
             }
@@ -67,7 +67,7 @@ namespace SabzMarket
         private async void frm_History_Load(object sender, EventArgs e)
         {
             await GetOrder();
-            if (FullOrsers != null)
+            if (FullOrsers != null || FullOrsers!.Count != 0)
                 RenderOrders(FullOrsers);
         }
 
@@ -76,12 +76,12 @@ namespace SabzMarket
             if (txt_Search.Text == "")
             {
                 await GetOrder();
-                if (FullOrsers != null)
+                if (FullOrsers != null || FullOrsers!.Count != 0)
                     RenderOrders(FullOrsers);
             }
             else
             {
-                if (FullOrsers != null)
+                if (FullOrsers != null || FullOrsers!.Count != 0)
                 {
                     RenderOrders(FullOrsers
                         .Where(o => o

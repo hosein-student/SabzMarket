@@ -123,7 +123,7 @@ namespace SabzMarket
         private async void RefreshProduct(object? sender, EventArgs e)
         {
             await GetProduct(CurrentUser.SellerId);
-            if (ProductDTOs != null)
+            if (ProductDTOs != null||ProductDTOs!.Count!=0)
                 RenderOrders(ProductDTOs);
         }
 
@@ -137,7 +137,7 @@ namespace SabzMarket
             foreach (var product in products)
             {
                 UC_Products uC_Products = new UC_Products();
-                uC_Products.ProductDTO = product;
+                uC_Products.Product = product;
                 uC_Products.Delete += UC_Products_Delete;
                 uC_Products.Edit += UC_Products_Edit;
                 flp_ShowProduct.Controls.Add(uC_Products);
@@ -158,6 +158,7 @@ namespace SabzMarket
            
             if (ShowInfoWarning(Messages.ConfirmDeleteProduct) !=DialogResult.Yes)
                 { return; }
+
             var client = HttpClientHelper.Instance;
             var rout = string.Format(ApiRoutes.DeleteProduct, e.Product.Id);
            var result=await client.GetAsync<OperationResult>(rout);

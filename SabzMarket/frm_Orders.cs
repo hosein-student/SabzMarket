@@ -61,7 +61,7 @@ namespace SabzMarket
         private async void frm_Orders_Load(object sender, EventArgs e)
         {
             await GetOrder();
-            if (FullOrsers != null)
+            if (FullOrsers != null||FullOrsers!.Count!=0)
                 RenderOrders(FullOrsers);
         }
 
@@ -82,7 +82,7 @@ namespace SabzMarket
                 uC_Orders.ShowBuyerDetails += Orders_ShowBuyerDetails1;
                 uC_Orders.SentOrder += UC_Orders_SentOrder;
                 uC_Orders.RejectOrder += UC_Orders_RejectOrder;
-                uC_Orders.OrderDTO = order;
+                uC_Orders.Order = order;
                 flowLayoutPanel1.Controls.Add(uC_Orders);
             }
         }
@@ -137,12 +137,12 @@ namespace SabzMarket
             if (txt_Search.Text == "")
             {
                 await GetOrder();
-                if (FullOrsers != null)
+                if (FullOrsers != null || FullOrsers!.Count != 0)
                     RenderOrders(FullOrsers);
             }
             else
             {
-                if (FullOrsers != null)
+                if (FullOrsers != null||FullOrsers!.Count!=0)
                 {
                     RenderOrders(FullOrsers
                         .Where(o => o
