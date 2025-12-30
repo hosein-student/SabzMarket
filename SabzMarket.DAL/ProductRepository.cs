@@ -106,6 +106,29 @@ namespace SabzMarket.DAL
 
         }
 
+        public async Task<OperationResult<List<ProductDTO>>> SelectByNameAsync(string search)
+        {
+            try
+            {
+               var result=await _Context.Products.Where(x => x.ProductName!.Contains(search)&&x.IsDeleted==false).Select(x => new ProductDTO
+                {
+                    CategoryId=x.CategorieId,
+                    Description=x.Description,
+                    Id = x.Id,
+                    ImageProduct=x.ImageProduct,
+                    Name=x.ProductName,
+                    Number = x.Number,
+                    Price=x.Price,
+                    SellerId = x.SellerId
+                }).ToListAsync();
+                return OperationResult<List<ProductDTO>>.SuccessedResult(result);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<List<ProductDTO>>.Failed(GetType().Name, ex);
+            }
+        }
+
         public async Task<OperationResult> UpdateAsync(ProductDTO product)
         {
             try

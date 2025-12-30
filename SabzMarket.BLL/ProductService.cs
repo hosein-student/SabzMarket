@@ -78,6 +78,18 @@ namespace SabzMarket.BLL
             return OperationResult.FailedResult(Messages.ProductHasUnsentOrders);
         }
 
+        public async Task<OperationResult<List<ProductDTO>>> GetByNameAsync(string search)
+        {
+            var result = await _productRepository.SelectByNameAsync(search);
+            if (!result.Success)
+            {
+                var erroe = result.Exception!.ExceptionToErrorDTO(result.Message!);
+                var errorResult=await _errorService.LogErrorAsync(erroe);
+                return OperationResult<List<ProductDTO>>.Failed(errorResult.Message!.ErrorMessage());
+            }
+            return OperationResult<List<ProductDTO>>.SuccessedResult(result.Data);
+        }
+
         public async Task<OperationResult<List<ProductDTO>>> GetProductsBySellerAsync(long sellerId)
         {
             var result = await _productRepository.GetAllBySellerAsync(sellerId);
