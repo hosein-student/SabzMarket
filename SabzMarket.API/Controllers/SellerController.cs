@@ -6,7 +6,7 @@ using SabzMarket.Share.ViewModels;
 
 namespace SabzMarket.API.Controllers
 {
-    public class SellerController:BaseController
+    public class SellerController : BaseController
     {
         private readonly ISellerService _sellerService;
         public SellerController(ISellerService sellerService)
@@ -14,30 +14,42 @@ namespace SabzMarket.API.Controllers
             _sellerService = sellerService;
         }
         [HttpPost]
-        public async Task<OperationResult> CreateSelllerAsync([FromBody]SellerPartialViewModel sellerViewMode2)
+        public async Task<OperationResult> CreateSelllerAsync([FromBody] SellerPartialViewModel sellerViewMode2)
         {
-            var result=await _sellerService
+            var result = await _sellerService
                 .CreateSelllerAsync(sellerViewMode2);
             return result;
         }
         [HttpGet]
         public async Task<OperationResult> CheckUserInSellerAsync(string username)
         {
-           var result=await _sellerService
-                .CheckUserExistsInSellerAsync(username);
+            var result = await _sellerService
+                 .CheckUserExistsInSellerAsync(username);
             return result;
         }
         [HttpGet]
         public async Task<OperationResult<SellerFullViewModel>> GetSellerByUsernameAsync(string username)
         {
-            var result=await _sellerService.GetSellerByUsernameAsync(username);
+            var result = await _sellerService.GetSellerByUsernameAsync(username);
             return result;
 
         }
         [HttpPost]
-        public async Task<OperationResult> UpdateAsync(string username, [FromBody]RequestPayload requestPayload)
+        public async Task<OperationResult> UpdateAsync(string username, [FromBody] RequestPayload requestPayload)
         {
-           var result=await _sellerService.UpdateAsync(username, requestPayload.UserViewModel , requestPayload.SellerPartial);
+            var result = await _sellerService.UpdateAsync(username, requestPayload.UserViewModel, requestPayload.SellerPartial);
+            return result;
+        }
+        [HttpGet]
+        public async Task<OperationResult<List<SellerFullViewModel>>> GetByPhoneNumberAsync(string phone)
+        {
+            var result = await _sellerService.GetByPhoneNumberAsync(phone);
+            return result;
+        }
+        [HttpGet]
+        public async Task<OperationResult<SellerFullViewModel>> GetByIdAsync(long id)
+        {
+            var result=await _sellerService.GetByIdAsync(id);
             return result;
         }
     }
