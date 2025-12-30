@@ -14,7 +14,7 @@ namespace SabzMarket
 {
     public partial class UC_HistoryOrders : UserControl
     {
-        public OrderDTO order { get; set; }
+        public OrderDTO Order { get; set; }
         public UC_HistoryOrders()
         {
             InitializeComponent();
@@ -22,17 +22,17 @@ namespace SabzMarket
         public event EventHandler<BuyerDetailsEventArgs> ShowBuyerDetails;
         private void UC_HistoryOrders_Load(object sender, EventArgs e)
         {
-            pb_Image.LoadAsync(order.product!.ImageProduct);
-            lbl_Name.Text = $"{order.farmer!.FirstName} {order.farmer.LastName}";
-            lbl_Number.Text = order.product.Number.ToString();
-            lbl_Product.Text = order.product.Name;
-            lbl_Status.Text = order.Status==OrderStatus.Sent.ToString()?"ارسال شده":"رد شده";
+            pb_Image.LoadAsync(Order.product!.ImageProduct);
+            lbl_Name.Text = $"{Order.farmer!.FirstName} {Order.farmer.LastName}";
+            lbl_Number.Text = Order.product.Number.ToString();
+            lbl_Product.Text = Order.product.Name;
+            lbl_Status.Text = Order.Status==OrderStatus.Sent.ToString()?"ارسال شده":"رد شده";
         }
 
         private void btn_Details_Click(object sender, EventArgs e)
         {
             BuyerDetailsEventArgs buyerDetails = new BuyerDetailsEventArgs();
-            buyerDetails.FarmerViewModel = order.farmer;
+            buyerDetails.FarmerViewModel = Order.farmer;
             ShowBuyerDetails?.Invoke(this, buyerDetails);
         }
 
