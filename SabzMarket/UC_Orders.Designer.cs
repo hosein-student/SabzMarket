@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lbl_Name = new Label();
             lbl_ProductName = new Label();
             lbl_Number = new Label();
@@ -42,6 +42,7 @@
             pb_Image = new PictureBox();
             btn_Details = new MyButton();
             btn_Reject = new MyButton();
+            lbl_NumberTitle = new Label();
             ((System.ComponentModel.ISupportInitialize)pb_Image).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             lbl_Name.AutoSize = true;
             lbl_Name.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Name.Location = new Point(441, 12);
+            lbl_Name.Location = new Point(377, 12);
             lbl_Name.Name = "lbl_Name";
             lbl_Name.Size = new Size(29, 25);
             lbl_Name.TabIndex = 0;
@@ -69,7 +70,7 @@
             // 
             lbl_Number.AutoSize = true;
             lbl_Number.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Number.Location = new Point(427, 152);
+            lbl_Number.Location = new Point(377, 151);
             lbl_Number.Name = "lbl_Number";
             lbl_Number.Size = new Size(43, 25);
             lbl_Number.TabIndex = 0;
@@ -89,7 +90,7 @@
             // btn_Sent
             // 
             btn_Sent.BorderRadius = 8;
-            btn_Sent.CustomizableEdges = customizableEdges1;
+            btn_Sent.CustomizableEdges = customizableEdges7;
             btn_Sent.DisabledState.BorderColor = Color.DarkGray;
             btn_Sent.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Sent.DisabledState.FillColor = Color.LightGray;
@@ -102,7 +103,7 @@
             btn_Sent.Margin = new Padding(3, 4, 3, 4);
             btn_Sent.Name = "btn_Sent";
             btn_Sent.PressedColor = Color.DarkGreen;
-            btn_Sent.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btn_Sent.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btn_Sent.Size = new Size(161, 51);
             btn_Sent.TabIndex = 1;
             btn_Sent.Text = "ارسال شده";
@@ -122,7 +123,7 @@
             // btn_Details
             // 
             btn_Details.BorderRadius = 8;
-            btn_Details.CustomizableEdges = customizableEdges3;
+            btn_Details.CustomizableEdges = customizableEdges9;
             btn_Details.DisabledState.BorderColor = Color.DarkGray;
             btn_Details.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Details.DisabledState.FillColor = Color.LightGray;
@@ -135,7 +136,7 @@
             btn_Details.Margin = new Padding(3, 4, 3, 4);
             btn_Details.Name = "btn_Details";
             btn_Details.PressedColor = Color.DarkGreen;
-            btn_Details.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btn_Details.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btn_Details.Size = new Size(161, 52);
             btn_Details.TabIndex = 3;
             btn_Details.Text = "جزئیات خریدار ";
@@ -144,7 +145,7 @@
             // btn_Reject
             // 
             btn_Reject.BorderRadius = 8;
-            btn_Reject.CustomizableEdges = customizableEdges5;
+            btn_Reject.CustomizableEdges = customizableEdges11;
             btn_Reject.DisabledState.BorderColor = Color.DarkGray;
             btn_Reject.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Reject.DisabledState.FillColor = Color.LightGray;
@@ -157,17 +158,30 @@
             btn_Reject.Margin = new Padding(3, 4, 3, 4);
             btn_Reject.Name = "btn_Reject";
             btn_Reject.PressedColor = Color.DarkGreen;
-            btn_Reject.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btn_Reject.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btn_Reject.Size = new Size(161, 51);
             btn_Reject.TabIndex = 4;
             btn_Reject.Text = "رد کردن";
             btn_Reject.Click += btn_Reject_Click;
+            // 
+            // lbl_NumberTitle
+            // 
+            lbl_NumberTitle.AutoSize = true;
+            lbl_NumberTitle.BackColor = Color.LightCyan;
+            lbl_NumberTitle.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_NumberTitle.ForeColor = Color.CornflowerBlue;
+            lbl_NumberTitle.Location = new Point(334, 151);
+            lbl_NumberTitle.Name = "lbl_NumberTitle";
+            lbl_NumberTitle.Size = new Size(37, 25);
+            lbl_NumberTitle.TabIndex = 5;
+            lbl_NumberTitle.Text = "عدد";
             // 
             // UC_Orders
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightCyan;
+            Controls.Add(lbl_NumberTitle);
             Controls.Add(btn_Reject);
             Controls.Add(btn_Details);
             Controls.Add(pb_Image);
@@ -196,5 +210,6 @@
         private System.Windows.Forms.PictureBox pb_Image;
         private MyButton btn_Details;
         private MyButton btn_Reject;
+        private Label lbl_NumberTitle;
     }
 }
