@@ -42,10 +42,10 @@
             btnShoppingCart = new MyButon();
             myButon1 = new MyButon();
             myButon2 = new MyButon();
-            textBox1 = new TextBox();
+            txtSearch = new TextBox();
             panel1 = new Panel();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            rbtSearchProduct = new RadioButton();
+            rbtSearchSeller = new RadioButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
             pnlHamburgerMenu.SuspendLayout();
             pnlSetting.SuspendLayout();
@@ -70,6 +70,7 @@
             // 
             // pnlSetting
             // 
+            pnlSetting.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             pnlSetting.BackColor = Color.PaleGreen;
             pnlSetting.Controls.Add(btnSeting);
             pnlSetting.Controls.Add(lblSetting);
@@ -148,10 +149,11 @@
             // pnlShowProduct
             // 
             pnlShowProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlShowProduct.BackColor = Color.HotPink;
+            pnlShowProduct.BackColor = Color.Ivory;
+            pnlShowProduct.FlowDirection = FlowDirection.RightToLeft;
             pnlShowProduct.Location = new Point(0, 72);
             pnlShowProduct.Name = "pnlShowProduct";
-            pnlShowProduct.Size = new Size(1092, 661);
+            pnlShowProduct.Size = new Size(1201, 661);
             pnlShowProduct.TabIndex = 2;
             // 
             // pnlMenu
@@ -159,7 +161,7 @@
             pnlMenu.Controls.Add(btnShoppingCart);
             pnlMenu.Controls.Add(myButon1);
             pnlMenu.Dock = DockStyle.Right;
-            pnlMenu.Location = new Point(1093, 74);
+            pnlMenu.Location = new Point(1202, 74);
             pnlMenu.Name = "pnlMenu";
             pnlMenu.Size = new Size(69, 653);
             pnlMenu.TabIndex = 3;
@@ -174,6 +176,7 @@
             btnShoppingCart.Size = new Size(53, 55);
             btnShoppingCart.TabIndex = 1;
             btnShoppingCart.UseVisualStyleBackColor = false;
+            btnShoppingCart.Click += btnShoppingCart_Click;
             // 
             // myButon1
             // 
@@ -195,70 +198,74 @@
             myButon2.Size = new Size(90, 50);
             myButon2.TabIndex = 1;
             myButon2.UseVisualStyleBackColor = false;
+            myButon2.Click += myButon2_Click;
             // 
-            // textBox1
+            // txtSearch
             // 
-            textBox1.Font = new Font("Segoe UI", 12F);
-            textBox1.Location = new Point(424, 21);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(359, 34);
-            textBox1.TabIndex = 0;
+            txtSearch.Font = new Font("Segoe UI", 12F);
+            txtSearch.Location = new Point(424, 21);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(359, 34);
+            txtSearch.TabIndex = 0;
+            txtSearch.KeyDown += txtSearch_KeyDown;
             // 
             // panel1
             // 
-            panel1.Controls.Add(radioButton2);
-            panel1.Controls.Add(radioButton1);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(rbtSearchProduct);
+            panel1.Controls.Add(rbtSearchSeller);
+            panel1.Controls.Add(txtSearch);
             panel1.Controls.Add(myButon2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1162, 74);
+            panel1.Size = new Size(1271, 74);
             panel1.TabIndex = 4;
             // 
-            // radioButton2
+            // rbtSearchProduct
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Segoe UI", 11F);
-            radioButton2.Location = new Point(839, 42);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(185, 29);
-            radioButton2.TabIndex = 3;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "جستوجوی مجصول ";
-            radioButton2.UseVisualStyleBackColor = true;
+            rbtSearchProduct.AutoSize = true;
+            rbtSearchProduct.Font = new Font("Segoe UI", 11F);
+            rbtSearchProduct.Location = new Point(839, 42);
+            rbtSearchProduct.Name = "rbtSearchProduct";
+            rbtSearchProduct.Size = new Size(185, 29);
+            rbtSearchProduct.TabIndex = 3;
+            rbtSearchProduct.TabStop = true;
+            rbtSearchProduct.Text = "جستوجوی مجصول ";
+            rbtSearchProduct.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbtSearchSeller
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Segoe UI", 11F);
-            radioButton1.Location = new Point(839, 7);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(293, 29);
-            radioButton1.TabIndex = 2;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "جستوجوی فروشنده با شماره تلفن";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbtSearchSeller.AutoSize = true;
+            rbtSearchSeller.Checked = true;
+            rbtSearchSeller.Font = new Font("Segoe UI", 11F);
+            rbtSearchSeller.Location = new Point(839, 7);
+            rbtSearchSeller.Name = "rbtSearchSeller";
+            rbtSearchSeller.Size = new Size(293, 29);
+            rbtSearchSeller.TabIndex = 2;
+            rbtSearchSeller.TabStop = true;
+            rbtSearchSeller.Text = "جستوجوی فروشنده با شماره تلفن";
+            rbtSearchSeller.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Dock = DockStyle.Bottom;
             flowLayoutPanel1.Location = new Point(0, 727);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1162, 37);
+            flowLayoutPanel1.Size = new Size(1271, 37);
             flowLayoutPanel1.TabIndex = 5;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1162, 764);
+            ClientSize = new Size(1271, 764);
             Controls.Add(pnlHamburgerMenu);
             Controls.Add(pnlMenu);
             Controls.Add(btnShowMenu);
             Controls.Add(pnlShowProduct);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
+            MinimumSize = new Size(1289, 811);
             Name = "FrmMain";
             Text = "FrmMain";
             FormClosed += FrmMain_FormClosed;
@@ -290,10 +297,10 @@
         private MyButon myButon1;
         private MyButon btnShoppingCart;
         private MyButon myButon2;
-        private TextBox textBox1;
+        private TextBox txtSearch;
         private Panel panel1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton rbtSearchProduct;
+        private RadioButton rbtSearchSeller;
         private FlowLayoutPanel flowLayoutPanel1;
         // private MyButon btnSetting;
     }

@@ -73,6 +73,16 @@ namespace SabzMarketBuyer.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap defultprodect {
+            get {
+                object obj = ResourceManager.GetObject("defultprodect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap message_dots_1_ {
             get {
                 object obj = ResourceManager.GetObject("message-dots(1)", resourceCulture);

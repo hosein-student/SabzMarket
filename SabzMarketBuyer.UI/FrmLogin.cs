@@ -24,6 +24,8 @@ namespace SabzMarketBuyer.UI
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            btnLogin.Enabled = false;
+            btnLogin.Text = Messages.pleaseWaitText;
             UserViewModel user = new UserViewModel
             {
                 UserName = txtUsername.Text,
@@ -35,6 +37,8 @@ namespace SabzMarketBuyer.UI
             if (result == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
+                btnLogin.Enabled = true;
+                btnLogin.Text = Messages.LoginText;
                 return;
             }
 
@@ -43,9 +47,13 @@ namespace SabzMarketBuyer.UI
                 if (result.Result)
                 {
                     ShowInfo(result.Message!);
+                    btnLogin.Enabled = true;
+                    btnLogin.Text = Messages.LoginText;
                     return;
                 }
                 ShowInfoError(result.Message!);
+                btnLogin.Enabled = true;
+                btnLogin.Text = Messages.LoginText;
                 return;
             }
             CurrentUser.UserName = txtUsername.Text;
@@ -55,6 +63,8 @@ namespace SabzMarketBuyer.UI
             if (result2 == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
+                btnLogin.Enabled = true;
+                btnLogin.Text = Messages.LoginText;
                 return;
             }
             if (!result2!.Success)
@@ -67,6 +77,8 @@ namespace SabzMarketBuyer.UI
                     return;
                 }
                 ShowInfoError(result2.Message!);
+                btnLogin.Enabled = true;
+                btnLogin.Text = Messages.LoginText;
                 return;
             }
             FrmMain frmMain = new FrmMain();

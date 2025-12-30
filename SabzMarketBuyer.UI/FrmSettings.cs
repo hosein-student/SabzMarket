@@ -43,7 +43,7 @@ namespace SabzMarketBuyer.UI
         private async void btnSave_Click(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;
-            var farmer = new FarmerFullViweModel()
+            var farmer = new FarmerSummaryViewModel()
             {
                 Address = txtAddress.Text,
                 CodePosti = txtCodePosti.Text,
@@ -54,6 +54,8 @@ namespace SabzMarketBuyer.UI
                 UserName = txtUsername.Text,
                 Phone = txtPhone.Text,
                 ProfileImage = pathImage,
+                Id = CurrentUser.FarmerId,
+                UserId = CurrentUser.UserId
             };
             if (!farmer.IsValid)
             {
@@ -61,7 +63,12 @@ namespace SabzMarketBuyer.UI
                 return;
             }
             var rout = string.Format(ApiRoutes.UpdateFarmer, CurrentUser.UserName);
-            var result = await client.PostAsync<OperationResult, FarmerFullViweModel>(rout, farmer);
+            var result = await client.PostAsync<OperationResult, FarmerSummaryViewModel>(rout, farmer);
+            if (result == null)
+            {
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
+            }
             if (!result.Success)
             {
                 if (!result.Result)
@@ -75,7 +82,6 @@ namespace SabzMarketBuyer.UI
             ShowInfo(result.Message!);
             LoodPanel?.Invoke(this, EventArgs.Empty);
         }
-
         private async void FrmSettings_Load(object sender, EventArgs e)
         {
             var client = HttpClientHelper.Instance;

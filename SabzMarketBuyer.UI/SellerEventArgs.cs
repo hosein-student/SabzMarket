@@ -1,0 +1,14 @@
+﻿using SabzMarket.Share.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SabzMarketBuyer.UI
+{
+    public class SellerEventArgs:EventArgs
+    {
+        public long SellerId {  get; set; }
+    }
+}

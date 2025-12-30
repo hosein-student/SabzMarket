@@ -136,14 +136,164 @@ namespace SabzMarketBuyer.UI
             CurrentUser.UserId = result.Data.UserId;
             CurrentUser.FarmerId = result.Data.Id;
         }
-        private async void FrmMain_Load(object sender, EventArgs e)
+        private void RenderProduct(List<ProductDTO> products)
         {
-            await SetUserHeaderInfo();
+            pnlShowProduct.Controls.Clear();
+            foreach (var product in products)
+            {
+                UCProductMain uC_Products = new UCProductMain();
+                uC_Products.Product = product;
+                uC_Products.AddToCart += UC_Products_AddToCart1; ;
+                uC_Products.ShowSellerPage += ShowSellerPage;
+                pnlShowProduct.Controls.Add(uC_Products);
+            }
+        }
+        private async void UC_Products_AddToCart1(object? sender, ProductEventArgs<UCProductMain> e)
+        {
+            var cliet = HttpClientHelper.Instance;
+            var result = await cliet.PostAsync<OperationResult, CartItemDTO>(ApiRoutes.AddToCart, e.CartItemDTO);
+            if (result == null)
+            {
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
+            }
+            if (!result.Success)
+            {
+                ShowInfoError(result.Message!);
+                return;
+            }
+            ShowInfo(result.Message!);
+            e.uCProduct.Product.Number -= 1;
+            e.uCProduct.UCProduct_Load(null, e);
+        }
+        private void RenderSeller(List<SellerFullViewModel> sellers)
+        {
+            pnlShowProduct.Controls.Clear();
+            foreach (var seller in sellers)
+            {
+                UCSeller UC_Seller = new UCSeller();
+                UC_Seller.ShowSellerPage += ShowSellerPage;
+                UC_Seller.Sellers = seller;
+                pnlShowProduct.Controls.Add(UC_Seller);
+            }
         }
 
+        private void ShowSellerPage(object? sender, SellerEventArgs e)
+        {
+            FrmSellerPage frmSellerPage = new FrmSellerPage();
+            frmSellerPage.SellerId = e.SellerId;
+            frmSellerPage.ShowDialog();
+        }
+
+        private async void FrmMain_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            await SetUserHeaderInfo();
+            await GetFeaturedSeller();
+            if (sellers != null || sellers!.Count != 0)
+            {
+                RenderSeller(sellers);
+            }
+        }
+        List<SellerFullViewModel> sellers;
+        private async Task GetFeaturedSeller()
+        {
+            var client = HttpClientHelper.Instance;
+            var rou = ApiRoutes.GetFeaturedSeller;
+            var result = await client.GetAsync<OperationResult<List<SellerFullViewModel>>>(rou);
+            if (result == null)
+            {
+                ShowInfoError(result.Message!);
+                return;
+            }
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                }
+                ShowInfo(result.Message!);
+            }
+            sellers = result.Data;
+        }
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+        List<ProductDTO> products;
+        private async void myButon2_Click(object sender, EventArgs e)
+        {
+            var client = HttpClientHelper.Instance;
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                await GetFeaturedSeller();
+                if (sellers != null || sellers!.Count != 0)
+                {
+                    RenderSeller(sellers);
+                }
+                return;
+            }
+            if (rbtSearchProduct.Checked)
+            {
+                var routProduct = string.Format(ApiRoutes.GetProductByName, Uri.EscapeDataString(txtSearch.Text));
+                var resultProduct = await client.GetAsync<OperationResult<List<ProductDTO>>>(routProduct);
+                if (resultProduct == null)
+                {
+                    ShowInfoError(Messages.InternetErrorMessage);
+                    return;
+                }
+                if (!resultProduct.Success)
+                {
+                    if (!resultProduct.Result)
+                    {
+                        ShowInfoError(resultProduct.Message!);
+                        return;
+                    }
+                    ShowInfo(resultProduct.Message!);
+                }
+                products = resultProduct.Data;
+                if (products != null && products.Count != 0)
+                {
+                    RenderProduct(products);
+                }
+                return;
+            }
+            var rout = string.Format(ApiRoutes.GetSellerByPhoneNumber, Uri.EscapeDataString(txtSearch.Text));
+            var result = await client.GetAsync<OperationResult<List<SellerFullViewModel>>>(rout);
+            if (result == null)
+            {
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
+            }
+            if (!result.Success)
+            {
+                if (!result.Result)
+                {
+                    ShowInfoError(result.Message!);
+                    return;
+                }
+                ShowInfo(result.Message!);
+                return;
+            }
+            sellers = result.Data;
+            if (result.Data != null || result.Data!.Count != 0)
+            {
+                RenderSeller(result.Data);
+            }
+        }
+
+        private void btnShoppingCart_Click(object sender, EventArgs e)
+        {
+            FrmCart frmCart = new FrmCart();
+            frmCart.ShowDialog();
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                myButon2_Click(sender, EventArgs.Empty);
+            }
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿using SabzMarket.Share.Models;
+using SabzMarketBuyer.UI.Auth;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SabzMarketBuyer.UI
+{
+    public partial class UcProductPage : UserControl
+    {
+        public UcProductPage()
+        {
+            InitializeComponent();
+        }
+        public ProductDTO Product { get; set; }
+        public event EventHandler<ProductEventArgs<UcProductPage>> AddToCart;
+        public void UcProductPage_Load(object sender, EventArgs e)
+        {
+            lblDescription.Text = Product.Description;
+            lblName.Text = Product.Name;
+            lblNumber.Text = Product.Number.ToString();
+            if (Product.Number <= 0)
+            {
+                btnAddToCart.Enabled = false;
+            }
+            pbImage.LoadAsync(Product.ImageProduct);
+        }
+
+        private void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            lblNumber.Text = ((int.Parse(lblNumber.Text)) - 1).ToString();
+            CartItemDTO cartItemDTO = new CartItemDTO()
+            {
+                FarmerId = CurrentUser.FarmerId,
+                ProductId = Product.Id,
+                AddedDate = DateTime.Now
+            };
+            ProductEventArgs<UcProductPage> productEventArgs = new ProductEventArgs<UcProductPage>()
+            {
+                CartItemDTO = cartItemDTO
+                ,
+                uCProduct = this
+            };
+            AddToCart?.Invoke(this, productEventArgs);
+        }
+
+        private void pbImage_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                pbImage.Image = Properties.Resources.defultprodect;
+            }
+        }
+    }
+}

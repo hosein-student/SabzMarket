@@ -23,6 +23,8 @@ namespace SabzMarketBuyer.UI
 
         private async void btnSingUp_Click(object sender, EventArgs e)
         {
+            btnSingUp.Enabled = false;
+            btnSingUp.Text = Messages.pleaseWaitText;
             var userviewmodel = new UserViewModel()
             {
                 FirstName = txtFirstname.Text,
@@ -43,6 +45,8 @@ namespace SabzMarketBuyer.UI
             if (result == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
+                btnSingUp.Enabled = true;
+                btnSingUp.Text = Messages.SingUpText;
                 return;
             }
             if (!result!.Success)
@@ -50,9 +54,13 @@ namespace SabzMarketBuyer.UI
                 if (!result.Result)
                 {
                     ShowInfoError(result.Message!);
+                    btnSingUp.Enabled = true;
+                    btnSingUp.Text = Messages.SingUpText;
                     return;
                 }
                 ShowInfo(result.Message!);
+                btnSingUp.Enabled = true;
+                btnSingUp.Text = Messages.SingUpText;
                 return;
             }
             ShowInfo(result.Message!);
