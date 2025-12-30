@@ -13,5 +13,6 @@ namespace Application.Interfaces.Repositories
         public Task<OperationResult<List<ProductDTO>>> GetAllBySellerAsync(long sellerId);
         public Task<OperationResult> DeleteAsync(long id);
         public Task<OperationResult> UpdateAsync(ProductDTO product);
+        public Task<OperationResult<List<ProductDTO>>> SelectByNameAsync(string search);
     }
 }

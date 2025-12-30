@@ -13,5 +13,7 @@ namespace Application.Interfaces.Services
         public Task<OperationResult<List<ProductDTO>>> GetProductsBySellerAsync(long sellerId);
         public Task<OperationResult> DeleteAsync(long id);
         public Task<OperationResult> UpdateAsync(ProductViewModel product);
+        public Task<OperationResult<List<ProductDTO>>> GetByNameAsync(string search);
+
     }
 }
