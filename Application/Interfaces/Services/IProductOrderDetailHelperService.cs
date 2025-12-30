@@ -9,7 +9,7 @@ namespace Application.Interfaces.Services
 {
     public interface IProductOrderDetailHelperService
     {
-        public Task<OperationResult> IncreaseNumber(long id, int number);
+        public Task<OperationResult> IncreaseNumberAsync(long id, int number);
         public Task<OperationResult> HasPendingOrdersForProductAsync(long productId);
     }
 }
