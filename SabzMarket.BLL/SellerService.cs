@@ -10,6 +10,7 @@ using SabzMarket.Share.ErrorHandling;
 using SabzMarket.Share.Models;
 using Application.Interfaces.Services;
 using Application.Interfaces.Repositories;
+using System.Net.WebSockets;
 
 namespace SabzMarket.BLL
 {
@@ -65,6 +66,32 @@ namespace SabzMarket.BLL
                 return OperationResult.Failed(result1.Message!.ErrorMessage());
             }
             return OperationResult.SuccessedResult(true, Messages.successSignUp2);
+        }
+
+        public async Task<OperationResult<SellerFullViewModel>> GetByIdAsync(long phone)
+        {
+            var result=await _sellerRepository.SelectByIdAsync(phone);
+            if (!result.Success)
+            {
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
+                var resultError = await _errorService.LogErrorAsync(error);
+                return OperationResult<SellerFullViewModel>.Failed(resultError.Message!.ErrorMessage());
+            }
+            var seller = result.Data.ToSellerFullViewModel();
+            return OperationResult<SellerFullViewModel>.SuccessedResult(seller);
+        }
+
+        public async Task<OperationResult<List<SellerFullViewModel>>> GetByPhoneNumberAsync(string id)
+        {
+            var result=await _sellerRepository.SelectByPhoneNumberAsync(id);
+            if (!result.Success)
+            {
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
+                var errorResult=await _errorService.LogErrorAsync(error);
+                OperationResult<List<SellerFullViewModel>>.Failed(errorResult.Message!.ErrorMessage());
+            }
+            List<SellerFullViewModel> seller = result.Data.Select(x => x.ToSellerFullViewModel()).ToList();
+            return OperationResult<List<SellerFullViewModel>>.SuccessedResult(seller);
         }
 
         public async Task<OperationResult<SellerFullViewModel>> GetSellerByUsernameAsync(string username)

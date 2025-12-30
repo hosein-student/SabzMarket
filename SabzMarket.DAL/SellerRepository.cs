@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Repositories;
+using Castle.Components.DictionaryAdapter.Xml;
 using Microsoft.EntityFrameworkCore;
 using SabzMarket.DAL.Entities;
 using SabzMarket.Share.Models;
@@ -96,7 +97,7 @@ namespace SabzMarket.DAL
 
         }
 
-        public async Task<OperationResult> UpdateAsync( UserDTO userDto, SellerDTO sellerDto)
+        public async Task<OperationResult> UpdateAsync(UserDTO userDto, SellerDTO sellerDto)
         {
             try
             {
@@ -139,6 +140,55 @@ namespace SabzMarket.DAL
 
 
 
+        }
+
+        public async Task<OperationResult<List<SellerDTO>>> SelectByPhoneNumberAsync(string phone)
+        {
+            try
+            {
+                var result = await _context.Sellers.AsNoTracking().Where(x => x.User!.Phone == phone).Select(x => new SellerDTO()
+                {
+                    Id = x.Id,
+                    Address = x.Address,
+                    Email = x.User!.Email,
+                    Phone = x.User.Phone,
+                    FirstName = x.User.FirstName,
+                    LastName = x.User.LastName,
+                    ProfileImage = x.ProfileImage,
+                    WorkHistory = x.WorkHistory
+
+                }).ToListAsync();
+                return OperationResult<List<SellerDTO>>.SuccessedResult(result);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<List<SellerDTO>>.Failed(GetType().Name, ex);
+            }
+        }
+
+        public async Task<OperationResult<SellerDTO>> SelectByIdAsync(long id)
+        {
+            try
+            {
+                var result = await _context.Sellers.AsNoTracking().Where(x => x.Id == id).Select(x => new SellerDTO()
+                {
+                    Address = x.Address,
+                    Email = x.User!.Email,
+                    FirstName = x.User.FirstName,
+                    UserId = x.User.Id,
+                    Id = id,
+                    LastName = x.User.LastName,
+                    Phone = x.User.Phone,
+                    ProfileImage = x.ProfileImage,
+                    WorkHistory = x.WorkHistory,
+                    Username = x.User.UserName
+                }).SingleAsync();
+                return OperationResult<SellerDTO>.SuccessedResult(result);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<SellerDTO>.Failed(GetType().Name, ex);
+            }
         }
     }
 }
