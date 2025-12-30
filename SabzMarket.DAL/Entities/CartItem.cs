@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SabzMarket.DAL.Entities
+{
+    public class CartItem
+    {
+        public int Id { get; set; }
+        public long FarmerId { get; set; }
+        public Farmer Farmer { get; set; } 
+        public long ProductId { get; set; }
+        public Product Product { get; set; }
+
+        public int Quantity { get; set; }
+        public DateTime AddedDate { get; set; }
+    }
+}
