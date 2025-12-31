@@ -40,5 +40,7 @@ namespace SabzMarket.Share
         public const string AddToCart = "CartItem/AddToCart";
         public const string DecreaseQuantity = "CartItem/DecreaseQuantity?productId={0}&farmerId={1}";
         public const string SelectCartByFarmerId = "CartItem/GetByFarmerId?farmerId={0}";
+        //=======================================================================================
+        public const string Checkout = "Order/Checkout?farmerId={0}";
     }
 }
