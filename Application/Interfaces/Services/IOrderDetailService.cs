@@ -11,5 +11,6 @@ namespace Application.Interfaces.Services
     {
         public Task<OperationResult> MarkOrderDetailAsSentAsync(long orderDetaileId);
         public Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId, int number, int productId);
+        public Task<OperationResult> InsertAsync(FullCartItemDTO fullCartItemDTOs, long orderId);
     }
 }
