@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Repositories;
+﻿using Application.Interfaces;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using SabzMarket.Share;
 using SabzMarket.Share.ErrorHandling;
@@ -17,16 +18,22 @@ namespace SabzMarket.BLL
         private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly IErrorService _errorService;
         private readonly IProductOrderDetailHelperService _productOrderDetailHelperService;
-        public OrderDetailService(IOrderDetailRepository orderDetailRepository, IErrorService errorService, IProductOrderDetailHelperService productOrderDetailHelperService)
+        private readonly IUnitOfWork _unitOfWork;
+        public OrderDetailService(
+            IOrderDetailRepository orderDetailRepository,
+            IErrorService errorService,
+            IProductOrderDetailHelperService productOrderDetailHelperService,
+            IUnitOfWork unitOfWork)
         {
             _orderDetailRepository = orderDetailRepository;
             _errorService = errorService;
             _productOrderDetailHelperService = productOrderDetailHelperService;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<OperationResult> InsertAsync(FullCartItemDTO fullCartItemDTOs, long orderId)
         {
-            var result=await _orderDetailRepository.InsertAsync(fullCartItemDTOs, orderId);
+            var result = await _orderDetailRepository.InsertAsync(fullCartItemDTOs, orderId);
             if (!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
@@ -37,10 +44,12 @@ namespace SabzMarket.BLL
         }
 
         public async Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId, int number, int productId)
-        {//نیاز به ترنس اکشن
+        {
+            await _unitOfWork.BeginAsync();
             var result = await _orderDetailRepository.SetOrderDetailStatusToRejectedAsync(orderDetaileId);
             if (!result.Success)
             {
+                await _unitOfWork.RollbackAsync();
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
                 var errorResult = await _errorService.LogErrorAsync(error);
                 return OperationResult.Failed(errorResult.Message!.ErrorMessage());
@@ -48,8 +57,10 @@ namespace SabzMarket.BLL
             var result1 = await _productOrderDetailHelperService.IncreaseNumberAsync(productId, number);
             if (!result1.Success)
             {
+                await _unitOfWork.RollbackAsync();
                 return result1;
             }
+            await _unitOfWork.CommitAsync();
             return OperationResult.SuccessedResult(true, Messages.RejectedOrder);
 
         }

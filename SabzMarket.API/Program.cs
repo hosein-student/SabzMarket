@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -33,9 +34,9 @@ builder.Services.AddScoped<IErrorRepository, ErrorRepository>();
 builder.Services.AddScoped<IErrorService, ErrorService>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<ISellerService, SellerService>();
-builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();    
+builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();
 builder.Services.AddScoped<ICategoriService, CategoriService>();
-builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ILogServiceRepository, LogServiceRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
@@ -43,12 +44,13 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IProductOrderDetailHelperService, ProductOrderDetailHelperService>();
-builder.Services.AddScoped<IFarmerRepository,FarmerRepository>();
+builder.Services.AddScoped<IFarmerRepository, FarmerRepository>();
 builder.Services.AddScoped<IFarmerService, FarmerService>();
 builder.Services.AddScoped<IFeaturedSellerSevice, FeaturedSellerSevice>();
 builder.Services.AddScoped<IFeaturedSellerRepository, FeaturedSellerRepository>();
 builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
 builder.Services.AddScoped<ICartItemService, CartItemService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 //builder.Services.AddAutoMapper(typeof(AutoMapperProfile));

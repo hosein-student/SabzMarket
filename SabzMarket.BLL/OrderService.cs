@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Repositories;
+﻿using Application.Interfaces;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using SabzMarket.Share;
 using SabzMarket.Share.ErrorHandling;
@@ -19,17 +20,25 @@ namespace SabzMarket.BLL
         private readonly IErrorService _errorService;
         private readonly ICartItemService _cartItemService;
         private readonly IOrderDetailService _orderDetailService;
-        public OrderService(IOrderRepository orderRepository, IErrorService errorService , ICartItemService cartItemService, IOrderDetailService orderDetail) 
+        private readonly IUnitOfWork _unitOfWork;
+        public OrderService(
+            IOrderRepository orderRepository,
+            IErrorService errorService,
+            ICartItemService cartItemService,
+            IOrderDetailService orderDetail,
+            IUnitOfWork unitOfWork)
         {
             _errorService = errorService;
             _orderRepository = orderRepository;
             _cartItemService = cartItemService;
             _orderDetailService = orderDetail;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<OperationResult> CheckoutAsync(long farmerId)
         {
-            var cart=await _cartItemService.GetByFarmerIdAsync(farmerId);
+            await _unitOfWork.BeginAsync();
+            var cart = await _cartItemService.GetByFarmerIdAsync(farmerId);
             if (!cart.Success)
             {
                 return cart;
@@ -44,6 +53,7 @@ namespace SabzMarket.BLL
                 {
                     if (!checkOrder.Result)
                     {
+                        await _unitOfWork.RollbackAsync();
                         var error = checkOrder.Exception!.ExceptionToErrorDTO(checkOrder.Message!);
                         var resultError = await _errorService.LogErrorAsync(error);
                         return OperationResult.Failed(resultError.Message!.ErrorMessage());
@@ -51,18 +61,21 @@ namespace SabzMarket.BLL
                     var resultOrder = await _orderRepository.InsertAsync(item);
                     if (!resultOrder.Result)
                     {
+                        await _unitOfWork.RollbackAsync();
                         var error = resultOrder.Exception!.ExceptionToErrorDTO(resultOrder.Message!);
                         var resultError = await _errorService.LogErrorAsync(error);
                         return OperationResult.Failed(resultError.Message!.ErrorMessage());
                     }
-                    var resultOrderDetile =await _orderDetailService.InsertAsync(item, resultOrder.Data);
+                    var resultOrderDetile = await _orderDetailService.InsertAsync(item, resultOrder.Data);
                     if (!resultOrderDetile.Success)
                     {
+                        await _unitOfWork.RollbackAsync();
                         return resultOrderDetile;
                     }
                     var deleteCart = await _cartItemService.DeleteAfterCheckoutAsync(item.Id);
                     if (!deleteCart.Success)
                     {
+                        await _unitOfWork.RollbackAsync();
                         return deleteCart;
                     }
                 }
@@ -71,15 +84,18 @@ namespace SabzMarket.BLL
                     var result = await _orderDetailService.InsertAsync(item, checkOrder.Data);
                     if (!result.Success)
                     {
+                        await _unitOfWork.RollbackAsync();
                         return result;
                     }
                     var deleteCart = await _cartItemService.DeleteAfterCheckoutAsync(item.Id);
                     if (!deleteCart.Success)
                     {
+                        await _unitOfWork.RollbackAsync();
                         return deleteCart;
                     }
                 }
             }
+            await _unitOfWork.CommitAsync();
             return OperationResult.SuccessedResult(true, Messages.ShoppingSuccessful);
 
         }
@@ -102,11 +118,11 @@ namespace SabzMarket.BLL
 
         public async Task<OperationResult<List<OrderDTO>>> GetPendingOrdersForSellerAsync(long id, string search)
         {
-          var result=await _orderRepository.SelectPendingOrdersForSellerAsync(id,search);
+            var result = await _orderRepository.SelectPendingOrdersForSellerAsync(id, search);
             if (!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
-                var resultError=await _errorService.LogErrorAsync(error);
+                var resultError = await _errorService.LogErrorAsync(error);
                 return OperationResult<List<OrderDTO>>.Failed(resultError.Message!.ErrorMessage());
             }
             if (result.Data == null)
