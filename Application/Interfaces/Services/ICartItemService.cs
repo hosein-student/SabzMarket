@@ -13,5 +13,6 @@ namespace Application.Interfaces.Services
         public Task<OperationResult> DecreaseQuantityAsync(long productId,long farmerId);
         public Task<OperationResult> DeleteAsync(int cartId,long productId,int productNumber);
         public Task<OperationResult<List<FullCartItemDTO>>> GetByFarmerIdAsync(long farmerId);
+        public Task<OperationResult> DeleteAfterCheckoutAsync(int cartId);
     }
 }
