@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
+using SabzMarket.DAL.Entities;
 using SabzMarket.Share.Enums;
 using SabzMarket.Share.Models;
 using SabzMarket.Share.ViewModels;
@@ -32,7 +33,7 @@ namespace SabzMarket.DAL
                 var queryDetails = query
                     .SelectMany(o => o.OrderDetails, (order, detail) => new { order, detail })
                     .Where(x => x.detail.Status == OrderStatus.Pending.ToString());
-                    
+
                 if (!string.IsNullOrEmpty(search))
                 {
                     queryDetails = queryDetails.Where(o => o.order.Farmer!.User!.FirstName!.Contains(search)
@@ -44,28 +45,28 @@ namespace SabzMarket.DAL
                 var result = await queryDetails.Select(o => new OrderDTO
 
                 {
-                        OrderId =o. order.Id,
-                        OrderDetailId = o.detail.Id,
-                        Status = o.detail.Status,
-                        product = new ProductViewModel
-                        {
-                            Id = o.detail.Product!.Id,
-                            Number = o.detail.Number,
-                            ImageProduct = o.detail.Product.ImageProduct,
-                            Name = o.detail.Product.ProductName,
-                        }
-                           ,
-                        farmer = new FarmerDTOForSeller
-                        {
-                            Id = o.order.Farmer!.Id,
-                            Address = o.order.Farmer.Address,
-                            ProfileImage = o.order.Farmer.ProfileImage,
-                            Phone = o.order.Farmer.User!.Phone,
-                            FirstName = o.order.Farmer.User!.FirstName,
-                            CodePosti = o.order.Farmer.CodePosti,
-                            LastName = o.order.Farmer.User!.LastName
-                        }
+                    OrderId = o.order.Id,
+                    OrderDetailId = o.detail.Id,
+                    Status = o.detail.Status,
+                    product = new ProductViewModel
+                    {
+                        Id = o.detail.Product!.Id,
+                        Number = o.detail.Number,
+                        ImageProduct = o.detail.Product.ImageProduct,
+                        Name = o.detail.Product.ProductName,
                     }
+                           ,
+                    farmer = new FarmerDTOForSeller
+                    {
+                        Id = o.order.Farmer!.Id,
+                        Address = o.order.Farmer.Address,
+                        ProfileImage = o.order.Farmer.ProfileImage,
+                        Phone = o.order.Farmer.User!.Phone,
+                        FirstName = o.order.Farmer.User!.FirstName,
+                        CodePosti = o.order.Farmer.CodePosti,
+                        LastName = o.order.Farmer.User!.LastName
+                    }
+                }
                     ).ToListAsync();
                 return OperationResult<List<OrderDTO>>.SuccessedResult(result);
 
@@ -140,6 +141,51 @@ namespace SabzMarket.DAL
             }
         }
 
+        public async Task<OperationResult<long>> InsertAsync(FullCartItemDTO fullCartItemDTO)
+        {
+            try
+            {
+                var order = new Order
+                {
+                    FarmerId = fullCartItemDTO.FarmerId,
+                    OrderDate =fullCartItemDTO.AddedDate,
+                    SellerId = fullCartItemDTO.SellerId,
+                };
 
+                _context.Orders.AddRange(order);
+                await _context.SaveChangesAsync();
+
+                return OperationResult<long>.SuccessedResult(order.Id);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<long>.Failed(GetType().Name, ex);
+            }
+        }
+
+        public async Task<OperationResult<long>> CheckOrderAsync(long farmerId, long SellerId)
+        {
+            try
+            {
+                var result = await _context
+               .Orders
+               .AsNoTracking()
+               .Where(x => x.FarmerId == farmerId && x.SellerId == SellerId)
+               .AnyAsync();
+                if (result == false)
+                {
+                    return OperationResult<long>.FailedResult();
+                }
+                var result1 = await _context
+              .Orders
+              .AsNoTracking()
+              .Where(x => x.FarmerId == farmerId && x.SellerId == SellerId).SingleAsync();
+                return OperationResult<long>.SuccessedResult(result1.Id);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<long>.Failed(GetType().Name, ex);
+            }
+        }
     }
 }
