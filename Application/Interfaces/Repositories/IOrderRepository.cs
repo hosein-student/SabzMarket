@@ -11,5 +11,7 @@ namespace Application.Interfaces.Repositories
     {
         public Task<OperationResult<List<OrderDTO>>> SelectPendingOrdersForSellerAsync(long id, string search);
         public Task<OperationResult<List<OrderDTO>>> SelectNonPendingOrdersForSellerAsync(long id, string search);
+        public Task<OperationResult<long>> InsertAsync(FullCartItemDTO fullCartItemDTO);
+        public Task<OperationResult<long>> CheckOrderAsync(long farmerId, long SellerId);
     }
 }
