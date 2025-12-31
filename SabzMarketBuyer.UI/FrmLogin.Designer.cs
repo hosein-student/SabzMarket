@@ -79,6 +79,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(200, 34);
             txtPassword.TabIndex = 1;
+            txtPassword.KeyDown += txtPassword_KeyDown;
             // 
             // lblUsername
             // 
