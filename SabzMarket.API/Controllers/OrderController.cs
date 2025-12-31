@@ -23,5 +23,11 @@ namespace SabzMarket.API.Controllers
             var result = await _orderService.GetNonPendingOrdersForSellerAsync(id, search);
             return result;
         }
+        [HttpGet]
+        public async Task<OperationResult> CheckoutAsync(long farmerId)
+        {
+           var result=await _orderService.CheckoutAsync(farmerId);
+            return result;  
+        }
     }
 }
