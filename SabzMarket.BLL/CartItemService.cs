@@ -88,6 +88,18 @@ namespace SabzMarket.BLL
             return OperationResult.SuccessedResult(true, Messages.RemoveAddToCart);
         }
 
+        public async Task<OperationResult> DeleteAfterCheckoutAsync(int cartId)
+        {
+            var result=await _repository.DeleteAsync(cartId);
+            if (!result.Success)
+            {
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
+                var errorResult = await _errorService.LogErrorAsync(error);
+                return OperationResult.Failed(errorResult.Message!.ErrorMessage());
+            }
+            return OperationResult.SuccessedResult();
+        }
+
         public async Task<OperationResult> DeleteAsync(int cartId,long productId,int productNumber)
         {
             var result2 = await _repository.DeleteAsync(cartId);
