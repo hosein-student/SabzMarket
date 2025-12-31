@@ -34,6 +34,8 @@
             lblDescription = new Label();
             lblName = new Label();
             pbImage = new PictureBox();
+            lblPrice = new Label();
+            lblTitlePrice = new Label();
             ((System.ComponentModel.ISupportInitialize)pbImage).BeginInit();
             SuspendLayout();
             // 
@@ -41,7 +43,7 @@
             // 
             btnAddToCart.BackColor = Color.FloralWhite;
             btnAddToCart.Font = new Font("Segoe UI", 10F);
-            btnAddToCart.Location = new Point(3, 138);
+            btnAddToCart.Location = new Point(3, 122);
             btnAddToCart.Name = "btnAddToCart";
             btnAddToCart.Size = new Size(115, 105);
             btnAddToCart.TabIndex = 12;
@@ -53,7 +55,7 @@
             // 
             lblNumber.AutoSize = true;
             lblNumber.Font = new Font("Segoe UI", 12F);
-            lblNumber.Location = new Point(262, 243);
+            lblNumber.Location = new Point(139, 243);
             lblNumber.Name = "lblNumber";
             lblNumber.Size = new Size(23, 28);
             lblNumber.TabIndex = 11;
@@ -63,7 +65,7 @@
             // 
             lblNumberTitle.AutoSize = true;
             lblNumberTitle.Font = new Font("Segoe UI", 11F);
-            lblNumberTitle.Location = new Point(141, 244);
+            lblNumberTitle.Location = new Point(18, 244);
             lblNumberTitle.Name = "lblNumberTitle";
             lblNumberTitle.Size = new Size(100, 25);
             lblNumberTitle.TabIndex = 10;
@@ -99,11 +101,33 @@
             pbImage.TabStop = false;
             pbImage.LoadCompleted += pbImage_LoadCompleted;
             // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.Font = new Font("Segoe UI", 12F);
+            lblPrice.Location = new Point(358, 243);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(23, 28);
+            lblPrice.TabIndex = 13;
+            lblPrice.Text = "0";
+            // 
+            // lblTitlePrice
+            // 
+            lblTitlePrice.AutoSize = true;
+            lblTitlePrice.Font = new Font("Segoe UI", 12F);
+            lblTitlePrice.Location = new Point(260, 243);
+            lblTitlePrice.Name = "lblTitlePrice";
+            lblTitlePrice.Size = new Size(59, 28);
+            lblTitlePrice.TabIndex = 14;
+            lblTitlePrice.Text = "قیمت";
+            // 
             // UcProductPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
+            Controls.Add(lblTitlePrice);
+            Controls.Add(lblPrice);
             Controls.Add(btnAddToCart);
             Controls.Add(lblNumber);
             Controls.Add(lblNumberTitle);
@@ -126,5 +150,7 @@
         private Label lblDescription;
         private Label lblName;
         private PictureBox pbImage;
+        private Label lblPrice;
+        private Label lblTitlePrice;
     }
 }

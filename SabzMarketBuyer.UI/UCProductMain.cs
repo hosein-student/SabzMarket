@@ -43,6 +43,7 @@ namespace SabzMarketBuyer.UI
             pbImage.LoadAsync(Product.ImageProduct);
             lblDescription.Text = Product.Description;
             lblName.Text = Product.Name;
+            lblPrice.Text = Product.Price.ToString("N0");
             lblNumber.Text = Product.Number.ToString();
             if (Product.Number == 0)
             {

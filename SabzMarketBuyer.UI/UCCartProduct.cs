@@ -27,7 +27,7 @@ namespace SabzMarketBuyer.UI
             {
                 btnDecrease.Visible = false;
             }
-            lblPrice.Text = CartItemDTo.ProductPrice.ToString();
+            lblPrice.Text = CartItemDTo.ProductPrice.ToString("N0");
             pbImage.LoadAsync(CartItemDTo.ProductImage);
 
         }
@@ -43,7 +43,7 @@ namespace SabzMarketBuyer.UI
             };
             DecreaseCart?.Invoke(sender, productEventArg);
             if (int.Parse(lblNumber.Text) <= 1)
-                lblNumber.Visible = false;
+                btnDecrease.Visible = false;
         }
         public event EventHandler<ProductEventArgs<UCCartProduct>> DeleteCart;
         private void btnDeleteCart_Click(object sender, EventArgs e)
