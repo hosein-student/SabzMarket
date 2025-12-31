@@ -32,7 +32,7 @@ namespace SabzMarket
             };
             var client = HttpClientHelper.Instance;
             var result = await client.PostAsync<OperationResult, UserViewModel>(ApiRoutes.Login, user);
-            
+
             if (result == null)
             {
                 ShowInfoError(Messages.InternetErrorMessage);
@@ -50,7 +50,7 @@ namespace SabzMarket
                     btn_Login.Text = Messages.LoginText;
                     return;
                 }
-                    ShowInfoError(result.Message!);
+                ShowInfoError(result.Message!);
                 btn_Login.Enabled = true;
                 btn_Login.Text = Messages.LoginText;
                 return;
@@ -75,20 +75,28 @@ namespace SabzMarket
                     frm_SellerProfile.Show();
                     return;
                 }
-                    ShowInfoError(result1.Message!);
+                ShowInfoError(result1.Message!);
                 btn_Login.Enabled = true;
                 btn_Login.Text = Messages.LoginText;
                 return;
             }
-                frm_Home frm_Home = new frm_Home();
-                this.Hide();
-                frm_Home.Show();
+            frm_Home frm_Home = new frm_Home();
+            this.Hide();
+            frm_Home.Show();
         }
 
         private void btn_SignUp_Click(object sender, EventArgs e)
         {
             frm_SignUp frm = new frm_SignUp();
             frm.ShowDialog();
+        }
+
+        private void txt_Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_Login_Click(sender, EventArgs.Empty);
+            }
         }
     }
 }

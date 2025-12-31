@@ -27,9 +27,7 @@
     <Compile Update="frm_Chat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frm_History.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="frm_History.cs" />
     <Compile Update="frm_Home.cs">
       <SubType>Form</SubType>
     </Compile>

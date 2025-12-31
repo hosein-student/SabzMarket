@@ -112,6 +112,7 @@
             txt_Password.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txt_Password.Size = new Size(178, 55);
             txt_Password.TabIndex = 2;
+            txt_Password.KeyDown += txt_Password_KeyDown;
             // 
             // lbl_UserName
             // 
