@@ -46,20 +46,21 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(641, 840);
+            flowLayoutPanel1.Size = new Size(641, 783);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // pl_Search
             // 
+            pl_Search.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pl_Search.Controls.Add(btn_History);
             pl_Search.Controls.Add(btn_Search);
             pl_Search.Controls.Add(txt_Search);
             pl_Search.CustomizableEdges = customizableEdges7;
-            pl_Search.Dock = DockStyle.Bottom;
             pl_Search.FillColor = Color.SpringGreen;
             pl_Search.FillColor2 = Color.LemonChiffon;
             pl_Search.FillColor3 = Color.LightGreen;
@@ -83,7 +84,7 @@
             btn_History.Font = new Font("Segoe UI", 11F);
             btn_History.ForeColor = Color.White;
             btn_History.HoverState.FillColor = Color.MediumSeaGreen;
-            btn_History.Location = new Point(5, 5);
+            btn_History.Location = new Point(12, 7);
             btn_History.Margin = new Padding(3, 4, 3, 4);
             btn_History.Name = "btn_History";
             btn_History.PressedColor = Color.DarkGreen;
@@ -129,7 +130,7 @@
             txt_Search.Font = new Font("Segoe UI", 11F);
             txt_Search.ForeColor = Color.DarkGreen;
             txt_Search.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt_Search.Location = new Point(239, 6);
+            txt_Search.Location = new Point(245, 7);
             txt_Search.Margin = new Padding(4, 6, 4, 6);
             txt_Search.Name = "txt_Search";
             txt_Search.PlaceholderText = "نام خریدار و یا نام محصول را وارد کنید";
