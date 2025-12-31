@@ -27,10 +27,33 @@ namespace SabzMarket.DAL
                     .OrderDetails
                     .AsNoTracking()
                     .Where(p =>
-                    p.ProductId == productId&&
-                    p.Status==OrderStatus.Pending.ToString())
+                    p.ProductId == productId &&
+                    p.Status == OrderStatus.Pending.ToString())
                     .AnyAsync();
                 return OperationResult.SuccessedResult(result);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult.Failed(GetType().Name, ex);
+            }
+
+        }
+
+        public async Task<OperationResult> InsertAsync(FullCartItemDTO fullCartItemDTOs, long orderId)
+        {
+            try
+            {
+                var orderDetails =  new OrderDetail
+                {
+                    OrderId = orderId,
+                    ProductId = fullCartItemDTOs.ProductId,
+                    Number = fullCartItemDTOs.Quantity,
+                    Price = fullCartItemDTOs.ProductPrice,
+                    Status = OrderStatus.Pending.ToString()
+                };
+                _context.OrderDetails.Add(orderDetails);
+                await _context.SaveChangesAsync();
+                return OperationResult.SuccessedResult();
             }
             catch (Exception ex)
             {
