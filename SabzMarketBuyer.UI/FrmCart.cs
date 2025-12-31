@@ -36,7 +36,7 @@ namespace SabzMarketBuyer.UI
         private async void UCCartProduct_DeleteCart(object? sender, ProductEventArgs<UCCartProduct> e)
         {
             var client = HttpClientHelper.Instance;
-            var rout = string.Format(ApiRoutes.RemoveCartItem, e.fullCartItemDTO.Id,e.fullCartItemDTO.ProductId, e.fullCartItemDTO.Quantity);
+            var rout = string.Format(ApiRoutes.RemoveCartItem, e.fullCartItemDTO.Id, e.fullCartItemDTO.ProductId, e.fullCartItemDTO.Quantity);
             var result = await client.GetAsync<OperationResult>(rout);
             if (result == null)
             {
@@ -49,6 +49,7 @@ namespace SabzMarketBuyer.UI
                 return;
             }
             ShowInfo(result.Message!);
+            pnlCart.Controls.Clear();
             FrmCart_Load(sender, EventArgs.Empty);
         }
 
@@ -89,10 +90,32 @@ namespace SabzMarketBuyer.UI
             }
             if (result.Data != null && result.Data.Count != 0)
             {
+                btnPay.Enabled = true;
                 RenderProduct(result.Data);
                 totalAmount = result.Data?.Sum(x => x.ProductPrice * x.Quantity) ?? 0;
                 lblTotalAmount.Text = totalAmount.ToString("N0");
             }
+        }
+
+        private async void btnPay_Click(object sender, EventArgs e)
+        {
+            var client = HttpClientHelper.Instance;
+            var rout = string.Format(ApiRoutes.Checkout, CurrentUser.FarmerId);
+            var result = await client.GetAsync<OperationResult>(rout);
+            if (result == null)
+            {
+                ShowInfoError(Messages.InternetErrorMessage);
+                return;
+            }
+            if (!result.Success)
+            {
+                ShowInfoError(result.Message!);
+                return;
+            }
+            ShowInfo(result.Message!);
+            pnlCart.Controls.Clear();
+            lblTotalAmount.Text = "0";
+            FrmCart_Load(sender, EventArgs.Empty);
         }
     }
 }
