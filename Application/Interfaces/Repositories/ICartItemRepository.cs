@@ -15,7 +15,5 @@ namespace Application.Interfaces.Repositories
         public Task<OperationResult> ExistProductAsync(long farmerId,long productId);
         public Task<OperationResult> IsCartItemQuantityOneAsync(int id);
         public Task<OperationResult<List<FullCartItemDTO>>> SelectByFarmerIdAsync(long farmerId);
-
-
     }
 }
