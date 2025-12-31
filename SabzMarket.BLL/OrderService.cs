@@ -7,19 +7,81 @@ using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SabzMarket.BLL
 {
-    public class OrderService:IOrderService
+    public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IErrorService _errorService;
-        public OrderService(IOrderRepository orderRepository, IErrorService errorService) 
+        private readonly ICartItemService _cartItemService;
+        private readonly IOrderDetailService _orderDetailService;
+        public OrderService(IOrderRepository orderRepository, IErrorService errorService , ICartItemService cartItemService, IOrderDetailService orderDetail) 
         {
             _errorService = errorService;
             _orderRepository = orderRepository;
+            _cartItemService = cartItemService;
+            _orderDetailService = orderDetail;
+        }
+
+        public async Task<OperationResult> CheckoutAsync(long farmerId)
+        {
+            var cart=await _cartItemService.GetByFarmerIdAsync(farmerId);
+            if (!cart.Success)
+            {
+                return cart;
+            }
+            var cartItems = cart.Data;
+            if (cartItems == null || cartItems.Count == 0)
+                return OperationResult.Failed(Messages.CartEmpty);
+            foreach (var item in cart.Data)
+            {
+                var checkOrder = await _orderRepository.CheckOrderAsync(farmerId, item.SellerId);
+                if (!checkOrder.Success)
+                {
+                    if (!checkOrder.Result)
+                    {
+                        var error = checkOrder.Exception!.ExceptionToErrorDTO(checkOrder.Message!);
+                        var resultError = await _errorService.LogErrorAsync(error);
+                        return OperationResult.Failed(resultError.Message!.ErrorMessage());
+                    }
+                    var resultOrder = await _orderRepository.InsertAsync(item);
+                    if (!resultOrder.Result)
+                    {
+                        var error = resultOrder.Exception!.ExceptionToErrorDTO(resultOrder.Message!);
+                        var resultError = await _errorService.LogErrorAsync(error);
+                        return OperationResult.Failed(resultError.Message!.ErrorMessage());
+                    }
+                    var resultOrderDetile =await _orderDetailService.InsertAsync(item, resultOrder.Data);
+                    if (!resultOrderDetile.Success)
+                    {
+                        return resultOrderDetile;
+                    }
+                    var deleteCart = await _cartItemService.DeleteAfterCheckoutAsync(item.Id);
+                    if (!deleteCart.Success)
+                    {
+                        return deleteCart;
+                    }
+                }
+                else
+                {
+                    var result = await _orderDetailService.InsertAsync(item, checkOrder.Data);
+                    if (!result.Success)
+                    {
+                        return result;
+                    }
+                    var deleteCart = await _cartItemService.DeleteAfterCheckoutAsync(item.Id);
+                    if (!deleteCart.Success)
+                    {
+                        return deleteCart;
+                    }
+                }
+            }
+            return OperationResult.SuccessedResult(true, Messages.ShoppingSuccessful);
+
         }
 
         public async Task<OperationResult<List<OrderDTO>>> GetNonPendingOrdersForSellerAsync(long id, string search)
