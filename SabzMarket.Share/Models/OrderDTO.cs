@@ -14,5 +14,6 @@ namespace SabzMarket.Share.Models
         public ProductViewModel? product { get; set; }
         public FarmerDTOForSeller? farmer { get; set; }
         public string? Status { get; set; }
+        public DateTime OrderDate { get; set; }= DateTime.Now;
     }
 }
