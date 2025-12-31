@@ -23,6 +23,19 @@ namespace SabzMarket.BLL
             _errorService = errorService;
             _productOrderDetailHelperService = productOrderDetailHelperService;
         }
+
+        public async Task<OperationResult> InsertAsync(FullCartItemDTO fullCartItemDTOs, long orderId)
+        {
+            var result=await _orderDetailRepository.InsertAsync(fullCartItemDTOs, orderId);
+            if (!result.Success)
+            {
+                var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
+                var errorResult = await _errorService.LogErrorAsync(error);
+                return OperationResult.Failed(errorResult.Message!.ErrorMessage());
+            }
+            return OperationResult.SuccessedResult();
+        }
+
         public async Task<OperationResult> MarkOrderDetailAsRejectedAsync(long orderDetaileId, int number, int productId)
         {//نیاز به ترنس اکشن
             var result = await _orderDetailRepository.SetOrderDetailStatusToRejectedAsync(orderDetaileId);
