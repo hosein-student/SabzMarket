@@ -113,9 +113,10 @@ namespace SabzMarket.DAL
         {
             try
             {
-                var result = await _Context.CartItems.AsNoTracking().Where(x => x.FarmerId == farmerId&&x.Product.IsDeleted==false).Select(x => new FullCartItemDTO()
+                var result = await _Context.CartItems.AsNoTracking().Where(x => x.FarmerId == farmerId && x.Product.IsDeleted == false).Select(x => new FullCartItemDTO()
                 {
                     FarmerId = farmerId,
+                    SellerId = x.Product.SellerId,
                     AddedDate = x.AddedDate,
                     Id = x.Id,
                     ProductId = x.ProductId,
