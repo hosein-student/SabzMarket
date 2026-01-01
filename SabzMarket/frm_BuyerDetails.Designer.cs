@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_BuyerDetails));
             pb_ProfileBuyer = new PictureBox();
             lbl_Address = new Label();
             txt_address = new MyTextBox();
@@ -67,7 +68,7 @@
             // txt_address
             // 
             txt_address.AutoSize = true;
-            txt_address.CustomizableEdges = customizableEdges7;
+            txt_address.CustomizableEdges = customizableEdges1;
             txt_address.DefaultText = "";
             txt_address.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_address.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -85,7 +86,7 @@
             txt_address.PlaceholderText = "";
             txt_address.ReadOnly = true;
             txt_address.SelectedText = "";
-            txt_address.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txt_address.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txt_address.Size = new Size(442, 154);
             txt_address.TabIndex = 2;
             // 
@@ -101,7 +102,7 @@
             // 
             // txt_Phone
             // 
-            txt_Phone.CustomizableEdges = customizableEdges9;
+            txt_Phone.CustomizableEdges = customizableEdges3;
             txt_Phone.DefaultText = "";
             txt_Phone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_Phone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -118,13 +119,13 @@
             txt_Phone.PlaceholderText = "";
             txt_Phone.ReadOnly = true;
             txt_Phone.SelectedText = "";
-            txt_Phone.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txt_Phone.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txt_Phone.Size = new Size(263, 41);
             txt_Phone.TabIndex = 4;
             // 
             // txt_CodePosti
             // 
-            txt_CodePosti.CustomizableEdges = customizableEdges11;
+            txt_CodePosti.CustomizableEdges = customizableEdges5;
             txt_CodePosti.DefaultText = "";
             txt_CodePosti.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_CodePosti.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -141,7 +142,7 @@
             txt_CodePosti.PlaceholderText = "";
             txt_CodePosti.ReadOnly = true;
             txt_CodePosti.SelectedText = "";
-            txt_CodePosti.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txt_CodePosti.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txt_CodePosti.Size = new Size(262, 47);
             txt_CodePosti.TabIndex = 5;
             // 
@@ -167,8 +168,9 @@
             Controls.Add(txt_address);
             Controls.Add(lbl_Address);
             Controls.Add(pb_ProfileBuyer);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frm_BuyerDetails";
-            Text = "frm_BuyerDetails";
+            Text = "مشخصات خریدار ";
             Load += frm_BuyerDetails_Load;
             ((System.ComponentModel.ISupportInitialize)pb_ProfileBuyer).EndInit();
             ResumeLayout(false);

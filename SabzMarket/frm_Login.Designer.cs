@@ -36,6 +36,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Login));
             btn_Login = new MyButton();
             txt_UserName = new MyTextBox();
             txt_Password = new MyTextBox();
@@ -168,12 +169,13 @@
             Controls.Add(txt_Password);
             Controls.Add(txt_UserName);
             Controls.Add(btn_Login);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MaximumSize = new Size(420, 569);
             MinimumSize = new Size(420, 569);
             Name = "frm_Login";
-            Text = "frm_Login";
+            Text = "صفحه ورود";
             ResumeLayout(false);
             PerformLayout();
 

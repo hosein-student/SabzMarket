@@ -265,9 +265,10 @@
             Controls.Add(pnlShowProduct);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1289, 811);
             Name = "FrmMain";
-            Text = "FrmMain";
+            Text = "سبزمارکت";
             FormClosed += FrmMain_FormClosed;
             Load += FrmMain_Load;
             pnlHamburgerMenu.ResumeLayout(false);

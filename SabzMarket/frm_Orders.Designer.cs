@@ -36,6 +36,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Orders));
             flowLayoutPanel1 = new FlowLayoutPanel();
             pl_Search = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             btn_History = new MyButton();
@@ -146,12 +147,13 @@
             ClientSize = new Size(641, 840);
             Controls.Add(pl_Search);
             Controls.Add(flowLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MaximumSize = new Size(659, 1261);
             MinimumSize = new Size(659, 887);
             Name = "frm_Orders";
-            Text = "frm_Orders";
+            Text = "سفارشات";
             Load += frm_Orders_Load;
             pl_Search.ResumeLayout(false);
             ResumeLayout(false);

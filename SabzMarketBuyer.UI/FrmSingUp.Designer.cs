@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSingUp));
             txtFirstname = new TextBox();
             txtLastname = new TextBox();
             txtPhone = new TextBox();
@@ -203,6 +204,7 @@
             Controls.Add(txtPhone);
             Controls.Add(txtLastname);
             Controls.Add(txtFirstname);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(379, 492);
             MinimumSize = new Size(379, 492);

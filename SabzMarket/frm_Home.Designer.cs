@@ -273,7 +273,7 @@
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(1115, 839);
             Name = "frm_Home";
-            Text = "SabzMarket";
+            Text = "سبز مارکت";
             FormClosed += frm_Home_FormClosed;
             Load += frm_Home_Load;
             pln_Menu1.ResumeLayout(false);

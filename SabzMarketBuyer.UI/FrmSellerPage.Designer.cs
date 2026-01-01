@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSellerPage));
             pnlShowProduct = new FlowLayoutPanel();
             pbProfile = new PictureBox();
             lblName = new Label();
@@ -116,8 +117,9 @@
             Controls.Add(lblName);
             Controls.Add(pbProfile);
             Controls.Add(pnlShowProduct);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmSellerPage";
-            Text = "FrmSellerProducts";
+            Text = "صفحه فروشنده";
             Load += FrmSellerPage_Load;
             ((System.ComponentModel.ISupportInitialize)pbProfile).EndInit();
             ResumeLayout(false);

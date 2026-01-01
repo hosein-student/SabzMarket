@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             button1 = new Button();
             btnLogin = new Button();
             txtUsername = new TextBox();
@@ -112,12 +113,13 @@
             Controls.Add(txtUsername);
             Controls.Add(btnLogin);
             Controls.Add(button1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             MaximizeBox = false;
             MaximumSize = new Size(369, 371);
             MinimumSize = new Size(369, 371);
             Name = "FrmLogin";
-            Text = "FrmLogin";
+            Text = "صفحه ورود";
             ResumeLayout(false);
             PerformLayout();
         }

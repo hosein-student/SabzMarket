@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCart));
             pnlCart = new FlowLayoutPanel();
             btnPay = new Button();
             lblTitleTotalAmount = new Label();
@@ -86,8 +87,9 @@
             Controls.Add(lblTitleTotalAmount);
             Controls.Add(btnPay);
             Controls.Add(pnlCart);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmCart";
-            Text = "FrmCart";
+            Text = "سبد خرید ";
             Load += FrmCart_Load;
             ResumeLayout(false);
             PerformLayout();

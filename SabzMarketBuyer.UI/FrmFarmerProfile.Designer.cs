@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFarmerProfile));
             lblAddress = new Label();
             txtAddress = new TextBox();
             btnSave = new Button();
@@ -58,7 +59,7 @@
             // txtAddress
             // 
             txtAddress.Location = new Point(11, 118);
-            txtAddress.Margin = new Padding(2, 2, 2, 2);
+            txtAddress.Margin = new Padding(2);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(230, 34);
             txtAddress.TabIndex = 0;
@@ -66,7 +67,7 @@
             // btnSave
             // 
             btnSave.Location = new Point(145, 377);
-            btnSave.Margin = new Padding(2, 2, 2, 2);
+            btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(147, 65);
             btnSave.TabIndex = 6;
@@ -77,7 +78,7 @@
             // txtDataBuilt
             // 
             txtDataBuilt.Location = new Point(11, 159);
-            txtDataBuilt.Margin = new Padding(2, 2, 2, 2);
+            txtDataBuilt.Margin = new Padding(2);
             txtDataBuilt.Name = "txtDataBuilt";
             txtDataBuilt.Size = new Size(230, 34);
             txtDataBuilt.TabIndex = 1;
@@ -85,7 +86,7 @@
             // txtLandArea
             // 
             txtLandArea.Location = new Point(11, 200);
-            txtLandArea.Margin = new Padding(2, 2, 2, 2);
+            txtLandArea.Margin = new Padding(2);
             txtLandArea.Name = "txtLandArea";
             txtLandArea.Size = new Size(230, 34);
             txtLandArea.TabIndex = 2;
@@ -93,7 +94,7 @@
             // txtNationalCode
             // 
             txtNationalCode.Location = new Point(11, 241);
-            txtNationalCode.Margin = new Padding(2, 2, 2, 2);
+            txtNationalCode.Margin = new Padding(2);
             txtNationalCode.Name = "txtNationalCode";
             txtNationalCode.Size = new Size(230, 34);
             txtNationalCode.TabIndex = 3;
@@ -101,7 +102,7 @@
             // txtCodParvaneBHB
             // 
             txtCodParvaneBHB.Location = new Point(11, 282);
-            txtCodParvaneBHB.Margin = new Padding(2, 2, 2, 2);
+            txtCodParvaneBHB.Margin = new Padding(2);
             txtCodParvaneBHB.Name = "txtCodParvaneBHB";
             txtCodParvaneBHB.Size = new Size(230, 34);
             txtCodParvaneBHB.TabIndex = 4;
@@ -109,7 +110,7 @@
             // txtCodePosti
             // 
             txtCodePosti.Location = new Point(11, 323);
-            txtCodePosti.Margin = new Padding(2, 2, 2, 2);
+            txtCodePosti.Margin = new Padding(2);
             txtCodePosti.Name = "txtCodePosti";
             txtCodePosti.Size = new Size(230, 34);
             txtCodePosti.TabIndex = 5;
@@ -168,7 +169,7 @@
             // 
             pbProfile.Image = Properties.Resources.profile;
             pbProfile.Location = new Point(174, 9);
-            pbProfile.Margin = new Padding(2, 2, 2, 2);
+            pbProfile.Margin = new Padding(2);
             pbProfile.Name = "pbProfile";
             pbProfile.Size = new Size(105, 103);
             pbProfile.SizeMode = PictureBoxSizeMode.Zoom;
@@ -196,12 +197,13 @@
             Controls.Add(btnSave);
             Controls.Add(txtAddress);
             Controls.Add(lblAddress);
-            Margin = new Padding(2, 2, 2, 2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             MaximizeBox = false;
             MaximumSize = new Size(480, 500);
             MinimumSize = new Size(480, 500);
             Name = "FrmFarmerProfile";
-            Text = "FrmFarmerProfile";
+            Text = "احراز هویت";
             ((System.ComponentModel.ISupportInitialize)pbProfile).EndInit();
             ResumeLayout(false);
             PerformLayout();

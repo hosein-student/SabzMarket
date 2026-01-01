@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
             txtFirstname = new TextBox();
             pbProfile = new PictureBox();
             txtLastname = new TextBox();
@@ -240,12 +241,13 @@
             Controls.Add(txtLastname);
             Controls.Add(pbProfile);
             Controls.Add(txtFirstname);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             MaximizeBox = false;
             MaximumSize = new Size(450, 580);
             MinimumSize = new Size(355, 451);
             Name = "FrmSettings";
-            Text = "FrmSettings";
+            Text = "تنظیمات";
             Load += FrmSettings_Load;
             ((System.ComponentModel.ISupportInitialize)pbProfile).EndInit();
             ResumeLayout(false);
