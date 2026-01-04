@@ -67,7 +67,7 @@ namespace SabzMarket
                 return;
             }
             CurrentUser.SellerId = seller.Data.Id;
-            CurrentUser.UserId=seller.Data.UserId;
+            CurrentUser.UserId = seller.Data.UserId;
             lbl_Name.Text = $"{seller.Data.FirstName} {seller.Data.LastName}";
             lbl_UserName.Text = seller.Data.Username;
             pb_Profile.LoadAsync(seller.Data.ProfileImage);
@@ -75,8 +75,8 @@ namespace SabzMarket
         private async void frm_Home_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-           await SetUserHeaderInfo();
-           RefreshProduct(this,EventArgs.Empty);
+            await SetUserHeaderInfo();
+            RefreshProduct(this, EventArgs.Empty);
 
         }
 
@@ -101,7 +101,7 @@ namespace SabzMarket
 
         private async void Frm_Settings_LoodPanel(object? sender, EventArgs e)
         {
-          await  SetUserHeaderInfo();
+            await SetUserHeaderInfo();
         }
         private void btn_Orders_Click(object sender, EventArgs e)
         {
@@ -123,7 +123,7 @@ namespace SabzMarket
         private async void RefreshProduct(object? sender, EventArgs e)
         {
             await GetProduct(CurrentUser.SellerId);
-            if (ProductDTOs != null||ProductDTOs!.Count!=0)
+            if (ProductDTOs != null || ProductDTOs!.Count != 0)
                 RenderOrders(ProductDTOs);
         }
 
@@ -148,30 +148,39 @@ namespace SabzMarket
         {
             frm_ProductUpsert AddProducts = new frm_ProductUpsert();
             AddProducts.Product = e.Product;
-            AddProducts.IsEdit= true;   
+            AddProducts.IsEdit = true;
             AddProducts.RefreshProduct += RefreshProduct;
             AddProducts.ShowDialog();
         }
 
         private async void UC_Products_Delete(object? sender, ProductEventArgs e)
         {
-           
-            if (ShowInfoWarning(Messages.ConfirmDeleteProduct) !=DialogResult.Yes)
-                { return; }
+            if (ShowInfoWarning(Messages.ConfirmDeleteProduct) != DialogResult.Yes)
+            { return; }
+
+            var btnDelete = sender as MyButton;
+            btnDelete.Enabled = false;
+            btnDelete.Text = Messages.pleaseWaitText;
 
             var client = HttpClientHelper.Instance;
             var rout = string.Format(ApiRoutes.DeleteProduct, e.Product.Id);
-           var result=await client.GetAsync<OperationResult>(rout);
+            var result = await client.GetAsync<OperationResult>(rout);
             if (!result.Success)
             {
                 if (!result.Result)
                 {
+                    btnDelete.Enabled = true;
+                    btnDelete.Text = Messages.TxtbtnDelete;
                     ShowInfoError(result.Message!);
                     return;
                 }
+                btnDelete.Enabled = true;
+                btnDelete.Text = Messages.TxtbtnDelete;
                 ShowInfo(result.Message!);
                 return;
             }
+            btnDelete.Enabled = true;
+            btnDelete.Text = Messages.TxtbtnDelete;
             ShowInfo(result.Message!);
             RefreshProduct(this, EventArgs.Empty);
         }

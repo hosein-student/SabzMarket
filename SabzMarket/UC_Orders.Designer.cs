@@ -106,11 +106,12 @@
             btn_Sent.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btn_Sent.Size = new Size(161, 51);
             btn_Sent.TabIndex = 1;
-            btn_Sent.Text = "ارسال شده";
+            btn_Sent.Text = "ارسال کردن";
             btn_Sent.Click += btn_Sent_Click;
             // 
             // pb_Image
             // 
+            pb_Image.Image = Properties.Resources.profile;
             pb_Image.Location = new Point(29, 81);
             pb_Image.Margin = new Padding(3, 4, 3, 4);
             pb_Image.Name = "pb_Image";

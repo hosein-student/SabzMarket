@@ -44,19 +44,28 @@ namespace SabzMarketBuyer.UI
 
         private async void UC_Products_AddToCart(object? sender, ProductEventArgs<UcProductPage> e)
         {
+            var btnAddToCart = sender as Button;
+            btnAddToCart.Enabled = false;
+            btnAddToCart.Text = Messages.pleaseWaitText;
             var cliet = HttpClientHelper.Instance;
             var result = await cliet
                 .PostAsync<OperationResult, CartItemDTO>(ApiRoutes.AddToCart, e.CartItemDTO);
             if (result == null)
             {
+                btnAddToCart.Enabled = true;
+                btnAddToCart.Text = Messages.TextbtnAddToCart;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
             if (!result.Success)
             {
+                btnAddToCart.Enabled = true;
+                btnAddToCart.Text = Messages.TextbtnAddToCart;
                 ShowInfoError(result.Message!);
                 return;
             }
+            btnAddToCart.Enabled = true;
+            btnAddToCart.Text = Messages.TextbtnAddToCart;
             ShowInfo(result.Message!);
             e.uCProduct.Product.Number -= 1;
             e.uCProduct.UcProductPage_Load(null, e);
@@ -95,6 +104,11 @@ namespace SabzMarketBuyer.UI
                 return;
             }
             RenderProduct(product.Data);
+        }
+        public event EventHandler LoodFormMain;
+        private void FrmSellerPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LoodFormMain?.Invoke(this, e);
         }
     }
 }

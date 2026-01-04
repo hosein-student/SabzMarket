@@ -41,7 +41,7 @@
             pnlMenu = new Panel();
             btnShoppingCart = new MyButon();
             myButon1 = new MyButon();
-            myButon2 = new MyButon();
+            btnSearch = new MyButon();
             txtSearch = new TextBox();
             panel1 = new Panel();
             rbtSearchProduct = new RadioButton();
@@ -189,16 +189,16 @@
             myButon1.TabIndex = 0;
             myButon1.UseVisualStyleBackColor = false;
             // 
-            // myButon2
+            // btnSearch
             // 
-            myButon2.BackColor = Color.Honeydew;
-            myButon2.Image = (Image)resources.GetObject("myButon2.Image");
-            myButon2.Location = new Point(312, 12);
-            myButon2.Name = "myButon2";
-            myButon2.Size = new Size(90, 50);
-            myButon2.TabIndex = 1;
-            myButon2.UseVisualStyleBackColor = false;
-            myButon2.Click += myButon2_Click;
+            btnSearch.BackColor = Color.Honeydew;
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(312, 12);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(90, 50);
+            btnSearch.TabIndex = 1;
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += myButon2_Click;
             // 
             // txtSearch
             // 
@@ -214,7 +214,7 @@
             panel1.Controls.Add(rbtSearchProduct);
             panel1.Controls.Add(rbtSearchSeller);
             panel1.Controls.Add(txtSearch);
-            panel1.Controls.Add(myButon2);
+            panel1.Controls.Add(btnSearch);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -297,7 +297,7 @@
         private Panel pnlMenu;
         private MyButon myButon1;
         private MyButon btnShoppingCart;
-        private MyButon myButon2;
+        private MyButon btnSearch;
         private TextBox txtSearch;
         private Panel panel1;
         private RadioButton rbtSearchProduct;

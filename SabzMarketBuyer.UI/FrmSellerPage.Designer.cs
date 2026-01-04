@@ -120,6 +120,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmSellerPage";
             Text = "صفحه فروشنده";
+            FormClosing += FrmSellerPage_FormClosing;
             Load += FrmSellerPage_Load;
             ((System.ComponentModel.ISupportInitialize)pbProfile).EndInit();
             ResumeLayout(false);

@@ -24,7 +24,7 @@ namespace SabzMarket
         private void btn_Delete_Click(object sender, EventArgs e)
         {
             ProductEventArgs product = new ProductEventArgs(Product);
-            Delete?.Invoke(this, product);
+            Delete?.Invoke(sender, product);
         }
         private void btn_Edit_Click(object sender, EventArgs e)
         {

@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -124,9 +125,13 @@ namespace SabzMarket
                 SellerPartial = sellerPartial,
                 UserViewModel = userViewModel
             };
+            btn_Update.Enabled = false;
+            btn_Update.Text = Messages.pleaseWaitText;
             var result = await client.PostAsync<OperationResult, RequestPayload>(route, payload);
             if (result == null)
             {
+                btn_Update.Enabled = true;
+                btn_Update.Text = Messages.TextUpdate;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
@@ -134,12 +139,18 @@ namespace SabzMarket
             {
                 if(!result.Result)
                 {
+                    btn_Update.Enabled = true;
+                    btn_Update.Text = Messages.TextUpdate;
                     ShowInfoError(result.Message!);
                     return;
                 }
+                btn_Update.Enabled = true;
+                btn_Update.Text = Messages.TextUpdate;
                 ShowInfo(result.Message);
                 return;
             }
+            btn_Update.Enabled = true;
+            btn_Update.Text = Messages.TextUpdate;
             ShowInfo(result.Message!);
             LoodPanel?.Invoke(this, EventArgs.Empty);
             CurrentUser.UserName = txt_UserName.Text;

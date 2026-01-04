@@ -13,6 +13,7 @@ namespace SabzMarket.Share
         public const string pleaseWaitText = "صبر کنید";
         public const string LoginText = "ورود";
         public const string SingUpText = "ثبت نام";
+        public const string Save = "ذخیره";
         //======================================================================================================
         public const string successSignUp1 = "ثبت نام اولیه شما انجام شد";
         public const string failedSignUp1 = "ثبت نام اولیه شما انجام نشد ";
@@ -66,5 +67,14 @@ namespace SabzMarket.Share
         public const string CartEmpty = "سبد خرید خالی است";
         //=====================================================================================================================
         public const string ShoppingSuccessful = "خرید با موفقیت انجام شد";
+        public const string TextBtnPay= "پرداخت";
+        public const string TextBtnDecrease = "حذف یکی";
+        public const string TextBtnDeleteCart = "حذف از سبد خرید";
+        public const string TextbtnAddToCart = "افزودن به سبد خرید";
+        public const string TextAdd = "اضافه کردن ";
+        public const string TextUpdate = "ویرایش";
+        public const string TextBtnSent = "ارسال کردن";
+        public const string TextBtnReject = "رد کردن";
+        public const string TxtbtnDelete = "حذف";
     }
 }

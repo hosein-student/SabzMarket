@@ -35,7 +35,7 @@ namespace SabzMarketBuyer.UI
                 CartItemDTO = cartItemDTO
                 ,uCProduct=this
             };
-            AddToCart?.Invoke(this, productEventArgs);
+            AddToCart?.Invoke(sender, productEventArgs);
         }
 
         public void UCProduct_Load(object sender, EventArgs e)

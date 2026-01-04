@@ -42,7 +42,6 @@ namespace SabzMarketBuyer.UI
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-
             FarmerPartiaViewModel farmer;
             int LandArea;
             var landAreaIsInt = int.TryParse(txtLandArea.Text, out LandArea);
@@ -80,20 +79,27 @@ namespace SabzMarketBuyer.UI
                 ShowInfo(farmer.ErrorMessage);
                 return;
             }
-
+            btnSave.Enabled = false;
+            btnSave.Text = Messages.pleaseWaitText;
             var client = HttpClientHelper.Instance;
             var rout = string.Format(ApiRoutes.CreateFarmer, CurrentUser.UserName);
             var result = await client.PostAsync<OperationResult, FarmerPartiaViewModel>(rout, farmer);
             if (result == null)
             {
+                btnSave.Enabled = true;
+                btnSave.Text = Messages.Save;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
             if (!result.Success)
             {
+                btnSave.Enabled = true;
+                btnSave.Text = Messages.Save;
                 ShowInfoError(result.Message!);
                 return;
             }
+            btnSave.Enabled = true;
+            btnSave.Text = Messages.Save;
             ShowInfo(result.Message!);
             FrmMain frmMain=new FrmMain();
             frmMain.Show();

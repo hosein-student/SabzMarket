@@ -30,6 +30,8 @@ namespace SabzMarket
         public event EventHandler RefreshProduct;
         private async void btn_Add_Click(object sender, EventArgs e)
         {
+            btn_Add.Enabled = false;
+            btn_Add.Text = Messages.pleaseWaitText;
             int price, number;
             bool convertPrice = int.TryParse(txt_Price.Text.Replace(",", ""), out price);
             bool convertNumber = int.TryParse(txt_Number.Text.Replace(",", ""), out number);
@@ -56,17 +58,23 @@ namespace SabzMarket
                         .PostAsync<OperationResult, ProductViewModel>(ApiRoutes.UpdateProduct, productViewModel);
                     if (!result.Success)
                     {
-                            ShowInfoError(result.Message!);
+                        btn_Add.Enabled = true;
+                        btn_Add.Text = Messages.TextUpdate;
+                        ShowInfoError(result.Message!);
                         return;
                     }
+                    btn_Add.Enabled = true;
+                    btn_Add.Text = Messages.TextUpdate;
                     ShowInfo(result.Message!);
                     RefreshProduct?.Invoke(this, EventArgs.Empty);
                     return;
                 }
+                btn_Add.Enabled = true;
+                btn_Add.Text = Messages.TextUpdate;
                 ShowInfo(productViewModel.ErrorMessage);
                 return;
             }
-            
+
             if (productViewModel.IsValid)
             {
                 var client = HttpClientHelper.Instance;
@@ -76,16 +84,22 @@ namespace SabzMarket
                 {
                     if (!result.Result)
                     {
+                        btn_Add.Enabled = true;
+                        btn_Add.Text = Messages.TextAdd;
                         ShowInfoError(result.Message!);
                         return;
                     }
+                    btn_Add.Enabled = true;
+                    btn_Add.Text = Messages.TextAdd;
                     ShowInfo(result.Message!);
                     return;
                 }
+                btn_Add.Enabled = true;
+                btn_Add.Text = Messages.TextAdd;
                 Clear();
                 ShowInfo(result.Message!);
                 RefreshProduct?.Invoke(this, EventArgs.Empty);
-    }
+            }
             else
             {
                 ShowInfo(productViewModel.ErrorMessage);
@@ -94,7 +108,7 @@ namespace SabzMarket
         }
         void Clear()
         {
-            txt_Description.Clear(); 
+            txt_Description.Clear();
             txt_Name.Clear();
             txt_Price.Clear();
             txt_Number.Clear();
@@ -161,8 +175,8 @@ namespace SabzMarket
             if (IsEdit)
             {
                 path = Product.ImageProduct!;
-                txt_Name.Text=Product.Name;
-                txt_Description.Text=Product.Description;
+                txt_Name.Text = Product.Name;
+                txt_Description.Text = Product.Description;
                 txt_Number.Text = Product.Number.ToString();
                 cmb_Categorie.SelectedValue = Product.CategoryId;
                 txt_Price.Text = Product.Price.ToString("N0");

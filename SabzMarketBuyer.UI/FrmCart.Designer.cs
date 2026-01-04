@@ -48,7 +48,6 @@
             // btnPay
             // 
             btnPay.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnPay.Enabled = false;
             btnPay.Location = new Point(36, 535);
             btnPay.Name = "btnPay";
             btnPay.Size = new Size(82, 54);
@@ -90,6 +89,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmCart";
             Text = "سبد خرید ";
+            FormClosing += FrmCart_FormClosing;
             Load += FrmCart_Load;
             ResumeLayout(false);
             PerformLayout();

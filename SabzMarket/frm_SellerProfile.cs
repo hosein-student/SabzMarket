@@ -61,11 +61,15 @@ namespace SabzMarket
                 ShowInfo(seller.ErrorMessage);
                 return;
             }
+            btn_Save.Enabled = false;
+            btn_Save.Text = Messages.pleaseWaitText;
             var httpClientHelper = HttpClientHelper.Instance;
             var result = await httpClientHelper
                 .PostAsync<OperationResult, SellerPartialViewModel>(ApiRoutes.SellerFillProfile, seller);
             if (result == null)
             {
+                btn_Save.Enabled = true;
+                btn_Save.Text = Messages.Save;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
@@ -73,9 +77,13 @@ namespace SabzMarket
             {
                 if (!result.Result)
                 {
+                    btn_Save.Enabled = true;
+                    btn_Save.Text = Messages.Save;
                     ShowInfoError(result.Message!);
                     return;
                 }
+                btn_Save.Enabled = true;
+                btn_Save.Text = Messages.Save;
                 ShowInfo(result.Message!);
                 return;
             }

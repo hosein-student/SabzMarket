@@ -89,6 +89,9 @@ namespace SabzMarket
 
         private async void UC_Orders_RejectOrder(object? sender, OrderDetailEventArgs e)
         {
+            var btnReject = sender as MyButton;
+            btnReject.Enabled = false;
+            btnReject.Text = Messages.pleaseWaitText;
             var client = HttpClientHelper.Instance;
             string rout = string
                 .Format(
@@ -102,12 +105,18 @@ namespace SabzMarket
             {
                 if (!result.Result)
                 {
+                    btnReject.Enabled = true;
+                    btnReject.Text = Messages.TextBtnReject;
                     ShowInfoError(result.Message!);
                     return;
                 }
+                btnReject.Enabled = true;
+                btnReject.Text = Messages.TextBtnReject;
                 ShowInfo(result.Message!);
                 return;
             }
+            btnReject.Enabled = true;
+            btnReject.Text = Messages.TextBtnReject;
             ShowInfo(result.Message!);
             e.C_Orders.UpdateStatusUI(OrderStatus.Rejected.ToString());
 
@@ -115,6 +124,9 @@ namespace SabzMarket
 
         private async void UC_Orders_SentOrder(object? sender, OrderDetailEventArgs e)
         {
+            var btnSent=sender as MyButton;
+            btnSent.Enabled = false;
+            btnSent.Text = Messages.pleaseWaitText;
             var client = HttpClientHelper.Instance;
             string rout = string.Format(ApiRoutes.OrderDetailSent, e.orderDTO.OrderDetailId);
             var result = await client.GetAsync<OperationResult>(rout);
@@ -122,12 +134,18 @@ namespace SabzMarket
             {
                 if (!result.Result)
                 {
+                    btnSent.Enabled = true;
+                    btnSent.Text = Messages.TextBtnSent;
                     ShowInfoError(result.Message!);
                     return;
                 }
+                btnSent.Enabled = true;
+                btnSent.Text = Messages.TextBtnSent;
                 ShowInfo(result.Message!);
                 return;
             }
+            btnSent.Enabled = true;
+            btnSent.Text = Messages.TextBtnSent;
             ShowInfo(result.Message!);
             e.C_Orders.UpdateStatusUI(OrderStatus.Sent.ToString());
         }

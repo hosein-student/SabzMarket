@@ -71,7 +71,7 @@ namespace SabzMarket
         private void btn_Sent_Click(object sender, EventArgs e)
         {
             OrderDetailEventArgs orderDetail = new OrderDetailEventArgs(Order,this);
-            SentOrder?.Invoke(this, orderDetail);
+            SentOrder?.Invoke(sender, orderDetail);
         }
     }
 }

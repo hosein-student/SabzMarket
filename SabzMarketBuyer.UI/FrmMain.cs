@@ -150,18 +150,27 @@ namespace SabzMarketBuyer.UI
         }
         private async void UC_Products_AddToCart1(object? sender, ProductEventArgs<UCProductMain> e)
         {
+            var btnAddToCart = sender as Button;
+            btnAddToCart.Enabled = false;
+            btnAddToCart.Text = Messages.pleaseWaitText;
             var cliet = HttpClientHelper.Instance;
             var result = await cliet.PostAsync<OperationResult, CartItemDTO>(ApiRoutes.AddToCart, e.CartItemDTO);
             if (result == null)
             {
+                btnAddToCart.Enabled = true;
+                btnAddToCart.Text = Messages.TextbtnAddToCart;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
             if (!result.Success)
             {
+                btnAddToCart.Enabled = true;
+                btnAddToCart.Text = Messages.TextbtnAddToCart;
                 ShowInfoError(result.Message!);
                 return;
             }
+            btnAddToCart.Enabled = true;
+            btnAddToCart.Text = Messages.TextbtnAddToCart;
             ShowInfo(result.Message!);
             e.uCProduct.Product.Number -= 1;
             e.uCProduct.UCProduct_Load(null, e);
@@ -182,7 +191,18 @@ namespace SabzMarketBuyer.UI
         {
             FrmSellerPage frmSellerPage = new FrmSellerPage();
             frmSellerPage.SellerId = e.SellerId;
+            frmSellerPage.LoodFormMain += FrmSellerPage_LoodFormMain;
             frmSellerPage.ShowDialog();
+        }
+
+        private void FrmSellerPage_LoodFormMain(object? sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                myButon2_Click(sender, e);
+                return;
+            }
+            FrmMain_Load(sender, e);
         }
 
         private async void FrmMain_Load(object sender, EventArgs e)
@@ -223,6 +243,7 @@ namespace SabzMarketBuyer.UI
         List<ProductDTO> products;
         private async void myButon2_Click(object sender, EventArgs e)
         {
+            btnSearch.Enabled = false;
             var client = HttpClientHelper.Instance;
             if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
@@ -231,6 +252,7 @@ namespace SabzMarketBuyer.UI
                 {
                     RenderSeller(sellers);
                 }
+                btnSearch.Enabled = true;
                 return;
             }
             if (rbtSearchProduct.Checked)
@@ -239,6 +261,7 @@ namespace SabzMarketBuyer.UI
                 var resultProduct = await client.GetAsync<OperationResult<List<ProductDTO>>>(routProduct);
                 if (resultProduct == null)
                 {
+                    btnSearch.Enabled = true;
                     ShowInfoError(Messages.InternetErrorMessage);
                     return;
                 }
@@ -247,6 +270,7 @@ namespace SabzMarketBuyer.UI
                     if (!resultProduct.Result)
                     {
                         ShowInfoError(resultProduct.Message!);
+                        btnSearch.Enabled = true;
                         return;
                     }
                     ShowInfo(resultProduct.Message!);
@@ -256,12 +280,14 @@ namespace SabzMarketBuyer.UI
                 {
                     RenderProduct(products);
                 }
+                btnSearch.Enabled = true;
                 return;
             }
             var rout = string.Format(ApiRoutes.GetSellerByPhoneNumber, Uri.EscapeDataString(txtSearch.Text));
             var result = await client.GetAsync<OperationResult<List<SellerFullViewModel>>>(rout);
             if (result == null)
             {
+                btnSearch.Enabled = true;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
@@ -269,15 +295,18 @@ namespace SabzMarketBuyer.UI
             {
                 if (!result.Result)
                 {
+                    btnSearch.Enabled = true;
                     ShowInfoError(result.Message!);
                     return;
                 }
+                btnSearch.Enabled = true;
                 ShowInfo(result.Message!);
                 return;
             }
             sellers = result.Data;
             if (result.Data != null || result.Data!.Count != 0)
             {
+                btnSearch.Enabled = true;
                 RenderSeller(result.Data);
             }
         }
@@ -285,7 +314,18 @@ namespace SabzMarketBuyer.UI
         private void btnShoppingCart_Click(object sender, EventArgs e)
         {
             FrmCart frmCart = new FrmCart();
+            frmCart.loodFormMain += FrmCart_loodFormMain;
             frmCart.ShowDialog();
+        }
+
+        private void FrmCart_loodFormMain(object? sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                myButon2_Click(sender, e);
+                return;
+            }
+            FrmMain_Load(sender, e);
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)

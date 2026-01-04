@@ -62,10 +62,14 @@ namespace SabzMarketBuyer.UI
                 ShowInfo(farmer.ErrorMessage);
                 return;
             }
+            btnSave.Enabled = false;
+            btnSave.Text=Messages.pleaseWaitText;
             var rout = string.Format(ApiRoutes.UpdateFarmer, CurrentUser.UserName);
             var result = await client.PostAsync<OperationResult, FarmerSummaryViewModel>(rout, farmer);
             if (result == null)
             {
+                btnSave.Enabled = true;
+                btnSave.Text = Messages.Save;
                 ShowInfoError(Messages.InternetErrorMessage);
                 return;
             }
@@ -73,12 +77,18 @@ namespace SabzMarketBuyer.UI
             {
                 if (!result.Result)
                 {
+                    btnSave.Enabled = true;
+                    btnSave.Text = Messages.Save;
                     ShowInfoError(farmer.ErrorMessage);
                     return;
                 }
+                btnSave.Enabled = true;
+                btnSave.Text = Messages.Save;
                 ShowInfo(farmer.ErrorMessage);
                 return;
             }
+            btnSave.Enabled = true;
+            btnSave.Text = Messages.Save;
             ShowInfo(result.Message!);
             LoodPanel?.Invoke(this, EventArgs.Empty);
         }

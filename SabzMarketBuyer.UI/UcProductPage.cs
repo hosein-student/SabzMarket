@@ -48,7 +48,7 @@ namespace SabzMarketBuyer.UI
                 ,
                 uCProduct = this
             };
-            AddToCart?.Invoke(this, productEventArgs);
+            AddToCart?.Invoke(sender, productEventArgs);
         }
 
         private void pbImage_LoadCompleted(object sender, AsyncCompletedEventArgs e)
