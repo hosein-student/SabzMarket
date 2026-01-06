@@ -13,6 +13,7 @@ namespace SabzMarket.Share.Models
         public long SellerId {  get; set; }
         public long ProductId { get; set; }
         public string? ProductName { get; set; }
+        public int ProducNumber {  get; set; }
         public int ProductPrice { get; set; }
         public string? ProductImage {  get; set; }
         public int Quantity { get; set; }

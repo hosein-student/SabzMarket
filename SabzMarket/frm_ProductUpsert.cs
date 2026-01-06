@@ -31,7 +31,6 @@ namespace SabzMarket
         private async void btn_Add_Click(object sender, EventArgs e)
         {
             btn_Add.Enabled = false;
-            btn_Add.Text = Messages.pleaseWaitText;
             int price, number;
             bool convertPrice = int.TryParse(txt_Price.Text.Replace(",", ""), out price);
             bool convertNumber = int.TryParse(txt_Number.Text.Replace(",", ""), out number);
@@ -53,6 +52,7 @@ namespace SabzMarket
                 productViewModel.Id = Product.Id;
                 if (productViewModel.IsValid)
                 {
+                    btn_Add.Text = Messages.pleaseWaitText;
                     var client = HttpClientHelper.Instance;
                     var result = await client
                         .PostAsync<OperationResult, ProductViewModel>(ApiRoutes.UpdateProduct, productViewModel);
@@ -77,6 +77,7 @@ namespace SabzMarket
 
             if (productViewModel.IsValid)
             {
+                btn_Add.Text = Messages.pleaseWaitText;
                 var client = HttpClientHelper.Instance;
                 var result = await client
                     .PostAsync<OperationResult, ProductViewModel>(ApiRoutes.CreateProduct, productViewModel);

@@ -21,18 +21,21 @@ namespace SabzMarket.BLL
         private readonly ICartItemService _cartItemService;
         private readonly IOrderDetailService _orderDetailService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductOrderDetailHelperService _productOrderDetailHelperService;
         public OrderService(
             IOrderRepository orderRepository,
             IErrorService errorService,
             ICartItemService cartItemService,
             IOrderDetailService orderDetail,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IProductOrderDetailHelperService productOrderDetailHelperService)
         {
             _errorService = errorService;
             _orderRepository = orderRepository;
             _cartItemService = cartItemService;
             _orderDetailService = orderDetail;
             _unitOfWork = unitOfWork;
+            _productOrderDetailHelperService = productOrderDetailHelperService;
         }
 
         public async Task<OperationResult> CheckoutAsync(long farmerId)
@@ -46,6 +49,7 @@ namespace SabzMarket.BLL
             var cartItems = cart.Data;
             if (cartItems == null || cartItems.Count == 0)
                 return OperationResult.Failed(Messages.CartEmpty);
+            
             foreach (var item in cart.Data)
             {
                 var checkOrder = await _orderRepository.CheckOrderAsync(farmerId, item.SellerId);
@@ -72,6 +76,12 @@ namespace SabzMarket.BLL
                         await _unitOfWork.RollbackAsync();
                         return resultOrderDetile;
                     }
+                    var resultIncrease = await _productOrderDetailHelperService.IncreaseNumberAsync(item.ProductId, -item.Quantity);
+                    if (!resultIncrease.Success)
+                    {
+                        await _unitOfWork.RollbackAsync();
+                        return OperationResult.Failed(resultIncrease.Message!);
+                    }
                     var deleteCart = await _cartItemService.DeleteAfterCheckoutAsync(item.Id);
                     if (!deleteCart.Success)
                     {
@@ -86,6 +96,12 @@ namespace SabzMarket.BLL
                     {
                         await _unitOfWork.RollbackAsync();
                         return result;
+                    }
+                    var resultIncrease = await _productOrderDetailHelperService.IncreaseNumberAsync(item.ProductId, -item.Quantity);
+                    if (!resultIncrease.Success)
+                    {
+                        await _unitOfWork.RollbackAsync();
+                        return OperationResult.Failed(resultIncrease.Message!);
                     }
                     var deleteCart = await _cartItemService.DeleteAfterCheckoutAsync(item.Id);
                     if (!deleteCart.Success)

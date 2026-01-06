@@ -29,7 +29,7 @@ namespace SabzMarket.BLL
         }
         public async Task<OperationResult> AddToCartAsync(CartItemDTO cartItemDTO)
         {
-            var exist =await _repository.ExistProductAsync(cartItemDTO.FarmerId,cartItemDTO.ProductId);
+            var exist = await _repository.ExistProductAsync(cartItemDTO.FarmerId, cartItemDTO.ProductId);
             if (!exist.Success)
             {
 
@@ -47,25 +47,15 @@ namespace SabzMarket.BLL
                     var errorResult = await _errorService.LogErrorAsync(error);
                     return OperationResult.Failed(errorResult.Message!.ErrorMessage());
                 }
-                var resultIncrease = await _productOrderDetailHelperService.IncreaseNumberAsync(cartItemDTO.ProductId, -1);
-                if (!resultIncrease.Success)
-                {
-                    return OperationResult.Failed(resultIncrease.Message!);
-                }
                 return OperationResult.SuccessedResult(true, Messages.successAddToCart);
             }
 
-            var result2 =await _repository.ChangeQuantityAsync(cartItemDTO.ProductId,cartItemDTO.FarmerId, 1);
+            var result2 = await _repository.ChangeQuantityAsync(cartItemDTO.ProductId, cartItemDTO.FarmerId, 1);
             if (!result2.Success)
             {
                 var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
                 var errorResult = await _errorService.LogErrorAsync(error);
                 return OperationResult.Failed(errorResult.Message!.ErrorMessage());
-            }
-            var resultIncrease1 = await _productOrderDetailHelperService.IncreaseNumberAsync(cartItemDTO.ProductId, -1);
-            if (!resultIncrease1.Success)
-            {
-                return OperationResult.Failed(resultIncrease1.Message!);
             }
             return OperationResult.SuccessedResult(true, Messages.successAddToCart);
 
@@ -73,7 +63,7 @@ namespace SabzMarket.BLL
 
         public async Task<OperationResult> DecreaseQuantityAsync(long productId, long farmerId)
         {
-            var result2 = await _repository.ChangeQuantityAsync(productId,farmerId ,-1);
+            var result2 = await _repository.ChangeQuantityAsync(productId, farmerId, -1);
             if (!result2.Success)
             {
                 var error = result2.Exception!.ExceptionToErrorDTO(result2.Message!);
@@ -90,7 +80,7 @@ namespace SabzMarket.BLL
 
         public async Task<OperationResult> DeleteAfterCheckoutAsync(int cartId)
         {
-            var result=await _repository.DeleteAsync(cartId);
+            var result = await _repository.DeleteAsync(cartId);
             if (!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
@@ -100,7 +90,7 @@ namespace SabzMarket.BLL
             return OperationResult.SuccessedResult();
         }
 
-        public async Task<OperationResult> DeleteAsync(int cartId,long productId,int productNumber)
+        public async Task<OperationResult> DeleteAsync(int cartId, long productId, int productNumber)
         {
             var result2 = await _repository.DeleteAsync(cartId);
             if (!result2.Success)
@@ -119,13 +109,23 @@ namespace SabzMarket.BLL
 
         public async Task<OperationResult<List<FullCartItemDTO>>> GetByFarmerIdAsync(long farmerId)
         {
-            var result=await _repository.SelectByFarmerIdAsync(farmerId);
+            var result = await _repository.SelectByFarmerIdAsync(farmerId);
             if (!result.Success)
             {
                 var error = result.Exception!.ExceptionToErrorDTO(result.Message!);
-                var resultError= await _errorService.LogErrorAsync(error);
+                var resultError = await _errorService.LogErrorAsync(error);
                 return OperationResult<List<FullCartItemDTO>>.Failed(resultError.Message!.ErrorMessage());
             }
+            var data = result.Data.Where(x => x.Quantity > x.ProducNumber).ToList();
+            foreach (var item in data)
+            {
+                var deleteResult = await DeleteAfterCheckoutAsync(item.Id);
+                if (!deleteResult.Success)
+                {
+                    return OperationResult<List<FullCartItemDTO>>.Failed(deleteResult.Message!);
+                }
+            }
+            result.Data.RemoveAll(x => x.Quantity > x.ProducNumber);
             return OperationResult<List<FullCartItemDTO>>.SuccessedResult(result.Data);
         }
     }

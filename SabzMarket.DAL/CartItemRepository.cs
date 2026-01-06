@@ -13,7 +13,7 @@ namespace SabzMarket.DAL
     public class CartItemRepository : ICartItemRepository
     {
         private readonly SabzMarketDbContext _Context;
-        public CartItemRepository(SabzMarketDbContext Context) 
+        public CartItemRepository(SabzMarketDbContext Context)
         {
             _Context = Context;
         }
@@ -27,7 +27,7 @@ namespace SabzMarket.DAL
                     Id = cartId
                 };
                 _Context.Remove(item);
-               await _Context.SaveChangesAsync();
+                await _Context.SaveChangesAsync();
                 return OperationResult.SuccessedResult();
             }
             catch (Exception ex)
@@ -37,14 +37,14 @@ namespace SabzMarket.DAL
 
         }
 
-        public async Task<OperationResult> ExistProductAsync(long farmer,long productId)
+        public async Task<OperationResult> ExistProductAsync(long farmer, long productId)
         {
             try
             {
                 var result = await _Context
                .CartItems
                .AsNoTracking()
-               .Where(x => x.ProductId == productId&&x.FarmerId==farmer)
+               .Where(x => x.ProductId == productId && x.FarmerId == farmer)
                .AnyAsync();
                 return OperationResult.SuccessedResult(result);
             }
@@ -53,8 +53,8 @@ namespace SabzMarket.DAL
                 return OperationResult.Failed(GetType().Name, ex);
             }
         }
-           
-        
+
+
 
         public async Task<OperationResult> InsertAsync(CartItemDTO cartItemDTO)
         {
@@ -74,17 +74,17 @@ namespace SabzMarket.DAL
             }
             catch (Exception ex)
             {
-                return OperationResult.Failed(GetType().Name,ex);
+                return OperationResult.Failed(GetType().Name, ex);
             }
         }
 
-        public async Task<OperationResult> ChangeQuantityAsync(long productId,long farmerId, int number)
+        public async Task<OperationResult> ChangeQuantityAsync(long productId, long farmerId, int number)
         {
             try
             {
-                var item =await _Context.CartItems.Where(x => x.ProductId == productId&&x.FarmerId==farmerId).SingleAsync();
+                var item = await _Context.CartItems.Where(x => x.ProductId == productId && x.FarmerId == farmerId).SingleAsync();
                 item.Quantity += number;
-               await _Context.SaveChangesAsync();
+                await _Context.SaveChangesAsync();
                 return OperationResult.SuccessedResult();
             }
             catch (Exception ex)
@@ -105,7 +105,7 @@ namespace SabzMarket.DAL
             }
             catch (Exception ex)
             {
-                return OperationResult.Failed(GetType().Name,ex);
+                return OperationResult.Failed(GetType().Name, ex);
             }
         }
 
@@ -113,23 +113,30 @@ namespace SabzMarket.DAL
         {
             try
             {
-                var result = await _Context.CartItems.AsNoTracking().Where(x => x.FarmerId == farmerId && x.Product.IsDeleted == false).Select(x => new FullCartItemDTO()
-                {
-                    FarmerId = farmerId,
-                    SellerId = x.Product.SellerId,
-                    AddedDate = x.AddedDate,
-                    Id = x.Id,
-                    ProductId = x.ProductId,
-                    ProductImage = x.Product.ImageProduct,
-                    ProductName = x.Product.ProductName,
-                    ProductPrice = x.Product.Price,
-                    Quantity = x.Quantity
-                }).ToListAsync();
+                var result = await _Context
+                    .CartItems
+                    .AsNoTracking()
+                    .Where(x =>
+                    x.FarmerId == farmerId &&
+                    x.Product.IsDeleted == false)
+                    .Select(x => new FullCartItemDTO()
+                    {
+                        FarmerId = farmerId,
+                        SellerId = x.Product.SellerId,
+                        AddedDate = x.AddedDate,
+                        Id = x.Id,
+                        ProductId = x.ProductId,
+                        ProductImage = x.Product.ImageProduct,
+                        ProductName = x.Product.ProductName,
+                        ProductPrice = x.Product.Price,
+                        Quantity = x.Quantity,
+                        ProducNumber=x.Product.Number
+                    }).ToListAsync();
                 return OperationResult<List<FullCartItemDTO>>.SuccessedResult(result);
             }
             catch (Exception ex)
             {
-                return OperationResult<List<FullCartItemDTO>>.Failed(GetType().Name,ex);
+                return OperationResult<List<FullCartItemDTO>>.Failed(GetType().Name, ex);
             }
         }
     }

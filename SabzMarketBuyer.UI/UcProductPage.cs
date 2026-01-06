@@ -35,7 +35,6 @@ namespace SabzMarketBuyer.UI
 
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
-            lblNumber.Text = ((int.Parse(lblNumber.Text)) - 1).ToString();
             CartItemDTO cartItemDTO = new CartItemDTO()
             {
                 FarmerId = CurrentUser.FarmerId,
