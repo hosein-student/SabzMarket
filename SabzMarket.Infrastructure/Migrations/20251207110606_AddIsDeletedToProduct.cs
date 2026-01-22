@@ -2,28 +2,28 @@
 
 #nullable disable
 
-namespace SabzMarket.DAL.Migrations
+namespace SabzMarket.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class addPriceToOrderdetaile : Migration
+    public partial class AddIsDeletedToProduct : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "Price",
-                table: "OrderDetails",
-                type: "int",
+            migrationBuilder.AddColumn<bool>(
+                name: "IsDeleted",
+                table: "Products",
+                type: "bit",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: false);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Price",
-                table: "OrderDetails");
+                name: "IsDeleted",
+                table: "Products");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SabzMarket.DAL.Migrations
+namespace SabzMarket.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class FixStatusColumn : Migration

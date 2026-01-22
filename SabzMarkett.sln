@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.BLL", "SabzMarket.BLL\SabzMarket.BLL.csproj", "{32F52C0E-0E95-4BBF-8F94-92E4EEC806FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.DAL", "SabzMarket.DAL\SabzMarket.DAL.csproj", "{9377A00E-EE83-4568-8134-39A8278290B6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.Share", "SabzMarket.Share\SabzMarket.Share.csproj", "{B4196298-B1A6-4C87-840C-2398BAD1D4E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.API", "SabzMarket.API\SabzMarket.API.csproj", "{47A1C8D0-101B-4416-A614-5B2BFADE0B10}"
@@ -24,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarketBuyer.UI", "SabzM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.Domain", "SabzMarket.Domain\SabzMarket.Domain.csproj", "{CD774011-75D2-4B85-8FC6-025F5A15B4EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.Infrastructure", "SabzMarket.Infrastructure\SabzMarket.Infrastructure.csproj", "{0129935F-8D6B-4ACC-AC9F-F19571AB82F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +34,6 @@ Global
 		{32F52C0E-0E95-4BBF-8F94-92E4EEC806FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32F52C0E-0E95-4BBF-8F94-92E4EEC806FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32F52C0E-0E95-4BBF-8F94-92E4EEC806FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9377A00E-EE83-4568-8134-39A8278290B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9377A00E-EE83-4568-8134-39A8278290B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9377A00E-EE83-4568-8134-39A8278290B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9377A00E-EE83-4568-8134-39A8278290B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4196298-B1A6-4C87-840C-2398BAD1D4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4196298-B1A6-4C87-840C-2398BAD1D4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4196298-B1A6-4C87-840C-2398BAD1D4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,6 +58,10 @@ Global
 		{CD774011-75D2-4B85-8FC6-025F5A15B4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD774011-75D2-4B85-8FC6-025F5A15B4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD774011-75D2-4B85-8FC6-025F5A15B4EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0129935F-8D6B-4ACC-AC9F-F19571AB82F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0129935F-8D6B-4ACC-AC9F-F19571AB82F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0129935F-8D6B-4ACC-AC9F-F19571AB82F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0129935F-8D6B-4ACC-AC9F-F19571AB82F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

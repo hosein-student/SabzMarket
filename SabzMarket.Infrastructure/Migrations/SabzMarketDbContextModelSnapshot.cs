@@ -8,7 +8,7 @@ using SabzMarket.DAL;
 
 #nullable disable
 
-namespace SabzMarket.DAL.Migrations
+namespace SabzMarket.Infrastructure.Migrations
 {
     [DbContext(typeof(SabzMarketDbContext))]
     partial class SabzMarketDbContextModelSnapshot : ModelSnapshot

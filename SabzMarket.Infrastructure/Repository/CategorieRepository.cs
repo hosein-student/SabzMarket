@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interfaces.Repositories;
 
-namespace SabzMarket.DAL
+namespace SabzMarket.Infrastructure
 {
     public class CategorieRepository : ICategorieRepository
     {

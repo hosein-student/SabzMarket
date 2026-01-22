@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace SabzMarket.DAL.Logging
+namespace SabzMarket.Infrastructure.Logging
 {
     public class LogServiceRepository : ILogServiceRepository
     {

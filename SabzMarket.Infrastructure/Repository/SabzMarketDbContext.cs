@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.DAL
+namespace SabzMarket.Infrastructure
 {
     public class SabzMarketDbContext : DbContext
     {
