@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace SabzMarket.DAL.Entities
+namespace SabzMarket.Domain.Entities
 {
     public class User
     {

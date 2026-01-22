@@ -1,4 +1,4 @@
-﻿using SabzMarket.Share.Enums;
+﻿using SabzMarket.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.DAL.Entities
+namespace SabzMarket.Domain.Entities
 {
     public class OrderDetail
     {

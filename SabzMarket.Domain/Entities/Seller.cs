@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SabzMarket.DAL.Entities
+namespace SabzMarket.Domain.Entities
 {
-    public class Farmer
+    public class Seller
     {
         public long Id { get; set; }
         public long UserId { get; set; }
@@ -17,27 +17,13 @@ namespace SabzMarket.DAL.Entities
         [StringLength(500)]
         [Required]
         public string? Address { get; set; }
-        [Column(TypeName = "varchar")]
-        [StringLength(10)]
-        [Required]
-        public string? DataBuilt { get; set; }
-        [Required]
-        public int LandArea { get; set; }
-        [Column(TypeName = "char")]
-        [StringLength(10)]
-        [Required]
-        public string? NationalCode { get; set; }
-        [Column(TypeName = "varchar")]
-        [StringLength(50)]
-        [Required]
-        public string? CodParvaneBHB { get; set; }
         [Column(TypeName = "nvarchar(max)")]
-
-        [Required]
         public string? ProfileImage { get; set; }
+        [Column(TypeName = "varchar")]
+        [StringLength(3)]
         [Required]
-        [Column(TypeName ="char(10)")]
-        public string? CodePosti {  get; set; }
+        public string? WorkHistory { get; set; }
         public virtual ICollection<Order>? Orders { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }
