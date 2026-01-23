@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.Share", "SabzMar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.API", "SabzMarket.API\SabzMarket.API.csproj", "{47A1C8D0-101B-4416-A614-5B2BFADE0B10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket", "SabzMarket\SabzMarket.csproj", "{D15CDF48-7685-43A0-AF34-F4D10FD4C715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabzMarket.UI", "SabzMarket\SabzMarket.UI.csproj", "{D15CDF48-7685-43A0-AF34-F4D10FD4C715}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{C6BCEE63-8E50-42CB-911A-FC2C1B3134A6}"
 EndProject
