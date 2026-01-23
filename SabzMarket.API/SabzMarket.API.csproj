@@ -15,9 +15,4 @@
     
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Application\SabzMarket.Application.csproj" />
-    <ProjectReference Include="..\SabzMarket.Share\SabzMarket.Share.csproj" />
-  </ItemGroup>
-
 </Project>
