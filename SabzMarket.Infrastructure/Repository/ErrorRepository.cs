@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
+using SabzMarket.Application.Interfaces.Logging;
 using SabzMarket.DAL.Entities;
 using SabzMarket.Share.Models;
 using System;
@@ -13,11 +14,11 @@ namespace SabzMarket.Infrastructure
     public class ErrorRepository:IErrorRepository
     {
         private readonly IDbContextFactory<SabzMarketDbContext> _contextFactory;
-        private readonly ILogServiceRepository _logServiceRepository;
+        private readonly ILogService _logServiceRepository;
 
         public ErrorRepository
             (IDbContextFactory<SabzMarketDbContext> contextFactory,
-            ILogServiceRepository logServiceRepository) 
+            ILogService logServiceRepository) 
         {
             _contextFactory = contextFactory;
             _logServiceRepository = logServiceRepository;

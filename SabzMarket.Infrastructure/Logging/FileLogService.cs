@@ -1,5 +1,5 @@
-﻿using Application.Interfaces.Repositories;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using SabzMarket.Application.Interfaces.Logging;
 using SabzMarket.Share.Mappers;
 using SabzMarket.Share.Models;
 using System;
@@ -11,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SabzMarket.Infrastructure.Logging
 {
-    public class LogServiceRepository : ILogServiceRepository
+    public class FileLogService : ILogService
     {
         private static readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
         private static readonly string _filePath =
