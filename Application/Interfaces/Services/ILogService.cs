@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces.Repositories
+namespace SabzMarket.Application.Interfaces.Services
 {
-    public interface IErrorRepository
+    public interface ILogService 
     {
-        Task<OperationResult> LogErrorAsync(ErrorLogDTO error);
+        public Task<OperationResult> SaveFailedLogAsync(Exception? ex );
     }
 }

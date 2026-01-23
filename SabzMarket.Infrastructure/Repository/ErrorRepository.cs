@@ -1,6 +1,6 @@
-﻿using Application.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
-using SabzMarket.Application.Interfaces.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using SabzMarket.Application.Interfaces.Repository;
+using SabzMarket.Application.Interfaces.Services;
 using SabzMarket.DAL.Entities;
 using SabzMarket.Share.Models;
 using System;

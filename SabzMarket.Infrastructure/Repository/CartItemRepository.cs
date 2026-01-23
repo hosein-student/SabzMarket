@@ -1,5 +1,5 @@
-﻿using Application.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using SabzMarket.Application.Interfaces.Repository;
 using SabzMarket.DAL.Entities;
 using SabzMarket.Share.Models;
 using System;

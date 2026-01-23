@@ -1,6 +1,6 @@
-﻿using Application.Interfaces.Repositories;
-using Application.Interfaces.Services;
+﻿using Application.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
+using SabzMarket.Application.Interfaces.Repository;
 using SabzMarket.DAL.Migrations;
 using SabzMarket.Share.Models;
 using SabzMarket.Share.ViewModels;

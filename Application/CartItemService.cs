@@ -1,5 +1,5 @@
-﻿using Application.Interfaces.Repositories;
-using Application.Interfaces.Services;
+﻿using Application.Interfaces.Services;
+using SabzMarket.Application.Interfaces.Repository;
 using SabzMarket.Share;
 using SabzMarket.Share.ErrorHandling;
 using SabzMarket.Share.Mappers;

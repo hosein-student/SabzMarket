@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SabzMarket.Application.Interfaces.Logging;
+using SabzMarket.Application.Interfaces.Services;
 using SabzMarket.Share.Mappers;
 using SabzMarket.Share.Models;
 using System;

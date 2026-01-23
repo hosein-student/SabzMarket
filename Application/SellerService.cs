@@ -9,8 +9,8 @@ using SabzMarket.Share.ViewModels;
 using SabzMarket.Share.ErrorHandling;
 using SabzMarket.Share.Models;
 using Application.Interfaces.Services;
-using Application.Interfaces.Repositories;
 using System.Net.WebSockets;
+using SabzMarket.Application.Interfaces.Repository;
 
 namespace SabzMarket.BLL
 {
