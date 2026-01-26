@@ -4,9 +4,13 @@ using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SabzMarket.API.DependencyInjection;
+using SabzMarket.Application.Interfaces.Repositories.Services;
 using SabzMarket.BLL;
 using SabzMarket.DAL;
 using SabzMarket.DAL.Logging;
+using SabzMarket.Infrastructure.Configuration;
+using SabzMarket.Infrastructure.Storage;
+using System.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = Environment.GetEnvironmentVariable("SABZMARKET_DB");
@@ -15,6 +19,27 @@ if (string.IsNullOrEmpty(connectionString))
 {
     throw new Exception("? Connection string not found. Please set environment variable: SABZMARKET_DB");
 }
+
+var s3Settings = builder.Configuration.GetSection("S3").Get<S3Settings>();
+builder.Services.AddSingleton(s3Settings);
+
+
+builder.Services.AddScoped<IAmazonS3>(sp =>
+{
+    var settings = sp.GetRequiredService<S3Settings>();
+    var config = new AmazonS3Config
+    {
+        ServiceURL = settings.ServiceURL,
+        ForcePathStyle = true,
+        AuthenticationRegion = settings.Region
+    };
+    var credentials = new BasicAWSCredentials(settings.AccessKey, settings.SecretKey);
+    return new AmazonS3Client(credentials, config);
+});
+
+
+builder.Services.AddScoped<IFileStorageService, S3FileStorageService>();
+
 builder.Services
     .AddDatabase(connectionString)
     .AddRepositories()

@@ -8,6 +8,6 @@ namespace SabzMarket.Application.Interfaces.Repositories.Services
 {
     public interface IFileStorageService
     {
-        public Task<OperationResult> SaveAsync(string filePath);
+        public Task<string> SaveAsync(string filePath);
     }
 }
