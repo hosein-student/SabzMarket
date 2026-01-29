@@ -1,3 +1,5 @@
+using Amazon.Runtime;
+using Amazon.S3;
 using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
@@ -7,7 +9,6 @@ using SabzMarket.API.DependencyInjection;
 using SabzMarket.Application.Interfaces.Repositories.Services;
 using SabzMarket.BLL;
 using SabzMarket.DAL;
-using SabzMarket.DAL.Logging;
 using SabzMarket.Infrastructure.Configuration;
 using SabzMarket.Infrastructure.Storage;
 using System.Runtime;

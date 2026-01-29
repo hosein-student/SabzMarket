@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
 using SabzMarket.Application.Interfaces.Services;
-using SabzMarket.Share.Mappers;
-using SabzMarket.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace SabzMarket.Infrastructure.Logging
 {
     public class FileLogService : ILogService
@@ -16,9 +12,8 @@ namespace SabzMarket.Infrastructure.Logging
         private static readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
         private static readonly string _filePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logss", "failed_logs.txt");
-        public async Task<OperationResult> SaveFailedLogAsync(Exception? ex)
+        public async Task<string> SaveFailedLogAsync(Exception? ex)
         {
-            
             try
             {
                 var dir = Path.GetDirectoryName(_filePath)!;
@@ -36,12 +31,12 @@ namespace SabzMarket.Infrastructure.Logging
                 {
                     _lock.Release();
                 }
-                return OperationResult.Failed(error.CreatedAt.ToString());
+                return error.CreatedAt.ToString();
 
             }
             catch (Exception exception)
             {
-                return OperationResult.Failed(exception.ToString());
+                return exception.ToString();
             }
         }
     }
