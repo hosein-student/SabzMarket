@@ -22,7 +22,6 @@
     <Folder Include="FeaturedSellers\DTOs\" />
     <Folder Include="FeaturedSellers\Mappers\" />
     <Folder Include="FeaturedSellers\UseCases\" />
-    <Folder Include="Interfaces\UseCases\" />
     <Folder Include="OrderDetails\DTOs\" />
     <Folder Include="OrderDetails\Mappers\" />
     <Folder Include="OrderDetails\UseCases\" />
@@ -35,7 +34,8 @@
     <Folder Include="Sellers\DTOs\" />
     <Folder Include="Sellers\Mappers\" />
     <Folder Include="Sellers\UseCases\" />
-    <Folder Include="Users\UseCases\" />
+    <Folder Include="Users\UseCases\Interfaces\" />
+    <Folder Include="Users\UseCases\Implementations\" />
   </ItemGroup>
 
   <ItemGroup>
