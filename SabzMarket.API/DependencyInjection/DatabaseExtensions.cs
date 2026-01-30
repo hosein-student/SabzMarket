@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SabzMarket.DAL;
+using SabzMarket.Infrastructure;
 
 namespace SabzMarket.API.DependencyInjection
 {

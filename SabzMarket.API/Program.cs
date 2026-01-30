@@ -9,6 +9,7 @@ using SabzMarket.API.DependencyInjection;
 using SabzMarket.Application.Interfaces.Repositories.Services;
 using SabzMarket.BLL;
 using SabzMarket.DAL;
+using SabzMarket.Infrastructure;
 using SabzMarket.Infrastructure.Configuration;
 using SabzMarket.Infrastructure.Storage;
 using System.Runtime;
