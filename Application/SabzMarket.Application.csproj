@@ -7,8 +7,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="CartItems\DTOs\" />
+    <Folder Include="CartItems\Mappers\" />
+    <Folder Include="CartItems\UseCases\" />
+    <Folder Include="Categoris\DTOs\" />
+    <Folder Include="Categoris\Mappers\" />
+    <Folder Include="Categoris\UseCases\" />
+    <Folder Include="Errors\DTOs\" />
+    <Folder Include="Errors\Mappers\" />
+    <Folder Include="Errors\UseCases\" />
+    <Folder Include="Farmers\DTOs\" />
+    <Folder Include="Farmers\Mappers\" />
+    <Folder Include="Farmers\UseCases\" />
+    <Folder Include="FeaturedSellers\DTOs\" />
+    <Folder Include="FeaturedSellers\Mappers\" />
+    <Folder Include="FeaturedSellers\UseCases\" />
     <Folder Include="Interfaces\UseCases\" />
-    <Folder Include="UseCases\" />
+    <Folder Include="OrderDetails\DTOs\" />
+    <Folder Include="OrderDetails\Mappers\" />
+    <Folder Include="OrderDetails\UseCases\" />
+    <Folder Include="Orders\DTOs\" />
+    <Folder Include="Orders\Mappers\" />
+    <Folder Include="Orders\UseCases\" />
+    <Folder Include="Products\DTOs\" />
+    <Folder Include="Products\Mappers\" />
+    <Folder Include="Products\UseCases\" />
+    <Folder Include="Sellers\DTOs\" />
+    <Folder Include="Sellers\Mappers\" />
+    <Folder Include="Sellers\UseCases\" />
+    <Folder Include="Users\DTOs\" />
+    <Folder Include="Users\Mappers\" />
+    <Folder Include="Users\" />
+    <Folder Include="Users\UseCases\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.0.0" />
   </ItemGroup>
 
 </Project>
