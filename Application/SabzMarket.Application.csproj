@@ -35,14 +35,15 @@
     <Folder Include="Sellers\DTOs\" />
     <Folder Include="Sellers\Mappers\" />
     <Folder Include="Sellers\UseCases\" />
-    <Folder Include="Users\DTOs\" />
-    <Folder Include="Users\Mappers\" />
-    <Folder Include="Users\" />
     <Folder Include="Users\UseCases\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SabzMarket.Domain\SabzMarket.Domain.csproj" />
   </ItemGroup>
 
 </Project>
