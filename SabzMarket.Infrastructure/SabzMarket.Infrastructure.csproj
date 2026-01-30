@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\SabzMarket.Application.csproj" />
+    <ProjectReference Include="..\SabzMarket.Domain\SabzMarket.Domain.csproj" />
   </ItemGroup>
 
 </Project>
