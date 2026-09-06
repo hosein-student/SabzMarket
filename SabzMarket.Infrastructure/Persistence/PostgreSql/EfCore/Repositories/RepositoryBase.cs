@@ -65,6 +65,7 @@ public abstract class RepositoryBase<TEntity, TKey>(SabzMarketDbContext context)
                 return await query.ToListAsync();
         }
     }
+    
 
     public virtual void Add(TEntity entity)
     {

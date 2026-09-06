@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SabzMarket.Application.UseCases.Users.GetUser;
 
-namespace SabzMarket.Application.UseCases.Users.GetUser
-{
-    public class GetUserByUserNameOutputDTO
-    {
-        public long Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Phone { get; set; }
-        public string? Email { get; set; }
-        public string? UserName { get; set; }
-        public string? Password { get; set; }
-    }
-}
+public record GetUserByUserNameOutputDto(
+    long Id,
+    string UserName,
+    string FirstName,
+    string LastName,
+    string Email,
+    string Phone);

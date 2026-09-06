@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SabzMarket.Application.UseCases.Products.CreateProduct;
 
-namespace SabzMarket.Application.UseCases.Products.CreateProduct
-{
-    public class CreateProductInputDTO
-    {
-        public long SellerId { get; set; }
-        public long CategoryId { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public int Price { get; set; }
-        public int Number { get; set; }
-        public string? ImageProduct { get; set; }
-    }
-}
+public record CreateProductInputDto(
+    long SellerId,
+    long CategoryId,
+    string Name,
+    string Description,
+    int Price,
+    int Number,
+    string? ImageProduct);
