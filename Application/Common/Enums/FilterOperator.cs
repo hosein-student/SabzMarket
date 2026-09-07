@@ -11,21 +11,21 @@ public enum FilterOperator
     [Display(Name = "بزرگ تر یامساوی")]
     GreaterThanOrEqual,
 
-    [Display(Name = "کوچیک تر یا مساوی")] // بزرگ‌تر یا مساوی
+    [Display(Name = "کوچیک تر یا مساوی")]
     LessThanOrEqual,
 
-    [Display(Name = "Equal")] // کوچک‌تر یا مساوی
+    [Display(Name = "Equal")]
     GreaterThan,
 
-    [Display(Name = "Equal")] // بزرگ‌تر
+    [Display(Name = "Equal")]
     LessThan,
 
-    [Display(Name = "Equal")] // کوچک‌تر
+    [Display(Name = "Equal")]
     Contains,
 
-    [Display(Name = "Equal")] // شاملِ
+    [Display(Name = "Equal")]
     StartsWith,
 
-    [Display(Name = "Equal")] // شروع می‌شود با
-    EndsWith // تمام می‌شود با
+    [Display(Name = "Equal")]
+    EndsWith
 }
