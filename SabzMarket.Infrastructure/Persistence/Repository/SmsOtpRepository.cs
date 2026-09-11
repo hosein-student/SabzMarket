@@ -1,38 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SabzMarket.Application.Interfaces.Repository;
-using SabzMarket.Infrastructure.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SabzMarket.Domain.Entities.SmsOtps;
+using SabzMarket.Infrastructure.Persistence.Postgresql.EfCore;
+using SabzMarket.Infrastructure.Persistence.Postgresql.EfCore.Repositories;
 
-namespace SabzMarket.Infrastructure.Persistence.Repository
+namespace SabzMarket.Infrastructure.Persistence.Repository;
+
+public class SmsOtpRepository(SabzMarketDbContext context) : RepositoryBase<SmsOtp, long>(context), ISmsOtpRepository
 {
-    public class SmsOtpRepository : ISmsOtpRepository
+    public async Task<bool> VerifyOtp(long id, long otp, CancellationToken token)
     {
-        private readonly SabzMarketDbContext _Context;
-        public SmsOtpRepository(SabzMarketDbContext context)
-        {
-            _Context = context;
-        }
-        public async Task<long> Insert(long Otp, CancellationToken token)
-        {
-            SmsOtpTable table = new SmsOtpTable()
-            {
-                Otp = Otp
-            };
+        var result = await Context.smsOtps.AnyAsync(x => x.Id == id && x.Otp == otp, token);
 
-            _Context.smsOtps.Add(table);
-            await _Context.SaveChangesAsync(token);
-
-            return table.Id;
-        }
-        public async Task<bool> VerifyOtp(long id, long otp, CancellationToken token)
-        {
-            var result = await _Context.smsOtps.AnyAsync(X => X.Id == id && X.Otp == otp, token);
-
-            return result;
-        }
+        return result;
     }
 }

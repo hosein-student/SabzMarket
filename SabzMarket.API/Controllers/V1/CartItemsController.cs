@@ -7,6 +7,7 @@ using SabzMarket.Application.UseCases.CartItems.DeleteCartItem;
 using SabzMarket.Application.UseCases.CartItems.GetCartItem;
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Authorization;
+using SabzMarket.API.Contracts.V1.CartItems.AddToCart;
 
 namespace SabzMarket.API.Controllers.V1
 {
@@ -31,7 +32,7 @@ namespace SabzMarket.API.Controllers.V1
         }
 
         [HttpPost]
-        public async Task<ApiResult> AddToCart(AddToCartInputDTO addToCartInputDto, CancellationToken token)
+        public async Task<ApiResult> AddToCart(AddToCartRequest request, CancellationToken token)
         {
             var result = await _addToCartUseCase.ExecuteAsync(addToCartInputDto, token);
             return result.OperationResultTOApiResult();

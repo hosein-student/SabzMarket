@@ -1,14 +1,7 @@
-﻿using SabzMarket.Application.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SabzMarket.Application.UseCases.Sellers.UpdateSeller;
 
-namespace SabzMarket.Application.UseCases.Sellers.UpdateSeller
+public interface ISellerUpdateUseCase
 {
-    public interface ISellerUpdateUseCase
-    {
-        Task<OperationResult> ExecuteAsync(SellerUpdateInputDTO updateSellerInputDTO, Stream stream, CancellationToken token);
-    }
+    Task ExecuteAsync(SellerUpdateInputDto updateSellerInputDto, Stream stream,
+        CancellationToken token);
 }

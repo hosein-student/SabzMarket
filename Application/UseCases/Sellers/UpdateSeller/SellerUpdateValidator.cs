@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SabzMarket.Application.UseCases.Sellers.UpdateSeller
 {
-    public class SellerUpdateValidator: AbstractValidator<SellerUpdateInputDTO>
+    public class SellerUpdateValidator : AbstractValidator<SellerUpdateInputDto>
     {
         public SellerUpdateValidator()
         {
@@ -20,12 +20,12 @@ namespace SabzMarket.Application.UseCases.Sellers.UpdateSeller
                 .MinimumLength(2).WithMessage(Messages.LastNameMinLength)
                 .MaximumLength(50).WithMessage(Messages.LastNameMaxLength);
 
-                RuleFor(x => x.Phone)
+            RuleFor(x => x.Phone)
                 .NotNull().WithMessage(Messages.PhoneRequired)
                 .Must(p =>
-                     p.StartsWith("09") &&
-                     p.Length == 11 &&
-                     p.All(char.IsDigit))
+                    p.StartsWith("09") &&
+                    p.Length == 11 &&
+                    p.All(char.IsDigit))
                 .WithMessage(Messages.PhoneInvalid);
 
             RuleFor(x => x.NewUsername)
@@ -33,10 +33,6 @@ namespace SabzMarket.Application.UseCases.Sellers.UpdateSeller
                 .MinimumLength(6).WithMessage(Messages.UserNameMinLength)
                 .Matches(@"^[^\u0600-\u06FF]+$")
                 .WithMessage(Messages.UsernameNotFarsi);
-
-            RuleFor(x => x.Password)
-                .NotNull().WithMessage(Messages.Password1Required)
-                .MinimumLength(5).WithMessage(Messages.Password1Powerful);
 
             RuleFor(x => x.Address)
                 .NotNull().WithMessage(Messages.AddressRequired)

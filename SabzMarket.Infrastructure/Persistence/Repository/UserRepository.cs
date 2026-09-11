@@ -10,7 +10,7 @@ namespace SabzMarket.Infrastructure.Persistence.Repository
     {
         public async Task<User?> GetByUserNameAsync(string useName, CancellationToken token)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.UserName == useName, token);
+            var user = await Context.Users.FirstOrDefaultAsync(x => x.UserName == useName, token);
             return user;
         }
 

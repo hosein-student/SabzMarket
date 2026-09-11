@@ -48,6 +48,20 @@ namespace SabzMarket.Domain.Entities.Users
             PasswordHash = passwordHash;
         }
 
+        public void Update(string firstName, string lastName, string userName)
+        {
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new DomainException(UserMessages.FirstnameRequired);
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new DomainException(UserMessages.LastnameRequired);
+            if (string.IsNullOrWhiteSpace(userName))
+                throw new DomainException(UserMessages.UsernameRequired);
+            
+            FirstName = firstName;
+            LastName = lastName;
+            UserName = userName;
+        }
+
         public void SetEmail(string email)
         {
             Email = email;

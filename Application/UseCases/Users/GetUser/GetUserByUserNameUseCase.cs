@@ -1,39 +1,29 @@
-﻿using AutoMapper;
-using SabzMarket.Application.Common;
+﻿using SabzMarket.Application.Common;
+using SabzMarket.Application.Constants.Common.Messages;
+using SabzMarket.Application.Exceptions;
 using SabzMarket.Application.Interfaces.Repository;
-using SabzMarket.Domain.Enums;
-using SabzMarket.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SabzMarket.Domain.Entities.Users;
+using UserMessages = SabzMarket.Application.Constants.User.UserMessages;
 
-namespace SabzMarket.Application.UseCases.Users.GetUser
+namespace SabzMarket.Application.UseCases.Users.GetUser;
+
+public class GetUserByUserNameUseCase(IUserRepository userRepository) : IGetUserByUserNameUseCase
 {
-    public class GetUserByUserNameUseCase : IGetUserByUserNameUseCase
+    public async Task<GetUserByUserNameOutputDto> ExecuteAsync(string username,
+        CancellationToken token)
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
-        public GetUserByUserNameUseCase(IUserRepository userRepository, IMapper mapper)
+        if (string.IsNullOrWhiteSpace(username))
+            throw new BadRequestException(Messages.UserNameMinLength);
+
+        var user = await userRepository.GetByUserNameAsync(username, token);
+        if (user is null)
         {
-            _userRepository = userRepository;
-            _mapper = mapper;
+            throw new NotFoundException(CommonMessages.NotFoundWarning(UserMessages.User));
         }
 
-        public async Task<OperationResult<GetUserByUserNameOutputDTO>> ExecuteAsync(string username, CancellationToken token)
-        {
-            if (string.IsNullOrWhiteSpace(username))
-                throw new BadRequestException(Messages.UserNameMinLength);
-
-            var result = await _userRepository.SelectByUserNameAsync(username, token);
-            if (result == null)
-            {
-                throw new NotFoundException(Messages.UserNotFound);
-            }
-
-            var userDTO = _mapper.Map<GetUserByUserNameOutputDTO>(result);
-            return OperationResult<GetUserByUserNameOutputDTO>.Success(userDTO, OperationError.Success);
-        }
+        return ToDto(user);
     }
+
+    private static GetUserByUserNameOutputDto ToDto(User user) => new(user.Id, user.UserName, user.FirstName,
+        user.LastName, user.Email, user.Phone);
 }

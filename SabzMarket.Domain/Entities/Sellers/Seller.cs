@@ -33,5 +33,20 @@ namespace SabzMarket.Domain.Entities.Sellers
             ProfileImage = profileImage;
             WorkHistory = workHistory;
         }
+
+        public void Update(long id, string address, string profileImage, string workHistory)
+        {
+            if (string.IsNullOrWhiteSpace(address))
+                throw new DomainException(SellerMessages.AddressRequired);
+            if (string.IsNullOrWhiteSpace(workHistory))
+                throw new DomainException(SellerMessages.WorkHistoryRequired);
+            if (Id <= 0)
+                throw new DomainException(SellerMessages.SellerIdRequired);
+
+            Id = id;
+            Address = address;
+            ProfileImage = profileImage;
+            WorkHistory = workHistory;
+        }
     }
 }

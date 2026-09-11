@@ -1,14 +1,6 @@
-﻿using SabzMarket.Application.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SabzMarket.Application.UseCases.Sms.SendSmsOtp;
 
-namespace SabzMarket.Application.UseCases.Sms.SendSmsOtp
+public interface ISendSmsOtpUseCase
 {
-    public interface ISendSmsOtpUseCase
-    {
-        Task<OperationResult<long>> Execute(string Phone, CancellationToken token);
-    }
+    Task<long> Execute(string phone, CancellationToken token);
 }

@@ -28,5 +28,10 @@ public interface IRepository<TEntity, in TKey> where TEntity : class
 
     void Add(TEntity entity);
     void Update(TEntity entity);
+
+    public void UpdateProperties(
+        TEntity entity,
+        params Expression<Func<TEntity, object>>[] properties);
+
     void Remove(TEntity entity);
 }

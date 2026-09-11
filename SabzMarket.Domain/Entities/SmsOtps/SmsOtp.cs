@@ -5,4 +5,13 @@ namespace SabzMarket.Domain.Entities.SmsOtps;
 public class SmsOtp : BaseEntity
 {
     public long Otp { get; set; }
+
+    private SmsOtp()
+    {
+    }
+
+    public SmsOtp(long otp)
+    {
+        Otp = otp;
+    }
 }

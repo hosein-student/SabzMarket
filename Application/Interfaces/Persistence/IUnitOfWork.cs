@@ -11,6 +11,6 @@ namespace SabzMarket.Application.Interfaces.Persistence
         Task BeginAsync();
         Task CommitAsync();
         Task RollbackAsync();
-        Task SaveChangesAsync();
+        Task SaveChangesAsync(CancellationToken token);
     }
 }

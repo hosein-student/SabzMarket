@@ -12,6 +12,7 @@ namespace SabzMarket.Infrastructure.Persistence.Postgresql.EfCore.Repositories;
 public abstract class RepositoryBase<TEntity, TKey>(SabzMarketDbContext context)
     : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
 {
+    protected readonly SabzMarketDbContext Context = context;
     private readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();
 
     public virtual async Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken,
@@ -126,6 +127,20 @@ public abstract class RepositoryBase<TEntity, TKey>(SabzMarketDbContext context)
     public virtual void Update(TEntity entity)
     {
         _dbSet.Update(entity);
+    }
+
+    public void UpdateProperties(
+        TEntity entity,
+        params Expression<Func<TEntity, object>>[] properties)
+    {
+        Context.Attach(entity);
+
+        foreach (var property in properties)
+        {
+            Context.Entry(entity)
+                .Property(property)
+                .IsModified = true;
+        }
     }
 
     public virtual void Remove(TEntity entity)

@@ -1,40 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using SabzMarket.Application.Interfaces.Persistence;
-using SabzMarket.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SabzMarket.Infrastructure.Persistence.Postgresql.EfCore;
 
 namespace SabzMarket.Infrastructure.Persistence.Repository
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(SabzMarketDbContext context) : IUnitOfWork
     {
-        private readonly SabzMarketDbContext _context;
-        private IDbContextTransaction _transaction;
+        private IDbContextTransaction? _contextTransaction;
 
-        public UnitOfWork(SabzMarketDbContext context)
-        {
-            _context = context;
-        }
         public async Task BeginAsync()
         {
-            _transaction = await _context.Database.BeginTransactionAsync();
+            _contextTransaction = await context.Database.BeginTransactionAsync();
         }
 
         public async Task CommitAsync()
         {
-            await _transaction.CommitAsync();
+            if (_contextTransaction != null)
+                await _contextTransaction.CommitAsync();
         }
 
         public async Task RollbackAsync()
         {
-            await _transaction.RollbackAsync();
+            if (_contextTransaction != null)
+                await _contextTransaction.RollbackAsync();
         }
-        public async Task SaveChangesAsync()
+
+        public async Task SaveChangesAsync(CancellationToken token)
         {
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync(token);
         }
     }
 }

@@ -5,8 +5,6 @@ public record SellerUpdateInputDto(
     long UserId,
     string FirstName,
     string LastName,
-    string Email,
-    string Phone,
     string CurrentUsername,
     string NewUsername,
     string Address,
