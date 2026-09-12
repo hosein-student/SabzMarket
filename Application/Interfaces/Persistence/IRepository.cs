@@ -6,13 +6,13 @@ namespace SabzMarket.Application.Interfaces.Persistence;
 public interface IRepository<TEntity, in TKey> where TEntity : class
 {
     Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken,
-        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+        Expression<Func<TEntity, object>>? include = null,
         bool tracking = false);
 
     Task<IReadOnlyList<TEntity>> GetAllAsync(CancellationToken cancellationToken,
         Expression<Func<TEntity, bool>>? where = null,
-        Expression<Func<TEntity, bool>>? orderBy = null,
-        Expression<Func<TEntity, bool>>? include = null, bool tracking = false);
+        Expression<Func<TEntity, object>>? orderBy = null,
+        Expression<Func<TEntity, object>>? include = null, bool tracking = false);
 
     Task<(IReadOnlyList<TEntity> Items, int TotalCount)> GetWithPaginationAsync<TFilter>(
         CancellationToken cancellationToken,
@@ -24,6 +24,11 @@ public interface IRepository<TEntity, in TKey> where TEntity : class
         Expression<Func<TEntity, object>>? include = null,
         bool tracking = false,
         bool ignoreQueryFilter = false
+    );
+
+    public Task<TEntity?> GetLocalAsync(CancellationToken cancellationToken,
+        Expression<Func<TEntity, bool>>? where = null,
+        bool tracking = false
     );
 
     void Add(TEntity entity);

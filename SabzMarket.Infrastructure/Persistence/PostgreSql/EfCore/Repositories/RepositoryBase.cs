@@ -16,14 +16,14 @@ public abstract class RepositoryBase<TEntity, TKey>(SabzMarketDbContext context)
     private readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();
 
     public virtual async Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken,
-        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null, bool tracking = false
+        Expression<Func<TEntity, object>>? include = null, bool tracking = false
     )
     {
         IQueryable<TEntity> query = _dbSet;
 
         if (include != null)
         {
-            query = include(query).AsSplitQuery();
+            query.Include(include);
         }
 
         if (!tracking)
@@ -38,38 +38,45 @@ public abstract class RepositoryBase<TEntity, TKey>(SabzMarketDbContext context)
 
     public virtual async Task<IReadOnlyList<TEntity>> GetAllAsync(CancellationToken cancellationToken,
         Expression<Func<TEntity, bool>>? where = null,
-        Expression<Func<TEntity, bool>>? orderBy = null,
-        Expression<Func<TEntity, bool>>? include = null, bool tracking = false
+        Expression<Func<TEntity, object>>? orderBy = null,
+        Expression<Func<TEntity, object>>? include = null, bool tracking = false
     )
     {
         IQueryable<TEntity> query = _dbSet;
 
-        if (include != null)
+        if (include is not null)
         {
-            query = query.Include(include).AsSplitQuery();
+            query = query.Include(include);
         }
 
-        if (where != null)
+        if (where is not null)
         {
             query = query.Where(where);
         }
 
-        if (orderBy != null)
-        {
-            if (!tracking)
-                query.OrderBy(orderBy).AsNoTracking().ToListAsync();
-            else
-                query.OrderBy(orderBy).ToListAsync();
-        }
-        else
-        {
-            if (!tracking)
-                return await query.AsNoTracking().ToListAsync();
-            else
-                return await query.ToListAsync();
-        }
+        if (orderBy is not null)
+            query = query.OrderBy(orderBy);
+
+        if (!tracking)
+            query = query.AsNoTracking();
 
         return await query.ToListAsync(cancellationToken);
+    }
+
+    public async Task<TEntity?> GetLocalAsync(CancellationToken cancellationToken,
+        Expression<Func<TEntity, bool>>? where = null,
+        bool tracking = false
+    )
+    {
+        IQueryable<TEntity> query = _dbSet;
+
+        if (where is not null)
+            query = query.Where(where);
+
+        if (!tracking)
+            query = query.AsNoTracking();
+
+        return await query.FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<(IReadOnlyList<TEntity> Items, int TotalCount)> GetWithPaginationAsync<TFilter>(

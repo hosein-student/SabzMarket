@@ -17,10 +17,10 @@ namespace SabzMarket.API.Controllers.V1
         }
 
         [HttpGet("{username}")]
-        public async Task<ApiResult<GetUserByUserNameOutputDTO>> GetByUsername(string username, CancellationToken token)
+        public async Task<ApiResult<GetUserByUserNameOutputDto>> GetByUsername(string username, CancellationToken token)
         {
             var result = await _getUserByUserNameUseCase.ExecuteAsync(username, token);
-            return result.OperationResultTOApiResult();
+            return result;
         }
     }
 }

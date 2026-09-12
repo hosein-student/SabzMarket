@@ -1,35 +1,25 @@
-﻿using AutoMapper;
-using SabzMarket.Application.Common;
+﻿using SabzMarket.Application.Constants.Common.Messages;
+using SabzMarket.Application.Constants.Seller;
+using SabzMarket.Application.Exceptions;
 using SabzMarket.Application.Interfaces.Repository;
-using SabzMarket.Domain.Enums;
-using SabzMarket.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SabzMarket.Domain.Entities.Sellers;
 
-namespace SabzMarket.Application.UseCases.Sellers.GetSeller
+namespace SabzMarket.Application.UseCases.Sellers.GetSeller;
+
+public class GetSellerByIdUseCase(ISellerRepository sellerRepository) : IGetSellerByIdUseCase
 {
-    public class GetSellerByIdUseCase : IGetSellerByIdUseCase
+    public async Task<GetSellerOutputDto> ExecuteAsync(long id, CancellationToken token)
     {
-        private readonly ISellerRepository _sellerRepository;
-        private readonly IMapper _mapper;
-        public GetSellerByIdUseCase(ISellerRepository sellerRepository, IMapper mapper)
+        var seller = await sellerRepository.GetByIdAsync(id, token, include: x => x.User!);
+        if (seller == null)
         {
-            _sellerRepository = sellerRepository;
-            _mapper = mapper;
+            throw new NotFoundException(CommonMessages.NotFoundWarning(SellerMessages.Seller));
         }
-        public async Task<OperationResult<GetSellerOutputDTO>> ExecuteAsync(long id, CancellationToken token)
-        {
-            var result = await _sellerRepository.SelectByIdAsync(id, token);
-            if (result == null)
-            {
-                throw new NotFoundException(Messages.NoSellerFoundWithId);
-            }
-            var sellerDTO = _mapper.Map<GetSellerOutputDTO>(result);
 
-            return OperationResult<GetSellerOutputDTO>.Success(sellerDTO, OperationError.Success);
-        }
+        return ToDto(seller);
     }
+
+    private GetSellerOutputDto ToDto(Seller seller) => new(seller.Id, seller.UserId, seller.User!.UserName!,
+        seller.User.FirstName, seller.User.LastName, seller.User.Email, seller.User.Phone, seller.Address,
+        seller.ProfileImage, seller.WorkHistory);
 }

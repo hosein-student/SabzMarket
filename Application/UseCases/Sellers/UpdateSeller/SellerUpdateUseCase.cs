@@ -1,4 +1,5 @@
 ﻿using SabzMarket.Application.Common;
+using SabzMarket.Application.Common.Enums;
 using SabzMarket.Application.Constants.Common.Messages;
 using SabzMarket.Application.Constants.Seller;
 using SabzMarket.Application.Constants.User;
@@ -25,12 +26,10 @@ public class SellerUpdateUseCase(
                 throw new ConflictException(CommonMessages.DuplicateWarning(UserMessages.UserName));
         }
 
-        var image = inputDto.ProfileImage;
-
+        bool newProfile = false;
         if (!inputDto.ProfileImage.StartsWith(Messages.Url))
         {
-            image = await fileStorageService
-                .SaveAsync(stream, inputDto.ProfileImage, token);
+            newProfile = true;
         }
 
         try
@@ -52,9 +51,26 @@ public class SellerUpdateUseCase(
                 throw new NotFoundException(CommonMessages.NotFoundWarning(SellerMessages.Seller));
             }
 
-            seller.Update(inputDto.Id, inputDto.Address, image, inputDto.WorkHistory);
+            seller.Update(inputDto.Id, inputDto.Address, inputDto.WorkHistory);
+            if (!newProfile)
+            {
+                seller.UpdateProfileImage(inputDto.ProfileImage);
+            }
+
             sellerRepository.Update(seller);
             await unitOfWork.SaveChangesAsync(token);
+
+            if (newProfile)
+            {
+                var image = await fileStorageService
+                    .SaveAsync(stream, inputDto.ProfileImage, FileFolder.SellerProfile, seller.Id, token);
+
+                seller.UpdateProfileImage(inputDto.ProfileImage);
+
+                sellerRepository.Update(seller);
+                await unitOfWork.SaveChangesAsync(token);
+            }
+
             await unitOfWork.CommitAsync();
         }
         catch

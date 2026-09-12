@@ -1,6 +1,6 @@
 namespace SabzMarket.Domain.Entities.Farmers;
 
-public static class FarmerMessages
+public static class FarmerDomainMessages
 {
     public const string UserIdRequired = "FARMER_USERID_REQUIRED";
     public const string AddressRequired = "FARMER_ADDRESS_REQUIRED";

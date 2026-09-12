@@ -1,6 +1,6 @@
 namespace SabzMarket.Domain.Entities.Users;
 
-public static class UserMessages
+public static class UserDomainMessages
 {
     public const string FirstnameRequired = "USER_FIRSTNAME_REQUIRED";
     public const string LastnameRequired = "USER_LASTNAME_REQUIRED";

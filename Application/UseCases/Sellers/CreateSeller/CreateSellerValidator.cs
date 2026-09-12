@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SabzMarket.Application.UseCases.Sellers.CreateSeller
 {
-    public class CreateSellerValidator:AbstractValidator<CreateSellerInputDTO>
+    public class CreateSellerValidator:AbstractValidator<CreateSellerInputDto>
     {
         public CreateSellerValidator()
         {

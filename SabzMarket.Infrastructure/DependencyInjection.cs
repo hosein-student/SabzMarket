@@ -36,7 +36,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("Postgres")));
 
         #endregion
-    
+
         #region Repository
 
         services.AddScoped<IUserRepository, UserRepository>();
@@ -44,7 +44,6 @@ public static class DependencyInjection
         services.AddScoped<ICategorieRepository, CategorieRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
-        services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
         services.AddScoped<IFarmerRepository, FarmerRepository>();
         services.AddScoped<ICartItemRepository, CartItemRepository>();
         services.AddScoped<ISmsOtpRepository, SmsOtpRepository>();
@@ -60,14 +59,13 @@ public static class DependencyInjection
             var settings = sp.GetRequiredService<IOptions<S3Settings>>().Value;
             var config = new AmazonS3Config
             {
-                ServiceURL = settings.ServiceURL,
+                ServiceURL = settings.ServiceUrl,
                 ForcePathStyle = true,
                 AuthenticationRegion = settings.Region
             };
             var credentials = new BasicAWSCredentials(settings.AccessKey, settings.SecretKey);
             return new AmazonS3Client(credentials, config);
         });
-        
 
 
         services.AddScoped<IFileStorageService, S3FileStorageService>();

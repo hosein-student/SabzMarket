@@ -1,6 +1,6 @@
 namespace SabzMarket.Domain.Entities.Orders;
 
-public static class OrderMessages
+public static class OrderDomainMessages
 {
     public const string OrderIdRequired = "ORDER_ORDERID_REQUIRED";
     public const string ProductIdRequired = "ORDER_PRODUCTID_REQUIRED";

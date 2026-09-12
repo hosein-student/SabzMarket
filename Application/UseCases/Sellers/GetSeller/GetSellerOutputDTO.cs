@@ -6,8 +6,8 @@ public record GetSellerOutputDto(
     string UserName,
     string FirstName,
     string LastName,
-    string Email,
+    string? Email,
     string Phone,
     string Address,
-    string ProfileImage,
+    string? ProfileImage,
     string WorkHistory);

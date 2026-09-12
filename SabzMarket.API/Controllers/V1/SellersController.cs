@@ -17,7 +17,7 @@ namespace SabzMarket.API.Controllers.V1
         private readonly IUserIsSellerUseCase _userIsSellerUseCase;
         private readonly IGetSellerByUsenameUseCase _getSellerByUsenameUseCase;
         private readonly IGetSellerByIdUseCase _getSellerByIdUseCase;
-        private readonly IGetAllSellerByPhoneNumberUseCase _getAllSellerByPhoneNumberUseCase;
+        private readonly ISearchSellersUseCase _searchSellersUseCase;
         private readonly ISellerUpdateUseCase _sellerUpdateUseCase;
 
         public SellersController(
@@ -25,14 +25,14 @@ namespace SabzMarket.API.Controllers.V1
             IUserIsSellerUseCase userIsSellerUseCase,
             IGetSellerByUsenameUseCase getSellerByUsenameUseCase,
             IGetSellerByIdUseCase getSellerByIdUseCase,
-            IGetAllSellerByPhoneNumberUseCase getAllSellerByPhoneNumberUseCase,
+            ISearchSellersUseCase searchSellersUseCase,
             ISellerUpdateUseCase sellerUpdateUseCase)
         {
             _createSellerUseCase = createSellerUseCase;
             _userIsSellerUseCase = userIsSellerUseCase;
             _getSellerByUsenameUseCase = getSellerByUsenameUseCase;
             _getSellerByIdUseCase = getSellerByIdUseCase;
-            _getAllSellerByPhoneNumberUseCase = getAllSellerByPhoneNumberUseCase;
+            _searchSellersUseCase = searchSellersUseCase;
             _sellerUpdateUseCase = sellerUpdateUseCase;
         }
 
@@ -83,7 +83,7 @@ namespace SabzMarket.API.Controllers.V1
         public async Task<ApiResult<List<GetSellerOutputDTO>>> GetByPhoneNumber(string phone,
             CancellationToken token)
         {
-            var result = await _getAllSellerByPhoneNumberUseCase.ExecuteAsync(phone, token);
+            var result = await _searchSellersUseCase.ExecuteAsync(phone, token);
             return result.OperationResultTOApiResult();
         }
 

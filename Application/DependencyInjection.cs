@@ -67,7 +67,7 @@ public static class DependencyInjection
         services.AddScoped<ICreateSellerUseCase, CreateSellerUseCase>();
         services.AddScoped<IGetSellerByUsenameUseCase, GetSellerByUsenameUseCase>();
         services.AddScoped<IGetSellerByIdUseCase, GetSellerByIdUseCase>();
-        services.AddScoped<IGetAllSellerByPhoneNumberUseCase, GetAllSellerByPhoneNumberUseCase>();
+        services.AddScoped<ISearchSellersUseCase, SearchSellersUseCase>();
         services.AddScoped<ISellerUpdateUseCase, SellerUpdateUseCase>();
         services.AddScoped<IGetUserByUserNameUseCase, GetUserByUserNameUseCase>();
         services.AddScoped<ISendMessageUseCase, SendMessageUseCase>();
@@ -75,13 +75,6 @@ public static class DependencyInjection
         services.AddScoped<IGetMessageUseCase, GetMessageUseCase>();
 
         #endregion
-
-        #region AutoMapper
-
-        services.AddAutoMapper(cfg => { }, typeof(SignUpProfile).Assembly);
-
-        #endregion
-
 
         return services;
     }

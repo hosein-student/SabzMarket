@@ -1,47 +1,42 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
 using SabzMarket.Application.Common;
+using SabzMarket.Application.Common.Enums;
+using SabzMarket.Application.Constants.Common.Messages;
+using SabzMarket.Application.Constants.User;
+using SabzMarket.Application.Exceptions;
+using SabzMarket.Application.Interfaces.Persistence;
 using SabzMarket.Application.Interfaces.Repository;
 using SabzMarket.Application.Interfaces.Services;
-using SabzMarket.Domain.Entities;
-using SabzMarket.Domain.Enums;
-using SabzMarket.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SabzMarket.Domain.Entities.Sellers;
 
-namespace SabzMarket.Application.UseCases.Sellers.CreateSeller
+namespace SabzMarket.Application.UseCases.Sellers.CreateSeller;
+
+public class CreateSellerUseCase(
+    ISellerRepository sellerRepository,
+    IFileStorageService fileStorageService,
+    IUnitOfWork unitOfWork,
+    IUserRepository userRepository)
+    : ICreateSellerUseCase
 {
-    public class CreateSellerUseCase : ICreateSellerUseCase
+    public async Task ExecuteAsync(CreateSellerInputDto inputDto, string fileName, Stream stream,
+        CancellationToken token)
     {
-        private readonly ISellerRepository _sellerRepository;
-        private readonly IValidator<CreateSellerInputDTO> _validator;
-        public readonly IMapper _mapper;
-        public readonly IFileStorageService _fileStorageService;
-        public CreateSellerUseCase(ISellerRepository sellerRepository, IValidator<CreateSellerInputDTO> validator, IFileStorageService fileStorageService, IMapper mapper)
-        {
-            _sellerRepository = sellerRepository;
-            _validator = validator;
-            _fileStorageService = fileStorageService;
-            _mapper = mapper;
-        }
-        public async Task<OperationResult> ExecuteAsync(CreateSellerInputDTO sellerInputDTO, Stream stream, CancellationToken token)
-        {
-            var validationResult = _validator.Validate(sellerInputDTO);
-            if (!validationResult.IsValid)
-            {
-                throw new BadRequestException(validationResult.Errors.First().ErrorMessage);
-            }
+        var user = await userRepository.GetByUserNameAsync(inputDto.Username, token);
 
-            var imageUrl = await _fileStorageService.SaveAsync(stream!, sellerInputDTO.ProfileImage!, token);
-            sellerInputDTO.ProfileImage = imageUrl;
+        if (user is null)
+            throw new NotFoundException(CommonMessages.NotFoundWarning(UserMessages.User));
 
-            var seller = _mapper.Map<Seller>(sellerInputDTO);
-            await _sellerRepository.InsertAsync(sellerInputDTO.Username!, seller, token);
-            return OperationResult.Success(OperationError.None, Messages.SaveSellerProfileSuccessful);
 
-        }
+        var seller = new Seller(user.Id, inputDto.Address, inputDto.WorkHistory);
+        sellerRepository.Add(seller);
+        await unitOfWork.SaveChangesAsync(token);
+
+        var imageUrl =
+            await fileStorageService.SaveAsync(stream, fileName, FileFolder.SellerProfile, seller.Id, token);
+
+
+        seller.UpdateProfileImage(imageUrl);
+
+        await unitOfWork.SaveChangesAsync(token);
     }
 }

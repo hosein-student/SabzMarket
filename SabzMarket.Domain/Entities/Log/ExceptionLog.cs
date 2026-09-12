@@ -1,5 +1,3 @@
-using MongoDB.Bson;
-
 namespace SabzMarket.Domain.Entities.Log;
 
 public class ExceptionLog
